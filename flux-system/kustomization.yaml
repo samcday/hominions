@@ -13,3 +13,4 @@ resources:
 - kustomizations/flux.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/monitoring.yaml
+- kustomizations/syncthing.yaml
