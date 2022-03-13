@@ -11,10 +11,14 @@ dns: {}
 etcd:
   local:
     dataDir: /var/lib/etcd
+    extraArgs:
+      listen-metrics-urls: http://0.0.0.0:2381
 imageRepository: k8s.gcr.io
 kubernetesVersion: v1.23.4
 networking:
   dnsDomain: cluster.local
   podSubnet: 10.100.0.0/15
   serviceSubnet: 10.102.0.0/16
-scheduler: {}
+scheduler:
+  extraArgs:
+    bind-address: 0.0.0.0
