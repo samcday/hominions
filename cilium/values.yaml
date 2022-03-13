@@ -1,0 +1,16 @@
+# https://github.com/cilium/cilium/blob/master/install/kubernetes/cilium/values.yaml
+cni:
+  # kubelet on Arch seems to be looking here instead of /opt/cni/bin?  Mysterious.
+  binPath: /usr/lib/cni
+hubble:
+  relay:
+    enabled: true
+    rollOutPods: true
+  ui:
+    enabled: true
+    rollOutPods: true
+ipam:
+  mode: kubernetes
+operator:
+  rollOutPods: true
+  replicas: 1
