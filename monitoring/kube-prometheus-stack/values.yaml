@@ -1,0 +1,34 @@
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+
+kubeApiServer:
+  enabled: false
+kubeControllerManager:
+  serviceMonitor:
+    insecureSkipVerify: true
+kubeEtcd:
+  service:
+    port: 2381
+    targetPort: 2381
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  serviceMonitor:
+    insecureSkipVerify: true
+prometheus:
+  prometheusSpec:
+    enableAdminAPI: true
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    retention: 30d
+    retentionSize: 30GB
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: openebs-hostpath
+          accessModes: [ReadWriteOnce]
+          resources:
+            requests:
+              storage: 50Gi
+    walCompression: true

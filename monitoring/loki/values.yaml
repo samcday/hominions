@@ -1,0 +1,5 @@
+persistence:
+  enabled: true
+  storageClassName: openebs-hostpath
+serviceMonitor:
+  enabled: true

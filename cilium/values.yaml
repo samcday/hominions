@@ -1,4 +1,5 @@
 # https://github.com/cilium/cilium/blob/master/install/kubernetes/cilium/values.yaml
+
 cni:
   # kubelet on Arch seems to be looking here instead of /opt/cni/bin?  Mysterious.
   binPath: /usr/lib/cni

@@ -4,7 +4,12 @@ resources:
 - gitrepos/home-cluster.yaml
 - helmrepos/cilium.yaml
 - helmrepos/fluxcd-community.yaml
+- helmrepos/grafana.yaml
 - helmrepos/k8s-at-home.yaml
+- helmrepos/openebs.yaml
+- helmrepos/prometheus-community.yaml
 - kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml
 - kustomizations/flux.yaml
+- kustomizations/kube-system.yaml
+- kustomizations/monitoring.yaml

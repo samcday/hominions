@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+configMapGenerator:
+- name: kube-prometheus-stack-values
+  files: [kube-prometheus-stack/values.yaml]
+- name: promtail-values
+  files: [promtail/values.yaml]
+resources:
+- ../config
+- loki/
+
+- kube-prometheus-stack/helm-release.yaml
+- namespace.yaml
+- promtail/helm-release.yaml
