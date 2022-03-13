@@ -4,4 +4,6 @@
 persistence:
   data:
     enabled: true
+    accessMode: ReadWriteOnce
     storageClass: openebs-hostpath
+    size: 100Gi
