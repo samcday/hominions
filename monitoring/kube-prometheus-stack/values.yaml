@@ -3,6 +3,7 @@
 alertmanager:
   ingress:
     enabled: true
+    ingressClassName: nginx
     hosts: [alertmanager.home.samcday.com]
     paths: [/]
 kubeControllerManager:
@@ -20,6 +21,7 @@ kubeScheduler:
 prometheus:
   ingress:
     enabled: true
+    ingressClassName: nginx
     hosts: [prometheus.home.samcday.com]
     paths: [/]
   prometheusSpec:
