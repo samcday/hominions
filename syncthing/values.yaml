@@ -1,6 +1,14 @@
 # https://github.com/k8s-at-home/charts/blob/master/charts/stable/syncthing/values.yaml
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 
+ingress:
+  main:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+    - host: syncthing.home.samcday.com
+      paths:
+      - path: /
 persistence:
   data:
     enabled: true
