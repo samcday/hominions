@@ -1,0 +1,13 @@
+# https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/values.yaml
+
+env:
+- name: CF_API_TOKEN
+  valueFrom:
+    secretKeyRef:
+      name: cloudflare
+      key: token
+
+provider: cloudflare
+
+serviceMonitor:
+  enabled: true
