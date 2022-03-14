@@ -8,8 +8,8 @@ configMapGenerator:
   files: [promtail/values.yaml]
 resources:
 - ../config
-- loki/
-
 - kube-prometheus-stack/helm-release.yaml
+- laptop-node-exporter-svc.yaml
+- loki/
 - namespace.yaml
 - promtail/helm-release.yaml
