@@ -1,5 +1,10 @@
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 
+alertmanager:
+  ingress:
+    enabled: true
+    hosts: [alertmanager.home.samcday.com]
+    paths: [/]
 kubeControllerManager:
   serviceMonitor:
     insecureSkipVerify: true
@@ -13,6 +18,10 @@ kubeScheduler:
   serviceMonitor:
     insecureSkipVerify: true
 prometheus:
+  ingress:
+    enabled: true
+    hosts: [prometheus.home.samcday.com]
+    paths: [/]
   prometheusSpec:
     enableAdminAPI: true
     podMonitorSelectorNilUsesHelmValues: false
