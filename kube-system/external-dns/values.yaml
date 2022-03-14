@@ -11,3 +11,5 @@ provider: cloudflare
 
 serviceMonitor:
   enabled: true
+
+txtOwnerId: home-cluster
