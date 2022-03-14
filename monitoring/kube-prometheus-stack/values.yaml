@@ -6,6 +6,12 @@ alertmanager:
     ingressClassName: nginx
     hosts: [alertmanager.home.samcday.com]
     paths: [/]
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts: [grafana.home.samcday.com]
 kubeControllerManager:
   serviceMonitor:
     insecureSkipVerify: true
