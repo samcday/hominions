@@ -13,8 +13,14 @@ spec:
         name: prometheus-community
         namespace: flux-system
       version: 34.2.0
+  install:
+    remediation:
+      retries: -1
   interval: 1h
   releaseName: kube-prometheus-stack
+  upgrade:
+    remediation:
+      retries: -1
   valuesFrom:
   - kind: ConfigMap
     name: kube-prometheus-stack-values

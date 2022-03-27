@@ -12,8 +12,14 @@ spec:
         kind: GitRepository
         name: jellyfin-helm
         namespace: flux-system
+  install:
+    remediation:
+      retries: -1
   interval: 1h
   releaseName: jellyfin
+  upgrade:
+    remediation:
+      retries: -1
   valuesFrom:
   - kind: ConfigMap
     name: jellyfin-values

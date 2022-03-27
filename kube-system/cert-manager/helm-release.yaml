@@ -13,8 +13,14 @@ spec:
         name: jetstack
         namespace: flux-system
       version: v1.7.2
+  install:
+    remediation:
+      retries: -1
   interval: 1h
   releaseName: cert-manager
+  upgrade:
+    remediation:
+      retries: -1
   valuesFrom:
   - kind: ConfigMap
     name: cert-manager-values

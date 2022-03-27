@@ -13,8 +13,14 @@ spec:
         name: k8s-at-home
         namespace: flux-system
       version: 3.3.0
+  install:
+    remediation:
+      retries: -1
   interval: 1h0m0s
   releaseName: syncthing
+  upgrade:
+    remediation:
+      retries: -1
   valuesFrom:
   - kind: ConfigMap
     name: syncthing-values
