@@ -1,5 +1,15 @@
+# https://github.com/samcday/jellyfin-helm/blob/main/values.yaml
+
 ingress:
   enabled: true
   ingressClassName: nginx
   hosts: [jellyfin.home.samcday.com]
   paths: [/]
+
+persistence:
+  config:
+    enabled: true
+    storageClass: openebs-lvmpv
+  media:
+    enabled: true
+    storageClass: openebs-lvmpv
