@@ -13,6 +13,8 @@ spec:
         name: rook-release
         namespace: flux-system
       version: v1.8.6
+  dependsOn:
+  - name: rook-ceph-operator
   install:
     remediation:
       retries: -1
