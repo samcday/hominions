@@ -13,3 +13,4 @@ persistence:
   media:
     enabled: true
     storageClass: openebs-lvmpv
+    size: 100Gi
