@@ -16,6 +16,7 @@ resources:
 - kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml
 - kustomizations/flux.yaml
+- kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/monitoring.yaml
 - kustomizations/syncthing.yaml
