@@ -19,4 +19,5 @@ resources:
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/monitoring.yaml
+- kustomizations/rook-ceph.yaml
 - kustomizations/syncthing.yaml
