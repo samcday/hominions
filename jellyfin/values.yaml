@@ -1,0 +1,5 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts: [jellyfin.home.samcday.com]
+  paths: [/]
