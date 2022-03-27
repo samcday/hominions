@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: rook-release
         namespace: flux-system
-      version: v1.8.6
+      version: v1.8.7
   dependsOn:
   - name: rook-ceph-operator
   install:
