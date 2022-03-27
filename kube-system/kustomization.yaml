@@ -22,5 +22,6 @@ resources:
 - external-dns/helm-release.yaml
 - ingress-nginx/helm-release.yaml
 - openebs/helm-release.yaml
+- openebs/storageclass.yaml
 - secrets.yaml
 - sops-secrets-operator/helm-release.yaml
