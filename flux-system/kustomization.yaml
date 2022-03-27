@@ -12,6 +12,7 @@ resources:
 - helmrepos/k8s-at-home.yaml
 - helmrepos/openebs.yaml
 - helmrepos/prometheus-community.yaml
+- helmrepos/rook-release.yaml
 - helmrepos/sops-secrets-operator.yaml
 - kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml

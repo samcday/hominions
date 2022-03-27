@@ -13,8 +13,14 @@ spec:
         name: rook-release
         namespace: flux-system
       version: v1.8.6
+  install:
+    remediation:
+      retries: -1
   interval: 30m
   releaseName: rook-ceph
+  upgrade:
+    remediation:
+      retries: -1
   valuesFrom:
   - kind: ConfigMap
     name: rook-ceph-operator-values
