@@ -13,7 +13,6 @@ resources:
 - helmrepos/metrics-server.yaml
 - helmrepos/openebs.yaml
 - helmrepos/prometheus-community.yaml
-- helmrepos/rook-release.yaml
 - helmrepos/sops-secrets-operator.yaml
 - kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml
@@ -21,5 +20,4 @@ resources:
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/monitoring.yaml
-- kustomizations/rook-ceph.yaml
 - kustomizations/syncthing.yaml
