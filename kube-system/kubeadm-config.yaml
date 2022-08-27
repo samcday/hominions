@@ -16,7 +16,7 @@ etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
 imageRepository: k8s.gcr.io
-kubernetesVersion: v1.23.4
+kubernetesVersion: v1.24.4
 networking:
   dnsDomain: cluster.local
   podSubnet: 10.100.0.0/15
