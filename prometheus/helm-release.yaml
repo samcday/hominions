@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
-  namespace: monitoring
+  namespace: prometheus
 spec:
   chart:
     spec:
@@ -23,4 +23,4 @@ spec:
       retries: -1
   valuesFrom:
   - kind: ConfigMap
-    name: kube-prometheus-stack-values
+    name: values
