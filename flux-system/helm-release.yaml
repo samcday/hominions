@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: fluxcd-community
         namespace: flux-system
-      version: 0.15.0
+      version: 1.2.2
   install:
     crds: Create
     remediation:
@@ -23,4 +23,6 @@ spec:
     crds: CreateReplace
     remediation:
       retries: -1
-
+  valuesFrom:
+    - kind: ConfigMap
+      name: values

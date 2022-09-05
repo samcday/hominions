@@ -1,8 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: flux-system
+configMapGenerator:
+- name: values
+  files: [values.yaml]
 resources:
+- ../config
 - gitrepos/home-cluster.yaml
 - gitrepos/jellyfin-helm.yaml
+- helm-release.yaml
 - helmrepos/cilium.yaml
 - helmrepos/external-dns.yaml
 - helmrepos/fluxcd-community.yaml
@@ -16,7 +22,6 @@ resources:
 - helmrepos/sops-secrets-operator.yaml
 - kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml
-- kustomizations/flux.yaml
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/monitoring.yaml
