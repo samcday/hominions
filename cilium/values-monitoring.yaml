@@ -1,0 +1,10 @@
+hubble:
+  metrics:
+    serviceMonitor: &yespls
+  relay:
+    prometheus:
+      serviceMonitor: *yespls
+prometheus:
+  serviceMonitor: *yespls
+operator:
+  serviceMonitor: *yespls
