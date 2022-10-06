@@ -15,10 +15,15 @@ configMapGenerator:
   files: [openebs/values.yaml]
 - name: sops-secrets-operator-values
   files: [sops-secrets-operator/values.yaml]
+- name: cilium-values
+  files: [values.yaml]
+- name: cilium-values-monitoring
+  files: [values-monitoring.yaml]
 resources:
 - ../config
 - cert-manager/helm-release.yaml
 - cert-manager/issuers.yaml
+- cilium/helm-release.yaml
 - external-dns/helm-release.yaml
 - ingress-nginx/helm-release.yaml
 - openebs/helm-release.yaml

@@ -9,7 +9,7 @@ export KUBECONFIG=`pwd`/kubeconfig
 
 helm repo add cilium https://helm.cilium.io/
 helm repo update cilium
-helm install -n kube-system cilium cilium/cilium --values cilium/values.yaml --version 1.12.1
+helm install -n kube-system cilium cilium/cilium --values kube-system/cilium/values.yaml --version 1.12.1
 
 helm repo add fluxcd-community https://fluxcd-community.github.io/helm-charts
 helm repo update fluxcd-community
