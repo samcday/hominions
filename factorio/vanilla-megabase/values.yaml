@@ -2,6 +2,7 @@
 
 factorioServer:
   save_name: 2021megabae
+fullnameOverride: vanilla-megabase
 image:
   tag: 1.1.69
 persistence:
@@ -13,7 +14,6 @@ server_settings:
   visibility:
     public: false
   username: samcday
-  token: TODO
   require_user_verification: true
   autosave_slots: 144 (24 hours of 10min interval)
   auto_pause: false
