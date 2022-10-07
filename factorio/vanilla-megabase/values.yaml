@@ -1,0 +1,20 @@
+# https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
+
+factorioServer:
+  save_name: 2021megabae
+image:
+  tag: 1.1.69
+persistence:
+  enabled: true
+rcon:
+  external: false
+server_settings:
+  name: samcday's (mostly) vanilla megabase project
+  visibility:
+    public: false
+  username: samcday
+  token: TODO
+  require_user_verification: true
+  autosave_slots: 144 (24 hours of 10min interval)
+  auto_pause: false
+  non_blocking_saving: true
