@@ -19,3 +19,5 @@ server_settings:
   autosave_slots: 144 (24 hours of 10min interval)
   auto_pause: false
   non_blocking_saving: true
+service:
+  type: ClusterIP
