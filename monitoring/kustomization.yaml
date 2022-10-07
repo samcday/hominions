@@ -9,7 +9,5 @@ configMapGenerator:
 resources:
 - ../config
 - loki/
-
-- kube-prometheus-stack/helm-release.yaml
 - namespace.yaml
 - promtail/helm-release.yaml
