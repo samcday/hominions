@@ -13,8 +13,6 @@ configMapGenerator:
   options: {disableNameSuffixHash: true}
 - name: openebs-values
   files: [openebs/values.yaml]
-- name: sops-secrets-operator-values
-  files: [sops-secrets-operator/values.yaml]
 - name: cilium-values
   files: [cilium/values.yaml]
 - name: cilium-values-monitoring
@@ -28,5 +26,4 @@ resources:
 - ingress-nginx/helm-release.yaml
 - openebs/helm-release.yaml
 - openebs/storageclass.yaml
-- secrets.yaml
-- sops-secrets-operator/helm-release.yaml
+# - secrets.yaml
