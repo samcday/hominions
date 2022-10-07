@@ -3,7 +3,7 @@
 ### Bootstrap
 
 ```sh
-k3sup install --host hominion --k3s-channel v1.25 --k3s-extra-args="--node-ip=$(host hominion | sed s/'.* address '//) --flannel-backend=none --disable-network-policy --disable-helm-controller --disable-kube-proxy --disable-cloud-controller" --cluster
+k3sup install --host hominion --k3s-channel v1.25 --k3s-extra-args="--node-ip=$(host hominion | sed s/'.* address '//) --flannel-backend=none --disable-network-policy --disable-helm-controller --disable-kube-proxy --disable=servicelb --disable=traefik --disable=local-storage --disable-cloud-controller" --cluster
 
 export KUBECONFIG=`pwd`/kubeconfig
 
