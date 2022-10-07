@@ -16,9 +16,9 @@ configMapGenerator:
 - name: sops-secrets-operator-values
   files: [sops-secrets-operator/values.yaml]
 - name: cilium-values
-  files: [values.yaml]
+  files: [cilium/values.yaml]
 - name: cilium-values-monitoring
-  files: [values-monitoring.yaml]
+  files: [cilium/values-monitoring.yaml]
 resources:
 - ../config
 - cert-manager/helm-release.yaml
