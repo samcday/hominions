@@ -17,5 +17,5 @@ helm install -n flux-system flux fluxcd-community/flux2 --create-namespace --val
 
 sops -i -d flux-system/age-key.yaml
 kubectl apply -k flux-system/
-sops -i -e flux-system/age-key.yaml
+git checkout -- flux-system/age-key.yaml
 ```

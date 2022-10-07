@@ -20,7 +20,6 @@ resources:
 - helmrepos/openebs.yaml
 - helmrepos/prometheus-community.yaml
 - helmrepos/sops-secrets-operator.yaml
-- kustomizations/cilium.yaml
 - kustomizations/flux-system.yaml
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
