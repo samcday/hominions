@@ -10,7 +10,6 @@ resources:
 - gitrepos/home-cluster.yaml
 - gitrepos/jellyfin-helm.yaml
 - helm-release.yaml
-- helmrepos/cilium.yaml
 - helmrepos/external-dns.yaml
 - helmrepos/fluxcd-community.yaml
 - helmrepos/grafana.yaml
