@@ -1,6 +1,7 @@
 # https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
 
 factorioServer:
+  generate_new_save: false
   save_name: 2021megabae
   update_mods_on_start: true
 fullnameOverride: vanilla-megabase
