@@ -22,8 +22,8 @@ resources:
 - cert-manager/helm-release.yaml
 - cert-manager/issuers.yaml
 - cilium/helm-release.yaml
+- cloudflare-token.yaml
 - external-dns/helm-release.yaml
 - ingress-nginx/helm-release.yaml
 - openebs/helm-release.yaml
 - openebs/storageclass.yaml
-# - secrets.yaml
