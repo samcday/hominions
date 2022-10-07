@@ -16,7 +16,7 @@ configMapGenerator:
 - name: cilium-values
   files: [cilium/values.yaml]
 - name: cilium-values-monitoring
-  files: [cilium/values-monitoring.yaml]
+  files: [values.yaml=cilium/values-monitoring.yaml]
 resources:
 - ../config
 - cert-manager/helm-release.yaml
