@@ -9,6 +9,7 @@ image:
 mods:
   enabled: true
   portal:
+  - flib
   - helmod
   - ModuleInserter
   - VehicleSnap
