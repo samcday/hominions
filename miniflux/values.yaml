@@ -5,7 +5,7 @@ command:
 - -c
 - |-
   set -ueo pipefail
-  export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql/miniflux
+  export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql/miniflux?sslmode=disable
   exec /usr/bin/miniflux
 env:
   ADMIN_USERNAME: admin
