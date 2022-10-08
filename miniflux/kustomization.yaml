@@ -7,7 +7,7 @@ configMapGenerator:
   - name: postgres-values
     files: [postgres/values.yaml]
 resources:
-  - ../kustomizeconfig
+  - ../config
   - admin-password.yaml
   - helm-release.yaml
   - limit-range.yaml
