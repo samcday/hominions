@@ -1,3 +1,5 @@
 configKubernetes:
   enable_cross_namespace_secret: true
   enable_pod_antiaffinity: true
+  # Disabled for the moment, seems to be deploying beta PDBs removed in k8s 1.25. Maybe just need a PGO upgrade.
+  enable_pod_disruption_budget: false
