@@ -21,6 +21,7 @@ resources:
 - helmrepos/k8s-at-home.yaml
 - helmrepos/metrics-server.yaml
 - helmrepos/openebs.yaml
+- helmrepos/morremeyer.yaml
 - helmrepos/prometheus-community.yaml
 - helmrepos/sops-secrets-operator.yaml
 - helmrepos/zalando-postgres-operator.yaml
