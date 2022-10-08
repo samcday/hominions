@@ -13,4 +13,3 @@ resources:
   - namespace.yaml
   - postgres/helm-release.yaml
   - servicemonitor.yaml
-  - vpa.yaml
