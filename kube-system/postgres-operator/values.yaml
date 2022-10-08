@@ -1,2 +1,3 @@
 configKubernetes:
+  enable_cross_namespace_secret: true
   enable_pod_antiaffinity: true

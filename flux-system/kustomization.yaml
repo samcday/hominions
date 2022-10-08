@@ -28,5 +28,7 @@ resources:
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 # - kustomizations/monitoring.yaml
+- kustomizations/postgres.yaml
 - kustomizations/prometheus.yaml
+- kustomizations/synapse.yaml
 - kustomizations/syncthing.yaml

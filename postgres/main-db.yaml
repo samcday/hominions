@@ -1,0 +1,27 @@
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: main-db
+  namespace: kube-system
+spec:
+  teamId: main
+  volume:
+    size: 1Gi
+    storageClass: openebs-lvmpv
+  numberOfInstances: 1
+  users:
+    synapse.synapse_user: []
+    synapse.signal_user: []
+    synapse.whatsapp_user: []
+    synapse.telegram_user: []
+  databases:
+    synapse: synapse_user
+    signal: signal_user
+    whatsapp: whatsapp_user
+    telegram: telegram_user
+  postgresql:
+    version: "13"
+  patroni:
+    initdb:
+      encoding: UTF8
+      locale: C
