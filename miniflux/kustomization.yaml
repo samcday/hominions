@@ -10,7 +10,6 @@ resources:
   - ../config
   - admin-password.yaml
   - helm-release.yaml
-  - limit-range.yaml
   - namespace.yaml
   - postgres/helm-release.yaml
   - servicemonitor.yaml
