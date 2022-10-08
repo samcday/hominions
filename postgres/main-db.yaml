@@ -15,10 +15,18 @@ spec:
     synapse.whatsapp_user: []
     synapse.telegram_user: []
   databases:
-    synapse: synapse_user
-    signal: signal_user
-    whatsapp: whatsapp_user
-    telegram: telegram_user
+    synapse: synapse.synapse_user
+    signal: synapse.signal_user
+    whatsapp: synapse.whatsapp_user
+    telegram: synapse.telegram_user
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - hominion
   postgresql:
     version: "13"
   patroni:
