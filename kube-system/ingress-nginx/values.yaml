@@ -2,3 +2,5 @@
 
 controller:
   kind: DaemonSet
+  service:
+    enabled: false
