@@ -15,6 +15,8 @@ mods:
   - VehicleSnap
 persistence:
   enabled: true
+  dataDir:
+    Size: 10Gi
   storageClassName: openebs-lvmpv
 rcon:
   external: false
