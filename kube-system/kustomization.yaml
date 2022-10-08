@@ -17,8 +17,6 @@ configMapGenerator:
     options: {disableNameSuffixHash: true}
   - name: openebs-values
     files: [openebs/values.yaml]
-  - name: postgres-operator-values
-    files: [postgres-operator/values.yaml]
 resources:
   - ../config
   - cert-manager/helm-release.yaml
@@ -29,4 +27,3 @@ resources:
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
-  - postgres-operator/helm-release.yaml
