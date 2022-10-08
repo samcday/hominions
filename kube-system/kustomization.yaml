@@ -2,28 +2,31 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: kube-system
 configMapGenerator:
-- name: cert-manager-values
-  files: [cert-manager/values.yaml]
-- name: external-dns-values
-  files: [external-dns/values.yaml]
-- name: ingress-nginx-values
-  files: [ingress-nginx/values.yaml]
-- name: kubeadm-config
-  files: [ClusterConfiguration=kubeadm-config.yaml]
-  options: {disableNameSuffixHash: true}
-- name: openebs-values
-  files: [openebs/values.yaml]
-- name: cilium-values
-  files: [cilium/values.yaml]
-- name: cilium-values-monitoring
-  files: [values.yaml=cilium/values-monitoring.yaml]
+  - name: cert-manager-values
+    files: [cert-manager/values.yaml]
+  - name: cilium-values
+    files:
+      - cilium/values.yaml
+      - cilium/values-monitoring.yaml
+  - name: external-dns-values
+    files: [external-dns/values.yaml]
+  - name: ingress-nginx-values
+    files: [ingress-nginx/values.yaml]
+  - name: kubeadm-config
+    files: [ClusterConfiguration=kubeadm-config.yaml]
+    options: {disableNameSuffixHash: true}
+  - name: openebs-values
+    files: [openebs/values.yaml]
+  - name: postgres-operator-values
+    files: [postgres-operator/values.yaml]
 resources:
-- ../config
-- cert-manager/helm-release.yaml
-- cert-manager/issuers.yaml
-- cilium/helm-release.yaml
-- cloudflare-token.yaml
-- external-dns/helm-release.yaml
-- ingress-nginx/helm-release.yaml
-- openebs/helm-release.yaml
-- openebs/storageclass.yaml
+  - ../config
+  - cert-manager/helm-release.yaml
+  - cert-manager/issuers.yaml
+  - cilium/helm-release.yaml
+  - cloudflare-token.yaml
+  - external-dns/helm-release.yaml
+  - ingress-nginx/helm-release.yaml
+  - openebs/helm-release.yaml
+  - openebs/storageclass.yaml
+  - postgres-operator/helm-release.yaml

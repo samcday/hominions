@@ -27,4 +27,5 @@ spec:
   - kind: ConfigMap
     name: cilium-values
   - kind: ConfigMap
-    name: cilium-values-monitoring
+    name: cilium-values
+    valuesKey: values-monitoring.yaml

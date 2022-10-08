@@ -1,0 +1,2 @@
+configKubernetes:
+  enable_pod_antiaffinity: true
