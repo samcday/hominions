@@ -12,13 +12,13 @@ configMapGenerator:
     files: [external-dns/values.yaml]
   - name: ingress-nginx-values
     files: [ingress-nginx/values.yaml]
-  - name: kubeadm-config
-    files: [ClusterConfiguration=kubeadm-config.yaml]
-    options: {disableNameSuffixHash: true}
   - name: openebs-values
     files: [openebs/values.yaml]
+  - name: terraform-config
+    files: [terraform/.terraform.lock.hcl, terraform/main.tf]
 resources:
   - ../config
+  - backblaze-key.yaml
   - cert-manager/helm-release.yaml
   - cert-manager/issuers.yaml
   - cilium/helm-release.yaml
@@ -27,3 +27,5 @@ resources:
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
+  - terraform/apply-cronjob.yaml
+  - terraform/state-pvc.yaml

@@ -1,0 +1,73 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: terraform-apply
+  namespace: kube-system
+spec:
+  schedule: '@hourly'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          initContainers:
+            - name: init
+              image: hashicorp/terraform:1.3.2
+              args: [init]
+              envFrom: &env
+                - secretRef:
+                    name: backblaze-key
+              volumeMounts: &volmounts
+                - name: config
+                  mountPath: /tf
+                - name: state
+                  mountPath: /tf/.terraform
+              workingDir: /tf
+          containers:
+            - name: apply
+              image: hashicorp/terraform:1.3.2
+              args: [apply, "-auto-approve"]
+              envFrom: *env
+              volumeMounts: *volmounts
+              workingDir: /tf
+          restartPolicy: OnFailure
+          serviceAccountName: terraform-apply
+          volumes:
+            - name: config
+              configMap:
+                name: terraform-config
+            - name: state
+              persistentVolumeClaim:
+                claimName: terraform-state
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: terraform-apply
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: kube-system
+  name: terraform-apply
+rules:
+- apiGroups: [""]
+  resources: [secrets]
+  verbs: ["*"]
+- apiGroups: [coordination.k8s.io]
+  resources: [leases]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: terraform-apply
+  namespace: kube-system
+subjects:
+- kind: ServiceAccount
+  name: terraform-apply
+  namespace: kube-system
+roleRef:
+  kind: Role
+  name: terraform-apply
+  apiGroup: rbac.authorization.k8s.io
