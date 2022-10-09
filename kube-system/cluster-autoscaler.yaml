@@ -136,7 +136,7 @@ spec:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
       containers:
-        - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.21.1
+        - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.25.0
           name: cluster-autoscaler
           resources:
             limits:
