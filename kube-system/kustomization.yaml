@@ -10,6 +10,8 @@ configMapGenerator:
       - cilium/values-monitoring.yaml
   - name: external-dns-values
     files: [external-dns/values.yaml]
+  - name: hcloud-cloud-init
+    files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: ingress-nginx-values
     files: [ingress-nginx/values.yaml]
   - name: openebs-values
