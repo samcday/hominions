@@ -150,13 +150,54 @@ spec:
             - --cloud-provider=hetzner
             - --nodes=1:1:cx11:fsn1:home
           env:
-            - name: HCLOUD_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: hcloud-token
-                  key: token
             - name: HCLOUD_SSH_KEY
               value: mine
           envFrom:
             - configMapRef:
                 name: hcloud-cloud-init
+            - secretRef:
+                name: hcloud-token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hcloud-provisioner
+  namespace: kube-system
+  labels:
+    k8s-app: hcloud-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: hcloud-provisioner
+  template:
+    metadata:
+      labels:
+        name: hcloud-provisioner
+    spec:
+      containers:
+        - name: hcloud-provisioner
+          image: alpine:3
+          command:
+            - /bin/ash
+            - -c
+            - |-
+              curl -sLS https://get.k3sup.dev | sh
+              set -uexo pipefail
+              curl -sLS https://github.com/hetznercloud/cli/releases/download/v1.30.3/hcloud-linux-386.tar.gz | tar -C /bin -zxvf -
+              while true; do
+                hcloud server list
+                sleep 30s
+              done
+          envFrom:
+            - secretRef:
+                name: hcloud-token
+          resources:
+            limits:
+              cpu: '1'
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi

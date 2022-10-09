@@ -4,7 +4,7 @@ metadata:
     name: hcloud-token
     namespace: kube-system
 stringData:
-    token: ENC[AES256_GCM,data:phZW6MGcCWN6kTpkpEDv83xsy/wsDC+/8hOGMlwl1Feb+1ldPk2mwWczjk1J+QtGG+udkjJMoIqT/D4ujbVfhQ==,iv:fn5VrIPYKNXDJnao4cDNO3LwaEjqTJabQLK5LI9r+Qw=,tag:WnTPfvwt5iAwhKjBEfEn6g==,type:str]
+    HCLOUD_TOKEN: ENC[AES256_GCM,data:NMi1a2jYsdqi3fTLTnCS3rbGcNUzTBMM79pAx0dnxfwmF0fEcfl5v+wRTWyVTWzQVV8su9+QQqS6i8h7Q43TiA==,iv:pTvf7OQCSH/IDWrKFdTVRkMATITz0PYF/e2ppaI5Oeg=,tag:uUlEoJT4Iwk19OfupMjFTA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -20,8 +20,8 @@ sops:
             M1h3ZGxjR3dlYjFGRERobEN4aUJEdVkKSM7DyS+zx79tcz1z6kCW666tK6oazmk1
             V7O3AjhAdBM+20ElFcgAcuQKz11n8bXhzRAgz8lDG+kpckgRpB1OCw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-10-09T11:34:45Z"
-    mac: ENC[AES256_GCM,data:qVIbSH6hNyHKuW6OWzatOjdsZujCmK3UFYGWTwa7cs/YnI9ofBz0WkCAqQsQbVhdYMvqRfdIzgY2aX+Ty+NWRTmWA/cAOYIhIHH+Y7xN5SsmsB5cVaFiJnUHrFDNnZ7diTirgg2PBT/xgC8RQgiB6B+3QdVd7Y687SurRAnTn60=,iv:SMsr1C3e7BUDLuqMb1wkxn2ItIJEqlxzu9yXXda2Xh8=,tag:KrKRxzDGaQzCPNm2p/0lAw==,type:str]
+    lastmodified: "2022-10-09T12:36:22Z"
+    mac: ENC[AES256_GCM,data:PQGw5OO0hJG8y+LXKVgfXkInF+yuotrSmjenvOMsSKPniTlz9Bjs0EO0dAshfH0UEewWFoD5jGd86EI+NWqLouVKioCGCRYS4Icgqhoql51/sFdVILKQ+YKoPpp88PdSe8dvxITrDzvxYoqp4Phw4A61ADuLC79N3kvxRsNZCBQ=,iv:PKSfEGzdO859t/Nb0aBJC33cCwftFyQTcbil8GUOv9E=,tag:sXDh/x8KUT5MH+nXc84Bfw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.3

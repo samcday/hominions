@@ -69,10 +69,15 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            - name: HCLOUD_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: hcloud-token
-                  key: token
             - name: HCLOUD_LOAD_BALANCERS_ENABLED
               value: "false"
+          envFrom:
+            - secretRef:
+                name: hcloud-token
+          resources:
+            limits:
+              cpu: '1'
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
