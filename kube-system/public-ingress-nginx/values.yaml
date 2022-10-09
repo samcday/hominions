@@ -3,7 +3,9 @@
 controller:
   hostPort:
     enabled: true
-  ingressClass: nginx-public
+  ingressClass: public-nginx
+  ingressClassResource:
+    name: public-nginx
   kind: DaemonSet
   nodeSelector:
     node-role.kubernetes.io/hcloud: "" 
