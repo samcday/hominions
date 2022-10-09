@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: tailscale-auth
+    namespace: kube-system
+stringData:
+    TS_AUTH_KEY: ENC[AES256_GCM,data:LSCl74fky79xjaAd+XiOrZqlsF6PU4dd3pdgzn6g5/7h/Q3dYlTALZ6vvpnO3jQV,iv:1s1Cvrp0U9XlwbCLRJz/jZkVsfrZKYF9Zpd7QmcZ7Fk=,tag:HazT3j+c2bkI9RZghajrwQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBSEtmdExqbE8vaDA3a1Bm
+            elhkYnFLc3FJaGlBNUZPMURmQ0trMEsrSVRRCkRFV2x4Y3o1UE00YkhSZlZRSWgv
+            WkFIWU9KeDhUMnkvc3JBTWZYV2tNL2MKLS0tIDBvbzFMMzF4V2xuWkhzdGQyVmtK
+            UFIvNnpUQy92SjRnMnVPWGxvc1BFNUEKeS7+2syTVTXX98IJlVmGBr2+r03AIzV2
+            cB8O7cW4QiGBno5Z3g5LZiXl+1LZrxljmtiJu4cSmnqLgNoqeB9gJw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-09T13:49:37Z"
+    mac: ENC[AES256_GCM,data:DkQMbDzrbMtdqhKvL8RMi7PDPFPYAAdDlWGzEEkjeM6g4+0GCy93ddoNFM94b7jCheDSwSJbZoX8A32QhY7rny2PVKsvSaXn7K8De8IvPqCuhCqpbPkwPUFzoNvjKirRmfprKrh3DODybFVTiubaBRMgz3Fe58oS7Hwk7B52b64=,iv:aYedx6HpA4PFdoJepJ0+BXdEKJm+pzszBp0D3thr5NQ=,tag:XGDmqCsPYKcRjg0Ph4JgzQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

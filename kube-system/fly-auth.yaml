@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: fly-auth
+    namespace: kube-system
+stringData:
+    FLY_ACCESS_TOKEN: ENC[AES256_GCM,data:6Ec5oSEWBxTGSYlghfjLhjqX2SdG66RxE7gRZPZHsZiA4Iu2ngg4i51upw==,iv:WNAEW0Z5ctQUw9A8mlI+p94ixmI++2QoW/WFr3uSOx4=,tag:vB7WPPdX7rYeeEX8eMzE7g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMRHpZSHhlQ0t2YlJvYWJa
+            UXlCRjJBaVpQUzc2NlRReDdmRjNQWnJ2MHcwClQ2NXEvZ09Tdkpsa1ZTM1hldkhj
+            NWp2LzQ2Z21oaW55V3puVHJtdzlISE0KLS0tIElVZExSU1lURWt1SDRFR2dmbkVM
+            N2RxaVRJVUhzeHZzcEV3Q0NhdW16SUkKx7DX17i8ZnUJv2BQHjSjHaqJTqU9BC75
+            3oLFpKXqHYdj/2gFe+QiH9YIE5T9XfKn9zwWv8kxs4J/YPBwMNJbGg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-09T14:41:52Z"
+    mac: ENC[AES256_GCM,data:zO6plMiO7CSzRcHIwq8yDlH6GaWEg4jFNQO074Ot1S6cN3IRzuCJi4xOfD+VM0YIgDeyGCVvOt5XOh7gvbY7ekIq1G3jg/q+Kxl74g5C0VjUgXTfKnaipRBBDEcMRK5DhRLj+GYGr0mnKc9hKaZjTPr8jl39wv9KqRsNtv8X5Wg=,iv:d6FnjczzxnMwHl6jiz741mMJxQ5zaF/ed1VZ7/lq8g0=,tag:aRr2mz0VAAJj+G0e5qm1BA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

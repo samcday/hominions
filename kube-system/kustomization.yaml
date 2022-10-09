@@ -27,10 +27,13 @@ resources:
   - cloudflare-token.yaml
   - cluster-autoscaler.yaml
   - external-dns/helm-release.yaml
+  - fly-auth.yaml
   - hccm.yaml
   - hcloud-token.yaml
+  - hcloud-worker-ssh-key.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
+  - tailscale-auth.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
