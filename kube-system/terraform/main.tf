@@ -8,12 +8,22 @@ terraform {
       source  = "Backblaze/b2"
       version = "0.8.1"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "3.25.0"
+    }
+    fly = {
+      source = "fly-apps/fly"
+      version = "0.0.20"
+    }
   }
 }
 
-provider "b2" {
-  # Configuration options
-}
+provider "b2" {}
+
+provider "fly" {}
+
+provider "cloudflare" {}
 
 resource "b2_bucket" "headscale-backups" {
   bucket_name = "samcday-headscale-backups"
