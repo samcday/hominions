@@ -8,9 +8,9 @@ controller:
     name: public-nginx
   kind: DaemonSet
   nodeSelector:
-    node-role.kubernetes.io/hcloud: "" 
+    samcday.com/hcloud: ""
   service:
     enabled: false
   tolerations:
-    - key: node-role.kubernetes.io/hcloud
+    - key: samcday.com/hcloud
       operator: Exists
