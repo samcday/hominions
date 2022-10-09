@@ -211,14 +211,18 @@ spec:
               HERE
                   fi
 
+                  until $ssh $ip date; do
+                    sleep 1
+                  done
+
                   if ! $ssh $ip systemctl is-active tailscaled; then
-                    $ssh $ip 'curl -fsSL https://tailscale.com/install.sh | sh'
+                    $ssh $ip 'curl -fsSL https://tailscale.com/install.sh | sh' || continue
                   fi
 
                   pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
 
                   if ! $ssh $ip tailscale status; then
-                    $ssh $ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-routes=$pod_cidr
+                    $ssh $ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-routes=$pod_cidr || continue
                   fi
 
                   internal_ip=$($ssh $ip tailscale ip -4)
@@ -228,7 +232,7 @@ spec:
                   flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
 
                   if ! $ssh $ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip" --ssh-key=/tmp/hcloud-worker
+                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 
