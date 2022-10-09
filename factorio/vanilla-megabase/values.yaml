@@ -10,6 +10,7 @@ mods:
   enabled: true
   portal:
   - flib
+  - graftorio2
   - helmod
   - ModuleInserter
   - VehicleSnap
