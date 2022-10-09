@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: public-ingress-nginx
   namespace: kube-system
 spec:
   chart:
@@ -17,10 +17,10 @@ spec:
     remediation:
       retries: -1
   interval: 1h
-  releaseName: ingress-nginx
+  releaseName: public-ingress-nginx
   upgrade:
     remediation:
       retries: -1
   valuesFrom:
   - kind: ConfigMap
-    name: ingress-nginx-values
+    name: public-ingress-nginx-values
