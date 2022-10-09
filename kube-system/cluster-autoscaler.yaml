@@ -155,11 +155,6 @@ spec:
                 secretKeyRef:
                   name: hcloud-token
                   key: token
-            - name: HCLOUD_CLOUD_INIT
-              valueFrom:
-                secretKeyRef:
-                  name: hcloud-cloud-init
-                  key: HCLOUD_CLOUD_INIT
             - name: HCLOUD_SSH_KEY
               value: mine
           envFrom:
