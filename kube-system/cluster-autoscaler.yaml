@@ -148,7 +148,7 @@ spec:
           command:
             - ./cluster-autoscaler
             - --cloud-provider=hetzner
-            - --nodes=1:1:cx11:fsn1:home
+            - --nodes=1:5:cx11:fsn1:home
           env:
             - name: HCLOUD_SSH_KEY
               value: mine
@@ -228,11 +228,12 @@ spec:
                   internal_ip=$($ssh $ip tailscale ip -4)
 
                   # fly console into headscale, enable the route.
+                  # can maybe replace this with autoApprovers ACL thing?
                   node_id=$(flyctl ssh console -a samcday-headscale -C 'headscale node list -o json-line' | jq -r ". | map(select(.ip_addresses | contains([\"$internal_ip\"]))) | .[].id")
                   flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
 
                   if ! $ssh $ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --kubelet-arg=cloud-provider=external" --ssh-key=/tmp/hcloud-worker || continue
+                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-label 'node-role.kubernetes.io/hcloud=' --node-taint 'node-role.kubernetes.io/hcloud:NoSchedule' --kubelet-arg=cloud-provider=external" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 

@@ -16,6 +16,8 @@ configMapGenerator:
     files: [ingress-nginx/values.yaml]
   - name: openebs-values
     files: [openebs/values.yaml]
+  - name: public-ingress-nginx-values
+    files: [public-ingress-nginx/values.yaml]
   - name: terraform-config
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
 resources:
@@ -28,12 +30,12 @@ resources:
   - cluster-autoscaler.yaml
   - external-dns/helm-release.yaml
   - fly-auth.yaml
-  - hccm.yaml
   - hcloud-token.yaml
   - hcloud-worker-ssh-key.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
+  - public-ingress-nginx/helm-release.yaml
   - tailscale-auth.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml

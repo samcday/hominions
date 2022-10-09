@@ -1,0 +1,14 @@
+# https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
+
+controller:
+  hostPort:
+    enabled: true
+  ingressClass: nginx-public
+  kind: DaemonSet
+  nodeSelector:
+    node-role.kubernetes.io/hcloud: "" 
+  service:
+    enabled: false
+  tolerations:
+    - key: node-role.kubernetes.io/hcloud
+      operator: Exists
