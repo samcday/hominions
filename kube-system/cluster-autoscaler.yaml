@@ -233,7 +233,7 @@ spec:
                   flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
 
                   if ! $ssh $ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-label 'node-role.kubernetes.io/hcloud=' --node-taint 'node-role.kubernetes.io/hcloud:NoSchedule' --kubelet-arg=cloud-provider=external" --ssh-key=/tmp/hcloud-worker || continue
+                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud:NoSchedule' --kubelet-arg=cloud-provider=external" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 
