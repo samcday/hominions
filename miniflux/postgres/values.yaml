@@ -2,7 +2,7 @@
 
 global:
   storageClass: openebs-lvmpv
-prinary:
+primary:
   initdb:
     scripts:
       miniflux.sql: |-
