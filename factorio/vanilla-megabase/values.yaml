@@ -1,5 +1,13 @@
 # https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
 
+additionalVolumes:
+  - name: host-script-output
+    hostPath:
+      path: /var/lib/misc/vanilla-megabase/
+      type: DirectoryOrCreate
+additionalVolumeMounts:
+  - name: host-script-output
+    mountPath: /factorio/script-output/
 factorioServer:
   generate_new_save: false
   save_name: 2021megabae
