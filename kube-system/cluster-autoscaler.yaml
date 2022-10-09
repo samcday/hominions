@@ -184,9 +184,9 @@ spec:
             - /bin/ash
             - -c
             - |-
-              curl -sLS https://get.k3sup.dev | sh
+              wget -O- https://get.k3sup.dev | sh
               set -uexo pipefail
-              curl -sLS https://github.com/hetznercloud/cli/releases/download/v1.30.3/hcloud-linux-386.tar.gz | tar -C /bin -zxvf -
+              wget -O- https://github.com/hetznercloud/cli/releases/download/v1.30.3/hcloud-linux-386.tar.gz | tar -C /bin -zxvf -
               while true; do
                 hcloud server list
                 sleep 30s
