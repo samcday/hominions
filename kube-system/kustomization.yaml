@@ -25,6 +25,7 @@ resources:
   - cert-manager/issuers.yaml
   - cilium/helm-release.yaml
   - cloudflare-token.yaml
+  - cluster-autoscaler.yaml
   - external-dns/helm-release.yaml
   - hccm.yaml
   - hcloud-token.yaml
