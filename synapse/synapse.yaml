@@ -82,8 +82,6 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
-            - name: mautrix-signal
-              mountPath: /mautrix-signal
             - name: signing-key
               mountPath: /signing-key
       initContainers:
@@ -121,9 +119,9 @@ spec:
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 991:991 /data
-              cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
-              cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
-              envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
+              cp /config-templates/mautrix-signal.yaml /data/mautrix-signal/config.yaml
+              cp /config-templates/mautrix-whatsapp.yaml /data/mautrix-whatsapp/config.yaml
+              envsubst < /config-templates/mautrix-telegram.yaml > /data/mautrix-telegram/config.yaml
               cp /config-templates/log.yaml /config/
               envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
@@ -136,12 +134,6 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
-            - name: mautrix-signal
-              mountPath: /mautrix-signal
-            - name: mautrix-telegram
-              mountPath: /mautrix-telegram
-            - name: mautrix-whatsapp
-              mountPath: /mautrix-whatsapp
         - name: mautrix-signal-register
           image: dock.mau.dev/mautrix/signal:v0.2.1
           volumeMounts: *signalvolmounts
