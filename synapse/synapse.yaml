@@ -30,6 +30,8 @@ spec:
               mountPath: /db
             - name: mautrix-signal
               mountPath: /data
+            - name: signald
+              mountPath: /signald
             - name: data
               mountPath: /signald_data
               subPath: signald
