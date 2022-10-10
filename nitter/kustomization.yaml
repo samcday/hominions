@@ -10,10 +10,8 @@ configMapGenerator:
 - name: redis-values
   files: [redis/values.yaml]
 resources:
-- ../kustomizeconfig
+- ../config
 - helm-release.yaml
-- limit-range.yaml
 - namespace.yaml
 - redis/helm-release.yaml
 - secrets.yaml
-- vpa.yaml
