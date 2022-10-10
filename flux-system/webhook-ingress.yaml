@@ -4,6 +4,7 @@ metadata:
   name: webhook
   namespace: flux-system
 spec:
+  ingressClassName: public-nginx
   rules:
   - host: flux.home.samcday.com
     http:
