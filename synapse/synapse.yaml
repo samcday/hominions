@@ -70,13 +70,6 @@ spec:
             - sh
             - -c
             - |-
-              touch /data/registration.yaml
-        - name: config
-          image: supinf/envsubst
-          command:
-            - sh
-            - -c
-            - |-
               mkdir -p /data/media
               chown -R 991:991 /data
               cp /config-template/{log.yaml,mautrix-signal.yaml,mautrix-whatsapp.yaml} /config/
@@ -92,6 +85,13 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
+        # - name: mautrix-signal-register
+        #   image: 
+        #   command:
+        #     - sh
+        #     - -c
+        #     - |-
+        #       touch /data/registration.yaml
       volumes:
         - name: appservices
           emptyDir: {}
