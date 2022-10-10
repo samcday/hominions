@@ -29,6 +29,7 @@ resources:
 - kustomizations/flux-system.yaml
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
+- kustomizations/libreddit.yaml
 - kustomizations/miniflux.yaml
 - kustomizations/prometheus.yaml
 - kustomizations/secrets.yaml
