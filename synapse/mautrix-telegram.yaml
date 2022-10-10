@@ -35,7 +35,7 @@ spec:
             - |-
               envsubst < /config-template/mautrix-telegram.yaml > /data/config.yaml
               touch /data/registration.yaml
-              chown -R 1337:1337 /data
+              chown -cR root:root /data
           env:
             - name: SHARED_SECRET
               valueFrom:
