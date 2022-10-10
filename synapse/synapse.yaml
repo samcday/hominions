@@ -67,7 +67,7 @@ spec:
         - name: config
           image: supinf/envsubst
           command:
-            - sh
+            - ash
             - -c
             - |-
               mkdir -p /data/media
