@@ -116,8 +116,9 @@ spec:
             - sh
             - -c
             - |-
-              mkdir -p /data/media
-              mkdir -p /data/signald
+              for dir in media signald mautrix-signal mautrix-whatsapp mautrix-telegram; do
+                mkdir -p /data/$dir
+              done
               chown -R 991:991 /data
               cp /config-templates/mautrix-signal.yaml /data/mautrix-signal/config.yaml
               cp /config-templates/mautrix-whatsapp.yaml /data/mautrix-whatsapp/config.yaml
