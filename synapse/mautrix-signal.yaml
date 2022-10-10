@@ -41,7 +41,6 @@ spec:
             - |-
               envsubst < /config-template/mautrix-signal.yaml > /data/config.yaml
               touch /data/registration.yaml
-              chown -R 1337:1337 /data
           env:
             - name: SHARED_SECRET
               valueFrom:
