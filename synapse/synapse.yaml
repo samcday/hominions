@@ -32,15 +32,15 @@ spec:
               mountPath: /data
             - name: signald
               mountPath: /signald
-        # - image: dock.mau.dev/mautrix/telegram:v0.12.1
-        #   name: mautrix-telegram
-        #   ports:
-        #     - containerPort: 29317
-        #   volumeMounts:
-        #     - name: data
-        #       mountPath: /db
-        #     - name: mautrix-telegram
-        #       mountPath: /data
+        - image: dock.mau.dev/mautrix/telegram:v0.12.1
+          name: mautrix-telegram
+          ports:
+            - containerPort: 29317
+          volumeMounts:
+            - name: data
+              mountPath: /db
+            - name: mautrix-telegram
+              mountPath: /data
         # - image: dock.mau.dev/mautrix/whatsapp:v0.2.1
         #   name: mautrix-whatsapp
         #   ports:
@@ -153,6 +153,11 @@ spec:
           image: dock.mau.dev/mautrix/signal:v0.2.1
           volumeMounts:
             - name: mautrix-signal
+              mountPath: /data
+        - name: mautrix-telegram-register
+          image: dock.mau.dev/mautrix/telegram:v0.12.1
+          volumeMounts:
+            - name: mautrix-telegram
               mountPath: /data
       volumes:
         - name: appservices
