@@ -1,12 +1,12 @@
 # Homeserver details
 homeserver:
     # The address that this appservice can use to connect to the homeserver.
-    address: http://localhost:8008
+    address: https://matrix.samcday.com
     # The domain of the homeserver (for MXIDs, etc).
     domain: samcday.com
     # Whether or not to verify the SSL certificate of the homeserver.
     # Only applies if address starts with https://
-    verify_ssl: false
+    verify_ssl: true
     asmux: false
     # Number of retries for all HTTP requests if the homeserver isn't reachable.
     http_retry_count: 4
