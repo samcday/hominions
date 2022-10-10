@@ -26,6 +26,5 @@ resources:
 - mautrix-signal.yaml
 - mautrix-telegram.yaml
 - mautrix-whatsapp.yaml
-- media-pvc.yaml
 - namespace.yaml
 - synapse.yaml
