@@ -1,7 +1,7 @@
 db:
-  user: kemal
+  user: postgres
   password: ${PG_PASSWORD}
-  host: invidious-db
+  host: postgres-postgresql
   port: 5432
   dbname: invidious
 
