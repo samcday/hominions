@@ -16,6 +16,8 @@ spec:
               envFrom: &env
                 - secretRef:
                     name: backblaze-key
+                - secretRef:
+                    name: github-token
               volumeMounts: &volmounts
                 - name: config
                   mountPath: /tf
