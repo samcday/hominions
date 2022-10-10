@@ -29,5 +29,4 @@ resources:
 - mautrix-whatsapp.yaml
 - media-pvc.yaml
 - namespace.yaml
-- secrets.yaml
 - service.yaml
