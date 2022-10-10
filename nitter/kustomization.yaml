@@ -14,4 +14,3 @@ resources:
 - helm-release.yaml
 - namespace.yaml
 - redis/helm-release.yaml
-- secrets.yaml
