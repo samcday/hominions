@@ -32,6 +32,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/misc
+            - name: scratch
+              mountPath: /data
       initContainers:
         - name: config
           image: supinf/envsubst
@@ -66,6 +68,8 @@ spec:
         - name: config-template
           configMap:
             name: mautrix-signal
+        - name: scratch
+          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: data
