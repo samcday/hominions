@@ -120,6 +120,9 @@ spec:
             name: config
         - name: config
           emptyDir: {}
+        - name: litestream-config
+          configMap:
+            name: litestream-config
         - name: mautrix-signal-config
           configMap:
             name: mautrix-signal
