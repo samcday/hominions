@@ -23,6 +23,6 @@ media_store_path: /data/media
 serve_server_wellknown: true
 registration_shared_secret: ${REGISTRATION_SECRET}
 app_service_config_files:
-- /config/appservice-mautrix-signal.yaml
-- /config/appservice-mautrix-telegram.yaml
-- /config/appservice-mautrix-whatsapp.yaml
+- /appservices/mautrix-signal.yaml
+- /appservices/mautrix-telegram.yaml
+- /appservices/mautrix-whatsapp.yaml

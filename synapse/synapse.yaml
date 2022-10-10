@@ -21,106 +21,101 @@ spec:
         app: synapse
     spec:
       containers:
-      - image: matrixdotorg/synapse
-        name: synapse
-        ports:
-        - containerPort: 8008
-        env:
-        - name: SYNAPSE_CONFIG_PATH
-          value: /config/homeserver.yaml
-        volumeMounts:
-        - name: config
-          mountPath: /config
-        - name: signing-key
-          mountPath: /signing-key
-        - name: data
-          mountPath: /data
+        # - image: dock.mau.dev/mautrix/signal:v0.2.1
+        #   name: mautrix-signal
+        #   ports:
+        #     - containerPort: 29328
+        #   volumeMounts:
+        #     - name: scratch
+        #       mountPath: /data
+        #     - name: signald
+        #       mountPath: /signald
+        # - image: dock.mau.dev/mautrix/telegram:v0.12.1
+        #   name: mautrix-telegram
+        #   ports:
+        #     - containerPort: 29317
+        #   volumeMounts:
+        #     - name: scratch
+        #       mountPath: /data
+        # - image: dock.mau.dev/mautrix/whatsapp:v0.2.1
+        #   name: mautrix-whatsapp
+        #   ports:
+        #   - containerPort: 29318
+        #   volumeMounts:
+        #   - name: data
+        #     mountPath: /data
+        # - image: signald/signald:0.22.2
+        #   name: signald
+        #   volumeMounts:
+        #     - name: signald
+        #       mountPath: /signald
+        - image: matrixdotorg/synapse
+          name: synapse
+          ports:
+            - containerPort: 8008
+          env:
+            - name: SYNAPSE_CONFIG_PATH
+              value: /config/homeserver.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: signing-key
+              mountPath: /signing-key
+            - name: data
+              mountPath: /data
       initContainers:
-      - name: config
-        image: supinf/envsubst
-        command:
-        - sh
-        - -c
-        - |-
-          mkdir -p /data/media
-          chown -R 991:991 /data
-          cp /config-template/log.yaml /config/log.yaml
-          envsubst < /config-template/homeserver.yaml > /config/homeserver.yaml
-          envsubst < /config-template/appservice-mautrix-signal.yaml > /config/appservice-mautrix-signal.yaml
-          envsubst < /config-template/appservice-mautrix-telegram.yaml > /config/appservice-mautrix-telegram.yaml
-          envsubst < /config-template/appservice-mautrix-whatsapp.yaml > /config/appservice-mautrix-whatsapp.yaml
-        env:
-        - name: MACAROON_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: synapse
-              key: MACAROON_SECRET_KEY
-        - name: REGISTRATION_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: synapse
-              key: REGISTRATION_SECRET
-        - name: SIGNAL_AS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-signal
-              key: AS_TOKEN
-        - name: SIGNAL_HS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-signal
-              key: HS_TOKEN
-        - name: SIGNAL_SENDER_LOCALPART
-          valueFrom:
-            secretKeyRef:
-              name: synapse
-              key: SIGNAL_SENDER_LOCALPART
-        - name: WA_AS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-whatsapp
-              key: AS_TOKEN
-        - name: WA_HS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-whatsapp
-              key: HS_TOKEN
-        - name: WA_SENDER_LOCALPART
-          valueFrom:
-            secretKeyRef:
-              name: synapse
-              key: WA_SENDER_LOCALPART
-        - name: TELE_AS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: AS_TOKEN
-        - name: TELE_HS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: HS_TOKEN
-        - name: TELE_SENDER_LOCALPART
-          valueFrom:
-            secretKeyRef:
-              name: synapse
-              key: TELE_SENDER_LOCALPART
-        volumeMounts:
-        - name: config-template
-          mountPath: /config-template
         - name: config
-          mountPath: /config
-        - name: data
-          mountPath: /data
+          image: supinf/envsubst
+          command:
+            - sh
+            - -c
+            - |-
+              envsubst < /config-template/mautrix-signal.yaml > /data/config.yaml
+              touch /data/registration.yaml
+        - name: config
+          image: supinf/envsubst
+          command:
+            - sh
+            - -c
+            - |-
+              mkdir -p /data/media
+              chown -R 991:991 /data
+              cp /config-template/log.yaml /config/log.yaml
+              envsubst < /config-template/homeserver.yaml > /config/homeserver.yaml
+          env:
+            - name: MACAROON_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: synapse
+                  key: MACAROON_SECRET_KEY
+            - name: REGISTRATION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: synapse
+                  key: REGISTRATION_SECRET
+          volumeMounts:
+            - name: config-template
+              mountPath: /config-template
+            - name: config
+              mountPath: /config
+            - name: data
+              mountPath: /data
       volumes:
-      - name: config-template
-        configMap:
-          name: homeserver
-      - name: config
-        emptyDir: {}
-      - name: signing-key
-        secret:
-          secretName: signing-key
+        - name: appservices
+          emptyDir: {}
+        - name: config-template
+          configMap:
+            name: homeserver
+        - name: config
+          emptyDir: {}
+        - name: mautrix-signal-config
+          configMap:
+            name: mautrix-signal
+        - name: signing-key
+          secret:
+            secretName: signing-key
+        - name: signald
+          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: data
