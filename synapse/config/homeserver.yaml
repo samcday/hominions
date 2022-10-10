@@ -1,6 +1,6 @@
 app_service_config_files:
-- /data/mautrix-signal/registration.yaml
-- /data/mautrix-telegram/registration.yaml
+- /mautrix-signal/registration.yaml
+- /mautrix-telegram/registration.yaml
 # - /appservices/mautrix-whatsapp.yaml
 database:
   name: sqlite3
