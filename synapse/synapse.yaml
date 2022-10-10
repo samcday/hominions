@@ -74,10 +74,12 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: signing-key
-              mountPath: /signing-key
             - name: data
               mountPath: /data
+            - name: mautrix-signal
+              mountPath: /mautrix-signal
+            - name: signing-key
+              mountPath: /signing-key
       initContainers:
         - name: init-litestream
           image: litestream/litestream:0.3.9
