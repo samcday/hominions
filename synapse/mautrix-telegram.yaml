@@ -19,57 +19,58 @@ spec:
         app: mautrix-telegram
     spec:
       containers:
-      - image: dock.mau.dev/mautrix/telegram:v0.11.0
-        name: mautrix-telegram
-        ports:
-        - containerPort: 29317
-        volumeMounts:
-        - name: data
-          mountPath: /data
-      initContainers:
-      - name: config
-        image: supinf/envsubst
-        command:
-        - sh
-        - -c
-        - |-
-          envsubst < /config-template/mautrix-telegram.yaml > /data/config.yaml
-          touch /data/registration.yaml
-        env:
-        - name: SHARED_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: SHARED_SECRET
-        - name: AS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: AS_TOKEN
-        - name: HS_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: HS_TOKEN
-        - name: API_ID
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: API_ID
-        - name: API_HASH
-          valueFrom:
-            secretKeyRef:
-              name: mautrix-telegram
-              key: API_HASH
-        volumeMounts:
-        - name: config-template
-          mountPath: /config-template
-        - name: data
-          mountPath: /data
-      volumes:
-      - name: config-template
-        configMap:
+        - image: dock.mau.dev/mautrix/telegram:v0.12.1
           name: mautrix-telegram
+          ports:
+            - containerPort: 29317
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      initContainers:
+        - name: config
+          image: supinf/envsubst
+          command:
+            - sh
+            - -c
+            - |-
+              envsubst < /config-template/mautrix-telegram.yaml > /data/config.yaml
+              touch /data/registration.yaml
+              chown -R 1337:1337 /data
+          env:
+            - name: SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-telegram
+                  key: SHARED_SECRET
+            - name: AS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-telegram
+                  key: AS_TOKEN
+            - name: HS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-telegram
+                  key: HS_TOKEN
+            - name: API_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-telegram
+                  key: API_ID
+            - name: API_HASH
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-telegram
+                  key: API_HASH
+          volumeMounts:
+            - name: config-template
+              mountPath: /config-template
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config-template
+          configMap:
+            name: mautrix-telegram
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -89,8 +90,8 @@ metadata:
     app: mautrix-telegram
 spec:
   ports:
-  - port: 29317
-    protocol: TCP
-    targetPort: 29317
+    - port: 29317
+      protocol: TCP
+      targetPort: 29317
   selector:
     app: mautrix-telegram
