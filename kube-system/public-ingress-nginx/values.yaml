@@ -1,6 +1,9 @@
 # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
 
 controller:
+  admissionWebhooks:
+    # covered by main ingress controller I think?
+    enabled: false
   electionID: public-ingress-controller-leader
   hostPort:
     enabled: true
