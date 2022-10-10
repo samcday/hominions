@@ -232,7 +232,7 @@ spec:
                   node_id=$(flyctl ssh console -a samcday-headscale -C 'headscale node list -o json-line' | jq -r ". | map(select(.ip_addresses | contains([\"$internal_ip\"]))) | .[].id")
                   flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
 
-                  if ! $ssh $ip systemctl is-active k3s-agent; then
+                  if ! $ssh $internal_ip systemctl is-active k3s-agent; then
                     k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud:NoSchedule'" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
