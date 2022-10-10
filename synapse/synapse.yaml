@@ -152,8 +152,6 @@ spec:
               mountPath: /mautrix-telegram
             - name: mautrix-whatsapp
               mountPath: /mautrix-whatsapp
-            - name: mautrix-whatsapp
-              mountPath: /mautrix-whatsapp
         - name: mautrix-signal-register
           image: dock.mau.dev/mautrix/signal:v0.2.1
           volumeMounts:
