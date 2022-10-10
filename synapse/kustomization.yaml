@@ -22,11 +22,10 @@ configMapGenerator:
   files:
   - config/mautrix-whatsapp.yaml
 resources:
-- deployment.yaml
 - ingress.yaml
 - mautrix-signal.yaml
 - mautrix-telegram.yaml
 - mautrix-whatsapp.yaml
 - media-pvc.yaml
 - namespace.yaml
-- service.yaml
+- synapse.yaml

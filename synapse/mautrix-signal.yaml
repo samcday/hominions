@@ -21,8 +21,9 @@ spec:
       - image: signald/signald:0.15.0-40-56a6c9d2
         name: signald
         volumeMounts:
-        - name: signald
+        - name: data
           mountPath: /signald
+          subPath: signald
       - image: dock.mau.dev/mautrix/signal:v0.2.1
         name: mautrix-signal
         ports:
@@ -30,8 +31,6 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /data
-        - name: signald
-          mountPath: /signald
       initContainers:
       - name: config
         image: supinf/envsubst
@@ -66,17 +65,15 @@ spec:
       - name: config-template
         configMap:
           name: mautrix-signal
-      - name: data
-        emptyDir: {}
   volumeClaimTemplates:
-  - metadata:
-      name: signald
-    spec:
-      accessModes: [ReadWriteOnce]
-      storageClassName: openebs-lvmpv
-      resources:
-        requests:
-          storage: 10Gi
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: openebs-lvmpv
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

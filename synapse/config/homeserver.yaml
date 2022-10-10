@@ -19,7 +19,7 @@ old_signing_keys:
 trusted_key_servers:
 - server_name: matrix.org
 suppress_key_server_warning: true
-media_store_path: /media
+media_store_path: /data/media
 serve_server_wellknown: true
 registration_shared_secret: ${REGISTRATION_SECRET}
 app_service_config_files:

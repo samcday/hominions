@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: synapse
   namespace: synapse
@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: synapse
+  serviceName: synapse
   strategy:
     type: Recreate
   template:
@@ -32,8 +33,8 @@ spec:
           mountPath: /config
         - name: signing-key
           mountPath: /signing-key
-        - name: media
-          mountPath: /media
+        - name: data
+          mountPath: /data/media
       initContainers:
       - name: config
         image: supinf/envsubst
@@ -41,7 +42,8 @@ spec:
         - sh
         - -c
         - |-
-          chown -R 991:991 /media
+          mkdir -p /data/media
+          chown -R 991:991 /data
           cp /config-template/log.yaml /config/log.yaml
           envsubst < /config-template/homeserver.yaml > /config/homeserver.yaml
           envsubst < /config-template/appservice-mautrix-signal.yaml > /config/appservice-mautrix-signal.yaml
@@ -108,8 +110,8 @@ spec:
           mountPath: /config-template
         - name: config
           mountPath: /config
-        - name: media
-          mountPath: /media
+        - name: data
+          mountPath: /data
       volumes:
       - name: config-template
         configMap:
@@ -119,6 +121,27 @@ spec:
       - name: signing-key
         secret:
           secretName: signing-key
-      - name: media
-        persistentVolumeClaim:
-          claimName: media
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: openebs-lvmpv
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: synapse
+  namespace: synapse
+  labels:
+    app: synapse
+spec:
+  ports:
+  - port: 8008
+    protocol: TCP
+    targetPort: 8008
+  selector:
+    app: synapse
