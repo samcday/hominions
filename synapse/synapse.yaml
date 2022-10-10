@@ -70,7 +70,6 @@ spec:
             - sh
             - -c
             - |-
-              envsubst < /config-template/mautrix-signal.yaml > /data/config.yaml
               touch /data/registration.yaml
         - name: config
           image: supinf/envsubst
@@ -80,19 +79,12 @@ spec:
             - |-
               mkdir -p /data/media
               chown -R 991:991 /data
-              cp /config-template/log.yaml /config/log.yaml
+              cp /config-template/{log.yaml,mautrix-signal.yaml,mautrix-whatsapp.yaml} /config/
               envsubst < /config-template/homeserver.yaml > /config/homeserver.yaml
-          env:
-            - name: MACAROON_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: synapse
-                  key: MACAROON_SECRET_KEY
-            - name: REGISTRATION_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: synapse
-                  key: REGISTRATION_SECRET
+              envsubst < /config-template/mautrix-telegram.yaml > /config/mautrix-telegram.yaml
+          envFrom:
+            - secretRef:
+                name: synapse-env
           volumeMounts:
             - name: config-template
               mountPath: /config-template
@@ -103,7 +95,7 @@ spec:
       volumes:
         - name: appservices
           emptyDir: {}
-        - name: config-template
+        - name: synapse-config-template
           configMap:
             name: homeserver
         - name: config
