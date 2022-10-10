@@ -24,7 +24,7 @@ spec:
           ports:
             - containerPort: 29317
           volumeMounts:
-            - name: data
+            - name: scratch
               mountPath: /data
       initContainers:
         - name: config
@@ -65,21 +65,14 @@ spec:
           volumeMounts:
             - name: config-template
               mountPath: /config-template
-            - name: data
+            - name: scratch
               mountPath: /data
       volumes:
         - name: config-template
           configMap:
             name: mautrix-telegram
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: openebs-lvmpv
-        resources:
-          requests:
-            storage: 1Gi
+        - name: scratch
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
