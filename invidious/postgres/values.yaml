@@ -7,8 +7,3 @@ primary:
     scripts:
       miniflux.sql: |-
         create database invidious;
-  nodeSelector:
-    samcday.com/hcloud: ""
-  tolerations:
-    - key: samcday.com/hcloud
-      operator: Exists
