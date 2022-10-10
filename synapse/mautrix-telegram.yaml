@@ -38,11 +38,6 @@ spec:
           envsubst < /config-template/mautrix-telegram.yaml > /data/config.yaml
           touch /data/registration.yaml
         env:
-        - name: PGPASS
-          valueFrom:
-            secretKeyRef:
-              name: telegram-user.synapse-db.credentials.postgresql.acid.zalan.do
-              key: password
         - name: SHARED_SECRET
           valueFrom:
             secretKeyRef:

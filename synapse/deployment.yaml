@@ -48,11 +48,6 @@ spec:
           envsubst < /config-template/appservice-mautrix-telegram.yaml > /config/appservice-mautrix-telegram.yaml
           envsubst < /config-template/appservice-mautrix-whatsapp.yaml > /config/appservice-mautrix-whatsapp.yaml
         env:
-        - name: PGPASS
-          valueFrom:
-            secretKeyRef:
-              name: synapse-user.synapse-db.credentials.postgresql.acid.zalan.do
-              key: password
         - name: MACAROON_SECRET_KEY
           valueFrom:
             secretKeyRef:

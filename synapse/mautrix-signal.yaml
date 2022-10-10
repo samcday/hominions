@@ -42,11 +42,6 @@ spec:
           envsubst < /config-template/mautrix-signal.yaml > /data/config.yaml
           touch /data/registration.yaml
         env:
-        - name: PGPASS
-          valueFrom:
-            secretKeyRef:
-              name: signal-user.synapse-db.credentials.postgresql.acid.zalan.do
-              key: password
         - name: SHARED_SECRET
           valueFrom:
             secretKeyRef:
