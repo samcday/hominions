@@ -131,7 +131,7 @@ spec:
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
               cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
-              cp /config-templates/log.yaml /config/; done
+              cp /config-templates/log.yaml /config/
               envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
             - secretRef:
