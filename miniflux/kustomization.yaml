@@ -8,7 +8,6 @@ configMapGenerator:
     files: [postgres/values.yaml]
 resources:
   - ../config
-  - admin-password.yaml
   - helm-release.yaml
   - namespace.yaml
   - postgres/helm-release.yaml

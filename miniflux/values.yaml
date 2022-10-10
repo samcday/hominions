@@ -1,12 +1,12 @@
 # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
 
 command:
-- /bin/ash
-- -c
-- |-
-  set -ueo pipefail
-  export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql/miniflux?sslmode=disable
-  exec /usr/bin/miniflux
+  - /bin/ash
+  - -c
+  - |-
+    set -ueo pipefail
+    export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql/miniflux?sslmode=disable
+    exec /usr/bin/miniflux
 env:
   ADMIN_USERNAME: admin
   BASE_URL: https://miniflux.home.samcday.com
@@ -33,18 +33,17 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
   className: nginx
   hosts:
-  - host: miniflux.home.samcday.com
-    paths:
-    - path: /
+    - host: miniflux.home.samcday.com
+      paths:
+        - path: /
   tls:
-  - hosts:
-    - miniflux.home.samcday.com
-    secretName: certificate
+    - hosts: [miniflux.home.samcday.com]
+      secretName: certificate
 livenessProbe:
   httpGet:
     path: /healthcheck
 ports:
-- name: http
-  containerPort: 8080
+  - name: http
+    containerPort: 8080
 readinessProbe: ~
 replicaCount: 1
