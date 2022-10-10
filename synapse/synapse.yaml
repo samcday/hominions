@@ -49,6 +49,21 @@ spec:
         #   volumeMounts:
         #     - name: signald
         #       mountPath: /signald
+        - name: litestream
+          image: litestream/litestream:0.3.9
+          args: ['replicate']
+          volumeMounts: &litestreamvols
+            - name: data
+              mountPath: /data
+            - name: litestream-config
+              mountPath: /etc/litestream.yml
+              subPath: litestream.yml
+          envFrom: &litestreamenv
+            - secretRef:
+                name: backup-bucket
+          ports:
+          - name: metrics
+            containerPort: 9090
         - image: matrixdotorg/synapse
           name: synapse
           ports:
@@ -64,6 +79,11 @@ spec:
             - name: data
               mountPath: /data
       initContainers:
+        - name: init-litestream
+          image: litestream/litestream:0.3.9
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/synapse.db']
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
         - name: config
           image: supinf/envsubst
           command:

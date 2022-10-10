@@ -9,6 +9,8 @@ configMapGenerator:
       - config/mautrix-signal.yaml
       - config/mautrix-telegram.yaml
       - config/mautrix-whatsapp.yaml
+  - name: litestream-config
+    files: [litestream.yml]
 resources:
   - ingress.yaml
   - namespace.yaml

@@ -1,28 +1,28 @@
-server_name: matrix.samcday.com
-listeners:
-- port: 8008
-  tls: false
-  type: http
-  x_forwarded: true
-  resources:
-  - names: [client, federation]
-    compress: false
-database:
-  name: sqlite3
-  args:
-    database: /data/synapse.db
-log_config: /config/log.yaml
-report_stats: true
-macaroon_secret_key: ${MACAROON_SECRET_KEY}
-signing_key_path: /signing-key/signing.key
-old_signing_keys:
-trusted_key_servers:
-- server_name: matrix.org
-suppress_key_server_warning: true
-media_store_path: /data/media
-serve_server_wellknown: true
-registration_shared_secret: ${REGISTRATION_SECRET}
 # app_service_config_files:
 # - /appservices/mautrix-signal.yaml
 # - /appservices/mautrix-telegram.yaml
 # - /appservices/mautrix-whatsapp.yaml
+database:
+  name: sqlite3
+  args:
+    database: /data/synapse.db
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    resources:
+      - names: [client, federation]
+        compress: false
+log_config: /config/log.yaml
+macaroon_secret_key: ${MACAROON_SECRET_KEY}
+media_store_path: /data/media
+serve_server_wellknown: true
+old_signing_keys:
+registration_shared_secret: ${REGISTRATION_SECRET}
+report_stats: true
+server_name: matrix.samcday.com
+signing_key_path: /signing-key/signing.key
+suppress_key_server_warning: true
+trusted_key_servers:
+  - server_name: matrix.org
