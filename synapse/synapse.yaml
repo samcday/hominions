@@ -44,6 +44,11 @@ spec:
               mountPath: /data
         - image: dock.mau.dev/mautrix/whatsapp:v0.2.1
           name: mautrix-whatsapp
+          env:
+            - name: UID
+              value: "991"
+            - name: GID
+              value: "991"
           ports:
             - containerPort: 29318
           volumeMounts:
@@ -133,8 +138,6 @@ spec:
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 991:991 /data
-              touch /data/mautrix-whatsapp.db
-              chown -R 1337:1337 /data/mautrix-whatsapp.db
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
               cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
@@ -168,6 +171,11 @@ spec:
               mountPath: /data
         - name: mautrix-whatsapp-register
           image: dock.mau.dev/mautrix/whatsapp:v0.2.1
+          env:
+            - name: UID
+              value: "991"
+            - name: GID
+              value: "991"
           volumeMounts:
             - name: mautrix-whatsapp
               mountPath: /data
