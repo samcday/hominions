@@ -131,6 +131,8 @@ spec:
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 991:991 /data
+              touch /data/mautrix-whatsapp.db
+              chown -R 1337:1337 /data/mautrix-whatsapp.db
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
               cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
