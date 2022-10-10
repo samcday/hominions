@@ -27,8 +27,7 @@ spec:
             - containerPort: 29328
           volumeMounts:
             - name: data
-              mountPath: /opt/mautrix-signal/mautrix-signal.db
-              subPath: mautrix-signal.db
+              mountPath: /db
             - name: mautrix-signal
               mountPath: /data
             - name: signald
