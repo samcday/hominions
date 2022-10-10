@@ -32,20 +32,24 @@ spec:
               mountPath: /data
             - name: signald
               mountPath: /signald
-        # - image: dock.mau.dev/mautrix/telegram:v0.12.1
-        #   name: mautrix-telegram
-        #   ports:
-        #     - containerPort: 29317
-        #   volumeMounts:
-        #     - name: scratch
-        #       mountPath: /data
-        # - image: dock.mau.dev/mautrix/whatsapp:v0.2.1
-        #   name: mautrix-whatsapp
-        #   ports:
-        #   - containerPort: 29318
-        #   volumeMounts:
-        #   - name: data
-        #     mountPath: /data
+        - image: dock.mau.dev/mautrix/telegram:v0.12.1
+          name: mautrix-telegram
+          ports:
+            - containerPort: 29317
+          volumeMounts:
+            - name: data
+              mountPath: /db
+            - name: mautrix-telegram
+              mountPath: /data
+        - image: dock.mau.dev/mautrix/whatsapp:v0.2.1
+          name: mautrix-whatsapp
+          ports:
+            - containerPort: 29318
+          volumeMounts:
+            - name: data
+              mountPath: /db
+            - name: mautrix-whatsapp
+              mountPath: /data
         - image: signald/signald:0.22.2
           name: signald
           args:
@@ -105,8 +109,9 @@ spec:
               mkdir /data/signald
               chown -R 991:991 /data
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
+              cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
-              for name in log.yaml mautrix-whatsapp.yaml; do cp /config-templates/$name /config/; done
+              cp /config-templates/log.yaml /config/; done
               envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
             - secretRef:
@@ -122,6 +127,8 @@ spec:
               mountPath: /mautrix-signal
             - name: mautrix-telegram
               mountPath: /mautrix-telegram
+            - name: mautrix-whatsapp
+              mountPath: /mautrix-whatsapp
         - name: mautrix-signal-register
           image: dock.mau.dev/mautrix/signal:v0.2.1
           volumeMounts:
@@ -141,6 +148,8 @@ spec:
         - name: mautrix-signal
           emptyDir: {}
         - name: mautrix-telegram
+          emptyDir: {}
+        - name: mautrix-whatsapp
           emptyDir: {}
         - name: signing-key
           secret:
