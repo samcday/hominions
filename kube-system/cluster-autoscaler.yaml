@@ -225,7 +225,7 @@ spec:
                     $ssh $public_ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-routes=$pod_cidr || continue
                   fi
 
-                  internal_ip=$($ssh $ip tailscale ip -4)
+                  internal_ip=$($ssh $public_ip tailscale ip -4)
 
                   # fly console into headscale, enable the route.
                   # can maybe replace this with autoApprovers ACL thing?
