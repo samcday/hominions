@@ -48,9 +48,8 @@ metadata:
   namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  namespace: kube-system
   name: terraform-apply
 rules:
 - apiGroups: [""]
@@ -61,15 +60,14 @@ rules:
   verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: terraform-apply
-  namespace: kube-system
 subjects:
 - kind: ServiceAccount
   name: terraform-apply
   namespace: kube-system
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: terraform-apply
   apiGroup: rbac.authorization.k8s.io
