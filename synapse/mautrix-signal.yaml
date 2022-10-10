@@ -62,7 +62,7 @@ spec:
           volumeMounts:
             - name: config-template
               mountPath: /config-template
-            - name: data
+            - name: scratch
               mountPath: /data
       volumes:
         - name: config-template
