@@ -37,7 +37,7 @@ appservice:
     # Format examples:
     #   SQLite:   sqlite:///filename.db
     #   Postgres: postgres://username:password@hostname/dbname
-    database: sqlite:///var/lib/misc/mautrix-signal.db
+    database: sqlite://mautrix-signal.db
     # Additional arguments for asyncpg.create_pool() or sqlite3.connect()
     # https://magicstack.github.io/asyncpg/current/api/index.html#asyncpg.pool.create_pool
     # https://docs.python.org/3/library/sqlite3.html#sqlite3.connect
@@ -87,7 +87,7 @@ manhole:
 
 signal:
     # Path to signald unix socket
-    socket_path: /var/lib/misc/signald/signald.sock
+    socket_path: /signald/signald.sock
     # Directory for temp files when sending files to Signal. This should be an
     # absolute path that signald can read. For attachments in the other direction,
     # make sure signald is configured to use an absolute path as the data directory.

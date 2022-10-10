@@ -22,18 +22,17 @@ spec:
         - image: signald/signald:0.22.2
           name: signald
           volumeMounts:
-            - name: data
+            - name: signald
               mountPath: /signald
-              subPath: signald
         - image: dock.mau.dev/mautrix/signal:v0.2.1
           name: mautrix-signal
           ports:
             - containerPort: 29328
           volumeMounts:
-            - name: data
-              mountPath: /var/lib/misc
             - name: scratch
               mountPath: /data
+            - name: signald
+              mountPath: /signald
       initContainers:
         - name: config
           image: supinf/envsubst
@@ -70,15 +69,8 @@ spec:
             name: mautrix-signal
         - name: scratch
           emptyDir: {}
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: openebs-lvmpv
-        resources:
-          requests:
-            storage: 1Gi
+        - name: signald
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
