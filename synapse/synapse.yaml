@@ -102,6 +102,7 @@ spec:
             - -c
             - |-
               mkdir -p /data/media
+              mkdir /data/signald
               chown -R 991:991 /data
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
