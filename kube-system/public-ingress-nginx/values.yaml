@@ -6,6 +6,7 @@ controller:
   ingressClass: public-nginx
   ingressClassResource:
     name: public-nginx
+    controllerValue: "k8s.io/public-ingress-nginx"
   kind: DaemonSet
   nodeSelector:
     samcday.com/hcloud: ""
