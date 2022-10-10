@@ -32,7 +32,7 @@ controller:
   kind: Deployment
   nodeSelector:
     samcday.com/hcloud: ""
-  replicas: 2
+  replicaCount: 2
   service:
     enabled: false
   tolerations:
