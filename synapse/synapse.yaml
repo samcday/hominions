@@ -48,7 +48,14 @@ spec:
         #     mountPath: /data
         - image: signald/signald:0.22.2
           name: signald
+          args:
+            - -d
+            - /data/signald
+            - -s
+            - /signald/signald.sock
           volumeMounts:
+            - name: data
+              mountPath: /data
             - name: signald
               mountPath: /signald
         - name: litestream
