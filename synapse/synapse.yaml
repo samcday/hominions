@@ -72,7 +72,7 @@ spec:
             - |-
               mkdir -p /data/media
               chown -R 991:991 /data
-              for name log.yaml,mautrix-signal.yaml,mautrix-whatsapp.yaml; do cp /config-templates/$name /config/; done
+              for name in log.yaml mautrix-signal.yaml mautrix-whatsapp.yaml; do cp /config-templates/$name /config/; done
               envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /config/mautrix-telegram.yaml
           envFrom:
