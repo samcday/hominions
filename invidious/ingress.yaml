@@ -7,7 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
-  ingressClassName: nginx
+  ingressClassName: public-nginx
   rules:
   - host: invidious.samcday.com
     http:
