@@ -6,21 +6,21 @@ dbs:
         path: synapse
         endpoint: s3.eu-central-003.backblazeb2.com
         force-path-style: true
-  - path: /data/mautrix-signal/db
+  - path: /data/mautrix-signal.db
     replicas:
       - type: s3
         bucket: samcday-synapse-backups
         path: mautrix-signal
         endpoint: s3.eu-central-003.backblazeb2.com
         force-path-style: true
-  - path: /data/mautrix-telegram/db
+  - path: /data/mautrix-telegram.db
     replicas:
       - type: s3
         bucket: samcday-synapse-backups
         path: mautrix-telegram
         endpoint: s3.eu-central-003.backblazeb2.com
         force-path-style: true
-  - path: /data/mautrix-whatsapp/db
+  - path: /data/mautrix-whatsapp.db
     replicas:
       - type: s3
         bucket: samcday-synapse-backups
