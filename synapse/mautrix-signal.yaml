@@ -18,7 +18,7 @@ spec:
         app: mautrix-signal
     spec:
       containers:
-      - image: signald/signald:0.15.0-40-56a6c9d2
+      - image: signald/signald:0.22.2
         name: signald
         volumeMounts:
         - name: data
