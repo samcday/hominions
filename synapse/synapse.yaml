@@ -87,17 +87,17 @@ spec:
       initContainers:
         - name: init-litestream-mautrix-synapse
           image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-signal.db']
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-signal/db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-mautrix-telegram
           image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-telegram.db']
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-telegram/db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-mautrix-whatsapp
           image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-whatsapp.db']
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-whatsapp/db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-synapse
