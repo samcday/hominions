@@ -96,7 +96,7 @@ spec:
       initContainers:
         - name: init-litestream-mautrix-synapse
           image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-synapse.db']
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-signal.db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-mautrix-telegram
