@@ -6,7 +6,7 @@ homeserver:
     domain: samcday.com
     # Whether or not to verify the SSL certificate of the homeserver.
     # Only applies if address starts with https://
-    verify_ssl: true
+    verify_ssl: false
     asmux: false
     # Number of retries for all HTTP requests if the homeserver isn't reachable.
     http_retry_count: 4
