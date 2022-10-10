@@ -69,7 +69,7 @@ metrics:
     # Enable prometheus metrics?
     enabled: true
     # IP and port where the metrics listener should be. The path is always /metrics
-    listen: 0.0.0.0:8001
+    listen: 0.0.0.0:8002
 
 # Config for things that are directly sent to WhatsApp.
 whatsapp:
