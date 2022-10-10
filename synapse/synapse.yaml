@@ -97,7 +97,7 @@ spec:
           emptyDir: {}
         - name: synapse-config-template
           configMap:
-            name: homeserver
+            name: config
         - name: config
           emptyDir: {}
         - name: mautrix-signal-config
