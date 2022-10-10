@@ -71,7 +71,7 @@ resource "b2_bucket" "synapse-backups" {
 }
 
 resource "b2_application_key" "synapse-backups" {
-  key_name     = "fly-io"
+  key_name     = "synapse"
   bucket_id    = b2_bucket.synapse-backups.bucket_id
   capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
 }
