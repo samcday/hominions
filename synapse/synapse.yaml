@@ -94,6 +94,8 @@ spec:
               mountPath: /mautrix-signal
             - name: mautrix-telegram
               mountPath: /mautrix-telegram
+            - name: mautrix-whatsapp
+              mountPath: /mautrix-whatsapp
             - name: signing-key
               mountPath: /signing-key
       initContainers:
