@@ -85,6 +85,10 @@ spec:
           env:
             - name: SYNAPSE_CONFIG_PATH
               value: /config/homeserver.yaml
+            - name: UID
+              value: "1337"
+            - name: GID
+              value: "1337"
           volumeMounts:
             - name: config
               mountPath: /config
