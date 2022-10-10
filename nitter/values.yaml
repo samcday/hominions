@@ -35,7 +35,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-  className: nginx
+  className: public-nginx
   hosts:
   - host: nitter.samcday.com
     paths:
