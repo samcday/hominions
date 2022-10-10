@@ -94,9 +94,29 @@ spec:
             - name: signing-key
               mountPath: /signing-key
       initContainers:
-        - name: init-litestream
+        - name: init-litestream-mautrix-synapse
+          image: litestream/litestream:0.3.9
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-synapse.db']
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
+        - name: init-litestream-mautrix-telegram
+          image: litestream/litestream:0.3.9
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-telegram.db']
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
+        - name: init-litestream-mautrix-whatsapp
+          image: litestream/litestream:0.3.9
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-whatsapp.db']
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
+        - name: init-litestream-synapse
           image: litestream/litestream:0.3.9
           args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/synapse.db']
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
+        - name: init-litestream-signald
+          image: litestream/litestream:0.3.9
+          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/signald/signald.db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: config
