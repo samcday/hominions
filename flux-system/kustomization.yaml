@@ -27,6 +27,7 @@ resources:
 - helmrepos/zalando-postgres-operator.yaml
 - kustomizations/factorio.yaml
 - kustomizations/flux-system.yaml
+- kustomizations/invidious.yaml
 - kustomizations/jellyfin.yaml
 - kustomizations/kube-system.yaml
 - kustomizations/libreddit.yaml
