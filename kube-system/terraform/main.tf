@@ -65,6 +65,29 @@ resource "b2_application_key" "fly-io-headscale-backups" {
   capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
 }
 
+resource "b2_bucket" "synapse-backups" {
+  bucket_name = "samcday-synapse-backups"
+  bucket_type = "allPrivate"
+}
+
+resource "b2_application_key" "synapse-backups" {
+  key_name     = "fly-io"
+  bucket_id    = b2_bucket.synapse-backups.bucket_id
+  capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
+}
+
+resource "kubernetes_secret" "synapse-backups-creds" {
+  metadata {
+    name      = "backup-bucket"
+    namespace = "synapse"
+  }
+
+  data = {
+    LITESTREAM_ACCESS_KEY_ID     = b2_application_key.synapse-backups.application_key_id
+    LITESTREAM_SECRET_ACCESS_KEY = b2_application_key.synapse-backups.application_key
+  }
+}
+
 # resource "github_repository_webhook" "hominion-push" {
 #   active = true
 #   configuration {
