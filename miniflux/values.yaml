@@ -36,6 +36,7 @@ ingress:
     - host: miniflux.home.samcday.com
       paths:
         - path: /
+          servicePortName: http
   tls:
     - hosts: [miniflux.home.samcday.com]
       secretName: certificate
