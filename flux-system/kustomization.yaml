@@ -31,5 +31,7 @@ resources:
 - kustomizations/kube-system.yaml
 - kustomizations/miniflux.yaml
 - kustomizations/prometheus.yaml
+- kustomizations/secrets.yaml
 - kustomizations/synapse.yaml
 - kustomizations/syncthing.yaml
+- webhook-ingress.yaml
