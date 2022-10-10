@@ -106,7 +106,7 @@ spec:
             - -c
             - |-
               mkdir -p /data/media
-              mkdir /data/signald
+              mkdir -p /data/signald
               chown -R 991:991 /data
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
               cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
