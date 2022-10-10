@@ -93,9 +93,9 @@ signal:
     # make sure signald is configured to use an absolute path as the data directory.
     outgoing_attachment_dir: /tmp
     # Directory where signald stores avatars for groups.
-    avatar_dir: ~/.config/signald/avatars
+    avatar_dir: /signald_data/avatars
     # Directory where signald stores auth data. Used to delete data when logging out.
-    data_dir: ~/.config/signald/data
+    data_dir: /signald_data/data
     # Whether or not unknown signald accounts should be deleted when the bridge is started.
     # When this is enabled, any UserInUse errors should be resolved by restarting the bridge.
     delete_unknown_accounts_on_start: false

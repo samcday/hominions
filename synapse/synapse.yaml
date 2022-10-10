@@ -30,8 +30,9 @@ spec:
               mountPath: /db
             - name: mautrix-signal
               mountPath: /data
-            - name: signald
-              mountPath: /signald
+            - name: data
+              mountPath: /signald_data
+              subPath: signald
         - image: dock.mau.dev/mautrix/telegram:v0.12.1
           name: mautrix-telegram
           ports:
@@ -91,6 +92,8 @@ spec:
               mountPath: /data
             - name: mautrix-signal
               mountPath: /mautrix-signal
+            - name: mautrix-telegram
+              mountPath: /mautrix-telegram
             - name: signing-key
               mountPath: /signing-key
       initContainers:
