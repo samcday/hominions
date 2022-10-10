@@ -34,7 +34,7 @@ spec:
         - name: signing-key
           mountPath: /signing-key
         - name: data
-          mountPath: /data/media
+          mountPath: /data
       initContainers:
       - name: config
         image: supinf/envsubst
