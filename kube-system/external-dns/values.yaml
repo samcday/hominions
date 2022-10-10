@@ -6,10 +6,9 @@ env:
     secretKeyRef:
       name: cloudflare
       key: token
-
+logLevel: debug
+policy: sync
 provider: cloudflare
-
 serviceMonitor:
   enabled: true
-
 txtOwnerId: home-cluster
