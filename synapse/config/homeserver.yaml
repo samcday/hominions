@@ -21,7 +21,7 @@ serve_server_wellknown: true
 old_signing_keys:
 registration_shared_secret: ${REGISTRATION_SECRET}
 report_stats: true
-server_name: matrix.samcday.com
+server_name: samcday.com
 signing_key_path: /signing-key/signing.key
 suppress_key_server_warning: true
 trusted_key_servers:
