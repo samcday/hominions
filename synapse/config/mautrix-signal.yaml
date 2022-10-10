@@ -3,7 +3,7 @@ homeserver:
     # The address that this appservice can use to connect to the homeserver.
     address: http://synapse:8008
     # The domain of the homeserver (for MXIDs, etc).
-    domain: matrix.samcday.com
+    domain: samcday.com
     # Whether or not to verify the SSL certificate of the homeserver.
     # Only applies if address starts with https://
     verify_ssl: true
@@ -230,7 +230,7 @@ bridge:
     #     mxid - Specific user
     permissions:
         '*': relay
-        '@me:matrix.samcday.com': admin
+        '@me:samcday.com': admin
 
     relay:
         # Whether or not relay mode should be allowed. If allowed, `!signal set-relay` can be used to turn any
