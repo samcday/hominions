@@ -10,6 +10,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: personal-infrastructure
+    name: home-cluster
   timeout: 30s
   wait: true
