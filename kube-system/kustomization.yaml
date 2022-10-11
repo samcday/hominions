@@ -18,6 +18,8 @@ configMapGenerator:
     files: [openebs/values.yaml]
   - name: public-ingress-nginx-values
     files: [public-ingress-nginx/values.yaml]
+  - name: prometheus-operator-values
+    files: [prometheus-operator/values.yaml]
   - name: terraform-config
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
 secretGenerator:
@@ -35,6 +37,7 @@ resources:
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
   - public-ingress-nginx/helm-release.yaml
+  - prometheus-operator/helm-release.yaml
   - suc-plans.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml

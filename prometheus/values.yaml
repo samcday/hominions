@@ -65,3 +65,5 @@ prometheus-node-exporter:
         targetLabel: instance
         replacement: $1
         action: replace
+prometheusOperator:
+  enabled: false
