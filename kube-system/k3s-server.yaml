@@ -8,4 +8,5 @@ disable:
 etcd-s3: true
 etcd-s3-endpoint: s3.eu-central-003.backblazeb2.com
 etcd-s3-bucket: samcday-hominion-cluster-backups
+etcd-s3-region: eu-central-003
 flannel-backend: none

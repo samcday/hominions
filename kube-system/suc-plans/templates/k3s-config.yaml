@@ -17,8 +17,7 @@ spec:
       path: /host/cfg
     - name: cluster-backups-bucket
       path: /host/s3-creds
-  drain:
-    force: true
+  cordon: true
   upgrade:
     image: ubuntu:jammy
     command: ["chroot", "/host"]
