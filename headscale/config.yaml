@@ -93,8 +93,8 @@ derp:
   # How often should we check for DERP updates?
   update_frequency: 24h
 
-# Disables the automatic check for headscale updates on startup
-disable_check_updates: false
+# Image updates should be picked up by renovate.
+disable_check_updates: true
 
 # Time before an inactive ephemeral node is deleted?
 ephemeral_node_inactivity_timeout: 30m
@@ -108,16 +108,6 @@ node_update_check_interval: 10s
 # SQLite config
 db_type: sqlite3
 db_path: /data/db.sqlite
-
-# # Postgres config
-# If using a Unix socket to connect to Postgres, set the socket path in the 'host' field and leave 'port' blank.
-# db_type: postgres
-# db_host: localhost
-# db_port: 5432
-# db_name: headscale
-# db_user: foo
-# db_pass: bar
-# db_ssl: false
 
 ### TLS configuration
 #
@@ -204,7 +194,7 @@ dns_config:
   # `base_domain` must be a FQDNs, without the trailing dot.
   # The FQDN of the hosts will be
   # `hostname.namespace.base_domain` (e.g., _myhost.mynamespace.example.com_).
-  base_domain: example.com
+  base_domain: tailnet.samcday.com
 
 # Unix socket used for the CLI to connect without authentication
 # Note: for local development, you probably want to change this to:
