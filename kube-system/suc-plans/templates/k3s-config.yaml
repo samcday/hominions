@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   concurrency: 1
-  version: {{ sha1sum (get (lookup "v1" "Secret" "kube-system" "k3s-config").data) "k3s-server.yaml" | quote }}
+  version: {{ sha1sum (get (lookup "v1" "Secret" "kube-system" "k3s-config").data "k3s-server.yaml")) | quote }}
   nodeSelector:
     matchExpressions:
       - {key: kubernetes.io/os, operator: In, values: ["linux"]}
