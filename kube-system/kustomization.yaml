@@ -25,22 +25,16 @@ configMapGenerator:
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
 resources:
   - ../config
-  - backblaze-key.yaml
   - cert-manager/helm-release.yaml
   - cert-manager/issuers.yaml
   - cilium/helm-release.yaml
-  - cloudflare-token.yaml
   - cluster-autoscaler.yaml
   - external-dns/helm-release.yaml
-  - fly-auth.yaml
-  - hcloud-token.yaml
-  - hcloud-worker-ssh-key.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
   - public-ingress-nginx/helm-release.yaml
   - suc-plans.yaml
-  - tailscale-auth.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
 
