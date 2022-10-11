@@ -6,7 +6,6 @@ configMapGenerator:
   files: [promtail/values.yaml]
 resources:
 - ../config
-- dms-alertmanager.yaml
 # - loki/
 - namespace.yaml
 # - promtail/helm-release.yaml
