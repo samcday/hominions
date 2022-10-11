@@ -129,3 +129,7 @@ resource "kubernetes_secret" "synapse-backup-bucket" {
 #   events     = ["push"]
 #   repository = "samcday/home-cluster"
 # }
+
+# if fly adds support for secrets
+# https://github.com/fly-apps/terraform-provider-fly/issues/27
+# can manage the headscale backup bucket credentials here
