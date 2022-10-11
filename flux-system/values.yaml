@@ -11,3 +11,5 @@ kustomizecontroller:
   tolerations: *tolerations
 notificationcontroller:
   tolerations: *tolerations
+sourcecontroller:
+  tolerations: *tolerations
