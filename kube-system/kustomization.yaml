@@ -39,3 +39,5 @@ resources:
   - tailscale-auth.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
+
+  - github.com/rancher/system-upgrade-controller?ref=v0.9.1

@@ -35,6 +35,7 @@ resources:
 - kustomizations/nitter.yaml
 - kustomizations/prometheus.yaml
 - kustomizations/secrets.yaml
+- kustomizations/suc-plans.yaml
 - kustomizations/synapse.yaml
 - kustomizations/syncthing.yaml
 - webhook-ingress.yaml
