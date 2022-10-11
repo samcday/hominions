@@ -67,10 +67,10 @@ resource "dmsnitch_snitch" "hominion" {
   type     = "basic"
 }
 
-resource "kubernetes_secret" "kube-system-dms-url" {
+resource "kubernetes_secret" "monitoring-dms-url" {
   metadata {
     name      = "dms-url"
-    namespace = "kube-system"
+    namespace = "monitoring"
   }
 
   data = {

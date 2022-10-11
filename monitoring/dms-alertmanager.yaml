@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: dms
-  namespace: kube-system
+  namespace: monitoring
 spec:
   inhibitRules:
     - equal: [namespace]
