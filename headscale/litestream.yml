@@ -1,3 +1,4 @@
+addr: ":9091"
 dbs:
   - path: /data/db.sqlite
     replicas:
