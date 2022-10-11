@@ -22,5 +22,9 @@ spec:
     remediation:
       retries: -1
   valuesFrom:
-  - kind: ConfigMap
-    name: values
+    - kind: ConfigMap
+      name: values
+    - kind: Secret
+      name: dms-url
+      valuesKey: url
+      targetPath: alertmanager.config.receivers[0].webhook_configs[0].url
