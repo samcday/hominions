@@ -1,1 +1,13 @@
 # https://github.com/fluxcd-community/helm-charts/blob/main/charts/flux2/values.yaml
+helmcontroller:
+  tolerations: &tolerations
+    - key: samcday.com/hcloud
+      operator: Exists
+imageautomationcontroller:
+  create: false
+imagereflectorcontroller:
+  create: false
+kustomizecontroller:
+  tolerations: *tolerations
+notificationcontroller:
+  tolerations: *tolerations
