@@ -14,6 +14,9 @@ configMapGenerator:
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: ingress-nginx-values
     files: [ingress-nginx/values.yaml]
+  - name: k3s-config
+    files: [k3s-agent.yaml, k3s-server.yaml]
+    options: {disableNameSuffixHash: true}
   - name: openebs-values
     files: [openebs/values.yaml]
   - name: public-ingress-nginx-values
@@ -36,6 +39,7 @@ resources:
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
   - public-ingress-nginx/helm-release.yaml
+  - suc-plans.yaml
   - tailscale-auth.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml

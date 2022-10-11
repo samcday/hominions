@@ -1,0 +1,8 @@
+disable-helm-controller: true
+disable-kube-proxy: true
+disable-network-policy: true
+disable:
+  - servicelb
+  - traefik
+  - local-storage
+flannel-backend: none

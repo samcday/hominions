@@ -1,0 +1,30 @@
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: k3s-server-config
+  namespace: kube-system
+spec:
+  concurrency: 1
+  version: {{ .Values.server | sha1sum | quote }}
+  nodeSelector:
+    matchExpressions:
+      - {key: kubernetes.io/os, operator: In, values: ["linux"]}
+      - {key: node-role.kubernetes.io/control-plane, operator: Exists}
+  serviceAccountName: system-upgrade
+  secrets:
+    - name: bionic
+      path: /host/cfg
+  drain:
+    force: true
+  upgrade:
+    image: rancher/k3s-upgrade
+  upgrade:
+    image: ubuntu:jammy
+    command: ["chroot", "/host"]
+    args:
+      - sh
+      - -c
+      - |-
+        cp /cfg/k3s-server.yaml /etc/rancher/k3s/config.yaml
+        systemctl restart k3s.service

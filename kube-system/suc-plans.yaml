@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: suc-plans
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: kube-system/suc-plans
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: home-cluster
+        namespace: flux-system
+  install:
+    remediation:
+      retries: -1
+  interval: 1h
+  releaseName: suc-plans
+  upgrade:
+    remediation:
+      retries: -1
+  valuesFrom:
+    - kind: ConfigMap
+      name: k3s-config
+      valuesKey: k3s-server.yaml
+      targetPath: server
+    - kind: ConfigMap
+      name: k3s-config
+      valuesKey: k3s-agent.yaml
+      targetPath: agent
