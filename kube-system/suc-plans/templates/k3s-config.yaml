@@ -13,7 +13,7 @@ spec:
       - {key: node-role.kubernetes.io/control-plane, operator: Exists}
   serviceAccountName: system-upgrade
   secrets:
-    - name: bionic
+    - name: k3s-config
       path: /host/cfg
   drain:
     force: true
