@@ -15,6 +15,8 @@ spec:
   secrets:
     - name: k3s-config
       path: /host/cfg
+    - name: cluster-backups-bucket
+      path: /host/s3-creds
   drain:
     force: true
   upgrade:
@@ -24,5 +26,5 @@ spec:
       - sh
       - -c
       - |-
-        cp /cfg/k3s-server.yaml /etc/rancher/k3s/config.yaml
+        cat /cfg/k3s-server.yaml /s3-creds/config.yaml > /etc/rancher/k3s/config.yaml
         systemctl restart k3s.service

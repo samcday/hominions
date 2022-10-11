@@ -20,15 +20,3 @@ spec:
   upgrade:
     remediation:
       retries: -1
-  valuesFrom:
-    - kind: ConfigMap
-      name: k3s-config
-      valuesKey: k3s-server.yaml
-      targetPath: server
-    - kind: Secret
-      name: cluster-backups-bucket
-      targetPath: server
-    - kind: ConfigMap
-      name: k3s-config
-      valuesKey: k3s-agent.yaml
-      targetPath: agent

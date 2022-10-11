@@ -83,7 +83,7 @@ resource "kubernetes_secret" "kube-system-cluster-backups-bucket" {
   }
 
   data = {
-    "values.yaml" = yamlencode({
+    "config.yaml" = yamlencode({
       etcd-s3-access-key = b2_application_key.hominion-cluster-backups.application_key_id
       etcd-s3-secret-key = b2_application_key.hominion-cluster-backups.application_key
     })
