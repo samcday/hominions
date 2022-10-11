@@ -14,15 +14,16 @@ configMapGenerator:
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: ingress-nginx-values
     files: [ingress-nginx/values.yaml]
-  - name: k3s-config
-    files: [k3s-agent.yaml, k3s-server.yaml]
-    options: {disableNameSuffixHash: true}
   - name: openebs-values
     files: [openebs/values.yaml]
   - name: public-ingress-nginx-values
     files: [public-ingress-nginx/values.yaml]
   - name: terraform-config
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
+secretGenerator:
+  - name: k3s-config
+    files: [k3s-agent.yaml, k3s-server.yaml]
+    options: {disableNameSuffixHash: true}
 resources:
   - ../config
   - cert-manager/helm-release.yaml
