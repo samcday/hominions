@@ -71,9 +71,9 @@ resource "b2_bucket" "hominion-cluster-backups" {
 }
 
 resource "b2_application_key" "hominion-cluster-backups" {
-  key_name     = "fly-io"
+  key_name     = "kube-system-cluster-backups-bucket"
   bucket_id    = b2_bucket.hominion-cluster-backups.bucket_id
-  capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
+  capabilities = ["listAllBucketNames", "listBuckets", "listFiles", "readFiles", "writeFiles", "deleteFiles"]
 }
 
 resource "kubernetes_secret" "kube-system-cluster-backups-bucket" {
