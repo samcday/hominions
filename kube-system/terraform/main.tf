@@ -12,6 +12,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "3.25.0"
     }
+    dmsnitch = {
+      source  = "plukevdh/dmsnitch"
+      version = "0.1.4"
+    }
     fly = {
       source  = "fly-apps/fly"
       version = "0.0.20"
@@ -30,6 +34,8 @@ terraform {
 provider "b2" {}
 
 provider "cloudflare" {}
+
+provider "dmsnitch" {}
 
 provider "fly" {}
 
@@ -51,6 +57,24 @@ data "kubernetes_resource" "receiver" {
   metadata {
     name      = "home-cluster"
     namespace = "flux-system"
+  }
+}
+
+resource "dmsnitch_snitch" "hominion" {
+  name = "Hominion"
+
+  interval = "hourly"
+  type     = "basic"
+}
+
+resource "kubernetes_secret" "kube-system-dms-url" {
+  metadata {
+    name      = "dms-url"
+    namespace = "kube-system"
+  }
+
+  data = {
+    "url" = dmsnitch_snitch.hominion.url
   }
 }
 

@@ -17,6 +17,8 @@ spec:
                 - secretRef:
                     name: backblaze-key
                 - secretRef:
+                    name: dms-token
+                - secretRef:
                     name: github-token
               volumeMounts: &volmounts
                 - name: config
