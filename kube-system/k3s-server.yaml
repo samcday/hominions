@@ -5,4 +5,7 @@ disable:
   - servicelb
   - traefik
   - local-storage
+etcd-s3: true
+etcd-s3-endpoint: s3.eu-central-003.backblazeb2.com
+etcd-s3-bucket: samcday-hominion-cluster-backups
 flannel-backend: none
