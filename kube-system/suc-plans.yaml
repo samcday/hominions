@@ -27,7 +27,12 @@ spec:
       targetPath: server
     - kind: Secret
       name: cluster-backups-bucket
-      targetPath: server
+      valuesKey: etcd-s3-access-key
+      targetPath: server.etcd-s3-access-key
+    - kind: Secret
+      name: cluster-backups-bucket
+      valuesKey: etcd-etcd-s3-secret-key
+      targetPath: server.etcd-etcd-s3-secret-key
     - kind: ConfigMap
       name: k3s-config
       valuesKey: k3s-agent.yaml
