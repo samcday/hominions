@@ -7,6 +7,6 @@ configMapGenerator:
 resources:
 - ../config
 - dms-alertmanager.yaml
-- loki/
+# - loki/
 - namespace.yaml
-- promtail/helm-release.yaml
+# - promtail/helm-release.yaml
