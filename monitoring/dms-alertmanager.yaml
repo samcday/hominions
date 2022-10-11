@@ -20,7 +20,7 @@ spec:
             key: url
     - name: "null"
   route:
-    receiver: null
+    receiver: "null"
     routes:
       - matchers:
           - alertname = Watchdog
