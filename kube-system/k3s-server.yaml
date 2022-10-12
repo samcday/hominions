@@ -11,4 +11,4 @@ etcd-s3-bucket: samcday-hominion-cluster-backups
 etcd-s3-region: eu-central-003
 flannel-backend: none
 kube-apiserver-arg:
-  - disabled-metrics=apiserver_request_duration_seconds_bucket,apiserver_request_duration_seconds,apiserver_request_duration,apiserver_request,apiserver
+  - disabled-metrics=apiserver_request_duration_seconds_bucket,apiserver_request_duration_seconds,apiserver_request_duration
