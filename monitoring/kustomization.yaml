@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: monitoring
 configMapGenerator:
 - name: grafana-litestream
-  files: [grafana/values.yaml]
+  files: [grafana/litestream.yml]
   options: {disableNameSuffixHash: true}
 - name: grafana-values
   files: [grafana/values.yaml]
