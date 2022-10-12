@@ -24,6 +24,7 @@ alertmanager:
     paths: [/]
 grafana:
   enabled: false
+  forceDeployDatasources: true
 kubeControllerManager:
   serviceMonitor:
     insecureSkipVerify: true
