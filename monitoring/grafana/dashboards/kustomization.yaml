@@ -6,14 +6,9 @@ generatorOptions:
     grafana_dashboard: '1'
   immutable: true
 configMapGenerator:
-  - name: etcd-dashboards
-    files:
-      - etcd/etcd.json
-    options:
-      annotations:
-        grafana_folder: 'etcd'
   - name: kubernetes-dashboards
     files:
+      - etcd/etcd.json
       - kubernetes/k8s-resources-multicluster.json
       - kubernetes/k8s-resources-namespace.json
       - kubernetes/proxy.json
