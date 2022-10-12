@@ -41,4 +41,11 @@ ingress:
 persistence:
   enabled: true
   storageClassName: openebs-lvmpv
+sidecar:
+  dashboards:
+    enabled: true
+    provider:
+      foldersFromFilesStructure: true
+  datasources:
+    enabled: true
 useStatefulSet: true
