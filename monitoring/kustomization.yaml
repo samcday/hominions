@@ -13,6 +13,7 @@ configMapGenerator:
   files: [kube-prometheus-stack/values.yaml]
 resources:
 - ../config
+- grafana/dashboards/
 - grafana/helm-release.yaml
 # - loki/
 - kube-prometheus-stack/helm-release.yaml
