@@ -15,7 +15,7 @@ extraContainers: |
       - secretRef:
           name: grafana-backup-bucket
     ports:
-    - name: litestream-metrics
+    - name: ls-metrics
       containerPort: 9090
 extraInitContainers:
   - name: init-litestream
