@@ -34,8 +34,6 @@ extraContainerVolumes:
   - name: litestream-config
     configMap:
       name: grafana-litestream
-deploymentStrategy:
-  type: Recreate
 ingress:
   enabled: true
   ingressClassName: nginx
@@ -43,3 +41,4 @@ ingress:
 persistence:
   enabled: true
   storageClassName: openebs-lvmpv
+useStatefulSet: true
