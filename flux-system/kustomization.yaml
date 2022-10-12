@@ -34,7 +34,6 @@ resources:
 - miniflux.yaml
 - monitoring.yaml
 - nitter.yaml
-- prometheus.yaml
 - secrets.yaml
 - synapse.yaml
 - syncthing.yaml
