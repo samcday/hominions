@@ -44,8 +44,10 @@ persistence:
 sidecar:
   dashboards:
     enabled: true
+    labelValue: "1"
     provider:
       foldersFromFilesStructure: true
   datasources:
     enabled: true
+    labelValue: "1"
 useStatefulSet: true
