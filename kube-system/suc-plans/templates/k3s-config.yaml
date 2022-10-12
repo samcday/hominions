@@ -25,5 +25,8 @@ spec:
       - sh
       - -c
       - |-
-        cat /cfg/k3s-server.yaml /s3-creds/config.yaml > /etc/rancher/k3s/config.yaml
-        systemctl restart k3s.service
+        cat /cfg/k3s-server.yaml /s3-creds/config.yaml > /tmp/k3s-server.yaml
+        if ! cmp -s /tmp/k3s-server.yaml /etc/rancher/k3s/config.yaml; then
+          mv /tmp/k3s-server.yaml /etc/rancher/k3s/config.yaml
+          systemctl restart k3s.service
+        fi
