@@ -17,6 +17,7 @@ image:
 mods:
   enabled: true
   portal:
+  - auto-research
   - flib
   - graftorio2
   - helmod
