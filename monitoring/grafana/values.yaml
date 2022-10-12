@@ -1,16 +1,39 @@
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-# extraInitContainers:
-#   - name: init-litestream
-#     image: litestream/litestream:0.3.9
-#     args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/var/lib/grafana/grafana.db']
-#     volumeMounts:
-#       - name: litestream-config
-#         mountPath: /etc/litestream.yml
-#         subPath: litestream.yml
-# extraContainerVolumes:
-#   - name: litestream-config
-#     configMap:
-#       name: grafana-litestream
+envFromSecrets:
+  - name: grafana-backup-bucket
+extraContainers: |
+  - name: litestream
+    image: litestream/litestream:0.3.9
+    args: ['replicate']
+    volumeMounts:
+      - name: litestream-config
+        mountPath: /etc/litestream.yml
+        subPath: litestream.yml
+      - name: storage
+        mountPath: /var/lib/grafana
+    envFrom:
+      - secretRef:
+          name: grafana-backup-bucket
+    ports:
+    - name: litestream-metrics
+      containerPort: 9090
+extraInitContainers:
+  - name: init-litestream
+    image: litestream/litestream:0.3.9
+    args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/var/lib/grafana/grafana.db']
+    envFrom:
+      - secretRef:
+          name: grafana-backup-bucket
+    volumeMounts:
+      - name: litestream-config
+        mountPath: /etc/litestream.yml
+        subPath: litestream.yml
+      - name: storage
+        mountPath: /var/lib/grafana
+extraContainerVolumes:
+  - name: litestream-config
+    configMap:
+      name: grafana-litestream
 deploymentStrategy:
   type: Recreate
 ingress:

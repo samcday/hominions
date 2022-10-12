@@ -78,7 +78,7 @@ spec:
             - secretRef:
                 name: backup-bucket
           ports:
-          - name: metrics
+          - name: litestream-metrics
             containerPort: 9090
         - image: matrixdotorg/synapse
           name: synapse

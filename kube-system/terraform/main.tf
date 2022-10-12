@@ -137,6 +137,29 @@ resource "kubernetes_secret" "synapse-backup-bucket" {
   }
 }
 
+resource "b2_bucket" "grafana-backups" {
+  bucket_name = "samcday-grafana-backups"
+  bucket_type = "allPrivate"
+}
+
+resource "b2_application_key" "grafana-backups" {
+  key_name     = "grafana"
+  bucket_id    = b2_bucket.grafana-backups.bucket_id
+  capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
+}
+
+resource "kubernetes_secret" "monitoring-grafana-backup-bucket" {
+  metadata {
+    name      = "grafana-backup-bucket"
+    namespace = "monitoring"
+  }
+
+  data = {
+    LITESTREAM_ACCESS_KEY_ID     = b2_application_key.grafana-backups.application_key_id
+    LITESTREAM_SECRET_ACCESS_KEY = b2_application_key.grafana-backups.application_key
+  }
+}
+
 # resource "github_repository_webhook" "hominion-push" {
 #   active = true
 #   configuration {
