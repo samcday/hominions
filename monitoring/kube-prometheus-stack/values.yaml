@@ -44,12 +44,6 @@ prometheus:
     hosts: [prometheus.home.samcday.com]
     paths: [/]
   prometheusSpec:
-    additionalScrapeConfigs:
-    - job_name: sam-laptop
-      static_configs:
-      - targets: [100.101.117.111:9100]
-        labels:
-          job: node-exporter
     enableAdminAPI: true
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
