@@ -7,4 +7,5 @@ configMapGenerator:
 resources:
   - ../config
   - vanilla-megabase/helm-release.yaml
+  - vanilla-megabase/vpa.yaml
   - namespace.yaml
