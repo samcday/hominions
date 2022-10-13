@@ -5,11 +5,9 @@ metadata:
   name: kube-system
   namespace: flux-system
 spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: age-key
-  interval: 1h
+  dependsOn:
+    - name: flux-system
+  interval: 5m
   path: ./kube-system
   prune: true
   sourceRef:

@@ -5,7 +5,9 @@ metadata:
   name: libreddit
   namespace: flux-system
 spec:
-  interval: 1h
+  dependsOn:
+    - name: kube-system
+  interval: 5m
   path: ./libreddit
   prune: true
   sourceRef:

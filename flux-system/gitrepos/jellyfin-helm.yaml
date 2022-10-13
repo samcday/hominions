@@ -5,7 +5,7 @@ metadata:
   name: jellyfin-helm
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 1h
   ref:
     branch: main
   url: https://github.com/samcday/jellyfin-helm.git

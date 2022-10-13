@@ -5,7 +5,7 @@ metadata:
   name: cert-manager-issuers
   namespace: kube-system
 spec:
-  interval: 1h
+  interval: 5m
   path: ./kube-system/cert-manager/issuers
   prune: true
   sourceRef:

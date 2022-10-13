@@ -16,7 +16,7 @@ spec:
   install:
     remediation:
       retries: -1
-  interval: 15m
+  interval: 5m
   releaseName: grafana
   upgrade:
     remediation:

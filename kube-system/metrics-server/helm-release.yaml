@@ -16,7 +16,7 @@ spec:
   install:
     remediation:
       retries: -1
-  interval: 1h0m0s
+  interval: 5m
   releaseName: metrics-server
   upgrade:
     remediation:

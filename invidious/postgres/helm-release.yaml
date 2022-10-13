@@ -16,7 +16,7 @@ spec:
   install:
     remediation:
       retries: -1
-  interval: 1h
+  interval: 5m
   releaseName: postgres
   upgrade:
     remediation:

@@ -13,7 +13,7 @@ spec:
         name: morremeyer
         namespace: flux-system
       version: 3.2.0
-  interval: 1h
+  interval: 5m
   releaseName: nitter
   valuesFrom:
   - kind: ConfigMap

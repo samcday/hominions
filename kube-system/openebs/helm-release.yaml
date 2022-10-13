@@ -17,7 +17,7 @@ spec:
     crds: CreateReplace
     remediation:
       retries: -1
-  interval: 1h
+  interval: 5m
   releaseName: openebs
   upgrade:
     crds: CreateReplace

@@ -5,11 +5,9 @@ metadata:
   name: factorio
   namespace: flux-system
 spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: age-key
-  interval: 1m0s
+  dependsOn:
+    - name: kube-system
+  interval: 5m
   path: ./factorio
   prune: true
   sourceRef:

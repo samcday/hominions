@@ -13,7 +13,7 @@ spec:
         name: bitnami
         namespace: flux-system
       version: 17.3.5
-  interval: 1h
+  interval: 5m
   releaseName: redis
   valuesFrom:
   - kind: ConfigMap

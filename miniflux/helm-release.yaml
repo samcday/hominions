@@ -13,7 +13,7 @@ spec:
         name: morremeyer
         namespace: flux-system
       version: 5.3.0
-  interval: 1h
+  interval: 5m
   releaseName: miniflux
   valuesFrom:
   - kind: ConfigMap

@@ -5,6 +5,6 @@ metadata:
   name: fluxcd-community
   namespace: flux-system
 spec:
-  interval: 1h0m0s
+  interval: 1h
   url: https://fluxcd-community.github.io/helm-charts
 
