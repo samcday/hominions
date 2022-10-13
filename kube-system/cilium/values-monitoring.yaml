@@ -15,5 +15,7 @@ prometheus:
   serviceMonitor:
     enabled: true
 operator:
+  prometheus:
+    enabled: true
   serviceMonitor:
     enabled: true
