@@ -22,6 +22,8 @@ configMapGenerator:
     files: [prometheus-operator/values.yaml]
   - name: terraform-config
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
+  - name: vertical-pod-autoscaler-values
+    files: [vertical-pod-autoscaler/values.yaml]
 secretGenerator:
   - name: k3s-config
     files: [k3s-agent.yaml, k3s-server.yaml]
@@ -43,4 +45,5 @@ resources:
   - system-upgrade-controller.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
+  - vertical-pod-autoscaler/helm-release.yaml
 

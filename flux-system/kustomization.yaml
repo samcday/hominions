@@ -13,6 +13,7 @@ resources:
 - helmrepos/bitnami.yaml
 - helmrepos/cilium.yaml
 - helmrepos/coredns.yaml
+- helmrepos/cowboysysop.yaml
 - helmrepos/external-dns.yaml
 - helmrepos/fluxcd-community.yaml
 - helmrepos/grafana.yaml
