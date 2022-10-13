@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hcloud-provisioner
+  namespace: kube-system
+  labels:
+    k8s-app: hcloud-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: hcloud-provisioner
+  template:
+    metadata:
+      labels:
+        name: hcloud-provisioner
+    spec:
+      containers:
+        - name: hcloud-provisioner
+          image: samcday/home-hcloud-provisioner:94f8727f9b
+          command:
+            - /bin/ash
+            - -c
+            - |-
+              set -uexo pipefail
+              cp /ssh-key/hcloud-worker /tmp
+              chmod 600 /tmp/hcloud-worker
+              ssh="ssh -F /dev/null -i /tmp/hcloud-worker -oConnectTimeout=3 -oServerAliveInterval=5 -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -T"
+
+              while true; do
+                for name in $(hcloud server list -l hcloud/node-group=home -o noheader -o columns=name ); do
+                  public_ip=$(hcloud server ip $name)
+                  if ! kubectl get nodes/$name; then
+                    kubectl apply -f- <<HERE
+              apiVersion: v1
+              kind: Node
+              metadata:
+                name: $name
+              HERE
+                  fi
+
+                  until $ssh $public_ip date; do
+                    sleep 1
+                  done
+
+                  if ! $ssh $public_ip systemctl is-active tailscaled; then
+                    $ssh $public_ip 'curl -fsSL https://tailscale.com/install.sh | sh' || continue
+                  fi
+
+                  pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
+
+                  if ! $ssh $public_ip tailscale status; then
+                    $ssh $public_ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-routes=$pod_cidr || continue
+                  fi
+
+                  internal_ip=$($ssh $public_ip tailscale ip -4)
+
+                  # fly console into headscale, enable the route.
+                  # can maybe replace this with autoApprovers ACL thing?
+                  node_id=$(flyctl ssh console -a samcday-headscale -C 'headscale node list -o json-line' | jq -r ". | map(select(.ip_addresses | contains([\"$internal_ip\"]))) | .[].id")
+                  flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
+
+                  if ! $ssh $internal_ip systemctl is-active k3s-agent; then
+                    k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud:NoSchedule'" --ssh-key=/tmp/hcloud-worker || continue
+                  fi
+                done
+
+                sleep 30s
+              done
+          envFrom:
+            - secretRef:
+                name: hcloud-token
+            - secretRef:
+                name: tailscale-auth
+            - secretRef:
+                name: fly-auth
+          resources:
+            limits:
+              cpu: '1'
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          volumeMounts:
+            - name: ssh-key
+              mountPath: /ssh-key
+      hostNetwork: true
+      serviceAccountName: hcloud-provisioner
+      terminationGracePeriodSeconds: 3
+      volumes:
+        - name: ssh-key
+          secret:
+            secretName: hcloud-worker-ssh-key
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hcloud-provisioner
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: hcloud-provisioner
+rules:
+- apiGroups: [""]
+  resources: [nodes]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hcloud-provisioner
+subjects:
+- kind: ServiceAccount
+  name: hcloud-provisioner
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: hcloud-provisioner
+  apiGroup: rbac.authorization.k8s.io

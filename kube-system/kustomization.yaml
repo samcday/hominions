@@ -34,7 +34,8 @@ resources:
   - cert-manager/issuers.yaml
   - coredns/helm-release.yaml
   - cilium/helm-release.yaml
-  - cluster-autoscaler.yaml
+  - cluster-autoscaler/cluster-autoscaler.yaml
+  - cluster-autoscaler/hcloud-provisioner.yaml
   - external-dns/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
