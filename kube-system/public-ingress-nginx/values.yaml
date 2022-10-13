@@ -30,6 +30,8 @@ controller:
     name: public-nginx
     controllerValue: k8s.io/public-ingress-nginx
   kind: Deployment
+  metrics:
+    enabled: true
   nodeSelector:
     samcday.com/hcloud: ""
   replicaCount: 2
