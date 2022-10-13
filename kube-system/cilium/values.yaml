@@ -1,5 +1,7 @@
 # https://github.com/cilium/cilium/blob/master/install/kubernetes/cilium/values.yaml
 
+hostFirewall:
+  enabled: true
 hubble:
   relay:
     enabled: true
