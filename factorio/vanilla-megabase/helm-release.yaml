@@ -22,9 +22,9 @@ spec:
     remediation:
       retries: -1
   valuesFrom:
-  - kind: ConfigMap
-    name: vanilla-megabase-values
-  - kind: Secret
-    name: token
-    valuesKey: token
-    targetPath: server_settings.token
+    - kind: ConfigMap
+      name: vanilla-megabase-values
+    - kind: Secret
+      name: token
+      valuesKey: token
+      targetPath: server_settings.token

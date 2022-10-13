@@ -17,12 +17,12 @@ image:
 mods:
   enabled: true
   portal:
-  - auto-research
-  - flib
-  - graftorio2
-  - helmod
-  - ModuleInserter
-  - VehicleSnap
+    - auto-research
+    - flib
+    - graftorio2
+    - helmod
+    - ModuleInserter
+    - VehicleSnap
 persistence:
   enabled: true
   dataDir:
