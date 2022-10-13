@@ -4,6 +4,8 @@ namespace: kube-system
 configMapGenerator:
   - name: cert-manager-values
     files: [cert-manager/values.yaml]
+  - name: coredns-values
+    files: [coredns/values.yaml]
   - name: cilium-values
     files:
       - cilium/values.yaml
@@ -30,6 +32,7 @@ resources:
   - ../config
   - cert-manager/helm-release.yaml
   - cert-manager/issuers.yaml
+  - coredns/helm-release.yaml
   - cilium/helm-release.yaml
   - cluster-autoscaler.yaml
   - external-dns/helm-release.yaml
