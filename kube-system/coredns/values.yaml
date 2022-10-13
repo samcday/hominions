@@ -1,0 +1,11 @@
+# https://github.com/coredns/helm/blob/master/charts/coredns/values.yaml
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values: [coredns]
+        topologyKey: kubernetes.io/hostname
+replicaCount: 3
