@@ -10,6 +10,15 @@ configMapGenerator:
     files:
       - cert-manager/cert-manager.json
       - etcd/etcd.json
+      - ingress-nginx/nginx.json
+  - name: cilium-dashboards
+    files:
+      - cilium/cilium-dashboard.json
+      - cilium/hubble-dashboard.json
+      - cilium/cilium-operator-dashboard.json
+    options:
+      annotations:
+        grafana_folder: 'Cilium'
   - name: kubernetes-dashboards
     files:
       - kubernetes/k8s-resources-multicluster.json

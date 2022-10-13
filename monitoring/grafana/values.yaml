@@ -1,36 +1,5 @@
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-      - name: cilium
-        orgId: 1
-        folder: Cilium
-        type: file
-        disableDeletion: false
-        editable: false
-        options:
-          path: /var/lib/grafana/dashboards/cilium
-      - name: default
-        orgId: 1
-        folder: ''
-        type: file
-        disableDeletion: false
-        editable: false
-        options:
-          path: /var/lib/grafana/dashboards/default
-dashboards:
-  cilium:
-    metrics:
-      url: https://raw.githubusercontent.com/cilium/cilium/v1.12.2/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-dashboard.json
-    operator:
-      url: https://raw.githubusercontent.com/cilium/cilium/v1.12.2/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-operator-dashboard.json
-    hubble:
-      url: https://raw.githubusercontent.com/cilium/cilium/v1.12.2/examples/kubernetes/addons/prometheus/files/grafana-dashboards/hubble-dashboard.json
-  default:
-    ingress-nginx:
-      url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
 envFromSecrets:
   - name: grafana-backup-bucket
 extraContainers: |
