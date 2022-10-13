@@ -1,6 +1,9 @@
+# https://github.com/cilium/cilium/blob/master/install/kubernetes/cilium/values.yaml
+
 hubble:
   metrics: &yespls
-    serviceMonitor: true
+    serviceMonitor:
+      enabled: true
   relay:
     prometheus: *yespls
 prometheus: *yespls
