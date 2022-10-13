@@ -2,6 +2,7 @@
 
 hubble:
   metrics: &yespls
+    enabled: true
     serviceMonitor:
       enabled: true
   relay:
