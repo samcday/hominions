@@ -15,6 +15,7 @@ resources:
 - ../config
 - grafana/dashboards
 - grafana/helm-release.yaml
+- ingress-nginx-pod-monitor.yaml
 # - loki/
 - kube-prometheus-stack/helm-release.yaml
 - namespace.yaml
