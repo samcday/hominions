@@ -8,5 +8,6 @@ controller:
     enabled: true
   nodeSelector:
     kubernetes.io/hostname: hominion
+  replicaCount: 2
   service:
     enabled: false
