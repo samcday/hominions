@@ -10,9 +10,6 @@ configMapGenerator:
     files:
       - cert-manager/cert-manager.json
       - etcd/etcd.json
-    options:
-      annotations:
-        grafana_folder: General
   - name: kubernetes-dashboards
     files:
       - kubernetes/k8s-resources-multicluster.json
