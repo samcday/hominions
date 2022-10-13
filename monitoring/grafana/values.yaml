@@ -1,4 +1,21 @@
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: false
+        options:
+          path: /var/lib/grafana/dashboards/default
+dashboards:
+  default:
+    ingress-nginx:
+      url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
 envFromSecrets:
   - name: grafana-backup-bucket
 extraContainers: |
