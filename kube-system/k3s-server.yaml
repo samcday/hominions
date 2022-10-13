@@ -2,7 +2,6 @@ disable-helm-controller: true
 disable-kube-proxy: true
 disable-network-policy: true
 disable:
-  - coredns
   - local-storage
   - servicelb
   - traefik
