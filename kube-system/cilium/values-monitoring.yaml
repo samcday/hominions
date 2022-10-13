@@ -1,10 +1,7 @@
 hubble:
-  metrics:
-    serviceMonitor: &yespls
+  metrics: &yespls
+    serviceMonitor: true
   relay:
-    prometheus:
-      serviceMonitor: *yespls
-prometheus:
-  serviceMonitor: *yespls
-operator:
-  serviceMonitor: *yespls
+    prometheus: *yespls
+prometheus: *yespls
+operator: *yespls
