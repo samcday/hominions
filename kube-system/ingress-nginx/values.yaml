@@ -1,29 +1,10 @@
 # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
 
 controller:
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app.kubernetes.io/name
-            operator: In
-            values:
-            - ingress-nginx
-          - key: app.kubernetes.io/instance
-            operator: In
-            values:
-            - ingress-nginx
-          - key: app.kubernetes.io/component
-            operator: In
-            values:
-            - controller
-        topologyKey: kubernetes.io/hostname
   kind: DaemonSet
   hostPort:
     enabled: true
   metrics:
     enabled: true
-  replicaCount: 2
   service:
     enabled: false
