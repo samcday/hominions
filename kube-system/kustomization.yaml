@@ -40,7 +40,7 @@ resources:
   - public-ingress-nginx/helm-release.yaml
   - prometheus-operator/helm-release.yaml
   - suc-plans.yaml
+  - system-upgrade-controller.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
 
-  - github.com/rancher/system-upgrade-controller?ref=v0.9.1
