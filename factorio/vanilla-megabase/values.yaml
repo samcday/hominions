@@ -31,6 +31,10 @@ persistence:
   storageClassName: openebs-lvmpv
 rcon:
   external: false
+resources:
+  requests:
+    cpu: '1'
+    memory: 1Gi
 server_settings:
   name: samcday's (mostly) vanilla megabase project
   visibility:
