@@ -10,4 +10,5 @@ controller:
   nodeSelector:
     kubernetes.io/hostname: hominion
   service:
-    enabled: false
+    enabled: true
+    type: ClusterIP
