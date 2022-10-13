@@ -9,12 +9,12 @@ configMapGenerator:
   - name: cert-manager-dashboards
     files:
       - cert-manager/cert-manager.json
+      - etcd/etcd.json
     options:
       annotations:
-        grafana_folder: cert-manager
+        grafana_folder: General
   - name: kubernetes-dashboards
     files:
-      - etcd/etcd.json
       - kubernetes/k8s-resources-multicluster.json
       - kubernetes/k8s-resources-namespace.json
       - kubernetes/proxy.json
