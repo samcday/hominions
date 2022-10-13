@@ -40,4 +40,5 @@ controller:
   tolerations:
     - key: samcday.com/hcloud
       operator: Exists
-  updateStrategy: Recreate
+  updateStrategy:
+    type: Recreate
