@@ -35,6 +35,14 @@
         }
       },
       "version": "main"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://gitlab.com/uneeq-oss/cert-manager-mixin"
+        }
+      },
+      "version": "master"
     }
   ],
   "legacyImports": true

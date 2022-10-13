@@ -6,6 +6,12 @@ generatorOptions:
     grafana_dashboard: '1'
   immutable: true
 configMapGenerator:
+  - name: cert-manager-dashboards
+    files:
+      - cert-manager/cert-manager.json
+    options:
+      annotations:
+        grafana_folder: cert-manager
   - name: kubernetes-dashboards
     files:
       - etcd/etcd.json
