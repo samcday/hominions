@@ -4,11 +4,7 @@ controller:
   kind: DaemonSet
   hostPort:
     enabled: true
-  metrics:
-    serviceMonitor:
-      enabled: true
   nodeSelector:
     kubernetes.io/hostname: hominion
   service:
-    enabled: true
-    type: ClusterIP
+    enabled: false

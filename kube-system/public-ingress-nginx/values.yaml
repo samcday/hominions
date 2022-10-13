@@ -30,15 +30,11 @@ controller:
     name: public-nginx
     controllerValue: k8s.io/public-ingress-nginx
   kind: Deployment
-  metrics:
-    serviceMonitor:
-      enabled: true
   nodeSelector:
     samcday.com/hcloud: ""
   replicaCount: 2
   service:
-    enabled: true
-    type: ClusterIP
+    enabled: false
   tolerations:
     - key: samcday.com/hcloud
       operator: Exists
