@@ -12,7 +12,6 @@ additionalContainers:
         subPath: Caddyfile
       - name: datadir
         mountPath: /usr/share/caddy
-        subPath: script-output
 additionalVolumes:
   - name: caddyfile
     configMap:
