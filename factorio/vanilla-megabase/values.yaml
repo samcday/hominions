@@ -8,7 +8,7 @@ additionalContainers:
         containerPort: 8123
     volumeMounts:
       - name: caddyfile
-        mountPath: /etc/caddy
+        mountPath: /etc/caddy/Caddyfile
         subPath: Caddyfile
       - name: datadir
         mountPath: /usr/share/caddy
@@ -16,13 +16,6 @@ additionalVolumes:
   - name: caddyfile
     configMap:
       name: vanilla-megabase-caddyfile
-  # - name: host-script-output
-  #   hostPath:
-  #     path: /var/lib/misc/vanilla-megabase/
-  #     type: DirectoryOrCreate
-# additionalVolumeMounts:
-#   - name: host-script-output
-#     mountPath: /factorio/script-output/
 factorioServer:
   generate_new_save: false
   save_name: 2021megabae

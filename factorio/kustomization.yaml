@@ -10,5 +10,6 @@ configMapGenerator:
 resources:
   - ../config
   - vanilla-megabase/helm-release.yaml
+  - vanilla-megabase/podmonitor.yaml
   - vanilla-megabase/vpa.yaml
   - namespace.yaml
