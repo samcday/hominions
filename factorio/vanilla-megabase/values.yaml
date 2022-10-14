@@ -5,16 +5,22 @@ additionalContainers:
     image: caddy:2-alpine
     ports:
       - name: scriptoutput
-        containerPort: 80
+        containerPort: 8123
     volumeMounts:
+      - name: caddyfile
+        mountPath: /etc/caddy
+        subPath: Caddyfile
       - name: datadir
         mountPath: /usr/share/caddy
         subPath: script-output
-# additionalVolumes:
-#   - name: host-script-output
-#     hostPath:
-#       path: /var/lib/misc/vanilla-megabase/
-#       type: DirectoryOrCreate
+additionalVolumes:
+  - name: caddyfile
+    configMap:
+      name: vanilla-megabase-caddyfile
+  # - name: host-script-output
+  #   hostPath:
+  #     path: /var/lib/misc/vanilla-megabase/
+  #     type: DirectoryOrCreate
 # additionalVolumeMounts:
 #   - name: host-script-output
 #     mountPath: /factorio/script-output/

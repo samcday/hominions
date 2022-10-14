@@ -4,6 +4,9 @@ namespace: factorio
 configMapGenerator:
   - name: vanilla-megabase-values
     files: [vanilla-megabase/values.yaml]
+  - name: vanilla-megabase-caddyfile
+    files: [vanilla-megabase/Caddyfile]
+    options: {disableNameSuffixHash: true}
 resources:
   - ../config
   - vanilla-megabase/helm-release.yaml
