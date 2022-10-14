@@ -9,6 +9,7 @@ spec:
     - port: mau-sig-metrics
     - port: mau-tele-metrics
     - port: mau-wa-metrics
+    - port: signald-metrics
     - port: syn-metrics
       path: /_synapse/metrics
   selector:

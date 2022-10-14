@@ -64,8 +64,12 @@ spec:
           args:
             - -d
             - /data/signald
+            - --metrics
             - -s
             - /signald/signald.sock
+          ports:
+            - name: signald-metrics
+              containerPort: 9595
           volumeMounts:
             - name: data
               mountPath: /data
