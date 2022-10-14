@@ -25,18 +25,16 @@ alertmanager:
 grafana:
   enabled: false
   forceDeployDatasources: true
+kubeApiServer:
+  enabled: false
 kubeControllerManager:
-  serviceMonitor:
-    insecureSkipVerify: true
+  enabled: false
 kubeEtcd:
-  service:
-    port: 2381
-    targetPort: 2381
+  enabled: false
 kubeProxy:
   enabled: false
 kubeScheduler:
-  serviceMonitor:
-    insecureSkipVerify: true
+  enabled: false
 prometheus:
   ingress:
     enabled: true
