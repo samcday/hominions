@@ -19,5 +19,6 @@ resources:
 - ingress-nginx-pod-monitor.yaml
 # - loki/
 - kube-prometheus-stack/helm-release.yaml
+- kube-prometheus-stack/vpa.yaml
 - namespace.yaml
 # - promtail/helm-release.yaml
