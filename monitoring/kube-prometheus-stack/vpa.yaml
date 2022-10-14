@@ -20,6 +20,6 @@ spec:
   targetRef:
     apiVersion: apps/v1
     kind: StatefulSet
-    name: prometheus-kube-prometheus-stack-alertmanager
+    name: alertmanager-kube-prometheus-stack-alertmanager
   updatePolicy:
     updateMode: Auto
