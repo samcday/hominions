@@ -19,6 +19,13 @@ configMapGenerator:
     options:
       annotations:
         grafana_folder: 'Cilium'
+  - name: flux-dashboards
+    files:
+      - flux/flux-cluster.json
+      - flux/flux-control-plane.json
+    options:
+      annotations:
+        grafana_folder: Flux
   - name: kubernetes-dashboards
     files:
       - kubernetes/k8s-resources-multicluster.json

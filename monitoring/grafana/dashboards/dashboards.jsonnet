@@ -1,4 +1,5 @@
 local certManager = (import "cert-manager-mixin/mixin.libsonnet").grafanaDashboards;
+local flux = (import "flux-mixin/mixin.libsonnet").grafanaDashboards;
 local etcd = (import "mixin/mixin.libsonnet").grafanaDashboards;
 local nodeExporter = (import "node-mixin/mixin.libsonnet") {
   _config+:: {
@@ -21,6 +22,9 @@ local prometheus = (import 'prometheus-mixin/mixin.libsonnet').grafanaDashboards
 }+
 {
   ["etcd/" + name]: etcd[name] for name in std.objectFields(etcd)
+}+
+{
+  ["flux/" + name]: flux[name] for name in std.objectFields(flux)
 }+
 {
   ["node-exporter/" + name]: nodeExporter[name] for name in std.objectFields(nodeExporter)

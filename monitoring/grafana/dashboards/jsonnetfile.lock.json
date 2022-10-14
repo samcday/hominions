@@ -14,6 +14,26 @@
     {
       "source": {
         "git": {
+          "remote": "https://github.com/fluxcd-community/flux-mixin.git",
+          "subdir": ""
+        }
+      },
+      "version": "c35c5485e5482820e2bbf8d55beedb6196ad1d8e",
+      "sum": "OFmM5q0r/J+zhLXKl7OiTraW3IUPyss50LpENPU9KJw="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/grafana/grafonnet-lib.git",
+          "subdir": ""
+        }
+      },
+      "version": "30280196507e0fe6fa978a3e0eaca3a62844f817",
+      "sum": "CdStBGFX3PDfo+jT68rgAaCSxkzZifupkG+Bhk/W8HU="
+    },
+    {
+      "source": {
+        "git": {
           "remote": "https://github.com/grafana/grafonnet-lib.git",
           "subdir": "grafonnet"
         }

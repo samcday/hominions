@@ -43,6 +43,14 @@
         }
       },
       "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/fluxcd-community/flux-mixin"
+        }
+      },
+      "version": "main"
     }
   ],
   "legacyImports": true
