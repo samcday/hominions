@@ -1,3 +1,4 @@
+addr: ":9090"
 dbs:
   - path: /var/lib/grafana/grafana.db
     replicas:

@@ -25,6 +25,9 @@ extraInitContainers:
     envFrom:
       - secretRef:
           name: grafana-backup-bucket
+    ports:
+      - name: ls-metrics
+        containerPort: 9090
     volumeMounts:
       - name: litestream-config
         mountPath: /etc/litestream.yml
@@ -42,6 +45,8 @@ ingress:
 persistence:
   enabled: true
   storageClassName: openebs-lvmpv
+serviceMonitor:
+  enabled: true
 sidecar:
   dashboards:
     enabled: true
