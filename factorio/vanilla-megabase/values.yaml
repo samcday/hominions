@@ -1,13 +1,23 @@
 # https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
 
-additionalVolumes:
-  - name: host-script-output
-    hostPath:
-      path: /var/lib/misc/vanilla-megabase/
-      type: DirectoryOrCreate
-additionalVolumeMounts:
-  - name: host-script-output
-    mountPath: /factorio/script-output/
+additionalContainers:
+  - name: caddy-scriptoutput
+    image: caddy:2-alpine
+    ports:
+      - name: scriptoutput
+        containerPort: 80
+    volumeMounts:
+      - name: datadir
+        mountPath: /usr/share/caddy
+        subPath: script-output
+# additionalVolumes:
+#   - name: host-script-output
+#     hostPath:
+#       path: /var/lib/misc/vanilla-megabase/
+#       type: DirectoryOrCreate
+# additionalVolumeMounts:
+#   - name: host-script-output
+#     mountPath: /factorio/script-output/
 factorioServer:
   generate_new_save: false
   save_name: 2021megabae
