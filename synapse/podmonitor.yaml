@@ -6,6 +6,7 @@ metadata:
 spec:
   podMetricsEndpoints:
     - port: ls-metrics
+    - port: mau-sig-metrics
     - port: synapse
   selector:
     matchLabels:

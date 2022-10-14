@@ -25,6 +25,8 @@ spec:
           name: mautrix-signal
           ports:
             - containerPort: 29328
+            - name: mau-sig-metrics
+              containerPort: 8001
           volumeMounts:
             - name: data
               mountPath: /db
