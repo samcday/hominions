@@ -6,6 +6,7 @@ database:
   name: sqlite3
   args:
     database: /data/synapse.db
+enable_metrics: true
 listeners:
   - port: 8008
     tls: false

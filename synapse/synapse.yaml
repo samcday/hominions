@@ -87,6 +87,8 @@ spec:
           ports:
             - name: synapse
               containerPort: 8008
+            - name: syn-metrics
+              containerPort: 9000
           env:
             - name: SYNAPSE_CONFIG_PATH
               value: /config/homeserver.yaml
