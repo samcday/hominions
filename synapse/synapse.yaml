@@ -41,7 +41,7 @@ spec:
           name: mautrix-telegram
           ports:
             - containerPort: 29317
-            - name: mau-tele-metrics
+            - name: mau-tgm-metrics
               containerPort: 8000
           volumeMounts:
             - name: data

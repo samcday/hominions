@@ -7,8 +7,11 @@ spec:
   podMetricsEndpoints:
     - port: ls-metrics
     - port: mau-sig-metrics
-    - port: mau-tele-metrics
+      path: /
+    - port: mau-tgm-metrics
+      path: /
     - port: mau-wa-metrics
+      path: /
     - port: signald-metrics
     - port: syn-metrics
       path: /_synapse/metrics
