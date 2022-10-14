@@ -5,8 +5,6 @@ metadata:
   name: nitter
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: kube-system
   interval: 5m
   path: ./nitter
   prune: true

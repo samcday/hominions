@@ -5,8 +5,6 @@ metadata:
   name: factorio
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: kube-system
   interval: 5m
   path: ./factorio
   prune: true

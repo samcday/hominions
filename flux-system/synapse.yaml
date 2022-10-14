@@ -5,8 +5,6 @@ metadata:
   name: synapse
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: kube-system
   interval: 5m
   path: ./synapse
   prune: true
