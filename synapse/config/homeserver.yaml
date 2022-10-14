@@ -12,7 +12,7 @@ listeners:
     type: http
     x_forwarded: true
     resources:
-      - names: [client, federation]
+      - names: [client, federation, metrics]
         compress: false
 log_config: /config/log.yaml
 macaroon_secret_key: ${MACAROON_SECRET_KEY}

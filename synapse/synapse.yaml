@@ -83,7 +83,8 @@ spec:
         - image: matrixdotorg/synapse
           name: synapse
           ports:
-            - containerPort: 8008
+            - name: synapse
+              containerPort: 8008
           env:
             - name: SYNAPSE_CONFIG_PATH
               value: /config/homeserver.yaml
