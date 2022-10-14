@@ -14,5 +14,6 @@ configMapGenerator:
 resources:
   - ingress.yaml
   - namespace.yaml
+  - podmonitor.yaml
   - synapse.yaml
   - vpa.yaml
