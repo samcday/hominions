@@ -16,7 +16,7 @@ spec:
     - port: syn-metrics
       metricRelabelings:
         - action: replace
-          sourceLabels: [__meta_kubernetes_pod_node_name]
+          sourceLabels: [__meta_kubernetes_pod_name]
           targetLabel: instance
       path: /_synapse/metrics
   selector:
