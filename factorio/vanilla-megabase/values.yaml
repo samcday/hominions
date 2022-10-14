@@ -26,9 +26,8 @@ mods:
 persistence:
   enabled: true
   dataDir:
-    # 144 autosave slots, factory as of 08/10 is 40mb.
     Size: 10Gi
-  storageClassName: openebs-lvmpv
+  storageClassName: openebs-hostpath
 rcon:
   external: false
 resources:
@@ -46,3 +45,6 @@ server_settings:
   non_blocking_saving: true
 service:
   type: ClusterIP
+tolerations:
+  - key: samcday.com/hcloud
+    operator: Exists
