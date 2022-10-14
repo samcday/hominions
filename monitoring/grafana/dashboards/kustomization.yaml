@@ -11,6 +11,7 @@ configMapGenerator:
       - cert-manager/cert-manager.json
       - etcd/etcd.json
       - ingress-nginx/nginx.json
+      - synapse/synapse.json
   - name: cilium-dashboards
     files:
       - cilium/cilium-dashboard.json
