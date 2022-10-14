@@ -11,5 +11,8 @@ kustomizecontroller:
   tolerations: *tolerations
 notificationcontroller:
   tolerations: *tolerations
+prometheus:
+  podMonitor:
+    create: true
 sourcecontroller:
   tolerations: *tolerations
