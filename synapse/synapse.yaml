@@ -41,6 +41,8 @@ spec:
           name: mautrix-telegram
           ports:
             - containerPort: 29317
+            - name: mau-tele-metrics
+              containerPort: 8000
           volumeMounts:
             - name: data
               mountPath: /db
@@ -50,6 +52,8 @@ spec:
           name: mautrix-whatsapp
           ports:
             - containerPort: 29318
+            - name: mau-wa-metrics
+              containerPort: 8002
           volumeMounts:
             - name: data
               mountPath: /db
@@ -80,8 +84,8 @@ spec:
             - secretRef:
                 name: backup-bucket
           ports:
-          - name: ls-metrics
-            containerPort: 9090
+            - name: ls-metrics
+              containerPort: 9090
         - image: matrixdotorg/synapse
           name: synapse
           ports:
