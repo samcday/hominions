@@ -93,7 +93,7 @@ spec:
                   done
 
                   if ! $ssh $internal_ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --ssh-key=/tmp/hcloud-worker || continue
+                    k3sup join --server-host hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --ssh-key=/tmp/hcloud-worker" || continue
                   fi
                 done
 
