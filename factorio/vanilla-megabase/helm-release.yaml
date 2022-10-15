@@ -17,6 +17,20 @@ spec:
     remediation:
       retries: -1
   interval: 5m
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          # No need to run on the hostnetwork.
+          # TODO: stop being lazy and fix this in fork.
+          - patch:
+              - op: replace
+                path: /spec/template/spec/hostNetwork
+                value: false
+            target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: vanilla-megabase
   releaseName: vanilla-megabase
   upgrade:
     remediation:
