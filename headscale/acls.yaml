@@ -11,10 +11,10 @@ acls:
   - action: accept
     src: [tag:kube-worker]
     dst: [tag:kube-worker:4240]
-  # Kube workers and trusted group can talk to anything in cluster CIDR.
+  # Kube workers, trusted group, and things already in cluster CIDR can talk to anything in cluster CIDR.
   # Cilium netpols can be employed to further refine access.
   - action: accept
-    src: [group:trusted, tag:kube-worker]
+    src: [group:trusted, tag:kube-worker, 10.42.0.0/15]
     dst: [10.42.0.0/15:*]
 
 autoApprovers:
