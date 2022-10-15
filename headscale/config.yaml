@@ -163,6 +163,7 @@ dns_config:
   #
   restricted_nameservers:
     cluster.home.samcday.com: [10.43.0.10]
+    internal: [fdaa:0:b5a8::3]
   # Search domains to inject.
   domains: [cluster.home.samcday.com]
 

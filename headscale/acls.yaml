@@ -31,7 +31,7 @@ acls:
   # Kube workers can talk to everything in samcday-headscale 6PN (for now)
   - action: accept
     src: [k8s-cluster, tag:kube-worker]
-    dst: [6pn-headscale:*]
+    dst: [6pn-headscale:*, services:*]
 
 autoApprovers:
   routes:
