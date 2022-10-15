@@ -49,6 +49,31 @@ spec:
                     $ssh $public_ip 'curl -fsSL https://tailscale.com/install.sh | sh' || continue
                   fi
 
+                  if $ssh $public_ip stat /etc/netplan/50-cloud-init.yaml; then
+                    $ssh $public_ip DEBIAN_FRONTEND=noninteractive apt-get -y remove hc-utils
+                    $ssh $public_ip rm /etc/netplan/50-cloud-init.yaml
+                  fi
+
+                  # Default hcloud DNS is ... much too generous. Disable nameservers from DHCP
+                  # and just use 185.12.64.1.
+                  if ! $ssh $public_ip stat /etc/netplan/60-local.yaml; then
+                    $ssh $public_ip 'cat > /etc/netplan/60-local.yaml' <<HERE
+                  network:
+                    version: 2
+                    ethernets:
+                        eth0:
+                            dhcp4: true
+                            dhcp4-overrides:
+                                use-dns: false
+                            gateway6: fe80::1
+                            match:
+                                name: en*
+                            nameservers:
+                                addresses: [185.12.64.1]
+              HERE
+                    $ssh $public_ip netplan apply
+                  fi
+
                   pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
 
                   if ! $ssh $public_ip tailscale status; then
@@ -70,7 +95,7 @@ spec:
                 name: tailscale-auth
           resources:
             limits:
-              cpu: '1'
+              cpu: "1"
               memory: 256Mi
             requests:
               cpu: 100m
@@ -97,18 +122,18 @@ kind: ClusterRole
 metadata:
   name: hcloud-provisioner
 rules:
-- apiGroups: [""]
-  resources: [nodes]
-  verbs: ["*"]
+  - apiGroups: [""]
+    resources: [nodes]
+    verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: hcloud-provisioner
 subjects:
-- kind: ServiceAccount
-  name: hcloud-provisioner
-  namespace: kube-system
+  - kind: ServiceAccount
+    name: hcloud-provisioner
+    namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: hcloud-provisioner
