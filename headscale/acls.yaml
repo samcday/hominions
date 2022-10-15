@@ -3,18 +3,26 @@ acls:
   - action: accept
     src: [group:trusted]
     dst: [group:all:*]
-  # Kube workers can always talk to Hominion (control plane) on port 6443.
+  # Kube workers can talk to k8s control plane on port 6443.
   - action: accept
-    src: [tag:kube-worker, 10.42.0.0/15]
+    src: [10.42.0.0/15, tag:kube-worker]
     dst: [tag:control-plane:6443]
-  # Kube workers can talk to each other on port 4240.
+  # Kube workloads can talk to kube worker nodes on some Cilium ports.
   - action: accept
-    src: [tag:kube-worker]
-    dst: [tag:kube-worker:4240]
+    src: [10.42.0.0/15, tag:kube-worker]
+    dst:
+      - tag:kube-worker:4240
+      - tag:kube-worker:9962
+      - tag:kube-worker:9963
+      - tag:kube-worker:9965
+  # node-exporter
+  - action: accept
+    src: [10.42.0.0/15, tag:kube-worker]
+    dst: [tag:kube-worker:9100]
   # Kube workers, trusted group, and things already in cluster CIDR can talk to anything in cluster CIDR.
   # Cilium netpols can be employed to further refine access.
   - action: accept
-    src: [group:trusted, tag:kube-worker, 10.42.0.0/15]
+    src: [group:trusted, 10.42.0.0/15, tag:kube-worker]
     dst: [10.42.0.0/15:*]
 
 autoApprovers:
