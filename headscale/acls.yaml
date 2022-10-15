@@ -3,10 +3,10 @@ acls:
   - action: accept
     src: [group:trusted]
     dst: [group:all:*]
-  # Kube workers can talk to k8s control plane on port 6443.
+  # Kube workers can talk to k8s control plane on port 6443, and kubelets on 10250
   - action: accept
     src: [10.42.0.0/15, tag:kube-worker]
-    dst: [tag:control-plane:6443]
+    dst: [tag:control-plane:6443, tag:kube-worker:10250]
   # Kube workloads can talk to kube worker nodes on some Cilium ports.
   - action: accept
     src: [10.42.0.0/15, tag:kube-worker]
