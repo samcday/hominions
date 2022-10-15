@@ -165,7 +165,7 @@ dns_config:
     cluster.home.samcday.com: [10.43.0.10]
     internal: [fdaa:0:b5a8::3]
   # Search domains to inject.
-  domains: [cluster.home.samcday.com]
+  domains: [cluster.home.samcday.com, internal]
 
   # Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).
   # Only works if there is at least a nameserver defined.
