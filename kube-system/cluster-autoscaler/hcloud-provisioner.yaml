@@ -81,6 +81,10 @@ spec:
                   fi
 
                   internal_ip=$($ssh $public_ip tailscale ip -4)
+                  until $ssh $internal_ip date; do
+                    sleep 1
+                  done
+
                   if ! $ssh $internal_ip systemctl is-active k3s-agent; then
                     k3sup join --server-host hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud:NoSchedule'" --ssh-key=/tmp/hcloud-worker || continue
                   fi
