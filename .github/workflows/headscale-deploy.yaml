@@ -1,8 +1,7 @@
 name: Deploy Headscale to Fly.io
 on:
   push:
-    paths:
-      - headscale/**
+    paths: [headscale/**]
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
