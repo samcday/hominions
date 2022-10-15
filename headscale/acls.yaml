@@ -29,11 +29,6 @@ acls:
     src: [k8s-cluster, tag:kube-worker]
     dst: [6pn-headscale:*, services:*]
 
-  # hm?
-  - action: accept
-    src: [hominion]
-    dst: [6pn-headscale:*]
-
 autoApprovers:
   routes:
     # k8s service CIDR
