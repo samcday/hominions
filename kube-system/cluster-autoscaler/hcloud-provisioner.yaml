@@ -52,16 +52,10 @@ spec:
                   pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
 
                   if ! $ssh $public_ip tailscale status; then
-                    $ssh $public_ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-routes=$pod_cidr || continue
+                    $ssh $public_ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-tags=tag:kube-worker --advertise-routes=$pod_cidr || continue
                   fi
 
                   internal_ip=$($ssh $public_ip tailscale ip -4)
-
-                  # fly console into headscale, enable the route.
-                  # can maybe replace this with autoApprovers ACL thing?
-                  node_id=$(flyctl ssh console -a samcday-headscale -C 'headscale node list -o json-line' | jq -r ". | map(select(.ip_addresses | contains([\"$internal_ip\"]))) | .[].id")
-                  flyctl ssh console -a samcday-headscale -C "headscale route enable -a -i $node_id"
-
                   if ! $ssh $internal_ip systemctl is-active k3s-agent; then
                     k3sup join --server-host 100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud:NoSchedule'" --ssh-key=/tmp/hcloud-worker || continue
                   fi
@@ -74,8 +68,6 @@ spec:
                 name: hcloud-token
             - secretRef:
                 name: tailscale-auth
-            - secretRef:
-                name: fly-auth
           resources:
             limits:
               cpu: '1'

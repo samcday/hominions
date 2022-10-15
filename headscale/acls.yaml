@@ -1,0 +1,23 @@
+acls:
+  # Trusted hosts have access to everything.
+  - action: accept
+    src: [group:trusted]
+    dst: [group:all:*]
+  # Kube workers can always talk to Hominion (control plane) on port 6443, and everything in the cluster CIDR.
+  - action: accept
+    src: [tag:kube-worker]
+    dst:
+      - tag:control-plane:6443
+      - 10.42.0.0/15:*
+
+autoApprovers:
+  routes:
+    10.42.0.0/16: [tag:kube-worker]
+
+groups:
+  group:all: [hcloud, hominion, inner]
+  group:trusted: [hominion, inner]
+
+tagOwners:
+  tag:control-plane: [hominion]
+  tag:kube-worker: [hcloud, hominion, inner]
