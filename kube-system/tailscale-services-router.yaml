@@ -53,18 +53,11 @@ spec:
             privileged: true
       containers:
         - name: wireguard
-          image: masipcat/wireguard-go:latest
-          command:
-            - sh
-            - -c
-            - echo "Public key '$(wg pubkey < /etc/wireguard/privatekey)'" && /entrypoint.sh
+          image: linuxserver/wireguard:1.0.20210914
           ports:
             - containerPort: 51820
               protocol: UDP
               name: wireguard
-          env:
-            - name: LOG_LEVEL
-              value: info
           securityContext:
             capabilities:
               add: [NET_ADMIN]
@@ -77,12 +70,8 @@ spec:
               cpu: '2'
               memory: 256Mi
           volumeMounts:
-            - name: cfgmap
-              mountPath: /etc/wireguard/wg0.conf
-              subPath: wg0.conf
             - name: secret
-              mountPath: /etc/wireguard/privatekey
-              subPath: privatekey
+              mountPath: /config
         - image: tailscale/tailscale:v1.33
           name: tailscale
           command:
@@ -102,9 +91,6 @@ spec:
               memory: 1Gi
       serviceAccountName: tailscale-services-router
       volumes:
-        - name: cfgmap
-          configMap:
-            name: headscale-6pn-cfg
         - name: secret
           secret:
             secretName: headscale-6pn-priv
