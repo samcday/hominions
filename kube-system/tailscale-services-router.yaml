@@ -53,7 +53,7 @@ spec:
             privileged: true
       containers:
         - name: wireguard
-          image: linuxserver/wireguard:1.0.20210914
+          image: cmulk/wireguard-docker:alpine
           ports:
             - containerPort: 51820
               protocol: UDP
@@ -71,7 +71,7 @@ spec:
               memory: 256Mi
           volumeMounts:
             - name: secret
-              mountPath: /config/wg0.conf
+              mountPath: /etc/wireguard/wg0.conf
               subPath: wg0.conf
         - image: tailscale/tailscale:v1.33
           name: tailscale
