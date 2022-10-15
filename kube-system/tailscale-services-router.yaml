@@ -71,7 +71,8 @@ spec:
               memory: 256Mi
           volumeMounts:
             - name: secret
-              mountPath: /config
+              mountPath: /config/wg0.conf
+              subPath: wg0.conf
         - image: tailscale/tailscale:v1.33
           name: tailscale
           command:
