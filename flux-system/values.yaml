@@ -1,12 +1,8 @@
 # https://github.com/fluxcd-community/helm-charts/blob/main/charts/flux2/values.yaml
-helmcontroller:
 imageautomationcontroller:
   create: false
 imagereflectorcontroller:
   create: false
-kustomizecontroller:
-notificationcontroller:
 prometheus:
   podMonitor:
     create: true
-sourcecontroller:
