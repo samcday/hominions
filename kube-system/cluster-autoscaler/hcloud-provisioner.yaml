@@ -39,11 +39,11 @@ spec:
               metadata:
                 name: $name
                 labels:
-                  node-role.kubernetes.io/hcloud: ''
+                  node-role.kubernetes.io/hcloud: ""
               spec:
                 taints:
                   - key: samcday.com/hcloud
-                    value: true
+                    value: ""
                     effect: NoSchedule
               HERE
                   fi
