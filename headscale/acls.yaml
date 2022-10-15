@@ -7,6 +7,10 @@ acls:
   - action: accept
     src: [tag:kube-worker]
     dst: [tag:control-plane:6443]
+  # Kube workers can talk to each other on port 4240.
+  - action: accept
+    src: [tag:kube-worker]
+    dst: [tag:kube-worker:4240]
   # Kube workers and trusted group can talk to anything in cluster CIDR.
   # Cilium netpols can be employed to further refine access.
   - action: accept
