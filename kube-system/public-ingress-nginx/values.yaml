@@ -33,7 +33,7 @@ controller:
   metrics:
     enabled: true
   nodeSelector:
-    samcday.com/hcloud: ""
+    node-role.kubernetes.io/hcloud: ""
   replicaCount: 2
   service:
     enabled: false
