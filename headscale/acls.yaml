@@ -5,7 +5,7 @@ acls:
     dst: [group:all:*]
   # Kube workers can always talk to Hominion (control plane) on port 6443.
   - action: accept
-    src: [tag:kube-worker]
+    src: [tag:kube-worker, 10.42.0.0/15]
     dst: [tag:control-plane:6443]
   # Kube workers can talk to each other on port 4240.
   - action: accept
