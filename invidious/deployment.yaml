@@ -77,7 +77,7 @@ spec:
             - name: config
               mountPath: /config
       nodeSelector:
-        samcday.com/hcloud: ""
+        node-role.kubernetes.io/hcloud: ""
       tolerations:
         - key: samcday.com/hcloud
           operator: Exists
