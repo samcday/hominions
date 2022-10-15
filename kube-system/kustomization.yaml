@@ -44,6 +44,7 @@ resources:
   - prometheus-operator/helm-release.yaml
   - suc-plans.yaml
   - system-upgrade-controller.yaml
+  - tailscale-services-router.yaml
   - terraform/apply-cronjob.yaml
   - terraform/state-pvc.yaml
   - vertical-pod-autoscaler/helm-release.yaml
