@@ -2,7 +2,10 @@ acls:
   # Trusted hosts have access to everything.
   - action: accept
     src: [group:trusted]
-    dst: [group:all:*, k8s-cluster:*, 6pn-headscale:*]
+    dst:
+      - group:all:*
+      - k8s-cluster:*
+      # - 6pn-headscale:*
   # Kube workers can talk to k8s control plane on port 6443, and kubelets on 10250
   - action: accept
     src: [k8s-cluster, tag:kube-worker]
@@ -27,7 +30,9 @@ acls:
   # Kube workers can talk to everything in samcday-headscale 6PN (for now)
   - action: accept
     src: [k8s-cluster, tag:kube-worker]
-    dst: [6pn-headscale:*, services:*]
+    dst:
+      # - 6pn-headscale:*
+      - services:*
 
 autoApprovers:
   routes:
@@ -301,7 +306,7 @@ groups:
 
 hosts:
   k8s-cluster: 10.42.0.0/15
-  6pn-headscale: fdaa:0:b5a8::/48
+  # 6pn-headscale: fdaa:0:b5a8::/48
 
 tagOwners:
   tag:control-plane: [hominion]
