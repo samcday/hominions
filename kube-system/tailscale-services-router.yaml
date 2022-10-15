@@ -53,7 +53,12 @@ spec:
             limits:
               cpu: '2'
               memory: 1Gi
+      nodeSelector:
+        node-role.kubernetes.io/hcloud: ''
       serviceAccountName: tailscale-services-router
+      tolerations:
+        - key: samcday.com/hcloud
+          operator: Exists
       volumes:
         - name: secret
           secret:
