@@ -1,25 +1,6 @@
 # A simple non-HA tailscale subnet router deployment to make the k8s services CIDR of the cluster routable anywhere in the Tailnet.
 # Cilium resolves to the actual endpoint (usually a specific pod IP) which doesn't route through here.
 # As an added bonus, my Fly.io 6PNs are also made routable.
----
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: headscale-6pn-cfg
-  namespace: kube-system
-data:
-  wg0.conf: |
-    [Interface]
-    Address = fdaa:0:b5a8:a7b:8dd7:0:a:2b02/120
-    ListenPort = 51820
-    PostUp = wg set wg0 private-key /etc/wireguard/privatekey && iptables -t nat -A POSTROUTING -s 10.33.0.0/24 -o eth0 -j MASQUERADE
-    PostDown = ip6tables -t nat -D POSTROUTING -s fdaa:0:b5a8::/48 -o eth0 -j MASQUERADE
-
-    [Peer]
-    PublicKey = KC8fjwgUb9FD3xyuhqCcl/igTVRapt9zC1goAPGtIDs=
-    AllowedIPs = fdaa:0:b5a8::/48
-    Endpoint = fra2.gateway.6pn.dev:51820
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,27 +18,9 @@ spec:
       labels:
         app: tailscale-services-router
     spec:
-      initContainers:
-        - name: sysctls
-          image: busybox
-          command:
-          - sh
-          - -c
-          - |-
-            sysctl -w net.ipv4.ip_forward=1 && sysctl -w net.ipv6.conf.all.forwarding=1
-            until nslookup tailscale.com; do sleep 1; done
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
-            privileged: true
       containers:
         - name: wireguard
           image: cmulk/wireguard-docker:alpine
-          ports:
-            - containerPort: 51820
-              protocol: UDP
-              name: wireguard
           securityContext:
             capabilities:
               add: [NET_ADMIN]
