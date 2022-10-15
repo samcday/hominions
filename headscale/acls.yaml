@@ -15,6 +15,10 @@ acls:
       - tag:kube-worker:9962
       - tag:kube-worker:9963
       - tag:kube-worker:9965
+  # vanilla-megabase (host port because weird upstream chart)
+  - action: accept
+    src: [10.42.0.0/15, tag:kube-worker]
+    dst: [tag:kube-worker:8123]
   # node-exporter
   - action: accept
     src: [10.42.0.0/15, tag:kube-worker]
