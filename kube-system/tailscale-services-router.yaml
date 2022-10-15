@@ -1,0 +1,71 @@
+# A simple non-HA tailscale subnet router deployment to make the services CIDR of the cluster routable anywhere in the Tailnet.
+# Cilium resolves to the actual endpoint (usually a specific pod IP) which doesn't route through here.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tailscale-services-router
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailscale-services-router
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tailscale-services-router
+    spec:
+      containers:
+      - image: tailscale/tailscale:v1.33
+        name: tailscale
+        command:
+        - /bin/sh
+        - -c
+        - |-
+          tailscaled --state=kube:auth-key --socket=/tmp/tailscaled.sock --tun=userspace-networking &
+          PID=$!
+          tailscale --socket=/tmp/tailscaled.sock up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.43.0.0/16 
+          wait $PID
+        envFrom:
+          - secretRef:
+              name: services-tailscale-auth
+        resources:
+          limits:
+            cpu: '2'
+            memory: 1Gi
+      serviceAccountName: tailscale-services-router
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tailscale-services-router
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tailscale-services-router
+  namespace: kube-system
+rules:
+- apiGroups: [""]
+  resources: [secrets]
+  verbs: [create]
+- apiGroups: [""]
+  resources: [secrets]
+  resourceNames: [auth-key]
+  verbs: [get, update]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tailscale-services-router
+  namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: tailscale-services-router
+subjects:
+- kind: ServiceAccount
+  name: tailscale-services-router

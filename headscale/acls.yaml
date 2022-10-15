@@ -19,6 +19,9 @@ acls:
 
 autoApprovers:
   routes:
+    10.43.0.0/16: [services]
+
+    # Can be collapsed into the parent /15 once this is merged: https://github.com/juanfont/headscale/pull/862/files
     10.42.0.0/24: [tag:kube-worker]
     10.42.1.0/24: [tag:kube-worker]
     10.42.2.0/24: [tag:kube-worker]
@@ -277,7 +280,7 @@ autoApprovers:
     10.42.255.0/24: [tag:kube-worker]
 
 groups:
-  group:all: [hcloud, hominion, inner]
+  group:all: [hcloud, hominion, inner, services]
   group:trusted: [hominion, inner]
 
 tagOwners:

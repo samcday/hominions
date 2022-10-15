@@ -96,7 +96,7 @@ spec:
             - secretRef:
                 name: hcloud-token
             - secretRef:
-                name: tailscale-auth
+                name: hcloud-tailscale-auth
           resources:
             limits:
               cpu: "1"
