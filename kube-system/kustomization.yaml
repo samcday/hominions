@@ -35,6 +35,7 @@ resources:
   - cilium/helm-release.yaml
   - cluster-autoscaler/cluster-autoscaler.yaml
   - cluster-autoscaler/hcloud-provisioner.yaml
+  - coredns.yaml
   - external-dns/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml

@@ -176,15 +176,10 @@ dns_config:
   # Split DNS (see https://tailscale.com/kb/1054/dns/),
   # list of search domains and the DNS to query for each one.
   #
-  # restricted_nameservers:
-  #   foo.bar.com:
-  #     - 1.1.1.1
-  #   darp.headscale.net:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
-
+  restricted_nameservers:
+    cluster.home.samcday.com: [10.43.0.10]
   # Search domains to inject.
-  domains: []
+  domains: [cluster.home.samcday.com]
 
   # Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).
   # Only works if there is at least a nameserver defined.
