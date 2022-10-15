@@ -67,7 +67,7 @@ spec:
                                 use-dns: false
                             gateway6: fe80::1
                             match:
-                                name: en*
+                                name: eth0
                             nameservers:
                                 addresses: [185.12.64.1]
               HERE
