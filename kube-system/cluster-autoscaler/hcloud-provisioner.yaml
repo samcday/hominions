@@ -108,6 +108,8 @@ spec:
             - name: ssh-key
               mountPath: /ssh-key
       hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: hominion
       serviceAccountName: hcloud-provisioner
       terminationGracePeriodSeconds: 3
       volumes:
