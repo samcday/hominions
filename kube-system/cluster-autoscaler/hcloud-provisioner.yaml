@@ -38,6 +38,13 @@ spec:
               kind: Node
               metadata:
                 name: $name
+                labels:
+                  node-role.kubernetes.io/hcloud: ''
+              spec:
+                taints:
+                  - key: samcday.com/hcloud
+                    value: true
+                    effect: NoSchedule
               HERE
                   fi
 
@@ -86,7 +93,7 @@ spec:
                   done
 
                   if ! $ssh $internal_ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --node-label 'samcday.com/hcloud=' --node-taint 'samcday.com/hcloud=true:NoSchedule'" --ssh-key=/tmp/hcloud-worker || continue
+                    k3sup join --server-host hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 
