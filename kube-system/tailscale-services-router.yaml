@@ -50,6 +50,9 @@ spec:
             - secretRef:
                 name: services-tailscale-auth
           resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
             limits:
               cpu: '2'
               memory: 1Gi
