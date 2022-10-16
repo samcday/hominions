@@ -9,4 +9,4 @@ spec:
     kind: Deployment
     name: vanilla-megabase
   updatePolicy:
-    updateMode: Auto
+    updateMode: Initial
