@@ -5,8 +5,6 @@ controller:
     # covered by main ingress controller I think?
     enabled: false
   electionID: public-ingress-controller-leader
-  hostPort:
-    enabled: true
   ingressClass: public-nginx
   ingressClassResource:
     name: public-nginx
