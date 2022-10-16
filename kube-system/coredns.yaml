@@ -19,8 +19,9 @@ data:
           fallthrough
         }
         prometheus :9153
-        # Forward DNS queries through MagicDNS, which itself is configured with an appropriate fallback resolver.
-        forward . 100.100.100.100:53
+        # Forward some split-DNS queries through Tailnet MagicDNS
+        forward .internal 100.100.100.100:53
+        forward . /etc/resolv.conf
         cache 30
         loop
         reload
