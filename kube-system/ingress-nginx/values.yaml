@@ -1,13 +1,31 @@
 # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
 
 controller:
-  kind: DaemonSet
-  hostPort:
-    enabled: true
-  hostNetwork: true
+  kind: Deployment
+  extraContainers:
+    - image: tailscale/tailscale:v1.33
+      name: tailscale
+      command:
+        - /bin/sh
+        - -c
+        - |-
+          tailscaled --state=kube:ingress-ts-auth-key --socket=/tmp/tailscaled.sock --tun=userspace-networking &
+          PID=$!
+          tailscale --socket=/tmp/tailscaled.sock up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.43.0.0/16,fdaa:0:b5a8::/48
+          wait $PID
+      envFrom:
+        - secretRef:
+            name: services-tailscale-auth
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: '2'
+          memory: 1Gi
   metrics:
     enabled: true
-  nodeSelector:
-    kubernetes.io/hostname: hominion
   service:
-    enabled: false
+    externalIPs: [100.64.0.2]
+  updateStrategy:
+    type: Recreate

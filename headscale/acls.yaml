@@ -2,7 +2,7 @@ acls:
   # Internal ingress-nginx is accessible from everything in Tailnet.
   - action: accept
     src: ["*"]
-    dst: [tag:control-plane:80, tag:control-plane:443]
+    dst: [tag:ingress:80, tag:ingress:443]
 
   # Trusted hosts have access to everything.
   - action: accept
@@ -315,3 +315,4 @@ hosts:
 tagOwners:
   tag:control-plane: [hominion]
   tag:kube-worker: [hcloud, hominion, inner]
+  tag:ingress: [services]
