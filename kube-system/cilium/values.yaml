@@ -1,5 +1,6 @@
 # https://github.com/cilium/cilium/blob/master/install/kubernetes/cilium/values.yaml
 
+dnsPolicy: None
 hostFirewall:
   enabled: true
 hubble:

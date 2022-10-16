@@ -18,6 +18,21 @@ spec:
     remediation:
       retries: -1
   interval: 5m
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          # Ensure cilium agent uses Tailnet DNS exclusively, important for bootstrapping so it can always find control plane.
+          - patch:
+              - op: replace
+                path: /spec/template/spec/dnsConfig
+                value:
+                  nameservers:
+                    - 100.100.100.100
+            target:
+              group: apps
+              version: v1
+              kind: DaemonSet
+              name: cilium
   releaseName: cilium
   upgrade:
     crds: CreateReplace
