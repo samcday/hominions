@@ -1,5 +1,12 @@
 # https://github.com/samcday/hcloud-fip-k8s/blob/main/chart/values.yaml
 
+# TODO: should add envFrom support to the chart and consume this directly.
+env:
+  - name: HCLOUD_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: hcloud-token
+        key: HCLOUD_TOKEN
 floatingIP:
   selector: role=home
   label: node-role.kubernetes.io/home-fip

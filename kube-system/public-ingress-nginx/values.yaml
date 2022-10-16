@@ -4,24 +4,6 @@ controller:
   admissionWebhooks:
     # covered by main ingress controller I think?
     enabled: false
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-              - ingress-nginx
-            - key: app.kubernetes.io/instance
-              operator: In
-              values:
-              - public-ingress-nginx
-            - key: app.kubernetes.io/component
-              operator: In
-              values:
-              - controller
-          topologyKey: kubernetes.io/hostname
   electionID: public-ingress-controller-leader
   hostPort:
     enabled: true
@@ -33,10 +15,10 @@ controller:
   metrics:
     enabled: true
   nodeSelector:
-    node-role.kubernetes.io/hcloud: ""
-  replicaCount: 2
+    node-role.kubernetes.io/home-fip: 49.12.115.117
+  replicaCount: 1
   service:
-    enabled: false
+    loadBalancerIP: 49.12.115.117
   tolerations:
     - key: samcday.com/hcloud
       operator: Exists

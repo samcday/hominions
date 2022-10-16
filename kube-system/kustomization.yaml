@@ -12,6 +12,8 @@ configMapGenerator:
     files: [external-dns/values.yaml]
   - name: hcloud-cloud-init
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
+  - name: hcloud-fip-values
+    files: [hcloud-fip/values.yaml]
   - name: ingress-nginx-values
     files: [ingress-nginx/values.yaml]
   - name: openebs-values
@@ -37,6 +39,7 @@ resources:
   - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
   - external-dns/helm-release.yaml
+  - hcloud-fip/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
