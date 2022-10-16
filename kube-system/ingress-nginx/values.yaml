@@ -4,6 +4,7 @@ controller:
   kind: DaemonSet
   hostPort:
     enabled: true
+  hostNetwork: true
   metrics:
     enabled: true
   nodeSelector:
