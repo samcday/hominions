@@ -46,10 +46,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-      dnsConfig:
-        options:
-          - name: ndots
-            value: "1"
       enableServiceLinks: false
       initContainers:
         - name: config

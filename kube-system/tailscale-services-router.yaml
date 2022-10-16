@@ -56,10 +56,6 @@ spec:
             limits:
               cpu: '2'
               memory: 1Gi
-      dnsConfig:
-        options:
-          - name: ndots
-            value: "1"
       nodeSelector:
         node-role.kubernetes.io/hcloud: ''
       serviceAccountName: tailscale-services-router

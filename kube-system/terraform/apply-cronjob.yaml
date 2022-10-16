@@ -33,10 +33,6 @@ spec:
               envFrom: *env
               volumeMounts: *volmounts
               workingDir: /tf
-          dnsConfig:
-            options:
-              - name: ndots
-                value: "1"
           restartPolicy: OnFailure
           serviceAccountName: terraform-apply
           volumes:
