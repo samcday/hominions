@@ -6,12 +6,14 @@ metadata:
   namespace: kube-system
 spec:
   concurrency: 1
-  version: v1.25.2+k3s1
+  drain:
+    force: true
   nodeSelector:
     matchExpressions:
       - {key: kubernetes.io/os, operator: In, values: ["linux"]}
   serviceAccountName: system-upgrade
-  drain:
-    force: true
+  tolerations:
+    - operator: Exists
   upgrade:
     image: rancher/k3s-upgrade
+  version: v1.25.2+k3s1
