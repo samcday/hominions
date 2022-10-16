@@ -93,8 +93,7 @@ spec:
                   done
 
                   if ! $ssh $internal_ip systemctl is-active k3s-agent; then
-                    # Should use --server-host=hominion.hominion.tailnet.samcday.com here if/when host-networking DNS issues are ironed out.
-                    k3sup join --server-host=100.64.0.2 --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip" --ssh-key=/tmp/hcloud-worker || continue
+                    k3sup join --server-host=hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 
