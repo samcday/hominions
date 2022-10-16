@@ -5,22 +5,6 @@ derp:
   update_frequency: 24h
 # Image updates should be picked up by renovate.
 disable_check_updates: true
-listen_addr: 0.0.0.0:8080
-metrics_listen_addr: 0.0.0.0:9090
-# not exposed by Fly.io publicly, accessed via 6pn that is routed in Tailnet, so "insecure" here is probs ok for now.
-grpc_allow_insecure: true
-grpc_listen_addr: 0.0.0.0:50443
-private_key_path: /data/private.key
-noise:
-  private_key_path: /data/noise_private.key
-ip_prefixes:
-  - fd7a:115c:a1e0::/48
-  - 100.64.0.0/10
-ephemeral_node_inactivity_timeout: 30m
-node_update_check_interval: 10s
-db_type: sqlite3
-db_path: /data/db.sqlite
-acl_policy_path: /opt/acls.yaml
 dns_config:
   nameservers:
     # TODO: setup a Pi-Hole/dnsmasq/something, use it here instead of Cloudflare DNS.
@@ -34,5 +18,21 @@ dns_config:
     - cluster.home.samcday.com
   magic_dns: true
   base_domain: tailnet.samcday.com
+ephemeral_node_inactivity_timeout: 5m
+# not exposed by Fly.io publicly, accessed via 6pn that is routed in Tailnet, so "insecure" here is probs ok for now.
+grpc_allow_insecure: true
+grpc_listen_addr: 0.0.0.0:50443
+metrics_listen_addr: 0.0.0.0:9090
+listen_addr: 0.0.0.0:8080
+node_update_check_interval: 10s
+private_key_path: /data/private.key
+noise:
+  private_key_path: /data/noise_private.key
+ip_prefixes:
+  - fd7a:115c:a1e0::/48
+  - 100.64.0.0/10
+db_type: sqlite3
+db_path: /data/db.sqlite
+acl_policy_path: /opt/acls.yaml
 unix_socket: /var/run/headscale.sock
 unix_socket_permission: "0770"
