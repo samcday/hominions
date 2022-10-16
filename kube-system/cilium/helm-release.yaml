@@ -22,7 +22,7 @@ spec:
     - kustomize:
         patchesJson6902:
           # Ensure cilium agent uses Tailnet DNS exclusively, important for bootstrapping so it can always find control plane.
-          - patch:
+          - patch: &patch
               - op: replace
                 path: /spec/template/spec/dnsConfig
                 value:
@@ -33,6 +33,13 @@ spec:
               version: v1
               kind: DaemonSet
               name: cilium
+          # Same but for operator pods.
+          - patch: *patch
+            target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: cilium-operator
   releaseName: cilium
   upgrade:
     crds: CreateReplace
