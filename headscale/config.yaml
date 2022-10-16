@@ -30,7 +30,6 @@ dns_config:
   # search domains injected into clients that `tailscale up --accept-dns`
   domains:
     - cluster.home.samcday.com
-    - internal
   magic_dns: true
   base_domain: tailnet.samcday.com
 unix_socket: /var/run/headscale.sock

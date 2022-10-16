@@ -19,14 +19,10 @@ data:
           fallthrough
         }
         prometheus :9153
-        forward . /etc/resolv.conf
+        # Use Tailnet MagicDNS as upstream
+        forward . 100.100.100.100:53
         cache 30
         loop
         reload
         loadbalance
-    }
-    # Forward some split-DNS queries through Tailnet MagicDNS
-    .internal:53 {
-        errors
-        forward . 100.100.100.100:53
     }
