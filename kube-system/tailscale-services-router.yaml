@@ -49,6 +49,14 @@ spec:
           envFrom:
             - secretRef:
                 name: services-tailscale-auth
+          livenessProbe:
+            exec:
+              command:
+                - tailscale
+                - --socket=/tmp/tailscaled.sock
+                - status
+            initialDelaySeconds: 3
+            periodSeconds: 5
           resources:
             requests:
               cpu: 100m
