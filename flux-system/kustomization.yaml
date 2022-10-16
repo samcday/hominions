@@ -17,6 +17,7 @@ resources:
 - helmrepos/external-dns.yaml
 - helmrepos/fluxcd-community.yaml
 - helmrepos/grafana.yaml
+- helmrepos/hcloud-fip-k8s.yaml
 - helmrepos/ingress-nginx.yaml
 - helmrepos/jetstack.yaml
 - helmrepos/k8s-at-home.yaml
