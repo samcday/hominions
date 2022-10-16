@@ -11,7 +11,7 @@ controller:
         - |-
           tailscaled --state=kube:ingress-ts-auth-key --socket=/tmp/tailscaled.sock --tun=userspace-networking &
           PID=$!
-          tailscale --socket=/tmp/tailscaled.sock up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.43.0.0/16,fdaa:0:b5a8::/48
+          tailscale --socket=/tmp/tailscaled.sock up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false
           wait $PID
       envFrom:
         - secretRef:
