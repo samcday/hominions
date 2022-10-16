@@ -1,4 +1,9 @@
 acls:
+  # Internal ingress-nginx is accessible from everything in Tailnet.
+  - action: accept
+    src: ["*"]
+    dst: [tag:control-plane:80, tag:control-plane:443]
+
   # Trusted hosts have access to everything.
   - action: accept
     src: [group:trusted]
