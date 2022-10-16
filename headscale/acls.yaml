@@ -6,7 +6,7 @@ acls:
       - group:all:*
       - k8s-cluster:*
       - 6pn-headscale:*
-  # Kube workers can talk to k8s control plane on port 6443, and kubelets on 10250
+  # Kube workloads can talk to k8s control plane on port 6443, and kubelets on 10250
   - action: accept
     src: [k8s-cluster, tag:kube-worker]
     dst: [tag:control-plane:6443, tag:kube-worker:10250]
