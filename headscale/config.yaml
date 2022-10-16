@@ -1,4 +1,4 @@
----
+# https://github.com/juanfont/headscale/blob/main/config-example.yaml
 derp:
   urls: [https://controlplane.tailscale.com/derpmap/default]
   auto_update_enabled: true
@@ -7,6 +7,8 @@ derp:
 disable_check_updates: true
 listen_addr: 0.0.0.0:8080
 metrics_listen_addr: 0.0.0.0:9090
+# not exposed by Fly.io publicly, accessed via 6pn that is routed in Tailnet, so "insecure" here is probs ok for now.
+grpc_allow_insecure: true
 grpc_listen_addr: 0.0.0.0:50443
 private_key_path: /data/private.key
 noise:
