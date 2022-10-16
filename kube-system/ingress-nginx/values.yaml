@@ -26,6 +26,6 @@ controller:
   metrics:
     enabled: true
   service:
-    externalIPs: [100.64.0.2]
+    externalIPs: [100.64.0.8]
   updateStrategy:
     type: Recreate
