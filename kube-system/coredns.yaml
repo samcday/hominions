@@ -19,7 +19,8 @@ data:
           fallthrough
         }
         prometheus :9153
-        forward . /etc/resolv.conf
+        # Forward DNS queries through MagicDNS, which itself is configured with an appropriate fallback resolver.
+        forward . 100.100.100.100:53
         cache 30
         loop
         reload
