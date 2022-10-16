@@ -23,7 +23,7 @@ dns_config:
   nameservers:
     # TODO: setup a Pi-Hole/dnsmasq/something, use it here instead of Cloudflare DNS.
     - 1.1.1.1
-  # split-dns - forward queries for domains to specific nameservers. 
+  # split-dns - forward queries for domains to specific nameservers.
   restricted_nameservers:
     cluster.home.samcday.com: [10.43.0.10]
     internal: [fdaa:0:b5a8::3]
