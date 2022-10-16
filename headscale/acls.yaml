@@ -1,8 +1,8 @@
 acls:
-  # Internal ingress-nginx is accessible from everything in Tailnet.
+  # services namespace is exclusively for things to be published to Tailnet, so for now that means make it available everywhere.
   - action: accept
     src: ["*"]
-    dst: [tag:ingress:80, tag:ingress:443]
+    dst: [group:services:*]
 
   # Trusted hosts have access to everything.
   - action: accept
@@ -306,6 +306,7 @@ autoApprovers:
 
 groups:
   group:all: [hcloud, hominion, inner, services]
+  group:services: [services]
   group:trusted: [hominion, inner]
 
 hosts:
