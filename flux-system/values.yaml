@@ -1,8 +1,14 @@
 # https://github.com/fluxcd-community/helm-charts/blob/main/charts/flux2/values.yaml
+helmcontroller: &gofast
+  container:
+    additionalargs:
+      - --concurrent=20
+  replicas: 2
 imageautomationcontroller:
   create: false
 imagereflectorcontroller:
   create: false
+kustomizecontroller: *gofast
 prometheus:
   podMonitor:
     create: true
