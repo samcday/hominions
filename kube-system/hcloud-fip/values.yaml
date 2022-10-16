@@ -14,3 +14,6 @@ floatingIP:
       node-role.kubernetes.io/hcloud: ""
   label: node-role.kubernetes.io/home-fip
   setupAnnotation: samcday.com/home-fip
+tolerations:
+  - key: samcday.com/hcloud
+    operator: Exists
