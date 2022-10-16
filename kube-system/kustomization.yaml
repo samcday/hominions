@@ -41,6 +41,7 @@ resources:
   - external-dns/helm-release.yaml
   - hcloud-fip/helm-release.yaml
   - ingress-nginx/helm-release.yaml
+  - ingress-nginx/rbac.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
   - public-ingress-nginx/helm-release.yaml
