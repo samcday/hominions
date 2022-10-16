@@ -12,4 +12,3 @@ spec:
     kind: GitRepository
     name: home-cluster
   timeout: 30s
-  wait: true
