@@ -1,7 +1,6 @@
 # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
 
 controller:
-  kind: Deployment
   extraContainers:
     - image: tailscale/tailscale:v1.33
       name: tailscale
@@ -31,9 +30,11 @@ controller:
         limits:
           cpu: '2'
           memory: 1Gi
+  kind: Deployment
   metrics:
     enabled: true
   service:
     externalIPs: [100.64.0.8]
+  terminationGracePeriodSeconds: 5
   updateStrategy:
     type: Recreate
