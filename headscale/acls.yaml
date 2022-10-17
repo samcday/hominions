@@ -4,6 +4,12 @@ acls:
     src: ["*"]
     dst: [group:services:*]
 
+  # Everyone can ping control plane.
+  - action: accept
+    src: ["*"]
+    dst: ["tag:control-plane:*"]
+    proto: icmp
+
   # Trusted hosts have access to everything.
   - action: accept
     src: [group:trusted]

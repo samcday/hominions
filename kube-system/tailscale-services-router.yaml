@@ -59,7 +59,8 @@ spec:
             exec:
               command:
                 - tailscale
-                - status
+                - ping
+                - hominion.hominion.tailnet.samcday.com
             initialDelaySeconds: 3
             periodSeconds: 5
           resources:
