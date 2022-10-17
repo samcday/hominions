@@ -29,6 +29,8 @@ controller:
             - hominion.hominion.tailnet.samcday.com
         initialDelaySeconds: 60
         periodSeconds: 30
+      nodeSelector:
+        kubernetes.io/hostname: hominion
       resources:
         requests:
           cpu: 100m
