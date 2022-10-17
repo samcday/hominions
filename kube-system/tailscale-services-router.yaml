@@ -71,7 +71,7 @@ spec:
               cpu: '2'
               memory: 1Gi
       nodeSelector:
-        node-role.kubernetes.io/hcloud: ''
+        kubernetes.io/hostname: hominion
       serviceAccountName: tailscale-services-router
       terminationGracePeriodSeconds: 3
       tolerations:
