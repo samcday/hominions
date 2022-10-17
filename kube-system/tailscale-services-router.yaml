@@ -42,7 +42,7 @@ spec:
             - /bin/sh
             - -c
             - |-
-              tailscaled --state=kube:services-ts-auth-key --tun=userspace-networking --port=41642 &
+              tailscaled --state=kube:services-ts-auth-key --tun=userspace-networking --port=31641 &
               PID=$!
               tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.43.0.0/16,fdaa:0:b5a8::/48
               wait $PID
@@ -118,7 +118,7 @@ spec:
   selector:
     app: tailscale-services-router
   ports:
-  - port: 41642
-    targetPort: 41642
-    nodePort: 41642
+  - port: 31641
+    targetPort: 31641
+    nodePort: 31641
     protocol: UDP
