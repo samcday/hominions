@@ -149,6 +149,9 @@ spec:
             - sh
             - -c
             - |-
+              rm -f /mautrix-signal/*
+              rm -f /mautrix-telegram/*
+              rm -f /mautrix-whatsapp/*
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 1337:1337 /data
