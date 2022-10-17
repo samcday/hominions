@@ -15,6 +15,12 @@ controller:
       envFrom:
         - secretRef:
             name: services-tailscale-auth
+      lifecycle:
+        preStop:
+          exec:
+            command:
+              - tailscale
+              - down
       livenessProbe:
         exec:
           command:
