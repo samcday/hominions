@@ -1,3 +1,4 @@
+cluster-cidr: 10.42.0.0/16,fda1:cebd:8920::/48
 disable-helm-controller: true
 disable-kube-proxy: true
 disable-network-policy: true
@@ -12,3 +13,4 @@ etcd-s3-region: eu-central-003
 flannel-backend: none
 kube-apiserver-arg:
   - disabled-metrics=apiserver_request_duration_seconds,etcd_request_duration_seconds,apiserver_request_slo_duration_seconds
+service-cidr: 10.43.0.0/16,fdeb:ccf0:55b9::/48
