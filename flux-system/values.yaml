@@ -9,6 +9,9 @@ imageautomationcontroller:
 imagereflectorcontroller:
   create: false
 kustomizecontroller: *gofast
+policies:
+  # incompatible with Cilium
+  create: false
 prometheus:
   podMonitor:
     create: true
