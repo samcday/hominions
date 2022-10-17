@@ -42,6 +42,7 @@ resources:
   - hcloud-fip/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - ingress-nginx/rbac.yaml
+  - ingress-nginx/tailscale-service.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
   - public-ingress-nginx/helm-release.yaml

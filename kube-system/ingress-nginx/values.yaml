@@ -8,7 +8,7 @@ controller:
         - /bin/sh
         - -c
         - |-
-          tailscaled --state=kube:ingress-ts-auth-key --tun=userspace-networking &
+          tailscaled --state=kube:ingress-ts-auth-key --tun=userspace-networking --port=31642 &
           PID=$!
           tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false
           wait $PID

@@ -124,7 +124,7 @@ spec:
   selector:
     app: tailscale-services-router
   ports:
-  - port: 31641
-    targetPort: 31641
-    nodePort: 31641
-    protocol: UDP
+    - port: 31641
+      targetPort: 31641
+      nodePort: 31641
+      protocol: UDP

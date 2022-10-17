@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-tailscale
+  namespace: kube-system
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+  ports:
+    - port: 31642
+      targetPort: 31642
+      nodePort: 31642
+      protocol: UDP
