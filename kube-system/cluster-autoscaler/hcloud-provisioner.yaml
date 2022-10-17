@@ -31,7 +31,9 @@ spec:
 
               while true; do
                 for name in $(hcloud server list -l hcloud/node-group=home -o noheader -o columns=name ); do
-                  public_ip=$(hcloud server ip $name)
+                  public_ip4=$(hcloud server ip $name)
+                  public_ip6=$(hcloud server ip -6 $name)
+
                   if ! kubectl get nodes/$name; then
                     kubectl apply -f- <<HERE
               apiVersion: v1
@@ -48,23 +50,23 @@ spec:
               HERE
                   fi
 
-                  until $ssh $public_ip date; do
+                  until $ssh $public_ip4 date; do
                     sleep 1
                   done
 
-                  if ! $ssh $public_ip systemctl is-active tailscaled; then
-                    $ssh $public_ip 'curl -fsSL https://tailscale.com/install.sh | sh' || continue
+                  if ! $ssh $public_ip4 systemctl is-active tailscaled; then
+                    $ssh $public_ip4 'curl -fsSL https://tailscale.com/install.sh | sh' || continue
                   fi
 
-                  if $ssh $public_ip stat /etc/netplan/50-cloud-init.yaml; then
-                    $ssh $public_ip DEBIAN_FRONTEND=noninteractive apt-get -y remove hc-utils
-                    $ssh $public_ip rm /etc/netplan/50-cloud-init.yaml
+                  if $ssh $public_ip4 stat /etc/netplan/50-cloud-init.yaml; then
+                    $ssh $public_ip4 DEBIAN_FRONTEND=noninteractive apt-get -y remove hc-utils
+                    $ssh $public_ip4 rm /etc/netplan/50-cloud-init.yaml
                   fi
 
                   # Default hcloud DNS is ... much too generous. Disable nameservers from DHCP
                   # and just use 185.12.64.1.
-                  if ! $ssh $public_ip stat /etc/netplan/60-local.yaml; then
-                    $ssh $public_ip 'cat > /etc/netplan/60-local.yaml' <<HERE
+                  if ! $ssh $public_ip4 stat /etc/netplan/60-local.yaml; then
+                    $ssh $public_ip4 'cat > /etc/netplan/60-local.yaml' <<HERE
                   network:
                     version: 2
                     ethernets:
@@ -78,22 +80,23 @@ spec:
                             nameservers:
                                 addresses: [185.12.64.1]
               HERE
-                    $ssh $public_ip netplan apply
+                    $ssh $public_ip4 netplan apply
                   fi
 
                   pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
 
-                  if ! $ssh $public_ip tailscale status; then
-                    $ssh $public_ip tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-tags=tag:kube-worker --advertise-routes=$pod_cidr || continue
+                  if ! $ssh $public_ip4 tailscale status; then
+                    $ssh $public_ip4 tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-tags=tag:kube-worker --advertise-routes=$pod_cidr || continue
                   fi
 
-                  internal_ip=$($ssh $public_ip tailscale ip -4)
-                  until $ssh $internal_ip date; do
+                  internal_ip4=$($ssh $public_ip4 tailscale ip -4)
+                  internal_ip6=$($ssh $public_ip4 tailscale ip -6)
+                  until $ssh $internal_ip4 date; do
                     sleep 1
                   done
 
-                  if ! $ssh $internal_ip systemctl is-active k3s-agent; then
-                    k3sup join --server-host=hominion.hominion.tailnet.samcday.com --host $internal_ip --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip --node-external-ip=$public_ip" --ssh-key=/tmp/hcloud-worker || continue
+                  if ! $ssh $internal_ip4 systemctl is-active k3s-agent; then
+                    k3sup join --server-host=hominion.hominion.tailnet.samcday.com --host $internal_ip4 --k3s-channel=v1.25 --k3s-extra-args="--node-ip=$internal_ip4,$internal_ip6 --node-external-ip=$public_ip4,$public_ip6" --ssh-key=/tmp/hcloud-worker || continue
                   fi
                 done
 
