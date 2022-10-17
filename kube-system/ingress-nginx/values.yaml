@@ -8,9 +8,9 @@ controller:
         - /bin/sh
         - -c
         - |-
-          tailscaled --state=kube:ingress-ts-auth-key --socket=/tmp/tailscaled.sock --tun=userspace-networking &
+          tailscaled --state=kube:ingress-ts-auth-key --tun=userspace-networking &
           PID=$!
-          tailscale --socket=/tmp/tailscaled.sock up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false
+          tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false
           wait $PID
       envFrom:
         - secretRef:
@@ -19,7 +19,6 @@ controller:
         exec:
           command:
             - tailscale
-            - --socket=/tmp/tailscaled.sock
             - ping
             - hominion.hominion.tailnet.samcday.com
         initialDelaySeconds: 3
