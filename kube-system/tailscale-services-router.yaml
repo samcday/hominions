@@ -67,6 +67,7 @@ spec:
       nodeSelector:
         node-role.kubernetes.io/hcloud: ''
       serviceAccountName: tailscale-services-router
+      terminationGracePeriodSeconds: 3
       tolerations:
         - key: samcday.com/hcloud
           operator: Exists
