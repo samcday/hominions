@@ -83,10 +83,17 @@ spec:
                     $ssh $public_ip4 netplan apply
                   fi
 
-                  pod_cidr=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDR}')
+                  pod_cidrs=$(kubectl get nodes $name -o 'jsonpath={.spec.podCIDRs}' | jq -r '. | join(",")')
 
                   if ! $ssh $public_ip4 tailscale status; then
-                    $ssh $public_ip4 tailscale up --login-server=https://samcday-headscale.fly.dev/ --accept-dns --accept-routes --authkey=$TS_AUTH_KEY --advertise-tags=tag:kube-worker --advertise-routes=$pod_cidr || continue
+                    $ssh $public_ip4 tailscale up \
+                      --login-server=https://samcday-headscale.fly.dev/ \
+                      --accept-dns \
+                      --accept-routes \
+                      --authkey=$TS_AUTH_KEY \
+                      --advertise-tags=tag:kube-worker \
+                      --advertise-routes=$pod_cidrs \
+                    || continue
                   fi
 
                   internal_ip4=$($ssh $public_ip4 tailscale ip -4)
