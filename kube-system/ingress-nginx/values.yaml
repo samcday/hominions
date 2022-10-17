@@ -20,7 +20,8 @@ controller:
           command:
             - tailscale
             - --socket=/tmp/tailscaled.sock
-            - status
+            - ping
+            - hominion.hominion.tailnet.samcday.com
         initialDelaySeconds: 3
         periodSeconds: 5
       resources:
