@@ -320,6 +320,6 @@ hosts:
   6pn-headscale: fdaa:0:b5a8::/48
 
 tagOwners:
-  tag:control-plane: [hominion]
+  tag:control-plane: [hominion, inner]
   tag:kube-worker: [hcloud, hominion, inner]
   tag:ingress: [services]
