@@ -8,4 +8,4 @@ COPY config.yaml /etc/headscale/config.yaml
 COPY litestream.yml /etc/litestream.yml
 COPY acls.yaml /opt/acls.yaml
 COPY entrypoint.sh /
-CMD ["/entrypoint.sh"]
+CMD ["/bin/litestream", "replicate", "--exec", "/bin/headscale serve"]
