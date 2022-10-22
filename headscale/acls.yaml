@@ -60,7 +60,7 @@ autoApprovers:
     10.42.0.0/15: [tag:kube-worker]
 
 groups:
-  group:all: [hcloud, hominion, inner, services]
+  group:all: [boot-cluster, hcloud, hominion, inner, services]
   group:services: [services]
   group:trusted: [hominion, inner]
 
