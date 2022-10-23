@@ -24,7 +24,13 @@ acls:
   - action: accept
     src: [tag:boot-cluster]
     dst: [tag:boot-cluster:*]
+  # allow all traffic to kube-apiserver + kubelet
+  - action: accept
+    src: ['*']
+    dst: [tag:boot-cluster:6443, tag:kube-worker:10250]
 
+  # old
+  # ===
   # Kube workloads can talk to k8s control plane on port 6443, and kubelets on 10250
   - action: accept
     src: [old-k8s-cluster, tag:kube-worker]
