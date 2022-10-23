@@ -7,7 +7,7 @@ controlPlane:
 discovery:
   bootstrapToken:
     token: ${TOKEN}
-    apiServerEndpoint: sam-home-cluster-1.boot-cluster.tailnet.samcday.com:6443
+    apiServerEndpoint: n1.boot-cluster.tailnet.samcday.com:6443
     caCertHashes:
       - sha256:${CA_HASH}
 ---

@@ -27,7 +27,7 @@ acls:
   # allow all traffic to kube-apiserver + kubelet
   - action: accept
     src: ['*']
-    dst: [tag:boot-cluster:6443, tag:kube-worker:10250]
+    dst: [tag:boot-cluster:6443, tag:boot-cluster:10250]
 
   # old
   # ===
