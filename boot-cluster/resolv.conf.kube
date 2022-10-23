@@ -1,0 +1,5 @@
+# Tailscale has an (undocumented AFAICT?) IPv6 addr at which MagicDNS can be reached.
+# https://github.com/tailscale/tailscale/pull/3663/files#diff-b4c3ad86f8c4e3d9d8630eeb40fa216b66d813e68eed08e58b0a8319f3098e18R55
+# Would be nice to if TS could be told to use it. Custom resolv.conf for now.
+nameserver fd7a:115c:a1e0::53
+search cluster.home.samcday.com inner.tailnet.samcday.com
