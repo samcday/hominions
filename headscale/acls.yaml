@@ -17,6 +17,8 @@ acls:
       - group:all:*
       - old-k8s-cluster:*
       - 6pn-headscale:*
+      - boot-cluster-pods:*
+      - boot-cluster-svcs:*
 
   # boot-cluster
   # ============
@@ -79,6 +81,8 @@ groups:
   group:trusted: [hominion, inner]
 
 hosts:
+  boot-cluster-pods: fde5:42c6:a696::/48
+  boot-cluster-svcs: fdba:e789:3879::/48
   old-k8s-cluster: 10.42.0.0/15
   6pn-headscale: fdaa:0:b5a8::/48
 

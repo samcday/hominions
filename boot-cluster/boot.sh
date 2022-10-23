@@ -19,6 +19,7 @@ cat kubelet-config.yaml kubeadm-config.yaml kubeadm-init.yaml | envsubst | $ssh 
 if ! $ssh $host1 stat /etc/resolv.conf.kubelet; then
   scp resolv.conf.kube $host1:/etc/
 fi
+# todo: disable firewall
 
 if ! $ssh $host1 'stat /etc/kubernetes/admin.conf'; then
   $ssh $host1 ash <<INIT
@@ -63,8 +64,6 @@ $ssh $host1 kubeadm init phase upload-certs --upload-certs --certificate-key $CE
 export TOKEN=$($ssh $host1 kubeadm token create)
 export CA_HASH=$($ssh $host1 "cat /etc/kubernetes/pki/ca.crt  | openssl x509 -pubkey | openssl ec -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'")
 
-exit
-
 # join host2
 host2=n2.boot-cluster.tailnet.samcday.com
 until $ssh -S none $host2 date; do
@@ -75,6 +74,7 @@ done
 if ! $ssh $host2 stat /etc/resolv.conf.kubelet; then
   scp resolv.conf.kube $host2:/etc/
 fi
+# todo: disable firewall
 
 export IP6=$($ssh $host2 tailscale ip -6)
 cat kubelet-config.yaml kubeadm-config.yaml kubeadm-join.yaml | envsubst | $ssh $host2 'cat > kubeadm-config.yaml'
