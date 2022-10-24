@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: morremeyer
         namespace: flux-system
-      version: 3.2.0
+      version: 5.3.1
   interval: 5m
   releaseName: nitter
   valuesFrom:
