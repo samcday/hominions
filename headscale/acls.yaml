@@ -30,6 +30,10 @@ acls:
   - action: accept
     src: ['*']
     dst: [tag:boot-cluster:6443, tag:boot-cluster:10250]
+  # distcc-armv7h clients from boot-cluster
+  - action: accept
+    src: [tag:boot-cluster]
+    dst: [group:all:3635]
 
   # old
   # ===
