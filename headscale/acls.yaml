@@ -20,6 +20,10 @@ acls:
       - boot-cluster-pods:*
       - boot-cluster-svcs:*
 
+  - action: accept
+    src: ["*"]
+    dst: ["mullvad:*"]
+
   # boot-cluster
   # ============
   # allow all intra-cluster traffic
@@ -89,6 +93,7 @@ hosts:
   boot-cluster-svcs: fdba:e789:3879::/48
   old-k8s-cluster: 10.42.0.0/15
   6pn-headscale: fdaa:0:b5a8::/48
+  mullvad: 10.64.0.0/16
 
 tagOwners:
   tag:boot-cluster: [hominion, inner]
