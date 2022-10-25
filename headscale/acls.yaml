@@ -80,6 +80,9 @@ autoApprovers:
     # samcday-headscale Fly.io 6PN
     fdaa:0:b5a8::/48: [services]
 
+    # mullvad
+    10.64.0.0/16: [services]
+
     # old cluster
     10.42.0.0/15: [tag:kube-worker]
 
