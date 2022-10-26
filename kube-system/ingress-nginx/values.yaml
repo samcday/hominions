@@ -40,7 +40,7 @@ controller:
   metrics:
     enabled: true
   service:
-    externalIPs: [100.64.0.4]
+    externalIPs: [100.64.0.6]
   terminationGracePeriodSeconds: 5
   updateStrategy:
     type: Recreate
