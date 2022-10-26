@@ -12,8 +12,8 @@ hubble:
     rollOutPods: true
 ipam:
   mode: kubernetes
-ipv6:
-  enabled: true
+# ipv6:
+#   enabled: true
 ipv4NativeRoutingCIDR: 10.42.0.0/16
 ipv6NativeRoutingCIDR: fda1:cebd:8920::/48
 k8sServiceHost: hominion.hominion.tailnet.samcday.com
