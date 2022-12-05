@@ -1,4 +1,4 @@
-FROM samcday/headscale:latest as headscale
+FROM headscale/headscale:0.17 as headscale
 FROM litestream/litestream:0.3 as litestream
 
 FROM alpine:20220715
