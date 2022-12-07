@@ -1,105 +1,22 @@
 acls:
-  # services namespace is exclusively for things to be published to Tailnet, so for now that means make it available everywhere.
+  # Personal devices have access to everything.
   - action: accept
-    src: ["*"]
-    dst: [group:services:*]
-
-  # Everyone can ping control plane.
-  - action: accept
-    src: ["*"]
-    dst: ["tag:control-plane:*"]
-    proto: icmp
-
-  # Trusted hosts have access to everything.
-  - action: accept
-    src: [group:trusted]
-    dst:
-      - group:all:*
-      - old-k8s-cluster:*
-      - 6pn-headscale:*
-      - boot-cluster-pods:*
-      - boot-cluster-svcs:*
-
-  - action: accept
-    src: ["*"]
-    dst: ["mullvad:*"]
-
-  # boot-cluster
-  # ============
-  # allow all intra-cluster traffic
-  - action: accept
-    src: [tag:boot-cluster]
-    dst: [tag:boot-cluster:*]
-  # allow all traffic to kube-apiserver + kubelet
-  - action: accept
-    src: ['*']
-    dst: [tag:boot-cluster:6443, tag:boot-cluster:10250]
-  # distcc-armv7h clients from boot-cluster
-  - action: accept
-    src: [tag:boot-cluster]
-    dst: [group:all:3635]
-
-  # old
-  # ===
-  # Kube workloads can talk to k8s control plane on port 6443, and kubelets on 10250
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst: [tag:control-plane:6443, tag:kube-worker:10250]
-  # Kube workloads can talk to kube worker nodes on some Cilium ports.
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst: ["tag:kube-worker:4240,9962,9963,9965"]
-  # vanilla-megabase (host port because weird upstream chart)
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst: [tag:kube-worker:8123]
-  # node-exporter
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst: [tag:kube-worker:9100]
-  # Kube workers and things already in cluster CIDR can talk to anything in cluster CIDR.
-  # Cilium netpols can be employed to further refine access.
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst: [old-k8s-cluster:*]
-  # Kube workers can talk to everything in samcday-headscale 6PN (for now)
-  - action: accept
-    src: [old-k8s-cluster, tag:kube-worker]
-    dst:
-      - 6pn-headscale:*
+    src: [personal]
+    dst: [group:all:*]
 
 autoApprovers:
   routes:
-    # boot-cluster
-    fde5:42c6:a696::/48: [tag:boot-cluster]
-    fdba:e789:3879::/48: [tag:boot-cluster]
-
-    # k8s service CIDR
-    10.43.0.0/16: [services]
-
-    # samcday-headscale Fly.io 6PN
-    fdaa:0:b5a8::/48: [services]
-
-    # mullvad
-    10.64.0.0/16: [services]
-
-    # old cluster
-    10.42.0.0/15: [tag:kube-worker]
+    # hominions cluster
+    fde5:42c6:a696::/48: [tag:kube-cp, tag:kube-worker]
+    fdba:e789:3879::/48: [tag:kube-cp, tag:kube-worker]
 
 groups:
-  group:all: [boot-cluster, hcloud, hominion, inner, services]
-  group:services: [services]
-  group:trusted: [hominion, inner]
+  group:all: [boot-cluster, hcloud, hominions, personal]
 
 hosts:
-  boot-cluster-pods: fde5:42c6:a696::/48
-  boot-cluster-svcs: fdba:e789:3879::/48
-  old-k8s-cluster: 10.42.0.0/15
-  6pn-headscale: fdaa:0:b5a8::/48
-  mullvad: 10.64.0.0/16
+  hominions-cluster-pods-6: fde5:42c6:a696::/48
+  hominions-cluster-svcs-6: fdba:e789:3879::/48
 
 tagOwners:
-  tag:boot-cluster: [hominion, inner]
-  tag:control-plane: [hominion, inner]
-  tag:kube-worker: [hcloud, hominion, inner]
-  tag:ingress: [services]
+  tag:kube-cp: [hominions, personal]
+  tag:kube-worker: [hcloud, hominion, personal]
