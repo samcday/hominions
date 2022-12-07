@@ -1,7 +1,7 @@
 acls:
   # Personal devices have access to everything.
   - action: accept
-    src: [personal]
+    src: [group:personal]
     dst: [group:all:*]
 
 autoApprovers:
@@ -12,6 +12,7 @@ autoApprovers:
 
 groups:
   group:all: [boot-cluster, hcloud, hominions, personal]
+  group:personal: [personal]
 
 hosts:
   hominions-cluster-pods-6: fde5:42c6:a696::/48
