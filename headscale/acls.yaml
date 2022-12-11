@@ -3,7 +3,9 @@ acls:
   - action: accept
     src: [group:personal]
     dst: [group:all:*]
-
+  - action: accept
+    src: [group:hominions]
+    dst: [group:hominions:*]
 autoApprovers:
   routes:
     # hominions cluster
@@ -12,6 +14,7 @@ autoApprovers:
 
 groups:
   group:all: [boot-cluster, hcloud, hominions, personal]
+  group:hominions: [hominions]
   group:personal: [personal]
 
 hosts:
