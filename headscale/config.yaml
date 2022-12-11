@@ -15,7 +15,7 @@ dns_config:
 ephemeral_node_inactivity_timeout: 5m
 ip_prefixes:
   - fd7a:115c:a1e0::/48
-  - 100.64.0.0/10
+  - 100.100.0.0/16
 # not exposed by Fly.io publicly, accessed via 6pn that is routed in Tailnet, so "insecure" here is probs ok for now.
 grpc_allow_insecure: true
 grpc_listen_addr: 0.0.0.0:50443
