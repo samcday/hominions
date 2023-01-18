@@ -14,11 +14,13 @@ if [[ ! -d $dir/cache_git/pmaports ]]; then
     popd
 fi
 
-pmbootstrap -y -c $cfg install --password test123 --no-firewall
+pmbootstrap="pmbootstrap -y -c $cfg"
+
+$pmbootstrap install --password test123 --no-firewall
 
 chroot=$dir/chroot_rootfs_fairphone-fp2
 
-pmbootstrap chroot -r sh <<SETUP
+sh <<SETUP
 cat > /etc/modules-load.d/k8s.conf <<HERE
 overlay
 br_netfilter
@@ -37,12 +39,11 @@ HERE
 chmod +x /etc/local.d/restartnm.start
 
 sed -i -e 's/bin_dir = .*/bin_dir = "\/opt\/cni\/bin"/g' /etc/containerd/config.toml
+rc-update add containerd
+rc-update add kubelet
+rc-update add tailscale
 SETUP
 
-pmbootstrap chroot -r rc-update add containerd
-pmbootstrap chroot -r rc-update add kubelet
-pmbootstrap chroot -r rc-update add tailscale
+$pmbootstrap install --password test123 --no-firewall
 
-pmbootstrap -y -c $cfg install --password test123 --no-firewall
-
-pmbootstrap -y -c $cfg export
+$pmbootstrap export
