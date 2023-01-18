@@ -11,5 +11,5 @@ jobs:
         - run: |
             git clone https://git.sr.ht/~postmarketos/pmbootstrap
             ln -s "$PWD/pmbootstrap/pmbootstrap.py" /usr/local/bin/pmbootstrap
-            pmbootstrap config
+            ./build.sh
           working-directory: devices/fp2-1.hominions.tailnet.samcday.com/
