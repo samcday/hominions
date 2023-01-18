@@ -4,7 +4,7 @@ on:
     paths: [devices/fp2-1.hominions.tailnet.samcday.com/**]
 jobs:
   deploy:
-      name: Deploy app
+      name: Build image for fp2-1.hominions.tailnet.samcday.com
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3

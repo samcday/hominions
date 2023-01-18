@@ -16,5 +16,5 @@ fi
 
 # pmbootstrap -q -y -c $cfg -w $dir init
 # pmbootstrap -c $cfg -y pull
-pmbootstrap -y -c $cfg install
+pmbootstrap -y -c $cfg install --password test123
 pmbootstrap -y -c $cfg export
