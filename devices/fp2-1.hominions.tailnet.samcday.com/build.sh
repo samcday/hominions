@@ -16,6 +16,6 @@ fi
 
 pmbootstrap -y -c $cfg install --password test123
 
-echo fp2-1.hominions.tailnet.samcday.com > $dir/chroot_rootfs_fairphone-fp2/etc/hostname
+echo fp2-1.hominions.tailnet.samcday.com | sudo tee $dir/chroot_rootfs_fairphone-fp2/etc/hostname
 
 pmbootstrap -y -c $cfg export --no-install
