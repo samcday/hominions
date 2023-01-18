@@ -20,7 +20,7 @@ $pmbootstrap install --password test123 --no-firewall
 
 chroot=$dir/chroot_rootfs_fairphone-fp2
 
-sh <<SETUP
+$pmbootstrap chroot -r sh <<SETUP
 cat > /etc/modules-load.d/k8s.conf <<HERE
 overlay
 br_netfilter
