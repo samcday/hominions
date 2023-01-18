@@ -14,7 +14,8 @@ if [[ ! -d $dir/cache_git/pmaports ]]; then
     popd
 fi
 
-# pmbootstrap -q -y -c $cfg -w $dir init
-# pmbootstrap -c $cfg -y pull
 pmbootstrap -y -c $cfg install --password test123
-pmbootstrap -y -c $cfg export
+
+echo fp2-1.hominions.tailnet.samcday.com > $dir/chroot_rootfs_fairphone-fp2/etc/hostname
+
+pmbootstrap -y -c $cfg export --no-install

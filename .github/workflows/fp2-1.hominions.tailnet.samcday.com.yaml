@@ -13,3 +13,8 @@ jobs:
             ln -s "$PWD/pmbootstrap/pmbootstrap.py" /usr/local/bin/pmbootstrap
             ./build.sh
           working-directory: devices/fp2-1.hominions.tailnet.samcday.com/
+        - uses: actions/upload-artifact@v3
+          with:
+            name: pmbootstrap-export
+            path: |
+              /tmp/postmarketOS-export/**/*
