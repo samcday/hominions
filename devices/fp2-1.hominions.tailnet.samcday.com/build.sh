@@ -18,24 +18,26 @@ pmbootstrap -y -c $cfg install --password test123 --no-firewall
 
 chroot=$dir/chroot_rootfs_fairphone-fp2
 
-sudo tee $chroot/etc/modules-load.d/k8s.conf <<HERE
+pmbootstrap chroot -r sh <<SETUP
+cat > /etc/modules-load.d/k8s.conf <<HERE
 overlay
 br_netfilter
 HERE
 
-sudo tee $chroot/etc/sysctl.d/k8s.conf <<HERE
+cat > /etc/sysctl.d/k8s.conf <<HERE
 sysctl net.bridge.bridge-nf-call-iptables=1
 sysctl net.bridge.bridge-nf-call-ip6tables=1
 sysctl net.ipv4.ip_forward=1
 HERE
 
-sudo tee $chroot/etc/local.d/restartnm.start <<HERE
+cat > /etc/local.d/restartnm.start <<HERE
 service networkmanager restart
 service ntpd restart
 HERE
-sudo chmod +x $chroot/etc/local.d/restartnm.start
+chmod +x /etc/local.d/restartnm.start
 
-sudo sed -i 's/bin_dir = .*/bin_dir = "/opt/cni/bin"/g' $chroot/etc/containerd/config.toml
+sed -i -e 's/bin_dir = .*/bin_dir = "\/opt\/cni\/bin"/g' /etc/containerd/config.toml
+SETUP
 
 pmbootstrap chroot -r rc-update add containerd
 pmbootstrap chroot -r rc-update add kubelet
