@@ -6,15 +6,15 @@ kill_timeout = 5
 processes = []
 
 [env]
-HEADSCALE_SERVER_URL = "https://samcday-headscale.fly.dev/"
+  HEADSCALE_SERVER_URL = "https://samcday-headscale.fly.dev/"
 
 [metrics]
-port = 9090
-path = "/metrics"
+  path = "/metrics"
+  port = 9090
 
 [mounts]
-  source="data"
-  destination="/data"
+  destination = "/data"
+  source = "data"
 
 [[services]]
   http_checks = []
