@@ -8,10 +8,6 @@ processes = []
 [env]
 HEADSCALE_SERVER_URL = "https://samcday-headscale.fly.dev/"
 
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
-
 [metrics]
 port = 9090
 path = "/metrics"
