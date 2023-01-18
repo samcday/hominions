@@ -1,0 +1,15 @@
+name: fp2-1.hominions.tailnet.samcday.com
+on:
+  push:
+    paths: [devices/fp2-1.hominions.tailnet.samcday.com/**]
+jobs:
+  deploy:
+      name: Deploy app
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - run: |
+            git clone https://git.sr.ht/~postmarketos/pmbootstrap
+            ln -s "$PWD/pmbootstrap/pmbootstrap.py" /usr/local/bin/pmbootstrap
+            pmbootstrap config
+          working-directory: devices/fp2-1.hominions.tailnet.samcday.com/
