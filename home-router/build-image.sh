@@ -10,5 +10,5 @@ fi
 
 (
   cd .imagebuilder/
-  make image PROFILE="avm_fritzbox-4040" PACKAGES="luci tailscale openssh-sftp-server" FILES="../files"
+  make image PROFILE="avm_fritzbox-4040" PACKAGES="luci tailscale openssh-sftp-server htop" FILES="../files"
 )
