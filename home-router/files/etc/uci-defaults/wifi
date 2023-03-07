@@ -1,0 +1,7 @@
+uci -q batch << EOI
+set wireless.@wifi-device[0].disabled='0'
+set wireless.@wifi-iface[0].ssid='samnet'
+set wireless.@wifi-device[1].disabled='0'
+set wireless.@wifi-iface[1].ssid='samnet'
+commit wireless
+EOI
