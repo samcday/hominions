@@ -1,0 +1,5 @@
+uci -q batch << EOI
+set system.cfg01e48a.zonename='Europe/Berlin'
+set system.cfg01e48a.hostname='home-router'
+commit system
+EOI
