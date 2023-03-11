@@ -2,7 +2,10 @@
 cd "$(dirname "$0")"
 set -uexo pipefail
 
-wifi_pw_id="b612257d-22e8-4350-ad6a-afbf01069457" # Bitwarden vault ID of item containing wifi password
+# Secrets can be set explicitly, otherwise they're taken from my Bitwarden vault by default.
+export WIFI_PASSWORD=${WIFI_PASSWORD:-$(bw get item "b612257d-22e8-4350-ad6a-afbf01069457" | jq -r .notes)}
+export TAILNET_AUTH_KEY=${TAILNET_AUTH_KEY:-$(bw get item "6e22f9a5-38aa-4703-8dfd-afc200fcb3ee" | jq -r .notes)}
+export ROOT_PW=${ROOT_PW:-$(bw get item "691cb088-5130-476c-ab7b-adb900fcdb8d" | jq -r .login.password)}
 
 if [[ ! -f _build/.setup ]]; then
   mkdir -p _build/
@@ -14,7 +17,9 @@ fi
 cp -R files _build/
 
 # templates (with secrets)
-export WIFI_PASSWORD=$(bw get item $wifi_pw_id | jq -r .notes)
+if [[ -z "${BW_SESSION:-}" ]]; then
+  export BW_SESSION=$(bw unlock --raw)
+fi
 
 for f in $(find templates -type f); do
   tgt=${f/templates/files}
@@ -27,6 +32,7 @@ export BIN_DIR="."
 export FILES="files"
 export PACKAGES=$(echo $(cat packages))
 export PROFILE=avm_fritzbox-4040
+export DISABLED_SERVICES="dropbear" # using openssh-server instead
 
 (
   cd _build/

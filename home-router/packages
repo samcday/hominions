@@ -1,4 +1,5 @@
 htop
+iptables-nft
 luci
-openssh-sftp-server
+openssh-server
 tailscale

@@ -1,0 +1,29 @@
+service tailscale enable
+service tailscale start
+
+# --netfilter-mode + the extra UCI config below is a temporary workaround for openwrt 22.03 tailscale issues.
+# https://openwrt.org/docs/guide-user/services/vpn/tailscale/start?s[]=link#openwrt_2203_issue
+
+tailscale up --netfilter-mode=off --accept-routes --accept-dns --login-server=https://samcday-headscale.fly.dev --auth-key=${TAILNET_AUTH_KEY}
+
+uci -q batch <<EOI
+set network.tailscale=interface
+set network.tailscale.proto='none'
+set network.tailscale.device='tailscale0'
+commit network
+EOI
+
+uci -q batch <<EOI
+add firewall zone
+set firewall.@zone[-1].name='tailscale'
+set firewall.@zone[-1].input='ACCEPT'
+set firewall.@zone[-1].output='ACCEPT'
+set firewall.@zone[-1].forward='ACCEPT'
+set firewall.@zone[-1].masq='1'
+add firewall forwarding
+set firewall.@forwarding[-1].src='tailscale'
+set firewall.@forwarding[-1].dest='lan'
+add firewall forwarding
+set firewall.@forwarding[-1].src='lan'
+set firewall.@forwarding[-1].dest='tailscale'
+EOI

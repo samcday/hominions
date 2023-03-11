@@ -1,5 +1,8 @@
+service sshd enable
+service sshd start
+
 uci -q batch << EOI
-set system.cfg01e48a.zonename='Europe/Berlin'
-set system.cfg01e48a.hostname='home-router'
+set system.@system[0].zonename='Europe/Berlin'
+set system.@system[0].hostname='home-router'
 commit system
 EOI
