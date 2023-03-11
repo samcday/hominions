@@ -26,4 +26,5 @@ set firewall.@forwarding[-1].dest='lan'
 add firewall forwarding
 set firewall.@forwarding[-1].src='lan'
 set firewall.@forwarding[-1].dest='tailscale'
+commit firewall
 EOI
