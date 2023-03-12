@@ -1,0 +1,8 @@
+set -uexo pipefail
+
+[ "$ACTION" = "stratum" ] || exit 0
+
+tailscale up --netfilter-mode=off --accept-routes --accept-dns --login-server=https://samcday-headscale.fly.dev --auth-key=${TAILNET_AUTH_KEY} \
+ 2>&1 | logger -st tailscale.up
+
+rm /etc/hotplug.d/ntp/tailscale-up

@@ -1,10 +1,7 @@
-service tailscale enable
-service tailscale start
+set -uexo pipefail
 
-# --netfilter-mode + the extra UCI config below is a temporary workaround for openwrt 22.03 tailscale issues.
+# --netfilter-mode=off + the extra UCI config below is a temporary workaround for openwrt 22.03 tailscale issues.
 # https://openwrt.org/docs/guide-user/services/vpn/tailscale/start?s[]=link#openwrt_2203_issue
-
-tailscale up --netfilter-mode=off --accept-routes --accept-dns --login-server=https://samcday-headscale.fly.dev --auth-key=${TAILNET_AUTH_KEY}
 
 uci -q batch <<EOI
 set network.tailscale=interface

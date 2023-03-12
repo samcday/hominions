@@ -3,6 +3,9 @@ cd "$(dirname "$0")"
 set -uexo pipefail
 
 # Secrets can be set explicitly, otherwise they're taken from my Bitwarden vault by default.
+if [[ -z "${BW_SESSION:-}" ]]; then
+  export BW_SESSION=$(bw unlock --raw)
+fi
 export WIFI_PASSWORD=${WIFI_PASSWORD:-$(bw get item "b612257d-22e8-4350-ad6a-afbf01069457" | jq -r .notes)}
 export TAILNET_AUTH_KEY=${TAILNET_AUTH_KEY:-$(bw get item "6e22f9a5-38aa-4703-8dfd-afc200fcb3ee" | jq -r .notes)}
 export ROOT_PW=${ROOT_PW:-$(bw get item "691cb088-5130-476c-ab7b-adb900fcdb8d" | jq -r .login.password)}
@@ -16,15 +19,10 @@ fi
 
 cp -R files _build/
 
-# templates (with secrets)
-if [[ -z "${BW_SESSION:-}" ]]; then
-  export BW_SESSION=$(bw unlock --raw)
-fi
-
 for f in $(find templates -type f); do
   tgt=${f/templates/files}
   mkdir -p $(dirname _build/$tgt)
-  envsubst < $f > _build/$tgt
+  envsubst '$WIFI_PASSWORD $TAILNET_AUTH_KEY $ROOT_PW' < $f > _build/$tgt
 done
 
 # imagebuilder settings

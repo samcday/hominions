@@ -2,4 +2,5 @@ htop
 iptables-nft
 luci
 openssh-server
+openssh-sftp-server
 tailscale
