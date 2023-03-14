@@ -1,6 +1,9 @@
 htop
 iptables-nft
+kmod-usb-serial-ftdi
 luci
 openssh-server
 openssh-sftp-server
+screen
 tailscale
+usbutils
