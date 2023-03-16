@@ -20,7 +20,7 @@ set network.restricted_dev.name="br-restricted"
 set network.restricted="interface"
 set network.restricted.proto="static"
 set network.restricted.device="br-restricted"
-set network.restricted.ipaddr="192.168.2.1"
+set network.restricted.ipaddr="${IPADDR_RESTRICTED}"
 set network.restricted.netmask="255.255.255.0"
 commit network
 EOI

@@ -15,11 +15,15 @@ export INJECT_ENV='$WIFI_PASSWORD $TAILNET_AUTH_KEY $ROOT_PW'
 
 # Misc bits of config
 # Standby unit has different hostname + SSIDs.
+export IPADDR="10.0.1.1"
+export IPADDR_RESTRICTED="10.0.2.1"
 export HOSTNAME="home-router"
 export SSID="samnet"
 if [[ -n "${STANDBY:-}" ]]; then
   export HOSTNAME="home-router-standby"
   export SSID="samnet-standby"
+  export IPADDR="10.1.1.1"
+  export IPADDR_RESTRICTED="10.1.2.1"
 fi
 export INJECT_ENV="$INJECT_ENV $(echo '$HOSTNAME $SSID')"
 
