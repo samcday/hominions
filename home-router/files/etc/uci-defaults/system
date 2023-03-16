@@ -5,6 +5,7 @@ set system.@system[0].zonename='Europe/Berlin'
 set system.@system[0].hostname='${HOSTNAME}'
 commit system
 network.lan.ipaddr='${IPADDR}'
+commit network
 EOI
 
 ntpd -q -p 0.openwrt.pool.ntp.org

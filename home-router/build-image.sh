@@ -25,7 +25,7 @@ if [[ -n "${STANDBY:-}" ]]; then
   export IPADDR="10.1.1.1"
   export IPADDR_RESTRICTED="10.1.2.1"
 fi
-export INJECT_ENV="$INJECT_ENV $(echo '$HOSTNAME $SSID')"
+export INJECT_ENV="$INJECT_ENV $(echo '$HOSTNAME $SSID $IPADDR $IPADDR_RESTRICTED')"
 
 if [[ ! -f _build/.setup ]]; then
   mkdir -p _build/
