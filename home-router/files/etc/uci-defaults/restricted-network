@@ -1,11 +1,11 @@
-# Configures a "samnet-restricted" SSID which has very limited connectivity.
+# Configures an SSID which has very limited connectivity.
 # Devices in this network can talk to:
 #  * DNS/DHCP
 #  * samcday-headscale.fly.dev
 #  * UDP port 41641 on remote hosts 
 #  * That's it.
 # The idea here is to provide enough external access to connect an untrusted device to the tailnet.
-# Everything else should be handled from inside the tailnet.
+# Everything else (including Internet egress) should be handled from inside the tailnet.
 
 set -uexo pipefail
 
