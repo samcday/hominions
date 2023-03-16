@@ -48,7 +48,7 @@ set wireless.restricted="wifi-iface"
 set wireless.restricted.device="$(uci get wireless.@wifi-iface[1].device)" # iface 1 is 5ghz.
 set wireless.restricted.mode="ap"
 set wireless.restricted.network="restricted"
-set wireless.restricted.ssid="samnet-restricted"
+set wireless.restricted.ssid="${SSID}-restricted"
 set wireless.restricted.encryption="none"
 commit wireless
 EOI
