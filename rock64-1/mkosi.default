@@ -1,0 +1,11 @@
+[Distribution]
+Architecture=aarch64
+Distribution=arch
+Repositories=alarm::http://mirror.archlinuxarm.org/aarch64/alarm
+
+[Packages]
+Packages=linux-aarch64,uboot-rock64
+
+[Output]
+Format=directory
+Hostname=rock64-1.hominions.tailnet.samcday.com
