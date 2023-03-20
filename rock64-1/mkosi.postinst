@@ -1,0 +1,8 @@
+pacman-key --init
+pacman-key --populate
+
+cat > /etc/pacman.d/mirrorlist <<'HERE'
+Server = http://de.mirror.archlinuxarm.org/$arch/$repo/
+HERE
+
+systemctl enable containerd

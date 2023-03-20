@@ -4,7 +4,7 @@ Distribution=arch
 Repositories=alarm::http://mirror.archlinuxarm.org/aarch64/alarm
 
 [Packages]
-Packages=linux-aarch64,uboot-rock64
+Packages=archlinuxarm-keyring,base-devel,containerd,kubeadm,kubectl,kubelet,linux-aarch64,pacman-contrib,uboot-rock64,usbutils,vim
 
 [Output]
 Format=directory
