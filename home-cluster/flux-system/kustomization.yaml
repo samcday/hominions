@@ -31,7 +31,7 @@ resources:
 - flux-system.yaml
 - invidious.yaml
 # - jellyfin.yaml
-# - kube-system.yaml
+- kube-system.yaml
 # - libreddit.yaml
 - miniflux.yaml
 # - monitoring.yaml
