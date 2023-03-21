@@ -1,4 +1,4 @@
-FROM headscale/headscale:0.18 as headscale
+FROM headscale/headscale:0.21 as headscale
 FROM litestream/litestream:0.3 as litestream
 
 FROM alpine:20221110
