@@ -12,5 +12,5 @@ configMapGenerator:
 resources:
 - ../config
 # - helm-release.yaml
-# - namespace.yaml
+- namespace.yaml
 # - redis/helm-release.yaml

@@ -9,6 +9,6 @@ configMapGenerator:
 resources:
   - ../config
   # - helm-release.yaml
-  # - namespace.yaml
+  - namespace.yaml
   # - postgres/helm-release.yaml
   # - servicemonitor.yaml

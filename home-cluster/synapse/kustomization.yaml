@@ -13,7 +13,7 @@ configMapGenerator:
     files: [litestream.yml]
 resources:
   # - ingress.yaml
-  # - namespace.yaml
+  - namespace.yaml
   # - podmonitor.yaml
   # - prometheus-rules.yaml
   # - synapse.yaml
