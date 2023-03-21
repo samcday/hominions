@@ -27,16 +27,16 @@ resources:
 - helmrepos/prometheus-community.yaml
 - helmrepos/sops-secrets-operator.yaml
 - helmrepos/zalando-postgres-operator.yaml
-- factorio.yaml
+# - factorio.yaml
 - flux-system.yaml
-- invidious.yaml
-- jellyfin.yaml
-- kube-system.yaml
-- libreddit.yaml
-- miniflux.yaml
-- monitoring.yaml
-- nitter.yaml
+# - invidious.yaml
+# - jellyfin.yaml
+# - kube-system.yaml
+# - libreddit.yaml
+# - miniflux.yaml
+# - monitoring.yaml
+# - nitter.yaml
 - secrets.yaml
-- synapse.yaml
-- syncthing.yaml
-- webhook-ingress.yaml
+# - synapse.yaml
+# - syncthing.yaml
+# - webhook-ingress.yaml
