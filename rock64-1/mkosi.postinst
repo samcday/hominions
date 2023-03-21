@@ -6,3 +6,8 @@ Server = http://de.mirror.archlinuxarm.org/$arch/$repo/
 HERE
 
 systemctl enable containerd
+systemctl enable sshd
+systemctl enable tailscaled
+
+cd /boot
+./mkscr
