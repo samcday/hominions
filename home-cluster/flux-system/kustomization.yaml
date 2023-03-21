@@ -7,7 +7,7 @@ configMapGenerator:
 resources:
 - ../config
 - gitrepos/factorio-server-charts.yaml
-- gitrepos/home-cluster.yaml
+- gitrepos/hominions.yaml
 - gitrepos/jellyfin-helm.yaml
 - helm-release.yaml
 - helmrepos/bitnami.yaml
