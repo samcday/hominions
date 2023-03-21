@@ -6,10 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./synapse
+  path: ./home-cluster/synapse
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-cluster
+    name: hominions
     namespace: flux-system
   timeout: 5m
