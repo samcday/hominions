@@ -10,6 +10,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-cluster
+    name: hominions
     namespace: flux-system
   timeout: 5m
