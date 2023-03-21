@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   interval: 5m
-  path: ./kube-system/cert-manager/issuers
+  path: home-cluster/kube-system/cert-manager/issuers
   prune: true
   sourceRef:
     kind: GitRepository

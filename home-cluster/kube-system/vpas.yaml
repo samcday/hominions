@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   interval: 5m
-  path: ./kube-system/vpas
+  path: home-cluster/kube-system/vpas
   prune: true
   sourceRef:
     kind: GitRepository

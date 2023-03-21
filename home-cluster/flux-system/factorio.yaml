@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./factorio
+  path: home-cluster/factorio
   prune: true
   sourceRef:
     kind: GitRepository

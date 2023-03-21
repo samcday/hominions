@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./syncthing
+  path: home-cluster/syncthing
   prune: true
   sourceRef:
     kind: GitRepository
