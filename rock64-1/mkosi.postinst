@@ -1,6 +1,8 @@
 pacman-key --init
 pacman-key --populate
 
+ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
 cat > /etc/pacman.d/mirrorlist <<'HERE'
 Server = http://de.mirror.archlinuxarm.org/$arch/$repo/
 HERE
