@@ -34,24 +34,24 @@ resources:
   - ../config
   - cert-manager/helm-release.yaml
   - cert-manager/issuers.yaml
-  - cilium/helm-release.yaml
-  - cluster-autoscaler/cluster-autoscaler.yaml
-  - cluster-autoscaler/hcloud-provisioner.yaml
+  # - cilium/helm-release.yaml
+  # - cluster-autoscaler/cluster-autoscaler.yaml
+  # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
   - external-dns/helm-release.yaml
-  - fip-hack.yaml
-  - hcloud-fip/helm-release.yaml
+  # - fip-hack.yaml
+  # - hcloud-fip/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - ingress-nginx/rbac.yaml
   - ingress-nginx/tailscale-service.yaml
   - openebs/helm-release.yaml
   - openebs/storageclass.yaml
-  - public-ingress-nginx/helm-release.yaml
+  # - public-ingress-nginx/helm-release.yaml
   - prometheus-operator/helm-release.yaml
-  - suc-plans.yaml
+  # - suc-plans.yaml
   - system-upgrade-controller.yaml
   - tailscale-services-router.yaml
-  - terraform/apply-cronjob.yaml
-  - terraform/state-pvc.yaml
+  # - terraform/apply-cronjob.yaml
+  # - terraform/state-pvc.yaml
   - vertical-pod-autoscaler/helm-release.yaml
   - vpas.yaml
