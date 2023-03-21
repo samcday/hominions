@@ -8,9 +8,9 @@ configMapGenerator:
   files: [postgres/values.yaml]
 resources:
 - ../config
-- deployment.yaml
-- ingress.yaml
-- namespace.yaml
-- pdb.yaml
-- postgres/helm-release.yaml
-- service.yaml
+# - deployment.yaml
+# - ingress.yaml
+# - namespace.yaml
+# - pdb.yaml
+# - postgres/helm-release.yaml
+# - service.yaml
