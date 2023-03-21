@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: synapse
+  namespace: synapse
+spec:
+  podMetricsEndpoints:
+    - port: ls-metrics
+    - port: mau-sig-metrics
+      path: /
+    - port: mau-tgm-metrics
+      path: /
+    - port: mau-wa-metrics
+      path: /
+    - port: signald-metrics
+    - port: syn-metrics
+      relabelings:
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: instance
+      path: /_synapse/metrics
+  selector:
+    matchLabels:
+      app: synapse

@@ -1,0 +1,40 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 6.43.0
+  install:
+    remediation:
+      retries: -1
+  interval: 5m
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          # Also scrape Litestream sidecar metrics.
+          - patch:
+              - op: add
+                path: /spec/endpoints/-
+                value:
+                  port: ls-metrics
+            target:
+              group: monitoring.coreos.com
+              version: v1
+              kind: ServiceMonitor
+              name: grafana
+  releaseName: grafana
+  upgrade:
+    remediation:
+      retries: -1
+  valuesFrom:
+    - kind: ConfigMap
+      name: grafana-values

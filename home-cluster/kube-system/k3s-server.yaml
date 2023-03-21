@@ -1,0 +1,14 @@
+disable-helm-controller: true
+disable-kube-proxy: true
+disable-network-policy: true
+disable:
+  - local-storage
+  - servicelb
+  - traefik
+etcd-s3: true
+etcd-s3-endpoint: s3.eu-central-003.backblazeb2.com
+etcd-s3-bucket: samcday-hominion-cluster-backups
+etcd-s3-region: eu-central-003
+flannel-backend: none
+kube-apiserver-arg:
+  - disabled-metrics=apiserver_request_duration_seconds,etcd_request_duration_seconds,apiserver_request_slo_duration_seconds

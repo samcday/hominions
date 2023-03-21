@@ -1,0 +1,19 @@
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: k3s-upgrade
+  namespace: kube-system
+spec:
+  concurrency: 1
+  drain:
+    force: true
+  nodeSelector:
+    matchExpressions:
+      - {key: kubernetes.io/os, operator: In, values: ["linux"]}
+  serviceAccountName: system-upgrade
+  tolerations:
+    - operator: Exists
+  upgrade:
+    image: rancher/k3s-upgrade
+  version: v1.25.2+k3s1

@@ -1,0 +1,9 @@
+# https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+
+global:
+  storageClass: openebs-lvmpv
+primary:
+  initdb:
+    scripts:
+      miniflux.sql: |-
+        create database invidious;

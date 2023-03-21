@@ -1,0 +1,29 @@
+# https://github.com/juanfont/headscale/blob/main/config-example.yaml
+acl_policy_path: /opt/acls.yaml
+derp:
+  urls: [https://controlplane.tailscale.com/derpmap/default]
+  auto_update_enabled: true
+  update_frequency: 24h
+# Image updates should be picked up by renovate.
+disable_check_updates: true
+db_type: sqlite3
+db_path: /data/db.sqlite
+dns_config:
+  nameservers: [1.1.1.1]
+  magic_dns: true
+  base_domain: tailnet.samcday.com
+ephemeral_node_inactivity_timeout: 5m
+ip_prefixes:
+  - fd7a:115c:a1e0::/48
+  - 100.100.0.0/16
+# not exposed by Fly.io publicly, accessed via 6pn that is routed in Tailnet, so "insecure" here is probs ok for now.
+grpc_allow_insecure: true
+grpc_listen_addr: 0.0.0.0:50443
+listen_addr: 0.0.0.0:8080
+metrics_listen_addr: 0.0.0.0:9090
+node_update_check_interval: 10s
+noise:
+  private_key_path: /data/noise_private.key
+private_key_path: /data/private.key
+unix_socket: /var/run/headscale.sock
+unix_socket_permission: "0770"

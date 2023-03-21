@@ -1,0 +1,20 @@
+name: fp2-1.hominions.tailnet.samcday.com
+on:
+  push:
+    paths: [devices/fp2-1.hominions.tailnet.samcday.com/**]
+jobs:
+  deploy:
+      name: Build image for fp2-1.hominions.tailnet.samcday.com
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - run: |
+            git clone https://git.sr.ht/~postmarketos/pmbootstrap
+            ln -s "$PWD/pmbootstrap/pmbootstrap.py" /usr/local/bin/pmbootstrap
+            ./build.sh
+          working-directory: devices/fp2-1.hominions.tailnet.samcday.com/
+        - uses: actions/upload-artifact@v3
+          with:
+            name: pmbootstrap-export
+            path: |
+              /tmp/postmarketOS-export/**/*

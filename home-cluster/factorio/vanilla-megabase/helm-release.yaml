@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vanilla-megabase
+  namespace: factorio
+spec:
+  chart:
+    spec:
+      chart: charts/factorio-server-charts
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: factorio-server-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: -1
+  interval: 5m
+  releaseName: vanilla-megabase
+  upgrade:
+    remediation:
+      retries: -1
+  valuesFrom:
+    - kind: ConfigMap
+      name: vanilla-megabase-values
+    - kind: Secret
+      name: token
+      valuesKey: token
+      targetPath: server_settings.token

@@ -1,0 +1,64 @@
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+
+envFromSecrets:
+  - name: grafana-backup-bucket
+extraContainers: |
+  - name: litestream
+    image: litestream/litestream:0.3.9
+    args: ['replicate']
+    volumeMounts:
+      - name: litestream-config
+        mountPath: /etc/litestream.yml
+        subPath: litestream.yml
+      - name: storage
+        mountPath: /var/lib/grafana
+    envFrom:
+      - secretRef:
+          name: grafana-backup-bucket
+    ports:
+    - name: ls-metrics
+      containerPort: 9090
+extraExposePorts:
+  - name: ls-metrics
+    port: 9090
+    targetPort: 9090
+extraInitContainers:
+  - name: init-litestream
+    image: litestream/litestream:0.3.9
+    args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/var/lib/grafana/grafana.db']
+    envFrom:
+      - secretRef:
+          name: grafana-backup-bucket
+    ports:
+      - name: ls-metrics
+        containerPort: 9090
+    volumeMounts:
+      - name: litestream-config
+        mountPath: /etc/litestream.yml
+        subPath: litestream.yml
+      - name: storage
+        mountPath: /var/lib/grafana
+extraContainerVolumes:
+  - name: litestream-config
+    configMap:
+      name: grafana-litestream
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts: [grafana.home.samcday.com]
+persistence:
+  enabled: true
+  storageClassName: openebs-lvmpv
+serviceMonitor:
+  enabled: true
+sidecar:
+  dashboards:
+    enabled: true
+    labelValue: "1"
+    folderAnnotation: grafana_folder
+    provider:
+      foldersFromFilesStructure: true
+  datasources:
+    enabled: true
+    labelValue: "1"
+useStatefulSet: true

@@ -1,0 +1,26 @@
+acls:
+  # Personal devices have access to everything.
+  - action: accept
+    src: [group:personal]
+    dst: [group:all:*]
+  - action: accept
+    src: [group:hominions]
+    dst: [group:hominions:*]
+autoApprovers:
+  routes:
+    # hominions cluster
+    fde5:42c6:a696::/48: [tag:kube-cp, tag:kube-worker]
+    fdba:e789:3879::/48: [tag:kube-cp, tag:kube-worker]
+
+groups:
+  group:all: [boot-cluster, hcloud, hominions, personal]
+  group:hominions: [hominions]
+  group:personal: [personal]
+
+hosts:
+  hominions-cluster-pods-6: fde5:42c6:a696::/48
+  hominions-cluster-svcs-6: fdba:e789:3879::/48
+
+tagOwners:
+  tag:kube-cp: [hominions, personal]
+  tag:kube-worker: [hcloud, hominion, personal]

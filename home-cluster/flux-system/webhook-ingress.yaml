@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webhook
+  namespace: flux-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: public-nginx
+  rules:
+  - host: flux.home.samcday.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: webhook-receiver
+            port: 
+              number: 80
+  tls:
+  - hosts: [flux.home.samcday.com]
+    secretName: webhook-cert

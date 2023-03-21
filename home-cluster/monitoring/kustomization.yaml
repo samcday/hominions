@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+configMapGenerator:
+- name: grafana-litestream
+  files: [grafana/litestream.yml]
+  options: {disableNameSuffixHash: true}
+- name: grafana-values
+  files: [grafana/values.yaml]
+- name: promtail-values
+  files: [promtail/values.yaml]
+- name: kube-prometheus-stack-values
+  files: [kube-prometheus-stack/values.yaml]
+resources:
+- ../config
+- grafana/dashboards
+- grafana/helm-release.yaml
+- grafana/vpa.yaml
+- ingress-nginx-pod-monitor.yaml
+# - loki/
+- kube-prometheus-stack/helm-release.yaml
+- kube-prometheus-stack/vpa.yaml
+- namespace.yaml
+# - promtail/helm-release.yaml
