@@ -23,6 +23,8 @@ controller:
   kind: Deployment
   metrics:
     enabled: true
+  service:
+    enabled: false
   terminationGracePeriodSeconds: 5
   updateStrategy:
     type: Recreate
