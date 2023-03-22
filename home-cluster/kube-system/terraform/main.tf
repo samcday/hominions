@@ -43,22 +43,22 @@ provider "github" {}
 
 provider "kubernetes" {}
 
-data "kubernetes_secret" "webhook-token" {
-  metadata {
-    name      = "webhook-token"
-    namespace = "flux-system"
-  }
-}
+# data "kubernetes_secret" "webhook-token" {
+#   metadata {
+#     name      = "webhook-token"
+#     namespace = "flux-system"
+#   }
+# }
 
-data "kubernetes_resource" "receiver" {
-  api_version = "notification.toolkit.fluxcd.io/v1beta1"
-  kind        = "Receiver"
+# data "kubernetes_resource" "receiver" {
+#   api_version = "notification.toolkit.fluxcd.io/v1beta1"
+#   kind        = "Receiver"
 
-  metadata {
-    name      = "home-cluster"
-    namespace = "flux-system"
-  }
-}
+#   metadata {
+#     name      = "home-cluster"
+#     namespace = "flux-system"
+#   }
+# }
 
 resource "dmsnitch_snitch" "hominion" {
   name = "Hominion"
