@@ -17,4 +17,4 @@ resources:
 - podmonitor.yaml
 - prometheus-rules.yaml
 - synapse.yaml
-- vpa.yaml
+# - vpa.yaml
