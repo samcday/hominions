@@ -59,7 +59,7 @@ spec:
               mountPath: /db
             - name: mautrix-whatsapp
               mountPath: /data
-        - image: signald/signald:0.22.2
+        - image: signald/signald:stable
           name: signald
           args:
             - -d
