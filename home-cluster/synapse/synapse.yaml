@@ -144,11 +144,12 @@ spec:
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: config
-          image: supinf/envsubst
+          image: alpine:3
           command:
             - sh
             - -c
             - |-
+              apk add gettext
               rm -f /mautrix-signal/*
               rm -f /mautrix-telegram/*
               rm -f /mautrix-whatsapp/*
