@@ -11,7 +11,7 @@ spec:
         spec:
           initContainers:
             - name: init
-              image: hashicorp/terraform:1.3.2
+              image: clowa/terraform:1.4.2
               args: [init]
               envFrom: &env
                 - secretRef:
@@ -28,7 +28,7 @@ spec:
               workingDir: /tf
           containers:
             - name: apply
-              image: hashicorp/terraform:1.3.2
+              image: clowa/terraform:1.4.2
               args: [apply, "-auto-approve"]
               envFrom: *env
               volumeMounts: *volmounts
