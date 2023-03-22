@@ -2,33 +2,15 @@
 
 controller:
   extraContainers:
-    - image: tailscale/tailscale:v1.33
-      name: tailscale
-      command:
-        - /bin/sh
-        - -c
-        - |-
-          tailscaled --state=kube:ingress-ts-auth-key --tun=userspace-networking --port=31642 &
-          PID=$!
-          tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false
-          wait $PID
+    - image: cloudflare/cloudflared:1357-ec2d18ea4fbe
+      name: cloudflared
+      args:
+      - tunnel
+      - --no-autoupdate
+      - run
       envFrom:
         - secretRef:
-            name: services-tailscale-auth
-      lifecycle:
-        preStop:
-          exec:
-            command:
-              - tailscale
-              - down
-      livenessProbe:
-        exec:
-          command:
-            - tailscale
-            - ping
-            - hominion.hominion.tailnet.samcday.com
-        initialDelaySeconds: 60
-        periodSeconds: 30
+            name: cloudflared-tunnel-token
       resources:
         requests:
           cpu: 100m
@@ -39,8 +21,6 @@ controller:
   kind: Deployment
   metrics:
     enabled: true
-  service:
-    externalIPs: [100.64.0.4]
   terminationGracePeriodSeconds: 5
   updateStrategy:
     type: Recreate
