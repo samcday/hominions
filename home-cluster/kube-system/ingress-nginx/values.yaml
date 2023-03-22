@@ -8,8 +8,9 @@ controller:
       - tunnel
       - --no-autoupdate
       - run
+      - --no-tls-verify
       - --url
-      - http://localhost
+      - https://localhost
       envFrom:
         - secretRef:
             name: cloudflared-tunnel-token
