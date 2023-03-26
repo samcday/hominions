@@ -29,6 +29,7 @@ resources:
 - helmrepos/zalando-postgres-operator.yaml
 - factorio.yaml
 - flux-system.yaml
+- homepage.yaml
 - invidious.yaml
 # - jellyfin.yaml
 - kube-flannel.yaml
