@@ -34,7 +34,7 @@ resources:
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
-  - external-dns/helm-release.yaml
+  # - external-dns/helm-release.yaml
   # - fip-hack.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
