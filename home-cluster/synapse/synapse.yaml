@@ -195,6 +195,7 @@ spec:
       tolerations:
         - key: samcday.com/oci
           operator: Exists
+          effect: NoExecute
       volumes:
         - name: appservices
           emptyDir: {}
