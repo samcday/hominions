@@ -5,12 +5,8 @@ configMapGenerator:
 - name: config
   files: [nitter.conf]
   options: {disableNameSuffixHash: true}
-- name: nitter-values
-  files: [values.yaml]
-- name: redis-values
-  files: [redis/values.yaml]
 resources:
 - ../config
-# - helm-release.yaml
+- helm-release.yaml
 - namespace.yaml
-# - redis/helm-release.yaml
+- redis.yaml

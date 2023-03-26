@@ -15,6 +15,9 @@ spec:
       version: 17.3.7
   interval: 5m
   releaseName: redis
-  valuesFrom:
-  - kind: ConfigMap
-    name: redis-values
+  values:
+    master:
+      persistence:
+        enabled: false
+    replica:
+      replicaCount: 0
