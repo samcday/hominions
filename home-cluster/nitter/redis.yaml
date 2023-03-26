@@ -16,6 +16,10 @@ spec:
   interval: 5m
   releaseName: redis
   values:
+    # https://github.com/bitnami/charts/blob/main/bitnami/redis/values.yaml
+    image:
+      repository: redis
+      tag: "7.0"
     master:
       persistence:
         enabled: false
