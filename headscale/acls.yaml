@@ -13,7 +13,7 @@ autoApprovers:
     10.42.0.0/16: [group:hominions]
 
 groups:
-  group:all: [boot-cluster, hominions, personal]
+  group:all: [hominions, personal]
   group:hominions: [hominions]
   group:personal: [personal]
 
