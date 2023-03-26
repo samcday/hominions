@@ -21,7 +21,6 @@ resources:
 - helmrepos/ingress-nginx.yaml
 - helmrepos/jetstack.yaml
 - helmrepos/k8s-at-home.yaml
-- helmrepos/metrics-server.yaml
 - helmrepos/openebs.yaml
 - helmrepos/morremeyer.yaml
 - helmrepos/prometheus-community.yaml
