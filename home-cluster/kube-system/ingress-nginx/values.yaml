@@ -27,5 +27,9 @@ controller:
   service:
     enabled: false
   terminationGracePeriodSeconds: 5
+  tolerations:
+    - key: samcday.com/oci
+      operator: Exists
+      effect: NoExecute
   updateStrategy:
     type: Recreate
