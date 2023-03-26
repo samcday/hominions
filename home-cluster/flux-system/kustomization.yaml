@@ -25,6 +25,7 @@ resources:
 - helmrepos/openebs.yaml
 - helmrepos/morremeyer.yaml
 - helmrepos/prometheus-community.yaml
+- helmrepos/samcday-tailscale-node-controller.yaml
 - helmrepos/sops-secrets-operator.yaml
 - helmrepos/zalando-postgres-operator.yaml
 - factorio.yaml
