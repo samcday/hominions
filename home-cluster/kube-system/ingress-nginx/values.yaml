@@ -10,7 +10,7 @@ controller:
       - run
       - --no-tls-verify
       - --url
-      - https://localhost
+      - https://localhost:443
       envFrom:
         - secretRef:
             name: cloudflared-tunnel-token
