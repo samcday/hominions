@@ -13,6 +13,8 @@ spec:
         name: morremeyer
         namespace: flux-system
       version: 5.3.1
+  dependsOn:
+    - name: redis
   interval: 5m
   releaseName: nitter
   values:
