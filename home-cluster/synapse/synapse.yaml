@@ -192,6 +192,9 @@ spec:
           volumeMounts:
             - name: mautrix-whatsapp
               mountPath: /data
+      tolerations:
+        - key: samcday.com/oci
+          operator: Exists
       volumes:
         - name: appservices
           emptyDir: {}
