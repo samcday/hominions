@@ -40,7 +40,6 @@ resources:
   - coredns.yaml
   - external-dns/helm-release.yaml
   # - fip-hack.yaml
-  - flannel.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx/helm-release.yaml
   - ingress-nginx/rbac.yaml
