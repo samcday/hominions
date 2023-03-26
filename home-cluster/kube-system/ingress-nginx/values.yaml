@@ -24,6 +24,7 @@ controller:
   kind: Deployment
   metrics:
     enabled: true
+  replicaCount: 2
   service:
     enabled: false
   terminationGracePeriodSeconds: 5
