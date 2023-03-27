@@ -49,11 +49,12 @@ spec:
       enableServiceLinks: false
       initContainers:
         - name: config
-          image: supinf/envsubst
+          image: alpine:3
           command:
             - sh
             - -c
             - |-
+              apk add gettext
               envsubst < /config-template/config.yaml > /config/config.yaml
           env:
             - name: PG_PASSWORD
