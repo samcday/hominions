@@ -66,3 +66,6 @@ spec:
         containerPort: 8080
     readinessProbe: ~
     replicaCount: 1
+    tolerations:
+      - key: samcday.com/oci
+        effect: NoExecute
