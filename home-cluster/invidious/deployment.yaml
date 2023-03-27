@@ -80,8 +80,8 @@ spec:
       nodeSelector:
         kubernetes.io/arch: arm64
       tolerations:
-        - key: samcday.com/hcloud
-          operator: Exists
+        - key: samcday.com/oci
+          effect: NoExecute
       volumes:
         - name: config-template
           configMap:
