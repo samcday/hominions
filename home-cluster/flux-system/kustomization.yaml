@@ -41,4 +41,4 @@ resources:
 - secrets.yaml
 - synapse.yaml
 # - syncthing.yaml
-# - webhook-ingress.yaml
+- webhook-ingress.yaml
