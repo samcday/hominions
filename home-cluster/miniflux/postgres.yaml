@@ -21,6 +21,13 @@ spec:
   upgrade:
     remediation:
       retries: -1
-  valuesFrom:
-  - kind: ConfigMap
-    name: postgres-values
+  values:
+    # https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+    global:
+      storageClass: openebs-hostpath
+    primary:
+      initdb:
+        scripts:
+          miniflux.sql: |-
+            create database miniflux;
+            create extension hstore;

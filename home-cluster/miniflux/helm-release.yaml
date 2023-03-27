@@ -15,6 +15,52 @@ spec:
       version: 5.3.1
   interval: 5m
   releaseName: miniflux
-  valuesFrom:
-  - kind: ConfigMap
-    name: miniflux-values
+  values:
+    # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
+    command:
+      - /bin/ash
+      - -c
+      - |-
+        set -ueo pipefail
+        export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql.miniflux.svc.cluster.local./miniflux?sslmode=disable
+        exec /usr/bin/miniflux
+    env:
+      ADMIN_USERNAME: admin
+      BASE_URL: https://miniflux.samcday.com
+      CREATE_ADMIN: "1"
+      METRICS_ALLOWED_NETWORKS: 0.0.0.0/0
+      METRICS_COLLECTOR: "1"
+      RUN_MIGRATIONS: "1"
+    envValueFrom:
+      ADMIN_PASSWORD:
+        secretKeyRef:
+          name: admin-password
+          key: ADMIN_PASSWORD
+      DB_PASS:
+        secretKeyRef:
+          name: postgres-postgresql
+          key: postgres-password
+    image:
+      repository: miniflux/miniflux
+      tag: 2.0.43
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      className: nginx
+      hosts:
+        - host: miniflux.samcday.com
+          paths:
+            - path: /
+              servicePortName: http
+      tls:
+        - hosts: [miniflux.samcday.com]
+          secretName: certificate
+    livenessProbe:
+      httpGet:
+        path: /healthcheck
+    ports:
+      - name: http
+        containerPort: 8080
+    readinessProbe: ~
+    replicaCount: 1
