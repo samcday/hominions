@@ -27,7 +27,7 @@ spec:
       storageClass: openebs-hostpath
     image:
       repository: postgres
-      tag: 14.5-alpine
+      tag: 14.5-bullseye
     primary:
       initdb:
         scripts:
