@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  ingressClassName: public-nginx
+  ingressClassName: nginx
   rules:
   - host: invidious.samcday.com
     http:
