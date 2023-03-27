@@ -59,6 +59,7 @@ spec:
       - host: nitter.samcday.com
         paths:
         - path: /
+          servicePortName: http
       tls:
       - hosts:
         - nitter.samcday.com
