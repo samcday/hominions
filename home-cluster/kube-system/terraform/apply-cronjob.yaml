@@ -23,9 +23,6 @@ spec:
               volumeMounts: &volmounts
                 - name: config
                   mountPath: /tf
-                - name: state
-                  mountPath: /tf/.terraform
-              workingDir: /tf
           containers:
             - name: apply
               image: clowa/terraform:1.4.2
@@ -39,9 +36,6 @@ spec:
             - name: config
               configMap:
                 name: terraform-config
-            - name: state
-              persistentVolumeClaim:
-                claimName: terraform-state
 ---
 apiVersion: v1
 kind: ServiceAccount
