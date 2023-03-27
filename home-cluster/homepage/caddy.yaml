@@ -16,7 +16,7 @@ spec:
     spec:
       tolerations:
         - effect: NoExecute
-          key: samcday.com/oci
+          key: samcday.com/cloud
       containers:
         - image: caddy:2-alpine
           name: caddy

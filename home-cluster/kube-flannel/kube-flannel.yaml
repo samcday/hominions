@@ -201,7 +201,7 @@ spec:
       tolerations:
       - effect: NoSchedule
         operator: Exists
-      - key: samcday.com/oci
+      - key: samcday.com/cloud
         operator: Exists
         effect: NoExecute
       volumes:

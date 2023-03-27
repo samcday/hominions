@@ -52,7 +52,7 @@ spec:
         enabled: false
       terminationGracePeriodSeconds: 5
       tolerations:
-        - key: samcday.com/oci
+        - key: samcday.com/cloud
           operator: Exists
           effect: NoExecute
       updateStrategy:
