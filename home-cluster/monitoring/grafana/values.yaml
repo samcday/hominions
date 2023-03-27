@@ -48,7 +48,7 @@ ingress:
   hosts: [grafana.home.samcday.com]
 persistence:
   enabled: true
-  storageClassName: openebs-lvmpv
+  storageClassName: openebs-hostpath
 serviceMonitor:
   enabled: true
 sidecar:

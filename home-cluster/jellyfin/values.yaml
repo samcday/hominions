@@ -9,8 +9,8 @@ ingress:
 persistence:
   config:
     enabled: true
-    storageClass: openebs-lvmpv
+    storageClass: openebs-hostpath
   media:
     enabled: true
-    storageClass: openebs-lvmpv
+    storageClass: openebs-hostpath
     size: 100Gi
