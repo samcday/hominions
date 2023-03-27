@@ -47,7 +47,7 @@ spec:
             - --cloud-provider=oci
             - --leader-elect-resource-lock=configmapsleases
             - --v=2
-            - --secure-port=10259
+            - --secure-port=10358
           volumeMounts:
             - name: cfg
               mountPath: /etc/oci
