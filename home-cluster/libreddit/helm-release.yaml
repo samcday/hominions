@@ -27,9 +27,10 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt
       className: nginx
       hosts:
-      - host: libreddit.samcday.com
-        paths:
-          - path: /
+        - host: libreddit.samcday.com
+          paths:
+            - path: /
+              servicePortName: http
       tls:
         - hosts: [libreddit.samcday.com]
           secretName: certificate
