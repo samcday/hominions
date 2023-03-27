@@ -20,21 +20,21 @@ spec:
   values:
     # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
     additionalVolumes:
-    - name: config
-      configMap:
-        name: config
+      - name: config
+        configMap:
+          name: config
     additionalVolumeMounts:
-    - name: config
-      mountPath: /config
+      - name: config
+        mountPath: /config
     command:
-    - /bin/ash
-    - -c
-    - |-
-      set -ueo pipefail
-      sed -e "s/__REDISPASS__/$REDIS_PASSWORD/" \
-          -e "s/__HMAC__/$HMAC_TOKEN/" \
-        < /config/nitter.conf > /nitter.conf
-      exec /src/nitter
+      - /bin/ash
+      - -c
+      - |-
+        set -ueo pipefail
+        sed -e "s/__REDISPASS__/$REDIS_PASSWORD/" \
+            -e "s/__HMAC__/$HMAC_TOKEN/" \
+          < /config/nitter.conf > /nitter.conf
+        exec /src/nitter
     env:
       NITTER_CONF_FILE: /nitter.conf
     envValueFrom:
@@ -55,20 +55,21 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt
       className: nginx
       hosts:
-      - host: nitter.samcday.com
-        paths:
-        - path: /
-          servicePortName: http
+        - host: nitter.samcday.com
+          paths:
+            - path: /
+              servicePortName: http
       tls:
-      - hosts:
-        - nitter.samcday.com
-        secretName: certificate
+        - hosts: [nitter.samcday.com]
+          secretName: certificate
     livenessProbe:
       httpGet:
         path: /POTUS
+    nodeSelector:
+      kubernetes.io/arch: arm64
     ports:
-    - name: http
-      containerPort: 8080
+      - name: http
+        containerPort: 8080
     readinessProbe: ~
     replicaCount: 1
     tolerations:

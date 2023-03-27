@@ -18,7 +18,7 @@ spec:
         app: invidious
     spec:
       containers:
-        - image: quay.io/invidious/invidious:3b39b8c772b57552893fa55eb417189b2976bbe4
+        - image: quay.io/invidious/invidious:8a44bd11d2abab8c9203d6dc3c3d5824e5e26327-arm64
           name: invidious
           env:
             - name: INVIDIOUS_CONFIG_FILE
@@ -76,6 +76,8 @@ spec:
               mountPath: /config-template
             - name: config
               mountPath: /config
+      nodeSelector:
+        kubernetes.io/arch: arm64
       tolerations:
         - key: samcday.com/hcloud
           operator: Exists

@@ -4,13 +4,11 @@ namespace: invidious
 configMapGenerator:
 - name: config
   files: [config.yaml]
-- name: postgres-values
-  files: [postgres/values.yaml]
 resources:
 - ../config
-# - deployment.yaml
-# - ingress.yaml
+- deployment.yaml
+- ingress.yaml
 - namespace.yaml
-# - pdb.yaml
-# - postgres/helm-release.yaml
-# - service.yaml
+- pdb.yaml
+- postgres.yaml
+- service.yaml
