@@ -14,8 +14,6 @@ configMapGenerator:
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: hcloud-fip-values
     files: [hcloud-fip/values.yaml]
-  - name: openebs-values
-    files: [openebs/values.yaml]
   - name: prometheus-operator-values
     files: [prometheus-operator/values.yaml]
   - name: terraform-config
@@ -38,8 +36,7 @@ resources:
   # - fip-hack.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
-  - openebs/helm-release.yaml
-  - openebs/storageclass.yaml
+  - openebs.yaml
   - prometheus-operator/helm-release.yaml
   # - suc-plans.yaml
   - system-upgrade-controller.yaml

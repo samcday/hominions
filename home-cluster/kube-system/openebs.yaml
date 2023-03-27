@@ -23,6 +23,11 @@ spec:
     crds: CreateReplace
     remediation:
       retries: -1
-  valuesFrom:
-  - kind: ConfigMap
-    name: openebs-values
+  values:
+    # https://github.com/openebs/charts/blob/main/charts/openebs/values.yaml
+    lvm-localpv:
+      enabled: true
+    ndm:
+      enabled: false
+    ndmOperator:
+      enabled: false
