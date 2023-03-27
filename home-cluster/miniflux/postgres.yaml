@@ -25,6 +25,9 @@ spec:
     # https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
     global:
       storageClass: openebs-hostpath
+    image:
+      repository: postgres
+      tag: 14.5-alpine
     primary:
       initdb:
         scripts:

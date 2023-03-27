@@ -13,6 +13,8 @@ spec:
         name: morremeyer
         namespace: flux-system
       version: 5.3.1
+  dependsOn:
+    - name: postgres
   interval: 5m
   releaseName: miniflux
   values:
