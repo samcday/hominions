@@ -5,8 +5,6 @@ metadata:
   namespace: synapse
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-    external-dns.alpha.kubernetes.io/hostname: homeserver.samcday.com
 spec:
   ingressClassName: nginx
   rules:

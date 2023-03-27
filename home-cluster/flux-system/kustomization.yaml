@@ -34,7 +34,7 @@ resources:
 # - jellyfin.yaml
 - kube-flannel.yaml
 - kube-system.yaml
-# - libreddit.yaml
+- libreddit.yaml
 - miniflux.yaml
 # - monitoring.yaml
 - nitter.yaml

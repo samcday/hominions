@@ -15,6 +15,29 @@ spec:
       version: 5.3.1
   interval: 5m
   releaseName: libreddit
-  valuesFrom:
-  - kind: ConfigMap
-    name: libreddit-values
+  values:
+    # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
+    env:
+    image:
+      repository: libreddit/libreddit
+      tag: arm
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      className: nginx
+      hosts:
+      - host: libreddit.samcday.com
+        paths:
+          - path: /
+      tls:
+        - hosts: [libreddit.samcday.com]
+          secretName: certificate
+    livenessProbe:
+      httpGet:
+        path: /settings
+    ports:
+      - name: http
+        containerPort: 8080
+    readinessProbe: ~
+    replicaCount: 1
