@@ -102,6 +102,11 @@ spec:
             action: replace
     prometheusOperator:
       enabled: false
+  valuesFrom:
+    - kind: Secret
+      name: dms-url
+      valuesKey: url
+      targetPath: alertmanager.config.receivers[0].webhook_configs[0].url
 # ---
 # apiVersion: autoscaling.k8s.io/v1
 # kind: VerticalPodAutoscaler

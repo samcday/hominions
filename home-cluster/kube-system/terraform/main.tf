@@ -12,10 +12,6 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "3.26.0"
     }
-    dmsnitch = {
-      source  = "plukevdh/dmsnitch"
-      version = "0.1.4"
-    }
     fly = {
       source  = "fly-apps/fly"
       version = "0.0.20"
@@ -34,8 +30,6 @@ terraform {
 provider "b2" {}
 
 provider "cloudflare" {}
-
-provider "dmsnitch" {}
 
 provider "fly" {}
 
@@ -59,24 +53,6 @@ provider "kubernetes" {}
 #     namespace = "flux-system"
 #   }
 # }
-
-resource "dmsnitch_snitch" "hominion" {
-  name = "Hominion"
-
-  interval = "hourly"
-  type     = "basic"
-}
-
-resource "kubernetes_secret" "monitoring-dms-url" {
-  metadata {
-    name      = "dms-url"
-    namespace = "monitoring"
-  }
-
-  data = {
-    "url" = dmsnitch_snitch.hominion.url
-  }
-}
 
 resource "b2_bucket" "headscale-backups" {
   bucket_name = "samcday-headscale-backups"

@@ -8,6 +8,10 @@ terraform {
       source  = "Backblaze/b2"
       version = "0.8.1"
     }
+    dmsnitch = {
+      source  = "plukevdh/dmsnitch"
+      version = "0.1.4"
+    }
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.14.0"
@@ -16,6 +20,7 @@ terraform {
 }
 
 provider "b2" {}
+provider "dmsnitch" {}
 provider "kubernetes" {}
 
 
@@ -39,5 +44,23 @@ resource "kubernetes_secret" "grafana-backups-bucket" {
   data = {
     LITESTREAM_ACCESS_KEY_ID     = b2_application_key.grafana-backups.application_key_id
     LITESTREAM_SECRET_ACCESS_KEY = b2_application_key.grafana-backups.application_key
+  }
+}
+
+resource "dmsnitch_snitch" "home-cluster" {
+  name = "home-cluster"
+
+  interval = "hourly"
+  type     = "basic"
+}
+
+resource "kubernetes_secret" "dms-url" {
+  metadata {
+    name      = "dms-url"
+    namespace = "monitoring"
+  }
+
+  data = {
+    "url" = dmsnitch_snitch.home-cluster.url
   }
 }
