@@ -37,6 +37,8 @@ spec:
     livenessProbe:
       httpGet:
         path: /settings
+    nodeSelector:
+      kubernetes.io/arch: arm64
     ports:
       - name: http
         containerPort: 8080
