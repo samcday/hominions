@@ -1,0 +1,130 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      version: 41.6.1
+  install:
+    remediation:
+      retries: -1
+  interval: 5m
+  releaseName: kube-prometheus-stack
+  upgrade:
+    remediation:
+      retries: -1
+  values:
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+    alertmanager:
+      alertmanagerSpec:
+        tolerations: &toler
+          - key: samcday.com/cloud
+            effect: NoExecute
+      config:
+        receivers:
+          - name: dms
+            webhook_configs:
+              - url: ~
+          - name: "null"
+        route:
+          routes:
+            - matchers:
+                - alertname = Watchdog
+              receiver: dms
+              group_wait: 0s
+              repeat_interval: 30m
+            - matchers:
+              - alertname = InfoInhibitor
+              receiver: null
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts: [alertmanager.home.samcday.com]
+        paths: [/]
+    grafana:
+      enabled: false
+      forceDeployDatasources: true
+      tolerations: *toler
+    kubeApiServer:
+      enabled: false
+    kubeControllerManager:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubelet:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    prometheus:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts: [prometheus.home.samcday.com]
+        paths: [/]
+      prometheusSpec:
+        enableAdminAPI: true
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retention: 30d
+        retentionSize: 30GB
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-hostpath
+              accessModes: [ReadWriteOnce]
+              resources:
+                requests:
+                  storage: 50Gi
+        tolerations: *toler
+        walCompression: true
+    prometheus-node-exporter:
+      extraArgs:
+        - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+        - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+      prometheus:
+        monitor:
+          relabelings:
+          - sourceLabels: [__meta_kubernetes_pod_node_name]
+            targetLabel: instance
+            replacement: $1
+            action: replace
+    prometheusOperator:
+      enabled: false
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: prometheus-kube-prometheus-stack-prometheus
+  updatePolicy:
+    updateMode: Auto
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: alertmanager-kube-prometheus-stack-alertmanager
+  updatePolicy:
+    updateMode: Auto

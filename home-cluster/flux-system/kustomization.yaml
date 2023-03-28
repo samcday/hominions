@@ -33,7 +33,7 @@ resources:
 - kube-system.yaml
 - libreddit.yaml
 - miniflux.yaml
-# - monitoring.yaml
+- monitoring.yaml
 - nitter.yaml
 - secrets.yaml
 - synapse.yaml

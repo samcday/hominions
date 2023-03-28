@@ -1,0 +1,114 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 6.52.4
+  install:
+    remediation:
+      retries: -1
+  interval: 5m
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          # Also scrape Litestream sidecar metrics.
+          - patch:
+              - op: add
+                path: /spec/endpoints/-
+                value:
+                  port: ls-metrics
+            target:
+              group: monitoring.coreos.com
+              version: v1
+              kind: ServiceMonitor
+              name: grafana
+  releaseName: grafana
+  upgrade:
+    remediation:
+      retries: -1
+  values:
+    # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+    envFromSecrets:
+      - name: grafana-backup-bucket
+    extraContainers: |
+      - name: litestream
+        image: litestream/litestream:0.3.9
+        args: ['replicate']
+        volumeMounts:
+          - name: litestream-config
+            mountPath: /etc/litestream.yml
+            subPath: litestream.yml
+          - name: storage
+            mountPath: /var/lib/grafana
+        envFrom:
+          - secretRef:
+              name: grafana-backup-bucket
+        ports:
+        - name: ls-metrics
+          containerPort: 9090
+    extraExposePorts:
+      - name: ls-metrics
+        port: 9090
+        targetPort: 9090
+    extraInitContainers:
+      - name: init-litestream
+        image: litestream/litestream:0.3.9
+        args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/var/lib/grafana/grafana.db']
+        envFrom:
+          - secretRef:
+              name: grafana-backup-bucket
+        ports:
+          - name: ls-metrics
+            containerPort: 9090
+        volumeMounts:
+          - name: litestream-config
+            mountPath: /etc/litestream.yml
+            subPath: litestream.yml
+          - name: storage
+            mountPath: /var/lib/grafana
+    extraContainerVolumes:
+      - name: litestream-config
+        configMap:
+          name: grafana-litestream
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts: [grafana.home.samcday.com]
+    persistence:
+      enabled: true
+      storageClassName: openebs-hostpath
+    serviceMonitor:
+      enabled: true
+    sidecar:
+      dashboards:
+        enabled: true
+        labelValue: "1"
+        folderAnnotation: grafana_folder
+        provider:
+          foldersFromFilesStructure: true
+      datasources:
+        enabled: true
+        labelValue: "1"
+    useStatefulSet: true
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: grafana
+  updatePolicy:
+    updateMode: Auto
