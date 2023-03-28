@@ -86,6 +86,7 @@ spec:
     persistence:
       enabled: true
       storageClassName: openebs-hostpath
+      type: sts-volumeclaim # doesn't mean anything, just stops grafana creating a PVC incorrectly...
     serviceMonitor:
       enabled: true
     sidecar:
