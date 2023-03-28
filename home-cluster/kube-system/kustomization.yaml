@@ -38,8 +38,6 @@ resources:
   - ingress-nginx.yaml
   - openebs.yaml
   - prometheus-operator/helm-release.yaml
-  # - suc-plans.yaml
-  - system-upgrade-controller.yaml
   - tailscale-node-controller.yaml
   # - tailscale-services-router.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
