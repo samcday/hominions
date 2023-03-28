@@ -99,16 +99,16 @@ spec:
         enabled: true
         labelValue: "1"
     useStatefulSet: true
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: grafana
-  namespace: monitoring
-spec:
-  targetRef:
-    apiVersion: apps/v1
-    kind: StatefulSet
-    name: grafana
-  updatePolicy:
-    updateMode: Auto
+# ---
+# apiVersion: autoscaling.k8s.io/v1
+# kind: VerticalPodAutoscaler
+# metadata:
+#   name: grafana
+#   namespace: monitoring
+# spec:
+#   targetRef:
+#     apiVersion: apps/v1
+#     kind: StatefulSet
+#     name: grafana
+#   updatePolicy:
+#     updateMode: Auto
