@@ -100,6 +100,7 @@ spec:
             targetLabel: instance
             replacement: $1
             action: replace
+      tolerations: *toler
     prometheusOperator:
       enabled: false
   valuesFrom:
