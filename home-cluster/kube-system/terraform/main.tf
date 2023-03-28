@@ -125,7 +125,7 @@ resource "kubernetes_secret" "kube-system-cluster-backups-bucket" {
 # maybe fixed soon? https://github.com/hashicorp/terraform-provider-kubernetes/pull/1802
 # ironically linked issue ran into problem exact same way I did, trying to scoop url out of a Flux Receiver.... Welp.
 
-#     url          = "https://flux.home.samcday.com${data.kubernetes_resource.receiver.object.status.url}"
+#     url          = "https://home-flux.samcday.com${data.kubernetes_resource.receiver.object.status.url}"
 #   }
 #   events     = ["push"]
 #   repository = "samcday/home-cluster"

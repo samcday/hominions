@@ -82,7 +82,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts: [grafana.home.samcday.com]
+      hosts: [grafana.samcday.com]
     persistence:
       enabled: true
       storageClassName: openebs-hostpath

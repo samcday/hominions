@@ -45,7 +45,7 @@ spec:
               - alertname = InfoInhibitor
               receiver: null
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: nginx
         hosts: [alertmanager.home.samcday.com]
         paths: [/]
@@ -67,7 +67,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: true
+        enabled: false
         ingressClassName: nginx
         hosts: [prometheus.home.samcday.com]
         paths: [/]
