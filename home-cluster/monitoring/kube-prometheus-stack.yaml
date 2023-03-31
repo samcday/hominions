@@ -65,6 +65,8 @@ spec:
       enabled: false
     kubeScheduler:
       enabled: false
+    nodeExporter:
+      hostRootfs: false
     prometheus:
       ingress:
         enabled: false
