@@ -65,8 +65,6 @@ spec:
       enabled: false
     kubeScheduler:
       enabled: false
-    nodeExporter:
-      hostRootfs: false
     prometheus:
       ingress:
         enabled: false
@@ -91,10 +89,13 @@ spec:
                   storage: 50Gi
         tolerations: *toler
         walCompression: true
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-node-exporter/values.yaml
     prometheus-node-exporter:
       extraArgs:
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
         - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+      hostRootFsMount:
+        enabled: false
       prometheus:
         monitor:
           relabelings:
