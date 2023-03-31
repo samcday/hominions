@@ -7,7 +7,6 @@ if [[ -z "${BW_SESSION:-}" ]]; then
   export BW_SESSION=$(bw unlock --raw)
 fi
 
-# Secrets
 export TAILNET_AUTH_KEY=${TAILNET_AUTH_KEY:-$(bw get item "6e22f9a5-38aa-4703-8dfd-afc200fcb3ee" | jq -r .notes)}
 
 dev=$1
