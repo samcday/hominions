@@ -6,7 +6,7 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.14.0"
+      version = "2.19.0"
     }
     hcloud = {
       source  = "hetznercloud/hcloud"
