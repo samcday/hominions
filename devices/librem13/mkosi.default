@@ -1,0 +1,14 @@
+[Distribution]
+Architecture=x86_64
+Distribution=arch
+
+[Output]
+Bootable=yes
+Format=gpt_ext4
+Hostname=librem13.hominions.tailnet.samcday.com
+
+[Packages]
+Packages=base-devel,containerd,gnome,grub,kubeadm,kubectl,kubelet,linux,net-tools,openssh,pacman-contrib,rsync,tailscale,tcpdump,usbutils,vim
+
+[Partitions]
+RootSize=5G

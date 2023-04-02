@@ -1,0 +1,9 @@
+pacman-key --init
+pacman-key --populate
+
+ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+systemctl enable containerd
+systemctl enable sshd
+systemctl enable tailscaled
+systemctl enable gdm
