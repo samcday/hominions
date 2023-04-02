@@ -7,3 +7,4 @@ systemctl enable containerd
 systemctl enable sshd
 systemctl enable tailscaled
 systemctl enable gdm
+systemctl enable tailscale-up
