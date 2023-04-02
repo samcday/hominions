@@ -6,7 +6,6 @@ resources:
 - gitrepos/factorio-server-charts.yaml
 - gitrepos/hominions.yaml
 - gitrepos/jellyfin-helm.yaml
-- helm-release.yaml
 - helmrepos/bitnami.yaml
 - helmrepos/cilium.yaml
 - helmrepos/coredns.yaml
