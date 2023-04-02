@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: bitnami
         namespace: flux-system
-      version: 17.9.2
+      version: 17.9.3
   interval: 5m
   releaseName: redis
   values:
