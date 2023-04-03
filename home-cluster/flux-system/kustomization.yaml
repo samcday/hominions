@@ -7,7 +7,6 @@ resources:
 - gitrepos/hominions.yaml
 - gitrepos/jellyfin-helm.yaml
 - helmrepos/bitnami.yaml
-- helmrepos/cilium.yaml
 - helmrepos/coredns.yaml
 - helmrepos/cowboysysop.yaml
 - helmrepos/external-dns.yaml
@@ -28,7 +27,6 @@ resources:
 - homepage.yaml
 - invidious.yaml
 # - jellyfin.yaml
-- kube-flannel.yaml
 - kube-system.yaml
 - libreddit.yaml
 - miniflux.yaml

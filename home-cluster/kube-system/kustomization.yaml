@@ -4,10 +4,6 @@ namespace: kube-system
 configMapGenerator:
   - name: cert-manager-values
     files: [cert-manager/values.yaml]
-  - name: cilium-values
-    files:
-      - cilium/values.yaml
-      - cilium/values-monitoring.yaml
   - name: external-dns-values
     files: [external-dns/values.yaml]
   - name: hcloud-cloud-init
@@ -28,7 +24,6 @@ resources:
   - ../config
   - cert-manager/helm-release.yaml
   - cert-manager/issuers.yaml
-  # - cilium/helm-release.yaml
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
@@ -36,9 +31,9 @@ resources:
   # - fip-hack.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
+  - ip-masq-agent.yaml
   - openebs.yaml
   - prometheus-operator/helm-release.yaml
   - tailscale-node-controller.yaml
-  # - tailscale-services-router.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
   # - vpas.yaml

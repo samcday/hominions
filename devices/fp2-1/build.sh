@@ -50,10 +50,50 @@ service ntpd restart
 HERE
 chmod +x /etc/local.d/restartnm.start
 
-sed -i -e 's/bin_dir = .*/bin_dir = "\/opt\/cni\/bin"/g' /etc/containerd/config.toml
+
+cat > /etc/local.d/prep-containerd.start <<HERE
+set -uexo pipefail
+mkdir -p /etc/containerd
+containerd config default \
+    | sed 's/bin_dir = .*/bin_dir = "\/usr\/libexec\/cni"/g' \
+    | sed 's/conf_template = ""/conf_template = "\/etc\/cni\/template"/' \
+    > /etc/containerd/config.toml
 rc-update add containerd default
+service containerd restart
+rm /etc/local.d/prep-containerd.start
+HERE
+chmod +x /etc/local.d/prep-containerd.start
+
 rc-update add kubelet default
 rc-update add tailscale default
+
+cat > /etc/cni/template <<HERE
+{
+  "name": "k8s-pod-network",
+  "cniVersion": "0.3.1",
+  "plugins": [
+    {
+      "type": "ptp",
+      "mtu": 1460,
+      "ipam": {
+        "type": "host-local",
+        "subnet": "{{.PodCIDR}}",
+        "routes": [
+          {
+            "dst": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {
+        "portMappings": true
+      }
+    }
+  ]
+}
+HERE
 
 cat > /etc/local.d/tailscale-up.start <<HERE
 set -uexo pipefail
