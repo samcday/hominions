@@ -1,6 +1,6 @@
 app_service_config_files:
   - /mautrix-signal/registration.yaml
-  - /mautrix-telegram/registration.yaml
+  - /config/registration-telegram.yaml
   - /config/registration-whatsapp.yaml
 database:
   name: sqlite3
@@ -20,7 +20,7 @@ listeners:
     bind_addresses:
       - '0.0.0.0'
 log_config: /config/log.yaml
-macaroon_secret_key: ${MACAROON_SECRET_KEY}
+macaroon_secret_key: _MACAROON_
 media_store_path: /data/media
 serve_server_wellknown: true
 old_signing_keys:

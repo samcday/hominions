@@ -31,17 +31,6 @@ spec:
             - name: data
               mountPath: /signald_data
               subPath: signald
-        - image: dock.mau.dev/mautrix/telegram:v0.12.1
-          name: mautrix-telegram
-          ports:
-            - containerPort: 29317
-            - name: mau-tgm-metrics
-              containerPort: 8000
-          volumeMounts:
-            - name: data
-              mountPath: /db
-            - name: mautrix-telegram
-              mountPath: /data
         - image: signald/signald:stable
           name: signald
           args:
@@ -94,19 +83,12 @@ spec:
               mountPath: /data
             - name: mautrix-signal
               mountPath: /mautrix-signal
-            - name: mautrix-telegram
-              mountPath: /mautrix-telegram
             - name: signing-key
               mountPath: /signing-key
       initContainers:
         - name: init-litestream-mautrix-synapse
           image: litestream/litestream:0.3.9
           args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-signal.db']
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
-        - name: init-litestream-mautrix-telegram
-          image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-telegram.db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-synapse
@@ -125,18 +107,22 @@ spec:
             - sh
             - -c
             - |-
-              apk add gettext
+              set -uexo pipefail
+
               rm -f /mautrix-signal/*
-              rm -f /mautrix-telegram/*
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 1337:1337 /data
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
+
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
-              envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
+              sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
+
               cp /config-templates/log.yaml /config/
-              envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
+              sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" -e "s/_REG_/$REGISTRATION_SECRET/" < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
+            - secretRef:
+                name: bridge-telegram
             - secretRef:
                 name: bridge-whatsapp
             - secretRef:
@@ -150,17 +136,10 @@ spec:
               mountPath: /data
             - name: mautrix-signal
               mountPath: /mautrix-signal
-            - name: mautrix-telegram
-              mountPath: /mautrix-telegram
         - name: mautrix-signal-register
           image: dock.mau.dev/mautrix/signal:v0.4.0
           volumeMounts:
             - name: mautrix-signal
-              mountPath: /data
-        - name: mautrix-telegram-register
-          image: dock.mau.dev/mautrix/telegram:v0.12.1
-          volumeMounts:
-            - name: mautrix-telegram
               mountPath: /data
       tolerations:
         - key: samcday.com/cloud
@@ -176,8 +155,6 @@ spec:
           configMap:
             name: litestream-config
         - name: mautrix-signal
-          emptyDir: {}
-        - name: mautrix-telegram
           emptyDir: {}
         - name: signing-key
           secret:

@@ -9,13 +9,17 @@ configMapGenerator:
       - config/mautrix-signal.yaml
       - config/mautrix-telegram.yaml
       - config/mautrix-whatsapp.yaml
+      - config/registration-telegram.yaml
       - config/registration-whatsapp.yaml
   - name: litestream-config
     files: [litestream.yml]
+  - name: litestream-config-telegram
+    files: [litestream-telegram.yml]
   - name: litestream-config-whatsapp
     files: [litestream-whatsapp.yml]
 resources:
 - bridge-whatsapp.yaml
+- bridge-telegram.yaml
 - ingress.yaml
 - namespace.yaml
 - podmonitor.yaml
