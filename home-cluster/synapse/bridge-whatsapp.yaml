@@ -19,17 +19,12 @@ spec:
       containers:
         - image: dock.mau.dev/mautrix/whatsapp:v0.8.3
           name: mautrix-whatsapp
-          command:
-            - /usr/bin/mautrix-whatsapp
-            - -c
-            - /config/mautrix-whatsapp.yaml
+          command: [/usr/bin/mautrix-whatsapp]
           ports:
             - containerPort: 29318
             - name: metrics
               containerPort: 8002
           volumeMounts:
-            - name: config
-              mountPath: /config
             - name: data
               mountPath: /data
         - name: litestream
