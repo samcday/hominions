@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bridge-whatsapp
+  namespace: synapse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bridge-whatsapp
+  serviceName: bridge-whatsapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: bridge-whatsapp
+    spec:
+      containers:
+        - image: dock.mau.dev/mautrix/whatsapp:v0.8.3
+          name: mautrix-whatsapp
+          command:
+            - /usr/bin/mautrix-whatsapp
+            - -c
+            - /config/mautrix-whatsapp.yaml
+          ports:
+            - containerPort: 29318
+            - name: metrics
+              containerPort: 8002
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: data
+              mountPath: /data
+        - name: litestream
+          image: litestream/litestream:0.3.9
+          args: ['replicate']
+          volumeMounts: &litestreamvols
+            - name: data
+              mountPath: /data
+            - name: litestream-config
+              mountPath: /etc/litestream.yml
+              subPath: litestream-whatsapp.yml
+          envFrom: &litestreamenv
+            - secretRef:
+                name: backup-bucket
+          ports:
+            - name: ls-metrics
+              containerPort: 9090
+      initContainers:
+        - name: init-litestream-mautrix-whatsapp
+          image: litestream/litestream:0.3.9
+          args: [restore, -if-db-not-exists, -if-replica-exists, -v, /data/mautrix-whatsapp.db]
+          volumeMounts: *litestreamvols
+          envFrom: *litestreamenv
+        - name: config
+          image: alpine:3
+          command:
+            - sh
+            - -c
+            - |-
+              chown -R 1337:1337 /data
+              sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml
+          envFrom:
+            - secretRef:
+                name: bridge-whatsapp
+          volumeMounts:
+            - name: config-templates
+              mountPath: /config-templates
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config-template
+          configMap:
+            name: config-whatsapp
+        - name: litestream-config
+          configMap:
+            name: litestream-config-whatsapp
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: openebs-hostpath
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bridge-whatsapp
+  namespace: synapse
+spec:
+  ports:
+  - port: 29318
+    protocol: TCP
+    targetPort: 29318
+  selector:
+    app.kubernetes.io/name: bridge-whatsapp

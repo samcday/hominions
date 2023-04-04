@@ -3,22 +3,18 @@ kind: StatefulSet
 metadata:
   name: synapse
   namespace: synapse
-  labels:
-    app: synapse
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: synapse
+      app.kubernetes.io/name: synapse
   serviceName: synapse
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
       labels:
-        app: synapse
+        app.kubernetes.io/name: synapse
     spec:
       containers:
         - image: dock.mau.dev/mautrix/signal:v0.4.2
@@ -47,17 +43,6 @@ spec:
             - name: data
               mountPath: /db
             - name: mautrix-telegram
-              mountPath: /data
-        - image: dock.mau.dev/mautrix/whatsapp:v0.7.0
-          name: mautrix-whatsapp
-          ports:
-            - containerPort: 29318
-            - name: mau-wa-metrics
-              containerPort: 8002
-          volumeMounts:
-            - name: data
-              mountPath: /db
-            - name: mautrix-whatsapp
               mountPath: /data
         - image: signald/signald:stable
           name: signald
@@ -113,8 +98,6 @@ spec:
               mountPath: /mautrix-signal
             - name: mautrix-telegram
               mountPath: /mautrix-telegram
-            - name: mautrix-whatsapp
-              mountPath: /mautrix-whatsapp
             - name: signing-key
               mountPath: /signing-key
       initContainers:
@@ -126,11 +109,6 @@ spec:
         - name: init-litestream-mautrix-telegram
           image: litestream/litestream:0.3.9
           args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-telegram.db']
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
-        - name: init-litestream-mautrix-whatsapp
-          image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-whatsapp.db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: init-litestream-synapse
@@ -152,16 +130,17 @@ spec:
               apk add gettext
               rm -f /mautrix-signal/*
               rm -f /mautrix-telegram/*
-              rm -f /mautrix-whatsapp/*
               mkdir -p /data/media
               mkdir -p /data/signald
               chown -R 1337:1337 /data
               cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
-              cp /config-templates/mautrix-whatsapp.yaml /mautrix-whatsapp/config.yaml
+              sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               envsubst < /config-templates/mautrix-telegram.yaml > /mautrix-telegram/config.yaml
               cp /config-templates/log.yaml /config/
               envsubst < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
+            - secretRef:
+                name: bridge-whatsapp
             - secretRef:
                 name: synapse-env
           volumeMounts:
@@ -175,8 +154,6 @@ spec:
               mountPath: /mautrix-signal
             - name: mautrix-telegram
               mountPath: /mautrix-telegram
-            - name: mautrix-whatsapp
-              mountPath: /mautrix-whatsapp
         - name: mautrix-signal-register
           image: dock.mau.dev/mautrix/signal:v0.4.0
           volumeMounts:
@@ -187,18 +164,11 @@ spec:
           volumeMounts:
             - name: mautrix-telegram
               mountPath: /data
-        - name: mautrix-whatsapp-register
-          image: dock.mau.dev/mautrix/whatsapp:v0.7.0
-          volumeMounts:
-            - name: mautrix-whatsapp
-              mountPath: /data
       tolerations:
         - key: samcday.com/cloud
           operator: Exists
           effect: NoExecute
       volumes:
-        - name: appservices
-          emptyDir: {}
         - name: config-templates
           configMap:
             name: config
@@ -210,8 +180,6 @@ spec:
         - name: mautrix-signal
           emptyDir: {}
         - name: mautrix-telegram
-          emptyDir: {}
-        - name: mautrix-whatsapp
           emptyDir: {}
         - name: signing-key
           secret:
@@ -233,12 +201,10 @@ kind: Service
 metadata:
   name: synapse
   namespace: synapse
-  labels:
-    app: synapse
 spec:
   ports:
   - port: 8008
     protocol: TCP
     targetPort: 8008
   selector:
-    app: synapse
+    app.kubernetes.io/name: synapse

@@ -1,0 +1,9 @@
+addr: ":9090"
+dbs:
+  - path: /data/mautrix-whatsapp.db
+    replicas:
+      - type: s3
+        bucket: samcday-synapse-backups
+        path: mautrix-whatsapp
+        endpoint: s3.eu-central-003.backblazeb2.com
+        force-path-style: true
