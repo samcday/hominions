@@ -43,7 +43,7 @@ spec:
       - name: http
         containerPort: 8080
     readinessProbe: ~
-    replicaCount: 1
+    replicaCount: 2
     tolerations:
       - key: samcday.com/cloud
         effect: NoExecute
