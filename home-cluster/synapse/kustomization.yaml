@@ -10,8 +10,6 @@ configMapGenerator:
       - config/mautrix-telegram.yaml
       - config/mautrix-whatsapp.yaml
       - config/registration-whatsapp.yaml
-  - name: config-whatsapp
-    files: [config/mautrix-whatsapp.yaml]
   - name: litestream-config
     files: [litestream.yml]
   - name: litestream-config-whatsapp

@@ -70,9 +70,9 @@ spec:
             - name: data
               mountPath: /data
       volumes:
-        - name: config-template
+        - name: config-templates
           configMap:
-            name: config-whatsapp
+            name: config
         - name: litestream-config
           configMap:
             name: litestream-config-whatsapp
