@@ -9,8 +9,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: bridge-whatsapp
   serviceName: bridge-whatsapp
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -27,6 +25,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+          workingDir: /data
         - name: litestream
           image: litestream/litestream:0.3.9
           args: ['replicate']
@@ -54,6 +53,7 @@ spec:
             - sh
             - -c
             - |-
+              set -uexo pipefail
               chown -R 1337:1337 /data
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml
           envFrom:
