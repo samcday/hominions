@@ -67,7 +67,7 @@ spec:
       volumes:
         - name: config-templates
           configMap:
-            name: config
+            name: config-whatsapp
         - name: litestream-config
           configMap:
             name: litestream-config-whatsapp

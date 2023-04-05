@@ -15,38 +15,6 @@ spec:
         app.kubernetes.io/name: synapse
     spec:
       containers:
-        - image: dock.mau.dev/mautrix/signal:v0.4.2
-          name: mautrix-signal
-          ports:
-            - containerPort: 29328
-            - name: mau-sig-metrics
-              containerPort: 8001
-          volumeMounts:
-            - name: data
-              mountPath: /db
-            - name: mautrix-signal
-              mountPath: /data
-            - name: signald
-              mountPath: /signald
-            - name: data
-              mountPath: /signald_data
-              subPath: signald
-        - image: signald/signald:stable
-          name: signald
-          args:
-            - -d
-            - /data/signald
-            - --metrics
-            - -s
-            - /signald/signald.sock
-          ports:
-            - name: signald-metrics
-              containerPort: 9595
-          volumeMounts:
-            - name: data
-              mountPath: /data
-            - name: signald
-              mountPath: /signald
         - name: litestream
           image: litestream/litestream:0.3.9
           args: ['replicate']
@@ -81,24 +49,12 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
-            - name: mautrix-signal
-              mountPath: /mautrix-signal
             - name: signing-key
               mountPath: /signing-key
       initContainers:
-        - name: init-litestream-mautrix-synapse
-          image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/mautrix-signal.db']
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
         - name: init-litestream-synapse
           image: litestream/litestream:0.3.9
           args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/synapse.db']
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
-        - name: init-litestream-signald
-          image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/signald/signald.db']
           volumeMounts: *litestreamvols
           envFrom: *litestreamenv
         - name: config
@@ -109,18 +65,18 @@ spec:
             - |-
               set -uexo pipefail
 
-              rm -f /mautrix-signal/*
               mkdir -p /data/media
-              mkdir -p /data/signald
               chown -R 1337:1337 /data
-              cp /config-templates/mautrix-signal.yaml /mautrix-signal/config.yaml
 
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
+              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
 
               cp /config-templates/log.yaml /config/
               sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" -e "s/_REG_/$REGISTRATION_SECRET/" < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
+            - secretRef:
+                name: bridge-signal
             - secretRef:
                 name: bridge-telegram
             - secretRef:
@@ -133,13 +89,6 @@ spec:
             - name: config
               mountPath: /config
             - name: data
-              mountPath: /data
-            - name: mautrix-signal
-              mountPath: /mautrix-signal
-        - name: mautrix-signal-register
-          image: dock.mau.dev/mautrix/signal:v0.4.0
-          volumeMounts:
-            - name: mautrix-signal
               mountPath: /data
       tolerations:
         - key: samcday.com/cloud
@@ -154,13 +103,9 @@ spec:
         - name: litestream-config
           configMap:
             name: litestream-config
-        - name: mautrix-signal
-          emptyDir: {}
         - name: signing-key
           secret:
             secretName: signing-key
-        - name: signald
-          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: data

@@ -65,7 +65,7 @@ spec:
       volumes:
         - name: config-templates
           configMap:
-            name: config
+            name: config-telegram
         - name: litestream-config
           configMap:
             name: litestream-config-telegram
