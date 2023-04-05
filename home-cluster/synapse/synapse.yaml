@@ -30,7 +30,7 @@ spec:
           ports:
             - name: ls-metrics
               containerPort: 9090
-        - image: matrixdotorg/synapse
+        - image: matrixdotorg/synapse:v1.80.0
           name: synapse
           ports:
             - name: synapse
@@ -40,10 +40,6 @@ spec:
           env:
             - name: SYNAPSE_CONFIG_PATH
               value: /config/homeserver.yaml
-            - name: UID
-              value: "1337"
-            - name: GID
-              value: "1337"
           volumeMounts:
             - name: config
               mountPath: /config
@@ -67,8 +63,7 @@ spec:
             - |-
               set -uexo pipefail
 
-              mkdir -p /data/media
-              chown -R 1337:1337 /data
+              chown $UID:$GID /data /data/media
 
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
