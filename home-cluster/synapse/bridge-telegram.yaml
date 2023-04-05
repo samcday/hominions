@@ -66,18 +66,11 @@ spec:
         - name: config-templates
           configMap:
             name: config-telegram
+        - name: data
+          emptyDir: {}
         - name: litestream-config
           configMap:
             name: litestream-config-telegram
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: nfs
-        resources:
-          requests:
-            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

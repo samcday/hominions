@@ -34,5 +34,6 @@ resources:
 - namespace.yaml
 - podmonitor.yaml
 - prometheus-rules.yaml
+- pvc.yaml
 - synapse.yaml
 # - vpa.yaml

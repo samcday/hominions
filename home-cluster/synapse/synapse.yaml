@@ -49,6 +49,8 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
+            - name: media
+              mountPath: /data/media
             - name: signing-key
               mountPath: /signing-key
       initContainers:
@@ -100,21 +102,17 @@ spec:
             name: config
         - name: config
           emptyDir: {}
+        - name: data
+          emptyDir: {}
         - name: litestream-config
           configMap:
             name: litestream-config
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
         - name: signing-key
           secret:
             secretName: signing-key
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: nfs
-        resources:
-          requests:
-            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
