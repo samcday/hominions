@@ -23,5 +23,4 @@ spec:
   values:
     # https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/charts/v4.2.0/csi-driver-nfs/values.yaml
     controller:
-      runOnControlPlane: true
       replicas: 2
