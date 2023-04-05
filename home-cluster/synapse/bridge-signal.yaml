@@ -23,8 +23,6 @@ spec:
               containerPort: 8001
           volumeMounts:
             - name: data
-              mountPath: /db
-            - name: mautrix-signal
               mountPath: /data
             - name: signald
               mountPath: /signald
