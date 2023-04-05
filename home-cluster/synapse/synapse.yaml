@@ -87,6 +87,8 @@ spec:
               mountPath: /config
             - name: data
               mountPath: /data
+            - name: media
+              mountPath: /data/media
       tolerations:
         - key: samcday.com/cloud
           operator: Exists
