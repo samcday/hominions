@@ -63,7 +63,7 @@ spec:
             - |-
               set -uexo pipefail
 
-              chown -R $UID:$GID /data
+              chown -R 997:997 /data
 
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
