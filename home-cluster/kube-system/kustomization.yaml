@@ -33,6 +33,7 @@ resources:
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
+  - nfs-storageclass.yaml
   - openebs.yaml
   - prometheus-operator/helm-release.yaml
   - tailscale-node-controller.yaml
