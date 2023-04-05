@@ -111,7 +111,7 @@ spec:
         name: data
       spec:
         accessModes: [ReadWriteOnce]
-        storageClassName: nfs
+        storageClassName: openebs-hostpath
         resources:
           requests:
             storage: 1Gi
