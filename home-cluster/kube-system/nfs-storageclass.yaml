@@ -5,7 +5,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: librem13.hominions.tailnet.samcday.com
-  share: /home-cluster
+  share: /
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
