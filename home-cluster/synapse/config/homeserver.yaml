@@ -1,5 +1,5 @@
 app_service_config_files:
-  - /mautrix-signal/registration.yaml
+  - /config/registration-signal.yaml
   - /config/registration-telegram.yaml
   - /config/registration-whatsapp.yaml
 database:
