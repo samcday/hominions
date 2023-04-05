@@ -27,8 +27,9 @@ configMapGenerator:
   - name: litestream-config-whatsapp
     files: [litestream-whatsapp.yml]
 resources:
-- bridge-whatsapp.yaml
+- bridge-signal.yaml
 - bridge-telegram.yaml
+- bridge-whatsapp.yaml
 - ingress.yaml
 - namespace.yaml
 - podmonitor.yaml
