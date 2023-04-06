@@ -85,3 +85,17 @@ spec:
     targetPort: 29317
   selector:
     app.kubernetes.io/name: bridge-telegram
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bridge-telegram
+  namespace: synapse
+spec:
+  podMetricsEndpoints:
+    - port: ls-metrics
+    - port: metrics
+      path: /
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bridge-telegram

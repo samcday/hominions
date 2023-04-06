@@ -32,7 +32,6 @@ resources:
 - bridge-whatsapp.yaml
 - ingress.yaml
 - namespace.yaml
-- podmonitor.yaml
 - prometheus-rules.yaml
 - pvc.yaml
 - synapse.yaml

@@ -86,3 +86,17 @@ spec:
     targetPort: 29318
   selector:
     app.kubernetes.io/name: bridge-whatsapp
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bridge-whatsapp
+  namespace: synapse
+spec:
+  podMetricsEndpoints:
+    - port: ls-metrics
+    - port: metrics
+      path: /
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bridge-whatsapp

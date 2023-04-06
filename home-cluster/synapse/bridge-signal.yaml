@@ -80,7 +80,7 @@ spec:
               set -uexo pipefail
               mkdir -p /data/signald
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" < /config-templates/mautrix-signal.yaml > /data/config.yaml
+              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" -e "s/_LP_/$SIG_LP/" < /config-templates/mautrix-signal.yaml > /data/config.yaml
           envFrom:
             - secretRef:
                 name: bridge-signal
@@ -113,3 +113,18 @@ spec:
     targetPort: 29328
   selector:
     app.kubernetes.io/name: bridge-signal
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bridge-signal
+  namespace: synapse
+spec:
+  podMetricsEndpoints:
+    - port: ls-metrics
+    - port: metrics
+      path: /
+    - port: signald-metrics
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bridge-signal

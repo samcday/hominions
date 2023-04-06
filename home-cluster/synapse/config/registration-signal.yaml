@@ -2,7 +2,7 @@ id: signal
 url: http://bridge-signal.synapse.svc.cluster.local:29328
 as_token: _AS_
 hs_token: _HS_
-sender_localpart: VKCdY6PAElmPrJLggMHN308725OmMLmERtcpYyWvdvTmuzsB7HlH-pOorF37_F7w
+sender_localpart: _LP_
 rate_limited: false
 namespaces:
     users:

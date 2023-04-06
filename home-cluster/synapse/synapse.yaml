@@ -35,7 +35,7 @@ spec:
           ports:
             - name: synapse
               containerPort: 8008
-            - name: syn-metrics
+            - name: metrics
               containerPort: 9000
           env:
             - name: SYNAPSE_CONFIG_PATH
@@ -123,3 +123,21 @@ spec:
     targetPort: 8008
   selector:
     app.kubernetes.io/name: synapse
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: synapse
+  namespace: synapse
+spec:
+  podMetricsEndpoints:
+    - port: ls-metrics
+    - port: metrics
+      relabelings:
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: instance
+      path: /_synapse/metrics
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: synapse
