@@ -1,4 +1,4 @@
-id: signal
+id: signal2
 url: http://bridge-signal.synapse.svc.cluster.local:29328
 as_token: _AS_
 hs_token: _HS_
