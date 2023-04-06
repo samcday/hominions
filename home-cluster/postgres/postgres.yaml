@@ -1,0 +1,20 @@
+kind: postgresql
+apiVersion: acid.zalan.do/v1
+metadata:
+  name: postgres-db
+  namespace: postgres
+spec:
+  databases:
+    invidious: invidious
+    miniflux: miniflux
+  enableLogicalBackup: true
+  numberOfInstances: 2
+  postgresql:
+    version: "15"
+  teamId: postgres
+  users:
+    invidious: []
+    miniflux: []
+  volume:
+    storageClass: openebs-hostpath
+    size: 10Gi

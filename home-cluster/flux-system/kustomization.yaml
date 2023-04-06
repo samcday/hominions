@@ -34,6 +34,7 @@ resources:
 - miniflux.yaml
 - monitoring.yaml
 - nitter.yaml
+- postgres.yaml
 - secrets.yaml
 - synapse.yaml
 # - syncthing.yaml
