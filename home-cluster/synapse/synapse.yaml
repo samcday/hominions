@@ -99,8 +99,6 @@ spec:
             name: config
         - name: config
           emptyDir: {}
-        - name: data
-          emptyDir: {}
         - name: litestream-config
           configMap:
             name: litestream-config
@@ -110,6 +108,15 @@ spec:
         - name: signing-key
           secret:
             secretName: signing-key
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: openebs-hostpath
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
