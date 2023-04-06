@@ -20,8 +20,7 @@ secretGenerator:
     options: {disableNameSuffixHash: true}
 resources:
   - ../config
-  - cert-manager/helm-release.yaml
-  - cert-manager/issuers.yaml
+  - cert-manager.yaml
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
