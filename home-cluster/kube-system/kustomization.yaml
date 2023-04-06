@@ -10,8 +10,6 @@ configMapGenerator:
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: hcloud-fip-values
     files: [hcloud-fip/values.yaml]
-  - name: prometheus-operator-values
-    files: [prometheus-operator/values.yaml]
   - name: terraform-config
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
   - name: vertical-pod-autoscaler-values
@@ -35,7 +33,7 @@ resources:
   - ip-masq-agent.yaml
   - nfs-storageclass.yaml
   - openebs.yaml
-  - prometheus-operator/helm-release.yaml
+  - prometheus-operator.yaml
   - tailscale-node-controller.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
   # - vpas.yaml

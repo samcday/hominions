@@ -19,6 +19,7 @@ resources:
 - helmrepos/k8s-at-home.yaml
 - helmrepos/openebs.yaml
 - helmrepos/morremeyer.yaml
+- helmrepos/postgres-operator.yaml
 - helmrepos/prometheus-community.yaml
 - helmrepos/samcday-tailscale-node-controller.yaml
 - helmrepos/sops-secrets-operator.yaml
