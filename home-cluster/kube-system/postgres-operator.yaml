@@ -35,3 +35,6 @@ spec:
       logical_backup_s3_bucket: samcday-postgres-backups
       logical_backup_s3_endpoint: https://s3.eu-central-003.backblazeb2.com
       logical_backup_s3_sse: ""
+    tolerations:
+      - key: samcday.com/cloud
+        operator: Exists
