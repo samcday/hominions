@@ -9,5 +9,5 @@ namespaces:
     - exclusive: true
       regex: '@signal_.*:samcday\.com'
     - exclusive: true
-      regex: '@signalbot:samcday\.com'
+      regex: '@signalbot2:samcday\.com'
     aliases: []

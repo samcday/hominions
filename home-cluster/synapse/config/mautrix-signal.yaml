@@ -49,7 +49,7 @@ appservice:
     # The unique ID of this appservice.
     id: signal2
     # Username of the appservice bot.
-    bot_username: signalbot
+    bot_username: signalbot2
     # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
     # to leave display name/avatar as-is.
     bot_displayname: Signal bridge bot
