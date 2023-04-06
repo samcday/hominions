@@ -54,6 +54,7 @@ spec:
               set -uexo pipefail
               chown -R 1337:1337 /data
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" -e "s/_API_ID_/$TELE_API_ID/" -e "s/_API_HASH_/$TELE_API_HASH/" < /config-templates/mautrix-telegram.yaml > /data/config.yaml
+              cat /data/config.yaml
           envFrom:
             - secretRef:
                 name: bridge-telegram
