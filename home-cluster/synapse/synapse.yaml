@@ -67,7 +67,7 @@ spec:
 
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
-              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
+              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" -e "s/_LP_/$SIG_LP/" < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
 
               cp /config-templates/log.yaml /config/
               sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" -e "s/_REG_/$REGISTRATION_SECRET/" < /config-templates/homeserver.yaml > /config/homeserver.yaml
