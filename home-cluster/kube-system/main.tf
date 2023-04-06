@@ -196,7 +196,7 @@ resource "b2_application_key" "postgres-backups" {
   capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
 }
 
-resource "kubernetes_secret" "postgres-pod-env" {
+resource "kubernetes_config_map" "postgres-pod-env" {
   metadata {
     name      = "postgres-pod-env"
     namespace = "kube-system"
