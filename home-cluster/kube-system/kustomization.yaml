@@ -33,6 +33,7 @@ resources:
   - ip-masq-agent.yaml
   - nfs-storageclass.yaml
   - openebs.yaml
+  - postgres-operator.yaml
   - prometheus-operator.yaml
   - tailscale-node-controller.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
