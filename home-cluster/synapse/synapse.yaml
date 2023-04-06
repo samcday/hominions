@@ -77,16 +77,14 @@ spec:
             - secretRef:
                 name: bridge-telegram
             - secretRef:
-                name: -  volumeClaimTemplates:
--    - metadata:
--        name: data
--      spec:
--        accessModes: [ReadWriteOnce]
--        storageClassName: nfs
--        resources:
--          requests:
--            storage: 1Gi
-h: /config
+                name: bridge-whatsapp
+            - secretRef:
+                name: synapse-env
+          volumeMounts:
+            - name: config-templates
+              mountPath: /config-templates
+            - name: config
+              mountPath: /config
             - name: data
               mountPath: /data
             - name: media
@@ -101,6 +99,8 @@ h: /config
             name: config
         - name: config
           emptyDir: {}
+        - name: data
+          emptyDir: {}
         - name: litestream-config
           configMap:
             name: litestream-config
@@ -110,16 +110,6 @@ h: /config
         - name: signing-key
           secret:
             secretName: signing-key
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: openebs-hostpath
-        resources:
-          requests:
-            storage: 1Gi
-
 ---
 apiVersion: v1
 kind: Service
