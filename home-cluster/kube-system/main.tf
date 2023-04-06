@@ -4,6 +4,10 @@ terraform {
     namespace     = "kube-system"
   }
   required_providers {
+    b2 = {
+      source  = "Backblaze/b2"
+      version = "0.8.4"
+    }
     hcloud = {
       source  = "hetznercloud/hcloud"
       version = "1.37.0"
@@ -19,6 +23,7 @@ terraform {
   }
 }
 
+provider "b2" {}
 provider "hcloud" {}
 provider "kubernetes" {}
 provider "oci" {}
@@ -79,7 +84,7 @@ locals {
   HERE
 
   oci_cloud_init = <<-HERE
-  ${cloud_init}
+  ${local.cloud_init}
   iptables -F
   netfilter-persistent save
   HERE
@@ -177,5 +182,32 @@ resource "oci_core_instance" "node2" {
     boot_volume_vpus_per_gb = "10"
     source_id               = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaarvmmb4prjjytb2zc2fmxmgqcnzttj3g2kegcwzcd7fmroypj5fua"
     source_type             = "image"
+  }
+}
+
+resource "b2_bucket" "postgres-backups" {
+  bucket_name = "samcday-postgres-backups"
+  bucket_type = "allPrivate"
+}
+
+resource "b2_application_key" "postgres-backups" {
+  key_name     = "grafana"
+  bucket_id    = b2_bucket.postgres-backups.bucket_id
+  capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
+}
+
+resource "kubernetes_secret" "postgres-pod-env" {
+  metadata {
+    name      = "postgres-pod-env"
+    namespace = "kube-system"
+  }
+
+  data = {
+    AWS_ENDPOINT           = "https://s3.eu-central-003.backblazeb2.com"
+    AWS_ACCESS_KEY_ID      = b2_application_key.postgres-backups.application_key_id
+    AWS_SECRET_ACCESS_KEY  = b2_application_key.postgres-backups.application_key
+    CLONE_USE_WALG_RESTORE = "true"
+    USE_WALG_BACKUP        = "true"
+    USE_WALG_RESTORE       = "true"
   }
 }
