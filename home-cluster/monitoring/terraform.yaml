@@ -4,7 +4,7 @@ metadata:
   name: terraform
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 1h
   approvePlan: auto
   path: home-cluster/monitoring
   runnerPodTemplate:

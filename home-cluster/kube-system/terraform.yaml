@@ -4,10 +4,13 @@ metadata:
   name: terraform
   namespace: kube-system
 spec:
-  interval: 5m
+  interval: 1h
   approvePlan: auto
   path: home-cluster/kube-system
   runnerPodTemplate:
+    nodeSelector:
+      # Backblaze plugin doesn't run on arm smh
+      kubernetes.io/arch: amd64
     spec:
       env:
         - name: OCI_REGION
