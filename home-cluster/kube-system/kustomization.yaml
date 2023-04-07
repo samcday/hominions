@@ -33,5 +33,6 @@ resources:
   - postgres-operator.yaml
   - prometheus-operator.yaml
   - tailscale-node-controller.yaml
+  - terraform.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
   # - vpas.yaml
