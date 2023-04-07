@@ -1,17 +1,6 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
-provider "registry.terraform.io/backblaze/b2" {
-  version     = "0.8.4"
-  constraints = "0.8.4"
-  hashes = [
-    "h1:EjWvu+zMSI+bSn1Mm2EIuj0bw8xojk9jtyrUVRGe6uk=",
-    "h1:WXKvSMAphowc2WrY7MKv50zeLTD2qWhkgcJBCTLro8M=",
-    "h1:iTNGfXzJeiUYsrhnWo/hTO7zgtQiYH9U5xrlSCSb/rU=",
-    "h1:vtRe9tVLQqXMJPthxF+lh1uq2xai/FdOUUY8OkPHBqk=",
-  ]
-}
-
 provider "registry.terraform.io/hashicorp/kubernetes" {
   version     = "2.19.0"
   constraints = "2.19.0"
