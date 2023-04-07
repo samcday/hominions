@@ -23,7 +23,6 @@ provider "b2" {}
 provider "dmsnitch" {}
 provider "kubernetes" {}
 
-
 resource "b2_bucket" "grafana-backups" {
   bucket_name = "samcday-grafana-backups"
   bucket_type = "allPrivate"

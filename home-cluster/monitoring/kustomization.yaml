@@ -6,11 +6,12 @@ configMapGenerator:
   files: [litestream.yml=grafana-litestream.yml]
   options: {disableNameSuffixHash: true}
 resources:
-- ../config
-- dashboards
-- grafana.yaml
-- ingress-nginx-pod-monitor.yaml
-# - loki/
-- kube-prometheus-stack.yaml
-- namespace.yaml
-# - promtail.yaml
+  - ../config
+  - dashboards
+  - grafana.yaml
+  - ingress-nginx-pod-monitor.yaml
+  # - loki/
+  - kube-prometheus-stack.yaml
+  - namespace.yaml
+  # - promtail.yaml
+  - terraform.yaml

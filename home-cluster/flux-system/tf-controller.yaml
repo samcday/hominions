@@ -17,6 +17,9 @@ spec:
   releaseName: tf-controller
   values:
     # https://github.com/weaveworks/tf-controller/blob/main/charts/tf-controller/values.yaml
+    runner:
+      serviceAccount:
+        allowedNamespaces: [monitoring]
     tolerations:
       - key: samcday.com/cloud
         operator: Exists
