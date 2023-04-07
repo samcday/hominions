@@ -19,7 +19,7 @@ spec:
     # https://github.com/weaveworks/tf-controller/blob/main/charts/tf-controller/values.yaml
     runner:
       serviceAccount:
-        allowedNamespaces: [monitoring]
+        allowedNamespaces: [kube-system, monitoring]
     tolerations:
       - key: samcday.com/cloud
         operator: Exists
