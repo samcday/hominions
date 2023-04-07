@@ -22,7 +22,7 @@ spec:
       - -c
       - |-
         set -ueo pipefail
-        export DATABASE_URL=postgres://$PGUSER:$PGPASSWORD@postgres-db.postgres.svc.cluster.local./miniflux?sslmode=disable
+        export DATABASE_URL=postgres://$PGUSER:$PGPASSWORD@postgres-db.postgres.svc.cluster.local./miniflux
         exec /usr/bin/miniflux
     env:
       ADMIN_USERNAME: admin
