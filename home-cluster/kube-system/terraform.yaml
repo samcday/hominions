@@ -8,9 +8,6 @@ spec:
   approvePlan: auto
   path: home-cluster/kube-system
   runnerPodTemplate:
-    nodeSelector:
-      # Backblaze plugin doesn't run on arm smh
-      kubernetes.io/arch: amd64
     spec:
       env:
         - name: OCI_REGION
@@ -20,6 +17,9 @@ spec:
             name: backblaze-key
         - secretRef:
             name: hcloud-token
+      nodeSelector:
+        # Backblaze plugin doesn't run on arm smh
+        kubernetes.io/arch: amd64
   sourceRef:
     kind: GitRepository
     name: hominions
