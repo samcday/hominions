@@ -9,17 +9,18 @@ spec:
   path: home-cluster/kube-system
   runnerPodTemplate:
     spec:
+      env:
+        - name: OCI_REGION
+          value: eu-frankfurt-1
       envFrom:
         - secretRef:
             name: backblaze-key
         - secretRef:
             name: hcloud-token
-        - secretRef:
-            name: oci
   sourceRef:
     kind: GitRepository
     name: hominions
     namespace: flux-system
   varsFrom:
     - kind: Secret
-      name: tailscale-auth
+      name: tf-vars
