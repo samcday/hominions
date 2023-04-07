@@ -1,0 +1,25 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
+metadata:
+  name: terraform
+  namespace: kube-system
+spec:
+  interval: 5m
+  approvePlan: auto
+  path: home-cluster/kube-system
+  runnerPodTemplate:
+    spec:
+      envFrom:
+        - secretRef:
+            name: backblaze-key
+        - secretRef:
+            name: hcloud-token
+        - secretRef:
+            name: oci
+  sourceRef:
+    kind: GitRepository
+    name: hominions
+    namespace: flux-system
+  varsFrom:
+    - kind: Secret
+      name: tailscale-auth

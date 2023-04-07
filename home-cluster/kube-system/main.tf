@@ -1,6 +1,6 @@
 terraform {
   backend "kubernetes" {
-    secret_suffix = "tfstate"
+    secret_suffix = "terraform"
     namespace     = "kube-system"
   }
   required_providers {
@@ -31,6 +31,16 @@ provider "oci" {}
 variable "ts_auth_key" {
   sensitive = true
   type      = string
+}
+
+resource "hcloud_ssh_key" "me" {
+  name       = "me"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
+}
+
+resource "hcloud_placement_group" "pg" {
+  name = "hominions"
+  type = "spread"
 }
 
 locals {
@@ -90,16 +100,6 @@ locals {
   HERE
 }
 
-resource "hcloud_ssh_key" "me" {
-  name       = "me"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
-}
-
-resource "hcloud_placement_group" "pg" {
-  name = "hominions"
-  type = "spread"
-}
-
 resource "hcloud_server" "node1" {
   name               = "hc-1.hominions.tailnet.samcday.com"
   image              = "ubuntu-22.04"
@@ -128,62 +128,61 @@ resource "hcloud_server" "node2" {
   }
 }
 
-resource "oci_core_instance" "node1" {
-  availability_domain = "llxi:EU-FRANKFURT-1-AD-2"
-  compartment_id      = "ocid1.tenancy.oc1..aaaaaaaag5t7yqzzm4fm33fcubvxkdeft3kyghnemjrpwmahkgnezhfm6oda"
-  create_vnic_details {
-    assign_public_ip = "true"
-    display_name     = "oci-1"
-    hostname_label   = "oci-1"
-    subnet_id        = "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaai2wks3esgitptrbhvngqhlz7rlojirh76zrchqaruupqxcekr2aq"
-  }
-  display_name = "oci-1"
-  fault_domain = "FAULT-DOMAIN-1"
+# resource "oci_core_instance" "node1" {
+#   availability_domain = "llxi:EU-FRANKFURT-1-AD-2"
+#   compartment_id      = "ocid1.tenancy.oc1..aaaaaaaag5t7yqzzm4fm33fcubvxkdeft3kyghnemjrpwmahkgnezhfm6oda"
+#   create_vnic_details {
+#     assign_public_ip = "true"
+#     display_name     = "oci-1"
+#     hostname_label   = "oci-1"
+#     subnet_id        = "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaai2wks3esgitptrbhvngqhlz7rlojirh76zrchqaruupqxcekr2aq"
+#   }
+#   display_name = "oci-1"
+#   fault_domain = "FAULT-DOMAIN-1"
 
-  metadata = {
-    "ssh_authorized_keys" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
-    "user_data"           = base64encode(local.oci_cloud_init)
-  }
-  shape = "VM.Standard.A1.Flex"
-  shape_config {
-    memory_in_gbs = "12"
-    ocpus         = "2"
-  }
-  source_details {
-    boot_volume_vpus_per_gb = "10"
-    source_id               = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaarvmmb4prjjytb2zc2fmxmgqcnzttj3g2kegcwzcd7fmroypj5fua"
-    source_type             = "image"
-  }
-}
+#   metadata = {
+#     "ssh_authorized_keys" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
+#     "user_data"           = base64encode(local.oci_cloud_init)
+#   }
+#   shape = "VM.Standard.A1.Flex"
+#   shape_config {
+#     memory_in_gbs = "12"
+#     ocpus         = "2"
+#   }
+#   source_details {
+#     boot_volume_vpus_per_gb = "10"
+#     source_id               = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaarvmmb4prjjytb2zc2fmxmgqcnzttj3g2kegcwzcd7fmroypj5fua"
+#     source_type             = "image"
+#   }
+# }
 
+# resource "oci_core_instance" "node2" {
+#   availability_domain = "llxi:EU-FRANKFURT-1-AD-1"
+#   compartment_id      = "ocid1.tenancy.oc1..aaaaaaaag5t7yqzzm4fm33fcubvxkdeft3kyghnemjrpwmahkgnezhfm6oda"
+#   create_vnic_details {
+#     assign_public_ip = "true"
+#     display_name     = "oci-2"
+#     hostname_label   = "oci-2"
+#     subnet_id        = "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaai2wks3esgitptrbhvngqhlz7rlojirh76zrchqaruupqxcekr2aq"
+#   }
+#   display_name = "oci-2"
+#   fault_domain = "FAULT-DOMAIN-1"
 
-resource "oci_core_instance" "node2" {
-  availability_domain = "llxi:EU-FRANKFURT-1-AD-1"
-  compartment_id      = "ocid1.tenancy.oc1..aaaaaaaag5t7yqzzm4fm33fcubvxkdeft3kyghnemjrpwmahkgnezhfm6oda"
-  create_vnic_details {
-    assign_public_ip = "true"
-    display_name     = "oci-2"
-    hostname_label   = "oci-2"
-    subnet_id        = "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaai2wks3esgitptrbhvngqhlz7rlojirh76zrchqaruupqxcekr2aq"
-  }
-  display_name = "oci-2"
-  fault_domain = "FAULT-DOMAIN-1"
-
-  metadata = {
-    "ssh_authorized_keys" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
-    "user_data"           = base64encode(local.oci_cloud_init)
-  }
-  shape = "VM.Standard.A1.Flex"
-  shape_config {
-    memory_in_gbs = "12"
-    ocpus         = "2"
-  }
-  source_details {
-    boot_volume_vpus_per_gb = "10"
-    source_id               = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaarvmmb4prjjytb2zc2fmxmgqcnzttj3g2kegcwzcd7fmroypj5fua"
-    source_type             = "image"
-  }
-}
+#   metadata = {
+#     "ssh_authorized_keys" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ"
+#     "user_data"           = base64encode(local.oci_cloud_init)
+#   }
+#   shape = "VM.Standard.A1.Flex"
+#   shape_config {
+#     memory_in_gbs = "12"
+#     ocpus         = "2"
+#   }
+#   source_details {
+#     boot_volume_vpus_per_gb = "10"
+#     source_id               = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaarvmmb4prjjytb2zc2fmxmgqcnzttj3g2kegcwzcd7fmroypj5fua"
+#     source_type             = "image"
+#   }
+# }
 
 resource "b2_bucket" "postgres-backups" {
   bucket_name = "samcday-postgres-backups"
