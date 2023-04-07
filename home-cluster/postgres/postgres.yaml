@@ -11,6 +11,12 @@ spec:
   numberOfInstances: 2
   postgresql:
     version: "15"
+  preparedDatabases:
+    invidious:
+      defaultUsers: true
+      extensions:
+        hstore: data
+      secretNamespace: invidious
   teamId: postgres
   users:
     invidious: []
