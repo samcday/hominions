@@ -23,6 +23,7 @@ resources:
 - helmrepos/prometheus-community.yaml
 - helmrepos/samcday-tailscale-node-controller.yaml
 - helmrepos/sops-secrets-operator.yaml
+- helmrepos/tf-controller.yaml
 - helmrepos/zalando-postgres-operator.yaml
 - factorio.yaml
 - flux-system.yaml
@@ -38,4 +39,5 @@ resources:
 - secrets.yaml
 - synapse.yaml
 # - syncthing.yaml
+- tf-controller.yaml
 - webhook-ingress.yaml
