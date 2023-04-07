@@ -4,9 +4,6 @@ metadata:
   name: postgres-db
   namespace: postgres
 spec:
-  databases:
-    invidious: invidious
-    miniflux: miniflux
   enableLogicalBackup: true
   numberOfInstances: 2
   postgresql:
@@ -14,13 +11,13 @@ spec:
   preparedDatabases:
     invidious:
       defaultUsers: true
+      secretNamespace: invidious
+    miniflux:
+      defaultUsers: true
       extensions:
         hstore: data
-      secretNamespace: invidious
+      secretNamespace: miniflux
   teamId: postgres
-  users:
-    invidious: []
-    miniflux: []
   volume:
     storageClass: openebs-hostpath
     size: 10Gi
