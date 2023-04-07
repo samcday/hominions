@@ -57,11 +57,16 @@ spec:
               apk add gettext
               envsubst < /config-template/config.yaml > /config/config.yaml
           env:
-            - name: PG_PASSWORD
+            - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-postgresql
-                  key: postgres-password
+                  name: invidious-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: invidious-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
+                  key: password
             - name: CAPTCHA_KEY
               valueFrom:
                 secretKeyRef:
