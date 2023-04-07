@@ -3,6 +3,7 @@ apiVersion: acid.zalan.do/v1
 metadata:
   name: postgres-db
   namespace: postgres
+  uid: 2ff9bd65-5002-45fa-9567-78ff778b874d
 spec:
   databases:
     invidious: invidious
