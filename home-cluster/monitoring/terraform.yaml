@@ -7,6 +7,11 @@ spec:
   interval: 5m
   approvePlan: auto
   path: home-cluster/monitoring
+  runnerPodTemplate:
+    spec:
+      envFrom:
+        - secretRef:
+            name: dms-token
   sourceRef:
     kind: GitRepository
     name: hominions
