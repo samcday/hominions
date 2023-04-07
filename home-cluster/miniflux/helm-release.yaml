@@ -38,7 +38,7 @@ spec:
         secretKeyRef:
           name: admin-password
           key: ADMIN_PASSWORD
-      PG_USER:
+      PGUSER:
         secretKeyRef:
           name: miniflux-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
           key: username
