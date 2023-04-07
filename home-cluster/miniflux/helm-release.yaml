@@ -24,7 +24,7 @@ spec:
       - -c
       - |-
         set -ueo pipefail
-        export DATABASE_URL=postgres://postgres:$DB_PASS@postgres-postgresql.miniflux.svc.cluster.local./miniflux?sslmode=disable
+        export DATABASE_URL=postgres://$PGUSER:$PGPASSWORD@postgres-db.postgres.svc.cluster.local./miniflux?sslmode=disable
         exec /usr/bin/miniflux
     env:
       ADMIN_USERNAME: admin
@@ -38,10 +38,14 @@ spec:
         secretKeyRef:
           name: admin-password
           key: ADMIN_PASSWORD
-      DB_PASS:
+      PG_USER:
         secretKeyRef:
-          name: postgres-postgresql
-          key: postgres-password
+          name: miniflux-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
+          key: username
+      PGPASSWORD:
+        secretKeyRef:
+          name: miniflux-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
+          key: password
     image:
       repository: miniflux/miniflux
       tag: 2.0.43
