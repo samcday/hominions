@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: bridge-signal
   namespace: synapse
@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: bridge-signal
-  serviceName: bridge-signal
   template:
     metadata:
       labels:
@@ -26,23 +25,29 @@ spec:
               mountPath: /data
             - name: signald
               mountPath: /signald
-            - name: data
-              mountPath: /signald_data
-              subPath: signald
         - image: signald/signald:stable
           name: signald
-          args:
-            - -d
-            - /data/signald
-            - --metrics
-            - -s
-            - /signald/signald.sock
+          command:
+            - /bin/bash
+            - -c
+            - |-
+              export SIGNALD_DATABASE=postgres://$DBUSER:$DBPASS@synapse-db.postgres.svc.cluster.local/signald
+              exec signald -d /signald --metrics -s /signald/signald.sock
+          env:
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: signald-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: signald-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: password
           ports:
             - name: signald-metrics
               containerPort: 9595
           volumeMounts:
-            - name: data
-              mountPath: /data
             - name: signald
               mountPath: /signald
       initContainers:

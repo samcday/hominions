@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: bridge-telegram
   namespace: synapse
@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: bridge-telegram
-  serviceName: bridge-telegram
   template:
     metadata:
       labels:
