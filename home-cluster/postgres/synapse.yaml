@@ -4,6 +4,7 @@ metadata:
   name: synapse-db
   namespace: postgres
 spec:
+  enableLogicalBackups: true
   numberOfInstances: 2
   patroni:
     initdb:
