@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: bridge-whatsapp
   namespace: synapse
@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: bridge-whatsapp
-  serviceName: bridge-whatsapp
   template:
     metadata:
       labels:
@@ -26,27 +25,7 @@ spec:
             - name: data
               mountPath: /data
           workingDir: /data
-        - name: litestream
-          image: litestream/litestream:0.3.9
-          args: ['replicate']
-          volumeMounts: &litestreamvols
-            - name: data
-              mountPath: /data
-            - name: litestream-config
-              mountPath: /etc/litestream.yml
-              subPath: litestream-whatsapp.yml
-          envFrom: &litestreamenv
-            - secretRef:
-                name: backup-bucket
-          ports:
-            - name: ls-metrics
-              containerPort: 9090
       initContainers:
-        - name: init-litestream-mautrix-whatsapp
-          image: litestream/litestream:0.3.9
-          args: [restore, -if-db-not-exists, -if-replica-exists, -v, /data/mautrix-whatsapp.db]
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
         - name: config
           image: alpine:3
           command:
@@ -55,7 +34,22 @@ spec:
             - |-
               set -uexo pipefail
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml
+              sed -e "s/_AS_/$WA_AS_TOKEN/" \
+                  -e "s/_HS_/$WA_HS_TOKEN/" \
+                  -e "s/_DBUSER_/$DBUSER/" \
+                  -e "s/_DBPASS_/$DBPASS/" \
+                  < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml
+          env:
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: password
           envFrom:
             - secretRef:
                 name: bridge-whatsapp
@@ -70,9 +64,6 @@ spec:
             name: config-whatsapp
         - name: data
           emptyDir: {}
-        - name: litestream-config
-          configMap:
-            name: litestream-config-whatsapp
 ---
 apiVersion: v1
 kind: Service
@@ -94,7 +85,6 @@ metadata:
   namespace: synapse
 spec:
   podMetricsEndpoints:
-    - port: ls-metrics
     - port: metrics
       path: /
   selector:
