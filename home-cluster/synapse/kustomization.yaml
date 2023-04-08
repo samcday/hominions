@@ -19,8 +19,8 @@ configMapGenerator:
     files:
       - config/mautrix-whatsapp.yaml
 resources:
-# - bridge-signal.yaml
-# - bridge-telegram.yaml
+- bridge-signal.yaml
+- bridge-telegram.yaml
 - bridge-whatsapp.yaml
 - ingress.yaml
 - media-pvc.yaml
