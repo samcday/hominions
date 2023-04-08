@@ -4,7 +4,6 @@ metadata:
   name: postgres-db
   namespace: postgres
 spec:
-  enableLogicalBackup: true
   numberOfInstances: 2
   postgresql:
     version: "15"
