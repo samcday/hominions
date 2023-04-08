@@ -1,0 +1,23 @@
+kind: postgresql
+apiVersion: acid.zalan.do/v1
+metadata:
+  name: synapse-db
+  namespace: postgres
+spec:
+  enableLogicalBackup: true
+  numberOfInstances: 2
+  patroni:
+    initdb:
+      lc-collate: C
+      lc-ctype: C
+      encoding: UTF8
+  postgresql:
+    version: "15"
+  preparedDatabases:
+    synapse:
+      defaultUsers: true
+      secretNamespace: synapse
+  teamId: synapse
+  volume:
+    storageClass: openebs-hostpath
+    size: 10Gi

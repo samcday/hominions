@@ -8,7 +8,7 @@ database:
     user: _DBUSER_
     password: _DBPASS_
     database: synapse
-    host: postgres-db.postgres.svc.cluster.local
+    host: synapse-db.postgres.svc.cluster.local
 enable_metrics: true
 listeners:
   - port: 8008

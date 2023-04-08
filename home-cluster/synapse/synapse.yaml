@@ -58,6 +58,17 @@ spec:
                   -e "s/_DBUSER_/$DBUSER/" \
                   -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/homeserver.yaml > /config/homeserver.yaml
+          env:
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: synapse-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: synapse-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: password
           envFrom:
             - secretRef:
                 name: bridge-signal
