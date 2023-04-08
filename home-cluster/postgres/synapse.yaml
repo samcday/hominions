@@ -15,8 +15,6 @@ spec:
   preparedDatabases:
     mautrix_whatsapp:
       defaultUsers: true
-      schemas:
-        public: {}
       secretNamespace: synapse
     synapse:
       defaultUsers: true
