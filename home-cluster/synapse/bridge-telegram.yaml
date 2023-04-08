@@ -24,27 +24,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-        - name: litestream
-          image: litestream/litestream:0.3.9
-          args: ['replicate']
-          volumeMounts: &litestreamvols
-            - name: data
-              mountPath: /data
-            - name: litestream-config
-              mountPath: /etc/litestream.yml
-              subPath: litestream-telegram.yml
-          envFrom: &litestreamenv
-            - secretRef:
-                name: backup-bucket
-          ports:
-            - name: ls-metrics
-              containerPort: 9090
       initContainers:
-        - name: init-litestream-mautrix-telegram
-          image: litestream/litestream:0.3.9
-          args: [restore, -if-db-not-exists, -if-replica-exists, -v, /data/mautrix-telegram.db]
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
         - name: config
           image: alpine:3
           command:
@@ -85,9 +65,6 @@ spec:
             name: config-telegram
         - name: data
           emptyDir: {}
-        - name: litestream-config
-          configMap:
-            name: litestream-config-telegram
 ---
 apiVersion: v1
 kind: Service
