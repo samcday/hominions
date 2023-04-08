@@ -22,9 +22,66 @@ spec:
     remediation:
       retries: -1
   valuesFrom:
-    - kind: ConfigMap
-      name: vanilla-megabase-values
     - kind: Secret
       name: token
       valuesKey: token
       targetPath: server_settings.token
+  values:
+    # https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
+
+    additionalContainers:
+      - name: caddy-scriptoutput
+        image: caddy:2-alpine
+        ports:
+          - name: scriptoutput
+            containerPort: 8123
+        volumeMounts:
+          - name: caddyfile
+            mountPath: /etc/caddy/Caddyfile
+            subPath: Caddyfile
+          - name: datadir
+            mountPath: /usr/share/caddy
+    additionalVolumes:
+      - name: caddyfile
+        configMap:
+          name: vanilla-megabase-caddyfile
+    factorioServer:
+      generate_new_save: false
+      save_name: 2021megabae
+    fullnameOverride: vanilla-megabase
+    image:
+      tag: 1.1.69
+    mods:
+      enabled: true
+      portal:
+        - auto-research
+        - flib
+        - graftorio2
+        - helmod
+        - ModuleInserter
+        - VehicleSnap
+    persistence:
+      enabled: true
+      dataDir:
+        Size: 10Gi
+      storageClassName: nfs
+    rcon:
+      external: false
+    resources:
+      requests:
+        cpu: '1'
+        memory: 1Gi
+    server_settings:
+      name: samcday's (mostly) vanilla megabase project
+      visibility:
+        public: false
+      username: samcday
+      require_user_verification: true
+      autosave_slots: 144 # (24 hours of 10min interval)
+      auto_pause: false
+      non_blocking_saving: true
+    service:
+      type: ClusterIP
+    tolerations:
+      - key: samcday.com/cloud
+        operator: Exists
