@@ -36,6 +36,7 @@ spec:
               chown -R 1337:1337 /data
               sed -e "s/_AS_/$WA_AS_TOKEN/" \
                   -e "s/_HS_/$WA_HS_TOKEN/" \
+                  -e "s/_LP_/$WA_LP/" \
                   -e "s/_DBUSER_/$DBUSER/" \
                   -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml

@@ -80,7 +80,10 @@ spec:
               set -uexo pipefail
               mkdir -p /data/signald
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" -e "s/_LP_/$SIG_LP/" < /config-templates/mautrix-signal.yaml > /data/config.yaml
+              sed -e "s/_AS_/$SIG_AS_TOKEN/" \
+                  -e "s/_HS_/$SIG_HS_TOKEN/" \
+                  -e "s/_LP_/$SIG_LP/" \
+                  < /config-templates/mautrix-signal.yaml > /data/config.yaml
           envFrom:
             - secretRef:
                 name: bridge-signal
