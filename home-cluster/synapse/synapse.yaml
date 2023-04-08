@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: synapse
   namespace: synapse
@@ -17,9 +17,6 @@ spec:
       containers:
         - image: matrixdotorg/synapse:v1.80.0
           name: synapse
-          command:
-            - sleep
-            - infinity
           ports:
             - name: synapse
               containerPort: 8008
@@ -31,10 +28,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /data
             - name: media
-              mountPath: /data/media
+              mountPath: /media
             - name: signing-key
               mountPath: /signing-key
       initContainers:
@@ -46,7 +41,7 @@ spec:
             - |-
               set -uexo pipefail
 
-              chown -R 991:991 /data
+              chown -R 991:991 /media
 
               sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
               sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
@@ -83,10 +78,8 @@ spec:
               mountPath: /config-templates
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /data
             - name: media
-              mountPath: /data/media
+              mountPath: /media
       tolerations:
         - key: samcday.com/cloud
           operator: Exists
@@ -103,15 +96,6 @@ spec:
         - name: signing-key
           secret:
             secretName: signing-key
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ReadWriteOnce]
-        storageClassName: openebs-hostpath
-        resources:
-          requests:
-            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

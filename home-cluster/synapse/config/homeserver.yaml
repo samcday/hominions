@@ -24,7 +24,7 @@ listeners:
       - '0.0.0.0'
 log_config: /config/log.yaml
 macaroon_secret_key: _MACAROON_
-media_store_path: /data/media
+media_store_path: /media
 serve_server_wellknown: true
 old_signing_keys:
 registration_shared_secret: _REG_
