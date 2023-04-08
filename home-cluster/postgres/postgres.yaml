@@ -9,6 +9,9 @@ spec:
   postgresql:
     version: "15"
   preparedDatabases:
+    grafana:
+      defaultUsers: true
+      secretNamespace: monitoring
     invidious:
       defaultUsers: true
       secretNamespace: invidious
