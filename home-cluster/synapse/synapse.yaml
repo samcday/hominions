@@ -89,10 +89,6 @@ spec:
               mountPath: /config
             - name: media
               mountPath: /media
-      tolerations:
-        - key: samcday.com/cloud
-          operator: Exists
-          effect: NoExecute
       volumes:
         - name: config-templates
           configMap:
