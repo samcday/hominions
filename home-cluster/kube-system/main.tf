@@ -43,6 +43,7 @@ resource "hcloud_placement_group" "pg" {
   type = "spread"
 }
 
+# TODO: install nfs-common
 locals {
   cloud_init = <<-HERE
   #!/bin/bash
@@ -202,11 +203,14 @@ resource "kubernetes_config_map" "postgres-pod-env" {
   }
 
   data = {
-    AWS_ENDPOINT           = "https://s3.eu-central-003.backblazeb2.com"
-    AWS_ACCESS_KEY_ID      = b2_application_key.postgres-backups.application_key_id
-    AWS_SECRET_ACCESS_KEY  = b2_application_key.postgres-backups.application_key
-    CLONE_USE_WALG_RESTORE = "true"
-    USE_WALG_BACKUP        = "true"
-    USE_WALG_RESTORE       = "true"
+    AWS_ENDPOINT                = "https://s3.eu-central-003.backblazeb2.com"
+    CLONE_AWS_ENDPOINT          = "https://s3.eu-central-003.backblazeb2.com"
+    AWS_ACCESS_KEY_ID           = b2_application_key.postgres-backups.application_key_id
+    AWS_SECRET_ACCESS_KEY       = b2_application_key.postgres-backups.application_key
+    CLONE_AWS_ACCESS_KEY_ID     = b2_application_key.postgres-backups.application_key_id
+    CLONE_AWS_SECRET_ACCESS_KEY = b2_application_key.postgres-backups.application_key
+    CLONE_USE_WALG_RESTORE      = "true"
+    USE_WALG_BACKUP             = "true"
+    USE_WALG_RESTORE            = "true"
   }
 }
