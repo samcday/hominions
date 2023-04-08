@@ -42,9 +42,19 @@ spec:
 
               chown 991:991 /media
 
-              sed -e "s/_AS_/$WA_AS_TOKEN/" -e "s/_HS_/$WA_HS_TOKEN/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
-              sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
-              sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" -e "s/_LP_/$SIG_LP/" < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
+              sed -e "s/_AS_/$WA_AS/" \
+                  -e "s/_HS_/$WA_HS/" \
+                  -e "s/_LP_/$WA_LP/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
+
+              sed -e "s/_AS_/$TELE_AS/" \
+                  -e "s/_HS_/$TELE_HS/" \
+                  -e "s/_LP_/$TELE_LP/" \
+                  < /config-templates/registration-telegram.yaml > /config/registration-telegram.yaml
+
+              sed -e "s/_AS_/$SIG_AS/" \
+                  -e "s/_HS_/$SIG_HS/" \
+                  -e "s/_LP_/$SIG_LP/" \
+                  < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
 
               cp /config-templates/log.yaml /config/
               sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" \

@@ -16,7 +16,6 @@ spec:
       containers:
         - image: dock.mau.dev/mautrix/whatsapp:v0.8.3
           name: mautrix-whatsapp
-          command: [/usr/bin/mautrix-whatsapp]
           ports:
             - containerPort: 29318
             - name: metrics
@@ -34,12 +33,13 @@ spec:
             - |-
               set -uexo pipefail
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$WA_AS_TOKEN/" \
-                  -e "s/_HS_/$WA_HS_TOKEN/" \
+              sed -e "s/_AS_/$WA_AS/" \
+                  -e "s/_HS_/$WA_HS/" \
                   -e "s/_LP_/$WA_LP/" \
                   -e "s/_DBUSER_/$DBUSER/" \
                   -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/mautrix-whatsapp.yaml > /data/config.yaml
+              touch /data/registration.yaml
           env:
             - name: DBUSER
               valueFrom:

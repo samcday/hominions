@@ -55,12 +55,13 @@ spec:
               set -uexo pipefail
               mkdir -p /data/signald
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$SIG_AS_TOKEN/" \
-                  -e "s/_HS_/$SIG_HS_TOKEN/" \
+              sed -e "s/_AS_/$SIG_AS/" \
+                  -e "s/_HS_/$SIG_HS/" \
                   -e "s/_LP_/$SIG_LP/" \
                   -e "s/_DBUSER_/$DBUSER/" \
                   -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/mautrix-signal.yaml > /data/config.yaml
+              touch /data/registration.yaml
           env:
             - name: DBUSER
               valueFrom:

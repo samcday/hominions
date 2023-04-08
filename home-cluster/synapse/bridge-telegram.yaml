@@ -33,13 +33,15 @@ spec:
             - |-
               set -uexo pipefail
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$TELE_AS_TOKEN/" \
-                  -e "s/_HS_/$TELE_HS_TOKEN/" \
+              sed -e "s/_AS_/$TELE_AS/" \
+                  -e "s/_HS_/$TELE_HS/" \
+                  -e "s/_LP_/$TELE_LP/" \
                   -e "s/_API_ID_/$TELE_API_ID/" \
                   -e "s/_API_HASH_/$TELE_API_HASH/" \
                   -e "s/_DBUSER_/$DBUSER/" \
                   -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/mautrix-telegram.yaml > /data/config.yaml
+              touch /data/registration.yaml
           env:
             - name: DBUSER
               valueFrom:
