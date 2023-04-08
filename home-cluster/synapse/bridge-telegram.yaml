@@ -44,12 +44,12 @@ spec:
             - name: DBUSER
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  name: mautrix-telegram-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
                   key: username
             - name: DBPASS
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  name: mautrix-telegram-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
                   key: password
           envFrom:
             - secretRef:
@@ -86,7 +86,6 @@ metadata:
   namespace: synapse
 spec:
   podMetricsEndpoints:
-    - port: ls-metrics
     - port: metrics
       path: /
   selector:

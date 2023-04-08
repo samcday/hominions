@@ -22,6 +22,9 @@ spec:
     mautrix_whatsapp:
       defaultUsers: true
       secretNamespace: synapse
+    signald:
+      defaultUsers: true
+      secretNamespace: synapse
     synapse:
       defaultUsers: true
       secretNamespace: synapse

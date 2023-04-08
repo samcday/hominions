@@ -116,7 +116,6 @@ metadata:
   namespace: synapse
 spec:
   podMetricsEndpoints:
-    - port: ls-metrics
     - port: metrics
       relabelings:
         - action: replace
