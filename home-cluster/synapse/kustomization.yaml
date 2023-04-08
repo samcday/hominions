@@ -18,21 +18,13 @@ configMapGenerator:
   - name: config-whatsapp
     files:
       - config/mautrix-whatsapp.yaml
-  - name: litestream-config
-    files: [litestream.yml]
-  - name: litestream-config-signal
-    files: [litestream-signal.yml]
-  - name: litestream-config-telegram
-    files: [litestream-telegram.yml]
-  - name: litestream-config-whatsapp
-    files: [litestream-whatsapp.yml]
 resources:
-- bridge-signal.yaml
-- bridge-telegram.yaml
-- bridge-whatsapp.yaml
+# - bridge-signal.yaml
+# - bridge-telegram.yaml
+# - bridge-whatsapp.yaml
 - ingress.yaml
+- media-pvc.yaml
 - namespace.yaml
 - prometheus-rules.yaml
-- pvc.yaml
 - synapse.yaml
 # - vpa.yaml

@@ -15,23 +15,11 @@ spec:
         app.kubernetes.io/name: synapse
     spec:
       containers:
-        - name: litestream
-          image: litestream/litestream:0.3.9
-          args: ['replicate']
-          volumeMounts: &litestreamvols
-            - name: data
-              mountPath: /data
-            - name: litestream-config
-              mountPath: /etc/litestream.yml
-              subPath: litestream.yml
-          envFrom: &litestreamenv
-            - secretRef:
-                name: backup-bucket
-          ports:
-            - name: ls-metrics
-              containerPort: 9090
         - image: matrixdotorg/synapse:v1.80.0
           name: synapse
+          command:
+            - sleep
+            - infinity
           ports:
             - name: synapse
               containerPort: 8008
@@ -50,11 +38,6 @@ spec:
             - name: signing-key
               mountPath: /signing-key
       initContainers:
-        - name: init-litestream-synapse
-          image: litestream/litestream:0.3.9
-          args: ['restore', '-if-db-not-exists', '-if-replica-exists', '-v', '/data/synapse.db']
-          volumeMounts: *litestreamvols
-          envFrom: *litestreamenv
         - name: config
           image: alpine:3
           command:
@@ -70,7 +53,11 @@ spec:
               sed -e "s/_AS_/$SIG_AS_TOKEN/" -e "s/_HS_/$SIG_HS_TOKEN/" -e "s/_LP_/$SIG_LP/" < /config-templates/registration-signal.yaml > /config/registration-signal.yaml
 
               cp /config-templates/log.yaml /config/
-              sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" -e "s/_REG_/$REGISTRATION_SECRET/" < /config-templates/homeserver.yaml > /config/homeserver.yaml
+              sed -e "s/_MACAROON_/$MACAROON_SECRET_KEY/" \
+                  -e "s/_REG_/$REGISTRATION_SECRET/" \
+                  -e "s/_DBUSER_/$DBUSER/" \
+                  -e "s/_DBPASS_/$DBPASS/" \
+                  < /config-templates/homeserver.yaml > /config/homeserver.yaml
           envFrom:
             - secretRef:
                 name: bridge-signal
@@ -99,9 +86,6 @@ spec:
             name: config
         - name: config
           emptyDir: {}
-        - name: litestream-config
-          configMap:
-            name: litestream-config
         - name: media
           persistentVolumeClaim:
             claimName: media

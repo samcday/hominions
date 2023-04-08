@@ -3,9 +3,12 @@ app_service_config_files:
   - /config/registration-telegram.yaml
   - /config/registration-whatsapp.yaml
 database:
-  name: sqlite3
+  name: psycopg2
   args:
-    database: /data/synapse.db
+    user: _DBUSER_
+    password: _DBPASS_
+    database: synapse
+    host: postgres-db.postgres.svc.cluster.local
 enable_metrics: true
 listeners:
   - port: 8008
