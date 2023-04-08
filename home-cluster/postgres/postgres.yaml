@@ -13,6 +13,8 @@ spec:
       secretNamespace: monitoring
     invidious:
       defaultUsers: true
+      schemas:
+        public: {}
       secretNamespace: invidious
     miniflux:
       defaultUsers: true
