@@ -84,4 +84,4 @@ spec:
       type: ClusterIP
     tolerations:
       - key: samcday.com/cloud
-        operator: Exists
+        effect: NoExecute
