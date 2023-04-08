@@ -40,6 +40,7 @@ spec:
       database:
         type: postgres
         host: postgres-db.postgres.svc.cluster.local
+        ssl_mode: require
     persistence:
       enabled: true
       storageClassName: openebs-hostpath
