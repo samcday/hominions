@@ -33,23 +33,12 @@ appservice:
     # Usually 1 is enough, but on high-traffic bridges you might need to increase this to avoid 413s
     max_body_size: 1
 
-    # The full URI to the database. SQLite and Postgres are supported.
-    # Format examples:
-    #   SQLite:   sqlite:///filename.db
-    #   Postgres: postgres://username:password@hostname/dbname
-    database: sqlite:////data/mautrix-signal.db
-    # Additional arguments for asyncpg.create_pool() or sqlite3.connect()
-    # https://magicstack.github.io/asyncpg/current/api/index.html#asyncpg.pool.create_pool
-    # https://docs.python.org/3/library/sqlite3.html#sqlite3.connect
-    # For sqlite, min_size is used as the connection thread pool size and max_size is ignored.
-    database_opts:
-        min_size: 5
-        max_size: 10
+    database: postgres://_DBUSER_:_DBPASS_@synapse-db.postgres.svc.cluster.local/mautrix_signal
 
     # The unique ID of this appservice.
-    id: signal2
+    id: signal
     # Username of the appservice bot.
-    bot_username: signalbot2
+    bot_username: signalbot
     # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
     # to leave display name/avatar as-is.
     bot_displayname: Signal bridge bot

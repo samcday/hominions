@@ -83,7 +83,20 @@ spec:
               sed -e "s/_AS_/$SIG_AS_TOKEN/" \
                   -e "s/_HS_/$SIG_HS_TOKEN/" \
                   -e "s/_LP_/$SIG_LP/" \
+                  -e "s/_DBUSER_/$DBUSER/" \
+                  -e "s/_DBPASS_/$DBPASS/" \
                   < /config-templates/mautrix-signal.yaml > /data/config.yaml
+          env:
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: password
           envFrom:
             - secretRef:
                 name: bridge-signal

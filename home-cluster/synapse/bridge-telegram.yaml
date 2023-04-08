@@ -53,8 +53,24 @@ spec:
             - |-
               set -uexo pipefail
               chown -R 1337:1337 /data
-              sed -e "s/_AS_/$TELE_AS_TOKEN/" -e "s/_HS_/$TELE_HS_TOKEN/" -e "s/_API_ID_/$TELE_API_ID/" -e "s/_API_HASH_/$TELE_API_HASH/" < /config-templates/mautrix-telegram.yaml > /data/config.yaml
-              cat /data/config.yaml
+              sed -e "s/_AS_/$TELE_AS_TOKEN/" \
+                  -e "s/_HS_/$TELE_HS_TOKEN/" \
+                  -e "s/_API_ID_/$TELE_API_ID/" \
+                  -e "s/_API_HASH_/$TELE_API_HASH/" \
+                  -e "s/_DBUSER_/$DBUSER/" \
+                  -e "s/_DBPASS_/$DBPASS/" \
+                  < /config-templates/mautrix-telegram.yaml > /data/config.yaml
+          env:
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-whatsapp-owner-user.synapse-db.credentials.postgresql.acid.zalan.do
+                  key: password
           envFrom:
             - secretRef:
                 name: bridge-telegram

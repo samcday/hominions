@@ -13,6 +13,12 @@ spec:
   postgresql:
     version: "15"
   preparedDatabases:
+    mautrix_signal:
+      defaultUsers: true
+      secretNamespace: synapse
+    mautrix_telegram:
+      defaultUsers: true
+      secretNamespace: synapse
     mautrix_whatsapp:
       defaultUsers: true
       secretNamespace: synapse

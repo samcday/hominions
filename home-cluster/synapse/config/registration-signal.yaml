@@ -1,4 +1,4 @@
-id: signal2
+id: signal
 url: http://bridge-signal.synapse.svc.cluster.local:29328
 as_token: _AS_
 hs_token: _HS_
@@ -9,5 +9,5 @@ namespaces:
     - exclusive: true
       regex: '@signal_.*:samcday\.com'
     - exclusive: true
-      regex: '@signalbot2:samcday\.com'
+      regex: '@signalbot:samcday\.com'
     aliases: []
