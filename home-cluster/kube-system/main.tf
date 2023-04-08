@@ -191,7 +191,7 @@ resource "b2_bucket" "postgres-backups" {
 }
 
 resource "b2_application_key" "postgres-backups" {
-  key_name     = "grafana"
+  key_name     = "postgres-backups"
   bucket_id    = b2_bucket.postgres-backups.bucket_id
   capabilities = ["listFiles", "readFiles", "writeFiles", "deleteFiles"]
 }
