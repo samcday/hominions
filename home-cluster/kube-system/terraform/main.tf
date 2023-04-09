@@ -4,21 +4,9 @@ terraform {
     namespace     = "kube-system"
   }
   required_providers {
-    b2 = {
-      source  = "Backblaze/b2"
-      version = "0.8.4"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "4.3.0"
-    }
-    fly = {
-      source  = "fly-apps/fly"
-      version = "0.0.21"
-    }
-    github = {
-      source  = "integrations/github"
-      version = "5.21.1"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -27,32 +15,10 @@ terraform {
   }
 }
 
-provider "b2" {}
-
 provider "cloudflare" {}
-
-provider "fly" {}
-
-provider "github" {}
 
 provider "kubernetes" {}
 
-# data "kubernetes_secret" "webhook-token" {
-#   metadata {
-#     name      = "webhook-token"
-#     namespace = "flux-system"
-#   }
-# }
-
-# data "kubernetes_resource" "receiver" {
-#   api_version = "notification.toolkit.fluxcd.io/v1beta1"
-#   kind        = "Receiver"
-
-#   metadata {
-#     name      = "home-cluster"
-#     namespace = "flux-system"
-#   }
-# }
 
 resource "b2_bucket" "headscale-backups" {
   bucket_name = "samcday-headscale-backups"
@@ -89,24 +55,3 @@ resource "kubernetes_secret" "kube-system-cluster-backups-bucket" {
     })
   }
 }
-
-# resource "github_repository_webhook" "hominion-push" {
-#   active = true
-#   configuration {
-#     content_type = "form"
-#     insecure_ssl = false
-#     secret       = base64decode(data.kubernetes_secret.webhook-token.data.token)
-
-# this part sadly doesn't currently work
-# maybe fixed soon? https://github.com/hashicorp/terraform-provider-kubernetes/pull/1802
-# ironically linked issue ran into problem exact same way I did, trying to scoop url out of a Flux Receiver.... Welp.
-
-#     url          = "https://home-flux.samcday.com${data.kubernetes_resource.receiver.object.status.url}"
-#   }
-#   events     = ["push"]
-#   repository = "samcday/home-cluster"
-# }
-
-# if fly adds support for secrets
-# https://github.com/fly-apps/terraform-provider-fly/issues/27
-# can manage the headscale backup bucket credentials here
