@@ -6,14 +6,15 @@ metadata:
 spec:
   receivers:
     - name: dms
-      webhook_configs:
+      webhookConfigs:
         - urlSecret:
             name: dms-url
             key: url
   route:
     routes:
       - matchers:
-          - alertname = Watchdog
+          - name: alertname
+            value: Watchdog
         receiver: dms
-        group_wait: 0s
-        repeat_interval: 30m
+        groupWait: 0s
+        repeatInterval: 30m
