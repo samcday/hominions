@@ -39,5 +39,6 @@ resources:
 - secrets.yaml
 - synapse.yaml
 # - syncthing.yaml
+- terraform.yaml
 - tf-controller.yaml
 - webhook-ingress.yaml

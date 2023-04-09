@@ -8,10 +8,6 @@ terraform {
       source  = "Backblaze/b2"
       version = "0.8.4"
     }
-    github = {
-      source  = "integrations/github"
-      version = "5.21.1"
-    }
     hcloud = {
       source  = "hetznercloud/hcloud"
       version = "1.37.0"
@@ -28,7 +24,6 @@ terraform {
 }
 
 provider "b2" {}
-provider "github" {}
 provider "hcloud" {}
 provider "kubernetes" {}
 provider "oci" {}
@@ -218,33 +213,4 @@ resource "kubernetes_config_map" "postgres-pod-env" {
     USE_WALG_BACKUP             = "true"
     USE_WALG_RESTORE            = "true"
   }
-}
-
-data "kubernetes_secret" "webhook-token" {
-  metadata {
-    name      = "webhook-token"
-    namespace = "flux-system"
-  }
-}
-
-data "kubernetes_resource" "receiver" {
-  api_version = "notification.toolkit.fluxcd.io/v1beta1"
-  kind        = "Receiver"
-
-  metadata {
-    name      = "hominions"
-    namespace = "flux-system"
-  }
-}
-
-resource "github_repository_webhook" "push" {
-  active = true
-  configuration {
-    content_type = "form"
-    insecure_ssl = false
-    secret       = data.kubernetes_secret.webhook-token.data.token
-    url          = "https://home-flux.samcday.com${data.kubernetes_resource.receiver.object.status.url}"
-  }
-  events     = ["push"]
-  repository = "samcday/hominions"
 }
