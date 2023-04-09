@@ -14,7 +14,7 @@ spec:
           value: eu-frankfurt-1
       envFrom:
         - secretRef:
-            name: backblaze-key
+            name: tf-env
         - secretRef:
             name: hcloud-token
       nodeSelector:
