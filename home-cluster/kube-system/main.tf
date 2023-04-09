@@ -43,7 +43,6 @@ resource "hcloud_placement_group" "pg" {
   type = "spread"
 }
 
-# TODO: install nfs-common
 locals {
   cloud_init = <<-HERE
   #!/bin/bash

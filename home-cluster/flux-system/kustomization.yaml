@@ -9,7 +9,6 @@ resources:
 - helmrepos/bitnami.yaml
 - helmrepos/coredns.yaml
 - helmrepos/cowboysysop.yaml
-- helmrepos/csi-driver-nfs.yaml
 - helmrepos/external-dns.yaml
 - helmrepos/fluxcd-community.yaml
 - helmrepos/grafana.yaml

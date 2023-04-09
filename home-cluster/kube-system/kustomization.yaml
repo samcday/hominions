@@ -18,14 +18,12 @@ resources:
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
-  - csi-driver-nfs.yaml
   # - external-dns/helm-release.yaml
   # - fip-hack.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
   - k3s-s3-config.yaml
-  - nfs-storageclass.yaml
   - openebs.yaml
   - postgres-operator.yaml
   - prometheus-operator.yaml
