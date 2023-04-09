@@ -17,9 +17,9 @@ spec:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
     filer:
       data:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer/data
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
       logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer/logs
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
     #   extraEnvironmentVars:
     #     WEED_LEVELDB2_ENABLED: "false"
     #     WEED_POSTGRES2_DATABASE: seaweedfs
@@ -45,13 +45,13 @@ spec:
     #         key: password
     master:
       data:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master/data
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master
       logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master/logs
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master
     s3:
       enabled: true
       logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-s3/logs
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-s3
     volume:
       replicas: 2
       nodeSelector: ""
