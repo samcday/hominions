@@ -21,13 +21,10 @@ spec:
   upgrade:
     remediation:
       retries: -1
-  valuesFrom:
-    - kind: Secret
-      name: token
-      valuesKey: token
-      targetPath: server_settings.token
   values:
     # https://github.com/samcday/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
+    account:
+      accountSecret: account
     additionalContainers:
       - name: caddy-scriptoutput
         image: caddy:2-alpine
