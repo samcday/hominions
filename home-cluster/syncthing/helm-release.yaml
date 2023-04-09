@@ -25,7 +25,7 @@ spec:
     # https://github.com/k8s-at-home/charts/blob/master/charts/stable/syncthing/values.yaml
     # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
     controller:
-      type: DaemonSet
+      type: daemonset
     persistence:
       data:
         enabled: true
