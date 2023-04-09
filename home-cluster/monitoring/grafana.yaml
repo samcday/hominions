@@ -42,8 +42,7 @@ spec:
         host: postgres-db.postgres.svc.cluster.local
         ssl_mode: require
     persistence:
-      enabled: true
-      storageClassName: openebs-hostpath
+      enabled: false
     serviceMonitor:
       enabled: true
     sidecar:
