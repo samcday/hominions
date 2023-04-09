@@ -220,6 +220,7 @@ resource "b2_bucket" "home-cluster-backups" {
   bucket_type = "allPrivate"
   lifecycle_rules {
     days_from_hiding_to_deleting = 1
+    file_name_prefix = "/"
   }
 }
 
