@@ -44,5 +44,5 @@ resource "github_repository_webhook" "push" {
     url          = "https://home-flux.samcday.com${data.kubernetes_resource.receiver.object.status.url}"
   }
   events     = ["push"]
-  repository = "samcday/hominions"
+  repository = "hominions"
 }
