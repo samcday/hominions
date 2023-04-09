@@ -67,6 +67,9 @@ spec:
         - VehicleSnap
     persistence:
       enabled: true
+      hostPath:
+        path: /srv/home-cluster-data/factorio-vanilla-megabase
+        type: Directory
     rcon:
       external: false
     resources:
