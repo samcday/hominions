@@ -218,6 +218,9 @@ resource "kubernetes_config_map" "postgres-pod-env" {
 resource "b2_bucket" "home-cluster-backups" {
   bucket_name = "samcday-home-cluster-backups"
   bucket_type = "allPrivate"
+  lifecycle_rules {
+    days_from_hiding_to_deleting = 1
+  }
 }
 
 resource "b2_application_key" "home-cluster-backups" {
