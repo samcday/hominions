@@ -214,3 +214,28 @@ resource "kubernetes_config_map" "postgres-pod-env" {
     USE_WALG_RESTORE            = "true"
   }
 }
+
+resource "b2_bucket" "home-cluster-backups" {
+  bucket_name = "samcday-home-cluster-backups"
+  bucket_type = "allPrivate"
+}
+
+resource "b2_application_key" "home-cluster-backups" {
+  key_name     = "kube-system"
+  bucket_id    = b2_bucket.home-cluster-backups.bucket_id
+  capabilities = ["listAllBucketNames", "listBuckets", "listFiles", "readFiles", "writeFiles", "deleteFiles"]
+}
+
+resource "kubernetes_secret" "backups-bucket" {
+  metadata {
+    name      = "backups-bucket"
+    namespace = "kube-system"
+  }
+
+  data = {
+    "config.yaml" = yamlencode({
+      etcd-s3-access-key = b2_application_key.home-cluster-backups.application_key_id
+      etcd-s3-secret-key = b2_application_key.home-cluster-backups.application_key
+    })
+  }
+}
