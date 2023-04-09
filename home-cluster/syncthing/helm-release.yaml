@@ -21,6 +21,14 @@ spec:
   upgrade:
     remediation:
       retries: -1
-  valuesFrom:
-  - kind: ConfigMap
-    name: syncthing-values
+  values:
+    # https://github.com/k8s-at-home/charts/blob/master/charts/stable/syncthing/values.yaml
+    # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+    controller:
+      type: DaemonSet
+    persistence:
+      data:
+        enabled: true
+        type: hostPath
+        hostPath: /srv/home-cluster-data
+        mountPath: /data

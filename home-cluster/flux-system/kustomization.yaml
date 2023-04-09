@@ -39,6 +39,6 @@ resources:
 - postgres.yaml
 - secrets.yaml
 - synapse.yaml
-# - syncthing.yaml
+- syncthing.yaml
 - tf-controller.yaml
 - webhook-ingress.yaml
