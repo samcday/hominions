@@ -42,12 +42,13 @@ spec:
         configMap:
           name: vanilla-megabase-caddyfile
     affinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 1
-          preference:
-            matchExpressions:
-            - key: samcday.com/cloud
-              operator: Exists
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: samcday.com/cloud
+                operator: Exists
     factorioServer:
       generate_new_save: false
       save_name: 2021megabae
