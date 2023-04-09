@@ -15,7 +15,11 @@ spec:
   interval: 5m
   values:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
-    # filer:
+    filer:
+      data:
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer/data
+      logs:
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer/logs
     #   extraEnvironmentVars:
     #     WEED_LEVELDB2_ENABLED: "false"
     #     WEED_POSTGRES2_DATABASE: seaweedfs
@@ -39,8 +43,15 @@ spec:
     #       secretKeyRef:
     #         name: seaweedfs-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
     #         key: password
+    master:
+      data:
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master/data
+      logs:
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master/logs
     s3:
       enabled: true
+      logs:
+        hostPathPrefix: /srv/home-cluster-data/seaweedfs-s3/logs
     volume:
       replicas: 2
       nodeSelector: ""
