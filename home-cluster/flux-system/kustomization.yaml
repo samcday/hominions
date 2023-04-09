@@ -22,7 +22,6 @@ resources:
 - helmrepos/postgres-operator.yaml
 - helmrepos/prometheus-community.yaml
 - helmrepos/samcday-tailscale-node-controller.yaml
-- helmrepos/sops-secrets-operator.yaml
 - helmrepos/tf-controller.yaml
 - helmrepos/zalando-postgres-operator.yaml
 - extra.yaml
@@ -38,6 +37,7 @@ resources:
 - nitter.yaml
 - postgres.yaml
 - secrets.yaml
+- seaweedfs.yaml
 - synapse.yaml
 - syncthing.yaml
 - tf-controller.yaml

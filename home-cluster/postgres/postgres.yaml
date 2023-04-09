@@ -20,7 +20,12 @@ spec:
       defaultUsers: true
       extensions:
         hstore: data
-      secretNamespace: miniflux
+      secretNamespace : miniflux
+    seaweedfs:
+      defaultUsers: true
+      schemas:
+        public: {}
+      secretNamespace: seaweedfs
   teamId: postgres
   volume:
     storageClass: openebs-hostpath
