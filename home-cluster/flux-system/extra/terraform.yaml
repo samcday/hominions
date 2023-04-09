@@ -16,6 +16,3 @@ spec:
     kind: GitRepository
     name: hominions
     namespace: flux-system
-  varsFrom:
-    - kind: Secret
-      name: tf-vars
