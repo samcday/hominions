@@ -62,6 +62,7 @@ spec:
               - targets:
                   - home-router.hominions.tailnet.samcday.com:9100
                   - home-router-standby.hominions.tailnet.samcday.com:9100
+                  - sam-laptop.personal.tailnet.samcday.com:9100
         enableAdminAPI: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false

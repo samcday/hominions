@@ -7,7 +7,7 @@ acls:
   # Hominions devices can access each other, everything in home-cluster Pod/Svc CIDRs, and personal etcd
   - action: accept
     src: [group:hominions, home-cluster-pods-4]
-    dst: [group:hominions:*, home-cluster-pods-4:*, home-cluster-svcs-4:*, group:personal:2379]
+    dst: [group:hominions:*, home-cluster-pods-4:*, home-cluster-svcs-4:*, group:personal:2379, group:personal:9100]
 
 autoApprovers:
   routes:
