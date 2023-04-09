@@ -1,0 +1,11 @@
+container-runtime-endpoint: /run/containerd/containerd.sock
+disable:
+  - local-storage
+  - servicelb
+  - traefik
+etcd-s3-endpoint: s3.eu-central-003.backblazeb2.com
+etcd-s3-bucket: samcday-home-cluster-backups
+etcd-s3-region: eu-central-003
+# the rest of the s3 config (including enabling it by default) is set dynamically by cluster
+# see the k3s-s3-config DaemonSet
+flannel-backend: none

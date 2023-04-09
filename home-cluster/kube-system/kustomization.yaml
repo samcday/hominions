@@ -12,10 +12,6 @@ configMapGenerator:
     files: [terraform/.terraform.lock.hcl, terraform/main.tf]
   - name: vertical-pod-autoscaler-values
     files: [vertical-pod-autoscaler/values.yaml]
-secretGenerator:
-  - name: k3s-config
-    files: [k3s-agent.yaml, k3s-server.yaml]
-    options: {disableNameSuffixHash: true}
 resources:
   - ../config
   - cert-manager.yaml
@@ -28,6 +24,7 @@ resources:
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
+  - k3s-s3-config.yaml
   - nfs-storageclass.yaml
   - openebs.yaml
   - postgres-operator.yaml

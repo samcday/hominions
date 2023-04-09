@@ -1,0 +1,1 @@
+container-runtime-endpoint: /run/containerd/containerd.sock

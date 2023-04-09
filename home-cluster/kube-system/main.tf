@@ -236,6 +236,7 @@ resource "kubernetes_secret" "backups-bucket" {
     "config.yaml" = yamlencode({
       etcd-s3-access-key = b2_application_key.home-cluster-backups.application_key_id
       etcd-s3-secret-key = b2_application_key.home-cluster-backups.application_key
+      etcd-s3            = true
     })
   }
 }
