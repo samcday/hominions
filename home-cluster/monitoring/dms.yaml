@@ -12,9 +12,9 @@ spec:
             key: url
   route:
     routes:
-      - matchers:
-          - name: alertname
-            value: Watchdog
-        receiver: dms
-        groupWait: 0s
-        repeatInterval: 30m
+      matchers:
+        - name: alertname
+          value: Watchdog
+      receiver: dms
+      groupWait: 0s
+      repeatInterval: 30m
