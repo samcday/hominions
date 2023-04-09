@@ -11,8 +11,7 @@ spec:
             name: dms-url
             key: url
   route:
-    routes:
-      matchers:
+    - matchers:
         - name: alertname
           value: Watchdog
       receiver: dms
