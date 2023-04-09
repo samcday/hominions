@@ -27,7 +27,7 @@ spec:
       valuesKey: token
       targetPath: server_settings.token
   values:
-    # https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
+    # https://github.com/samcday/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
     additionalContainers:
       - name: caddy-scriptoutput
         image: caddy:2-alpine
@@ -61,9 +61,9 @@ spec:
         - VehicleSnap
     persistence:
       enabled: true
-      dataDir:
-        Size: 10Gi
-      storageClassName: nfs
+      hostPath:
+        path: /srv/home-cluster-data/factorio-vanilla-megabase
+        type: Directory
     rcon:
       external: false
     resources:
