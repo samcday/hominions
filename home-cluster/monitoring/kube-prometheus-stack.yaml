@@ -31,8 +31,6 @@ spec:
       config:
         receivers:
           - name: dms
-            webhook_configs:
-              - url: ~
           - name: "null"
         route:
           routes:
