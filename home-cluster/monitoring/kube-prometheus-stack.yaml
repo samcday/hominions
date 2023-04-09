@@ -28,24 +28,6 @@ spec:
         tolerations: &toler
           - key: samcday.com/cloud
             effect: NoExecute
-      config:
-        receivers:
-          - name: dms
-            webhook_configs:
-              - urlSecret:
-                  name: dms-url
-                  key: url
-          - name: "null"
-        route:
-          routes:
-            - matchers:
-                - alertname = Watchdog
-              receiver: dms
-              group_wait: 0s
-              repeat_interval: 30m
-            - matchers:
-              - alertname = InfoInhibitor
-              receiver: null
       ingress:
         enabled: false
         ingressClassName: nginx

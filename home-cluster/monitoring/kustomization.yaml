@@ -4,6 +4,7 @@ namespace: monitoring
 resources:
   - ../config
   - dashboards
+  - dms.yaml
   - grafana.yaml
   - ingress-nginx-pod-monitor.yaml
   # - loki/
