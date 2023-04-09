@@ -72,6 +72,12 @@ spec:
         hosts: [prometheus.home.samcday.com]
         paths: [/]
       prometheusSpec:
+        additionalScrapeConfigs:
+          - job_name: node-exporter
+            static_configs:
+              - targets:
+                  - home-router.hominions.tailnet.samcday.com:9100
+                  - home-router-standby.hominions.tailnet.samcday.com:9100
         enableAdminAPI: true
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
