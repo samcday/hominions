@@ -25,6 +25,7 @@ resources:
 - helmrepos/sops-secrets-operator.yaml
 - helmrepos/tf-controller.yaml
 - helmrepos/zalando-postgres-operator.yaml
+- extra.yaml
 - factorio.yaml
 - flux-system.yaml
 - homepage.yaml
@@ -39,6 +40,5 @@ resources:
 - secrets.yaml
 - synapse.yaml
 # - syncthing.yaml
-- terraform.yaml
 - tf-controller.yaml
 - webhook-ingress.yaml
