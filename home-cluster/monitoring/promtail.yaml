@@ -25,47 +25,39 @@ spec:
     # https://github.com/grafana/helm-charts/blob/main/charts/promtail/values.yaml
     config:
       lokiAddress: http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push
-    #   snippets:
-    #     extraScrapeConfigs: |
-    #       - job_name: kubernetes-audit
-    #         pipeline_stages:
-    #         - json:
-    #             expressions:
-    #               user: user.username
-    #               verb: verb
-    #               uri: requestURI
-    #               ip: sourceIPs[0]
-    #               agent: userAgent
-    #               resource: objectRef.resource
-    #               namespace: objectRef.namespace
-    #               name: objectRef.name
-    #               code: responseStatus.code
-    #               annotations: annotations
-    #         - labels:
-    #             user:
-    #             verb:
-    #             uri:
-    #             ip:
-    #             agent:
-    #             resource:
-    #             namespace:
-    #             name:
-    #             code:
-    #             annotations:
-    #         static_configs:
-    #         - targets:
-    #           - localhost
-    #           labels:
-    #             job: audit
-    #             __path__: /var/log/kubernetes/audit/audit.log
-    # extraVolumes:
-    # - name: audit
-    #   hostPath:
-    #     path: /var/log/kubernetes/audit
-    # extraVolumeMounts:
-    # - name: audit
-    #   mountPath: /var/log/kubernetes/audit
-    #   readOnly: true
+      snippets:
+        extraScrapeConfigs: |
+          # Add an additional scrape config for syslog
+          - job_name: journal
+            journal:
+              path: /var/log/journal
+              max_age: 12h
+              labels:
+                job: systemd-journal
+            relabel_configs:
+              - source_labels:
+                  - __journal__hostname
+                target_label: hostname
+              - source_labels:
+                  - __journal__systemd_unit
+                target_label: unit
+              - source_labels:
+                  - __journal_priority_keyword
+                target_label: level
+    extraVolumes:
+      - name: journal
+        hostPath:
+          path: /var/log/journal
+      - name: machine-id
+        hostPath:
+          path: /etc/machine-id
+    extraVolumeMounts:
+      - name: journal
+        mountPath: /var/log/journal
+        readOnly: true
+      - name: machine-id
+        mountPath: /etc/machine-id
+        readOnly: true
     serviceMonitor:
       enabled: true
     tolerations:
