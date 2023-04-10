@@ -17,6 +17,7 @@ spec:
     filer:
       data: &flr
         hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
+      encryptVolumeData: true
       logs: *flr
     master:
       data: &mstr
