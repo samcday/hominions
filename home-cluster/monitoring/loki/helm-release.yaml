@@ -48,7 +48,7 @@ spec:
           secretAccessKey: dummy
     monitoring:
       lokiCanary:
-        tolerations: *toler
+        enabled: false
       selfMonitoring:
         enabled: false
         grafanaAgent:
