@@ -9,9 +9,6 @@ spec:
   path: home-cluster/kube-system
   runnerPodTemplate:
     spec:
-      env:
-        - name: OCI_REGION
-          value: eu-frankfurt-1
       envFrom:
         - secretRef:
             name: tf-env
