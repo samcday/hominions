@@ -16,55 +16,18 @@ spec:
   values:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
     filer:
-      data:
+      data: &flr
         hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
-      logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
-    #   extraEnvironmentVars:
-    #     WEED_LEVELDB2_ENABLED: "false"
-    #     WEED_POSTGRES2_DATABASE: seaweedfs
-    #     WEED_POSTGRES2_ENABLED: "true"
-    #     WEED_POSTGRES2_HOSTNAME: postgres-db.postgres.svc.cluster.local
-    #     WEED_POSTGRES2_SSLMODE: require
-    #     WEED_POSTGRES2_CREATETABLE: |-
-    #       CREATE TABLE IF NOT EXISTS "%s" (
-    #         dirhash   BIGINT,
-    #         name      VARCHAR(65535),
-    #         directory VARCHAR(65535),
-    #         meta      bytea,
-    #         PRIMARY KEY (dirhash, name)
-    #       );
-    #   secretExtraEnvironmentVars:
-    #     WEED_POSTGRES2_USERNAME:
-    #       secretKeyRef:
-    #         name: seaweedfs-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
-    #         key: username
-    #     WEED_POSTGRES2_PASSWORD:
-    #       secretKeyRef:
-    #         name: seaweedfs-owner-user.postgres-db.credentials.postgresql.acid.zalan.do
-    #         key: password
+      logs: *flr
     master:
-      data:
+      data: &mstr
         hostPathPrefix: /srv/home-cluster-data/seaweedfs-master
-      logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master
-    s3:
-      enabled: true
-      logs:
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-s3
+      logs: *mstr
     volume:
-      replicas: 2
+      replicas: 1
       nodeSelector: ""
-      data:
-        type: persistentVolumeClaim
-        size: 10G
-        storageClass: openebs-hostpath
+      data: &vol
+        hostPathPrefix: /srv/seaweedfs-volume
       index: leveldb
-      idx:
-        type: persistentVolumeClaim
-        size: 10G
-        storageClass: openebs-hostpath
-      logs:
-        type: persistentVolumeClaim
-        size: 10G
-        storageClass: openebs-hostpath
+      idx: *vol
+      logs: *vol
