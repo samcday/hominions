@@ -46,6 +46,8 @@ spec:
             effect: NoExecute
       selfMonitoring:
         enabled: false
+        grafanaAgent:
+          installOperator: false
     singleBinary:
       replicas: 2
       tolerations: *toler
