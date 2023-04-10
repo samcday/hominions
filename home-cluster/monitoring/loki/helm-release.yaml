@@ -23,11 +23,10 @@ spec:
       retries: -1
   values:
     # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
-    gateway: &modestwebscale
-      autoscaling:
+    gateway:
+      autoscaling: &modestwebscale
         enabled: true
         maxReplicas: 4
-      replicas: 2
       tolerations: &toler
         - key: samcday.com/cloud
           effect: NoExecute
@@ -55,5 +54,12 @@ spec:
         grafanaAgent:
           installOperator: false
     singleBinary:
+      autoscaling: *modestwebscale
+      persistence:
+        enabled: false
+      replicas: 2
+      # Give ample time to flush, since there's no persistence.
+      terminationGracePeriodSeconds: 600
+      tolerations: *toler
     test:
       enabled: false
