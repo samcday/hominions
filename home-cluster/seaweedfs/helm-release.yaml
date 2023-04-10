@@ -57,11 +57,14 @@ spec:
       nodeSelector: ""
       data:
         type: persistentVolumeClaim
+        size: 10G
         storageClass: openebs-hostpath
       index: leveldb
       idx:
         type: persistentVolumeClaim
+        size: 10G
         storageClass: openebs-hostpath
       logs:
         type: persistentVolumeClaim
+        size: 10G
         storageClass: openebs-hostpath
