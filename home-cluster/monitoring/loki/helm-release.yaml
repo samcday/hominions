@@ -56,10 +56,8 @@ spec:
     singleBinary:
       autoscaling: *modestwebscale
       persistence:
-        enabled: false
-      replicas: 2
-      # Give ample time to flush, since there's no persistence.
-      terminationGracePeriodSeconds: 600
+        storageClass: openebs-hostpath
+      replicas: 1
       tolerations: *toler
     test:
       enabled: false
