@@ -40,6 +40,8 @@ spec:
             - |-
               set -uexo pipefail
 
+              chown 991:991 /media
+
               sed -e "s/_AS_/$WA_AS/" \
                   -e "s/_HS_/$WA_HS/" \
                   -e "s/_LP_/$WA_LP/" < /config-templates/registration-whatsapp.yaml > /config/registration-whatsapp.yaml
