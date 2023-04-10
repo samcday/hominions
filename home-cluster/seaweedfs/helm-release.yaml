@@ -7,11 +7,10 @@ metadata:
 spec:
   chart:
     spec:
-      chart: seaweedfs
+      chart: charts/seaweedfs
       sourceRef:
-        kind: HelmRepository
-        name: seaweedfs
-      version: "3.45"
+        kind: GitRepository
+        name: samcday-seaweedfs
   interval: 5m
   values:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
