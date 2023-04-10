@@ -51,3 +51,5 @@ spec:
     singleBinary:
       replicas: 2
       tolerations: *toler
+    test:
+      enabled: false
