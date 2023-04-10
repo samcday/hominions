@@ -7,7 +7,7 @@ resources:
   - dms.yaml
   - grafana.yaml
   - ingress-nginx-pod-monitor.yaml
-  # - loki/
+  - loki/
   - kube-prometheus-stack.yaml
   - namespace.yaml
   # - promtail.yaml

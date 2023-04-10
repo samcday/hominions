@@ -14,10 +14,8 @@ configMapGenerator:
   options:
     labels:
       grafana_datasource: "1"
-- name: loki-values
-  files: [values.yaml]
 resources:
-- ../../config
-- alerts.yaml
-- helm-release.yaml
-- recordingrules.yaml
+  - ../../config
+  - alerts.yaml
+  - helm-release.yaml
+  - recordingrules.yaml
