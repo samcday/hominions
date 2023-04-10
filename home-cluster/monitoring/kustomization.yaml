@@ -10,5 +10,5 @@ resources:
   - loki/
   - kube-prometheus-stack.yaml
   - namespace.yaml
-  # - promtail.yaml
+  - promtail.yaml
   - terraform.yaml

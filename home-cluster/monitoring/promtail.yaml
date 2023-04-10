@@ -23,7 +23,7 @@ spec:
       retries: -1
   values:
     config:
-      lokiAddress: http://loki:3100/loki/api/v1/push
+      lokiAddress: http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push
     #   snippets:
     #     extraScrapeConfigs: |
     #       - job_name: kubernetes-audit
