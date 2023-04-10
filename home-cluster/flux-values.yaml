@@ -4,7 +4,7 @@ helmController: &gofast
     additionalargs:
       - --concurrent=10
   replicas: 2
-  tolerations:
+  tolerations: &toler
     - key: samcday.com/cloud
       effect: NoExecute
 imageAutomationController:
@@ -12,10 +12,10 @@ imageAutomationController:
 imageReflectionController:
   create: false
 kustomizeController: *gofast
+notificationController:
+  tolerations: *toler
 prometheus:
   podMonitor:
     create: true
 sourceController:
-  tolerations:
-    - key: samcday.com/cloud
-      effect: NoExecute
+  tolerations: *toler
