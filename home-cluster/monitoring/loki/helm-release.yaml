@@ -39,6 +39,9 @@ spec:
           insecure: true
           s3ForcePathStyle: true
           secretAccessKey: dummy
+    monitoring:
+      selfMonitoring:
+        enabled: false
     singleBinary:
       replicas: 2
       tolerations:
