@@ -6,7 +6,7 @@ terraform {
   required_providers {
     github = {
       source  = "integrations/github"
-      version = "5.21.1"
+      version = "5.22.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
