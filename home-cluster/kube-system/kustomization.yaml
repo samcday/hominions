@@ -8,8 +8,6 @@ configMapGenerator:
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: hcloud-fip-values
     files: [hcloud-fip/values.yaml]
-  - name: terraform-config
-    files: [terraform/.terraform.lock.hcl, terraform/main.tf]
   - name: vertical-pod-autoscaler-values
     files: [vertical-pod-autoscaler/values.yaml]
 resources:

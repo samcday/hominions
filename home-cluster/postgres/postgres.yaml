@@ -8,6 +8,11 @@ spec:
   postgresql:
     version: "15"
   preparedDatabases:
+    forgejo:
+      defaultUsers: true
+      schemas:
+        public: {}
+      secretNamespace: forgejo
     grafana:
       defaultUsers: true
       secretNamespace: monitoring

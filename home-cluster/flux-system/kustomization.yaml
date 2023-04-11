@@ -26,6 +26,7 @@ resources:
 - extra.yaml
 - factorio.yaml
 - flux-system.yaml
+- forgejo.yaml
 - homepage.yaml
 - invidious.yaml
 # - jellyfin.yaml
