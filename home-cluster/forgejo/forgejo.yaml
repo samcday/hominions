@@ -38,6 +38,9 @@ spec:
         git.timeout:
           MIGRATE: 1200
           MIRROR: 1200
+        storage:
+          STORAGE_TYPE: minio
+          MINIO_ENDPOINT: seaweedfs-s3.seaweedfs.svc.cluster.local:8333
     postgresql:
       enabled: false
   valuesFrom:
