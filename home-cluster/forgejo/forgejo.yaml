@@ -27,6 +27,8 @@ spec:
         - secretName: tls
           hosts: [code.samcday.com]
     gitea:
+      actions:
+        ENABLED: true
       admin:
         email: me@samcday.com
         username: samcday
@@ -41,6 +43,16 @@ spec:
           MIGRATE: 1200
           MIRROR: 1200
         lfs: *s3
+        metrics:
+          ENABLED: true
+          ENABLED_ISSUE_BY_LABEL: true
+          ENABLED_ISSUE_BY_REPOSITORY: true
+        server:
+          DISABLE_SSH: true
+        service:
+          DISABLE_REGISTRATION: true
+        session:
+          PROVIDER: db
         storage:
           MINIO_ENDPOINT: seaweedfs-s3.seaweedfs.svc.cluster.local:8333
         storage.repo-archive: *s3
