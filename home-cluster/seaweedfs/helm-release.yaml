@@ -15,14 +15,18 @@ spec:
   values:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
     filer:
-      data: &flr
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-filer
+      data: &pvc
+        type: persistentVolumeClaim
+        size: 10Gi
+        storageClass: openebs-hostpath
       encryptVolumeData: true
-      logs: *flr
+      logs: *pvc
     master:
-      data: &mstr
-        hostPathPrefix: /srv/home-cluster-data/seaweedfs-master
-      logs: *mstr
+      data: &pvc
+        type: persistentVolumeClaim
+        size: 10Gi
+        storageClass: openebs-hostpath
+      logs: *pvc
     volume:
       replicas: 1
       nodeSelector: ""
