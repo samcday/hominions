@@ -10,7 +10,7 @@ terraform {
     }
     hcloud = {
       source  = "hetznercloud/hcloud"
-      version = "1.37.0"
+      version = "1.38.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -100,24 +100,11 @@ locals {
   HERE
 }
 
-resource "hcloud_server" "node1" {
-  name               = "hc-1.hominions.tailnet.samcday.com"
+resource "hcloud_server" "node" {
+  count              = 3
+  name               = "hc-${count.index + 1}.hominions.tailnet.samcday.com"
   image              = "ubuntu-22.04"
-  server_type        = "cx31"
-  location           = "fsn1"
-  placement_group_id = hcloud_placement_group.pg.id
-  ssh_keys           = ["me"]
-  user_data          = local.cloud_init
-  public_net {
-    ipv4_enabled = true
-    ipv6_enabled = true
-  }
-}
-
-resource "hcloud_server" "node2" {
-  name               = "hc-2.hominions.tailnet.samcday.com"
-  image              = "ubuntu-22.04"
-  server_type        = "cx31"
+  server_type        = "cax21"
   location           = "fsn1"
   placement_group_id = hcloud_placement_group.pg.id
   ssh_keys           = ["me"]
@@ -219,7 +206,7 @@ resource "b2_bucket" "home-cluster-backups" {
   bucket_type = "allPrivate"
   lifecycle_rules {
     days_from_hiding_to_deleting = 1
-    file_name_prefix = "/"
+    file_name_prefix             = "/"
   }
 }
 
