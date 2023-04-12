@@ -69,9 +69,7 @@ spec:
         kubernetes.io/arch: amd64
     persistence:
       enabled: true
-      hostPath:
-        path: /srv/home-cluster-data/factorio-vanilla-megabase
-        type: Directory
+      storageClassName: openebs-hostpath
     rcon:
       external: false
     resources:
