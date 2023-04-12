@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: k8s/charts/seaweedfs
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: samcday-seaweedfs
