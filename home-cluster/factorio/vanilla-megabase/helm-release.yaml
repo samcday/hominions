@@ -65,6 +65,8 @@ spec:
         - helmod
         - ModuleInserter
         - VehicleSnap
+    nodeSelector:
+        kubernetes.io/arch: amd64
     persistence:
       enabled: true
       hostPath:
