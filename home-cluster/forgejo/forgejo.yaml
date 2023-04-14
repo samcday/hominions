@@ -27,12 +27,12 @@ spec:
         - secretName: tls
           hosts: [code.samcday.com]
     gitea:
-      actions:
-        ENABLED: true
       admin:
         email: me@samcday.com
         username: samcday
       config:
+        actions:
+          ENABLED: true
         attachment: &s3
           STORAGE_TYPE: minio
         database:
