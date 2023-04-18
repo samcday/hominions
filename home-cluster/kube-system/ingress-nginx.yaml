@@ -51,9 +51,12 @@ spec:
       service:
         enabled: false
       terminationGracePeriodSeconds: 5
-      tolerations:
-        - key: samcday.com/cloud
-          operator: Exists
-          effect: NoExecute
+      # For now this doesn't make sense, uplink is slow at home.
+      # But many services are responding from there, so *only* run ingress-nginx
+      # at home for now.
+      # tolerations:
+      #   - key: samcday.com/cloud
+      #     operator: Exists
+      #     effect: NoExecute
       updateStrategy:
         type: Recreate
