@@ -29,7 +29,7 @@ spec:
     gitea:
       admin:
         email: me@samcday.com
-        username: samcday
+        username: me
       config:
         actions:
           ENABLED: true
