@@ -24,9 +24,6 @@ spec:
   values:
     # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
     gateway:
-      autoscaling: &modestwebscale
-        enabled: true
-        maxReplicas: 4
       tolerations: &toler
         - key: samcday.com/cloud
           effect: NoExecute
@@ -54,7 +51,6 @@ spec:
         grafanaAgent:
           installOperator: false
     singleBinary:
-      autoscaling: *modestwebscale
       persistence:
         storageClass: openebs-hostpath
       replicas: 1
