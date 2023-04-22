@@ -5,7 +5,7 @@ metadata:
   name: postgres
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 15m
   path: home-cluster/postgres
   prune: true
   sourceRef:

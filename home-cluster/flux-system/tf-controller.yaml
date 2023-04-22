@@ -7,13 +7,12 @@ metadata:
 spec:
   chart:
     spec:
-      chart: tf-controller
+      chart: charts/tf-controller
       sourceRef:
-        kind: HelmRepository
-        name: tf-controller
+        kind: GitRepositogy
+        name: weaveworks-tf-controller
         namespace: flux-system
-      version: v0.14.0
-  interval: 5m
+  interval: 1h
   releaseName: tf-controller
   values:
     # https://github.com/weaveworks/tf-controller/blob/main/charts/tf-controller/values.yaml

@@ -5,7 +5,7 @@ metadata:
   name: homepage
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 30m
   path: home-cluster/homepage
   prune: true
   sourceRef:

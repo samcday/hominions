@@ -5,7 +5,7 @@
 #   name: jellyfin
 #   namespace: flux-system
 # spec:
-#   interval: 5m
+#   interval: 15m
 #   path: home-cluster/jellyfin
 #   prune: true
 #   sourceRef:
