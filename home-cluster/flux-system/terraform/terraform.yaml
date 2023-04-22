@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1h
   approvePlan: auto
-  path: home-cluster/flux-system
+  path: home-cluster/flux-system/terraform
   runnerPodTemplate:
     spec:
       envFrom:
