@@ -9,7 +9,7 @@ spec:
     spec:
       chart: charts/tf-controller
       sourceRef:
-        kind: GitRepositogy
+        kind: GitRepository
         name: weaveworks-tf-controller
         namespace: flux-system
   interval: 1h
