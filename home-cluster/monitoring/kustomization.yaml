@@ -11,4 +11,4 @@ resources:
   - kube-prometheus-stack.yaml
   - namespace.yaml
   - promtail.yaml
-  - terraform.yaml
+  # - terraform.yaml
