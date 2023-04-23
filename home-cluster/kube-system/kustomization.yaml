@@ -25,6 +25,7 @@ resources:
   - openebs.yaml
   - postgres-operator.yaml
   - prometheus-operator.yaml
+  - stc.yaml
   - tailscale-node-controller.yaml
   # - terraform.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
