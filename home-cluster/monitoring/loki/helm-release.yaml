@@ -52,7 +52,7 @@ spec:
           installOperator: false
     singleBinary:
       persistence:
-        storageClass: openebs-hostpath
+        storageClass: syncthing
       replicas: 1
       tolerations: *toler
     test:
