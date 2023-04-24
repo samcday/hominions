@@ -56,6 +56,8 @@ spec:
         storage:
           MINIO_ENDPOINT: seaweedfs-s3.seaweedfs.svc.cluster.local:8333
         storage.repo-archive: *s3
+    persistence:
+      storageClass: syncthing
     postgresql:
       enabled: false
   valuesFrom:
