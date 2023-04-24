@@ -77,7 +77,7 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
-              storageClassName: openebs-hostpath
+              storageClassName: syncthing
         tolerations: *toler
         walCompression: true
     # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-node-exporter/values.yaml
