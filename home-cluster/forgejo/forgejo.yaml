@@ -40,8 +40,8 @@ spec:
           NAME: forgejo
           SSL_MODE: require
         git.timeout:
-          MIGRATE: 1200
-          MIRROR: 1200
+          MIGRATE: 3600
+          MIRROR: 3600
         lfs: *s3
         metrics:
           ENABLED: true
