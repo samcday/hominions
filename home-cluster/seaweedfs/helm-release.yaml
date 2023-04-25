@@ -19,15 +19,10 @@ spec:
       data: &pvc
         type: persistentVolumeClaim
         size: 10Gi
-        storageClass: openebs-hostpath
+        storageClass: syncthing
       encryptVolumeData: true
-      logs: *pvc
     master:
-      data: &pvc
-        type: persistentVolumeClaim
-        size: 10Gi
-        storageClass: openebs-hostpath
-      logs: *pvc
+      data: *pvc
     volume:
       replicas: 1
       nodeSelector: ""
