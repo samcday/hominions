@@ -21,6 +21,9 @@ spec:
         size: 10Gi
         storageClass: syncthing
       encryptVolumeData: true
+    global:
+      monitoring:
+        enabled: true
     master:
       data: *pvc
     volume:
