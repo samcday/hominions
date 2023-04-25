@@ -33,5 +33,5 @@ spec:
       secretNamespace: seaweedfs
   teamId: postgres
   volume:
-    storageClass: openebs-hostpath
+    storageClass: syncthing
     size: 10Gi
