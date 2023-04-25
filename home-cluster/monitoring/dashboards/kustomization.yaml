@@ -59,3 +59,9 @@ configMapGenerator:
     options:
       annotations:
         grafana_folder: 'Prometheus'
+  - name: seaweedfs-dashboards
+    files:
+      - seaweedfs/grafana_seaweedfs.json
+    options:
+      annotations:
+        grafana_folder: SeaweedFS
