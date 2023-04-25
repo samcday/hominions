@@ -22,7 +22,6 @@ resources:
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
   - k3s-s3-config.yaml
-  - openebs.yaml
   - postgres-operator.yaml
   - prometheus-operator.yaml
   - stc.yaml

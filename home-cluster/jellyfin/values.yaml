@@ -9,8 +9,8 @@ ingress:
 persistence:
   config:
     enabled: true
-    storageClass: openebs-hostpath
+    storageClass: syncthing
   media:
     enabled: true
-    storageClass: openebs-hostpath
+    storageClass: syncthing
     size: 100Gi
