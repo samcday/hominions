@@ -30,5 +30,5 @@ spec:
       secretNamespace: synapse
   teamId: synapse
   volume:
-    storageClass: openebs-hostpath
+    storageClass: syncthing
     size: 10Gi
