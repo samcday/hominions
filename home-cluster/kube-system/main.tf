@@ -195,9 +195,6 @@ resource "kubernetes_config_map" "postgres-pod-env" {
     AWS_SECRET_ACCESS_KEY       = b2_application_key.postgres-backups.application_key
     CLONE_AWS_ACCESS_KEY_ID     = b2_application_key.postgres-backups.application_key_id
     CLONE_AWS_SECRET_ACCESS_KEY = b2_application_key.postgres-backups.application_key
-    CLONE_USE_WALG_RESTORE      = "true"
-    USE_WALG_BACKUP             = "true"
-    USE_WALG_RESTORE            = "true"
   }
 }
 
