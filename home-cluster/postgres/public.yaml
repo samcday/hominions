@@ -15,6 +15,11 @@ spec:
   postgresql:
     version: "15"
   preparedDatabases:
+    invidious:
+      defaultUsers: true
+      schemas:
+        public: {}
+      secretNamespace: invidious
     mastodon:
       defaultUsers: true
       schemas:
