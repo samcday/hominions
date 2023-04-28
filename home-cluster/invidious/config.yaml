@@ -1,7 +1,7 @@
 db:
   user: ${PGUSER}
   password: ${PGPASSWORD}
-  host: postgres-db.postgres.svc.cluster.local.
+  host: public-db.postgres.svc.cluster.local.
   port: 5432
   dbname: invidious
 
