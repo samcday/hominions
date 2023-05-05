@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       chart: .
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: mastodon-chart
@@ -60,7 +61,7 @@ spec:
         enabled: true
         username: me
         email: me@samcday.com
-      local_domain: samcday.com
+      local_domain: samcday.social
       persistence:
         assets:
           accessMode: ReadWriteMany
@@ -82,7 +83,6 @@ spec:
         server: smtp.mailgun.org
         tls: false
         existingSecret: mailgun
-      web_domain: mastodon.samcday.com
     postgresql:
       enabled: false
       postgresqlHostname: public-db.postgres.svc.cluster.local.
