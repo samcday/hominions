@@ -49,13 +49,13 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
       hosts:
-        - host: mastodon.samcday.com
+        - host: samcday.social
           paths:
             - path: '/'
       ingressClassName: nginx
       tls:
         - secretName: tls
-          hosts: [mastodon.samcday.com]
+          hosts: [samcday.social]
     mastodon:
       createAdmin:
         enabled: true
