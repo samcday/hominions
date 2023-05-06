@@ -87,7 +87,7 @@ spec:
       non_blocking_saving: true
     service:
       type: NodePort
-      nodePort: 27015
+      port: 27015
     tolerations:
       - key: samcday.com/cloud
         effect: NoExecute
