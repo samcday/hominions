@@ -2,7 +2,7 @@ Early bootstrapping:
 
 ```sh
 
-k3sup install --host librem13.hominions.tailnet.samcday.com --k3s-channel v1.25 --cluster --k3s-extra-args "--container-runtime-endpoint=/run/containerd/containerd.sock --node-ip=$(tailscale ip -4 librem13.hominions.tailnet.samcday.com) --flannel-backend=none --disable=traefik --disable=servicelb --disable=local-storage"
+k3sup install --host librem13.hominions.tailnet.samcday.com --k3s-channel v1.26 --cluster --k3s-extra-args "--container-runtime-endpoint=/run/containerd/containerd.sock --node-ip=$(tailscale ip -4 librem13.hominions.tailnet.samcday.com) --flannel-backend=none --disable=traefik --disable=servicelb --disable=local-storage"
 kubectl apply -f home-cluster/kube-system/ip-masq-agent.yaml
 
 helm install flux flux2 -repo=https://fluxcd-community.github.io/helm-charts -n flux-system --create-namespace
