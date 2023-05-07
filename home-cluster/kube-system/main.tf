@@ -101,10 +101,10 @@ locals {
 }
 
 resource "hcloud_server" "node" {
-  count              = 3
+  count              = 2
   name               = "hc-${count.index + 1}.hominions.tailnet.samcday.com"
   image              = "ubuntu-22.04"
-  server_type        = count.index == 0 ? "cpx21" : "cax21"
+  server_type        = count.index == 0 ? "cax21" : "cpx31"
   location           = "fsn1"
   placement_group_id = hcloud_placement_group.pg.id
   ssh_keys           = ["me"]
