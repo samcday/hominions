@@ -21,6 +21,19 @@ spec:
   upgrade:
     remediation:
       retries: -1
-  valuesFrom:
-  - kind: ConfigMap
-    name: external-dns-values
+  values:
+    # https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/values.yaml
+    env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare
+          key: token
+    logLevel: debug
+    policy: sync
+    provider: cloudflare
+    serviceMonitor:
+      enabled: true
+    sources:
+      - service
+    txtOwnerId: home-cluster

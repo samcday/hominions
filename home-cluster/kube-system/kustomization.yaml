@@ -2,8 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: kube-system
 configMapGenerator:
-  - name: external-dns-values
-    files: [external-dns/values.yaml]
   - name: hcloud-cloud-init
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
   - name: hcloud-fip-values
@@ -16,7 +14,7 @@ resources:
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
-  # - external-dns/helm-release.yaml
+  - external-dns.yaml
   # - fip-hack.yaml
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
