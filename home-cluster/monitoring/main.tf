@@ -6,7 +6,7 @@ terraform {
   required_providers {
     dmsnitch = {
       source  = "plukevdh/dmsnitch"
-      version = "0.1.4"
+      version = "0.1.5"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
