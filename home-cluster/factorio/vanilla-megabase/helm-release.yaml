@@ -41,14 +41,6 @@ spec:
       - name: caddyfile
         configMap:
           name: vanilla-megabase-caddyfile
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: samcday.com/cloud
-                operator: Exists
     factorioServer:
       generate_new_save: false
       save_name: 2021megabae
@@ -66,7 +58,8 @@ spec:
         - ModuleInserter
         - VehicleSnap
     nodeSelector:
-        kubernetes.io/arch: amd64
+      kubernetes.io/arch: amd64
+      samcday.com/cloud: ""
     persistence:
       enabled: true
       storageClassName: syncthing
