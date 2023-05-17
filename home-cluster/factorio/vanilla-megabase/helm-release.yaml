@@ -78,14 +78,17 @@ spec:
         cpu: '1'
         memory: 1Gi
     server_settings:
+      auto_pause: false
+      autosave_slots: 5
+      graftorio2-disable-train-stats: true
+      graftorio2-nth-tick: 1800
+      graftorio2-server-save: true
       name: samcday's (mostly) vanilla megabase project
+      non_blocking_saving: true
+      require_user_verification: true
+      username: samcday
       visibility:
         public: false
-      username: samcday
-      require_user_verification: true
-      autosave_slots: 144 # (24 hours of 10min interval)
-      auto_pause: false
-      non_blocking_saving: true
     service:
       type: NodePort
       port: 34197
