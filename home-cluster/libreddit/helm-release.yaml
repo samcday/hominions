@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: morremeyer
         namespace: flux-system
-      version: 7.0.2
+      version: 7.0.3
   interval: 5m
   releaseName: libreddit
   values:
