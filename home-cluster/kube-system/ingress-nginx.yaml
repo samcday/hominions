@@ -47,16 +47,14 @@ spec:
       kind: Deployment
       metrics:
         enabled: true
+      nodeSelector:
+        samcday.com/cloud: ''
       replicaCount: 2
       service:
         enabled: false
       terminationGracePeriodSeconds: 5
-      # For now this doesn't make sense, uplink is slow at home.
-      # But many services are responding from there, so *only* run ingress-nginx
-      # at home for now.
-      # tolerations:
-      #   - key: samcday.com/cloud
-      #     operator: Exists
-      #     effect: NoExecute
+      tolerations:
+        - key: samcday.com/cloud
+          operator: Exists
       updateStrategy:
         type: Recreate
