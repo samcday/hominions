@@ -23,7 +23,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: seaweedfs-storage
+        storageClass: syncthing
       media:
         enabled: true
         existingClaim: media
