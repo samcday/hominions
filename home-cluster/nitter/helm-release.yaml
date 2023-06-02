@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: morremeyer
         namespace: flux-system
-      version: 7.0.3
+      version: 7.1.0
   dependsOn:
     - name: redis
   interval: 5m
