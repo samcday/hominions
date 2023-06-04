@@ -28,7 +28,7 @@ spec:
       data: *pvc
     volume:
       replicas: 1
-      nodeSelector:
+      nodeSelector: |-
         kubernetes.io/hostname: librem13.hominions.tailnet.samcday.com
       data: &vol
         hostPathPrefix: /srv/seaweedfs-volume
