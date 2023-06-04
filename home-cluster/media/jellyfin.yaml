@@ -18,7 +18,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts: [jellyfin.home.samcday.com]
+      hosts: [jellyfin.samcday.com]
       paths: [/]
     persistence:
       config:
