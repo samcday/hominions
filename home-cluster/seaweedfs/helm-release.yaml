@@ -34,3 +34,4 @@ spec:
       index: leveldb
       idx: *vol
       logs: *vol
+      maxVolumes: 10
