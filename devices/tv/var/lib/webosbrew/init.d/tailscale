@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dir="/media/developer/apps/usr/palm/applications/tailscale"
+url="https://pkgs.tailscale.com/stable/tailscale_1.42.0_arm64.tgz"
+
+if [[ ! -d "$dir" ]]; then
+  mkdir "$dir"
+  curl -sL --fail "$url" \
+    | tar --strip-components=1 -C "$dir" -zxvf -
+fi
+
+mkdir -p /var/lib/tailscale
+nohup "$dir/tailscaled"  --state=/var/lib/tailscaletailscaled.state &
