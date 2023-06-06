@@ -9,4 +9,4 @@ spec:
     branch: main
   secretRef:
     name: code-samcday-com
-  url: https://code.samcday.com/samcday/home-cluster-media
+  url: https://code.samcday.com/me/home-cluster-media
