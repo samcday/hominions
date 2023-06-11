@@ -11,4 +11,4 @@ Hostname=librem13.hominions.tailnet.samcday.com
 Packages=base-devel,cni-plugins,containerd,gnome,grub,kubeadm,kubectl,kubelet,linux,net-tools,openssh,pacman-contrib,rsync,tailscale,tcpdump,usbutils,vim
 
 [Partitions]
-RootSize=5G
+RootSize=10G
