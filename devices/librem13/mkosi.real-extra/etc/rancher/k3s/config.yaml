@@ -1,3 +1,4 @@
+cluster-init: true
 container-runtime-endpoint: /run/containerd/containerd.sock
 disable:
   - local-storage
@@ -9,3 +10,5 @@ etcd-s3-region: eu-central-003
 # the rest of the s3 config (including enabling it by default) is set dynamically by cluster
 # see the k3s-s3-config DaemonSet
 flannel-backend: none
+# Default location is /etc/blah, which is read-only.
+write-kubeconfig: /var/lib/rancher/k3s/admin.kubeconfig

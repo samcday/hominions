@@ -2,13 +2,18 @@
 Architecture=x86_64
 Distribution=arch
 
+[Host]
+QemuMem=2G
+
 [Output]
 Bootable=yes
 Format=gpt_ext4
 Hostname=librem13.hominions.tailnet.samcday.com
+ReadOnly=yes
 
 [Packages]
-Packages=base-devel,cni-plugins,containerd,gnome,grub,kubeadm,kubectl,kubelet,linux,net-tools,openssh,pacman-contrib,rsync,tailscale,tcpdump,usbutils,vim
+Packages=base-devel,cni-plugins,containerd,gptfdisk,grub,iwd,linux,linux-firmware,lvm2,net-tools,openssh,pacman-contrib,rsync,systemd-resolvconf,tailscale,tcpdump,usbutils,vim
+WithNetwork=yes
 
 [Partitions]
-RootSize=10G
+RootSize=2G
