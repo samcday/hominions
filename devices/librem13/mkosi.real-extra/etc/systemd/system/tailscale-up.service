@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 ExecStart=tailscale up --login-server=https://samcday-headscale.fly.dev --authkey=file:${CREDENTIALS_DIRECTORY}/authkey --accept-dns --accept-routes
-LoadCredential=authkey:/etc/ts-auth-key
+LoadCredential=authkey:/etc/ts-auth.key
 RemainAfterExit=yes
 Type=oneshot
 

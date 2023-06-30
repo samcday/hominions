@@ -4,33 +4,16 @@ set -ueo pipefail
 
 dev=$1
 
-
-# Secrets can be set explicitly, otherwise they're taken from my Bitwarden vault by default.
-function bitwarden_item() {
-  if [[ -z "${BW_SESSION:-}" ]]; then
-    export BW_SESSION=$(bw unlock --raw)
-  fi
-  if [[ -z "${BW_SESSION:-}" ]]; then
-    echo 'ERROR: Bitwarden vault not unlocked'
-    exit 1
-  fi
-
-  bw get item "$1"
-}
-
 if [[ -z "${SKIP_BUILD:-}" ]]; then
-  export TAILNET_AUTH_KEY="${TAILNET_AUTH_KEY:-$(bitwarden_item "6e22f9a5-38aa-4703-8dfd-afc200fcb3ee" | jq -r .notes)}"
-  if [[ -z "$TAILNET_AUTH_KEY" ]]; then echo 'ERROR: $TAILNET_AUTH_KEY not set'; exit 1; fi
-
-  export LUKS_KEY="${LUKS_KEY:-$(bitwarden_item "9977c9de-0946-4b4a-b8f5-b02600fb8438" | jq -r '.fields[] | select(.name == "LUKS key").value')}"
-  if [[ -z "$LUKS_KEY" ]]; then echo 'ERROR: $LUKS_KEY not set'; exit 1; fi
-
   rm -rf mkosi.extra/
   cp -R mkosi.{real-extra,extra}
 
-  echo -n "$TAILNET_AUTH_KEY" > mkosi.extra/etc/ts-auth-key
-  mkdir mkosi.extra/etc/cryptsetup-keys.d
-  echo -n "$LUKS_KEY" > mkosi.extra/etc/cryptsetup-keys.d/root.key
+  for f in $(find mkosi.extra/ -type f -name '*.enc*'); do
+    echo decrypting $f
+    sops -i -d $f
+    mv $f $(echo $f | sed s/\.enc//)
+  done
+
   chmod 400 mkosi.extra/etc/cryptsetup-keys.d/root.key
   sudo mkosi -f --bios-size=1M
 fi

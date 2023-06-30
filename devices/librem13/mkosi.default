@@ -12,8 +12,8 @@ Hostname=librem13.hominions.tailnet.samcday.com
 ReadOnly=yes
 
 [Packages]
-Packages=base-devel,cni-plugins,containerd,gptfdisk,grub,iwd,linux,linux-firmware,lvm2,net-tools,openssh,pacman-contrib,rsync,systemd-resolvconf,tailscale,tcpdump,usbutils,vim
+Packages=base-devel,cni-plugins,containerd,gptfdisk,grub,iwd,kubelet,kubeadm,linux,linux-firmware,lvm2,net-tools,openssh,pacman-contrib,rsync,systemd-resolvconf,tailscale,tcpdump,usbutils,vim
 WithNetwork=yes
 
 [Partitions]
-RootSize=2G
+RootSize=3G
