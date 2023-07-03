@@ -1,6 +1,6 @@
 creation_rules:
   - age: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
-    path_regex: kubeadm\.yaml\.enc$
+    path_regex: kubeadm\.enc\.yaml$
     encrypted_regex: token
   - age: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
     path_regex: \.enc
