@@ -6,6 +6,7 @@ dev=$1
 
 if [[ -z "${SKIP_BUILD:-}" ]]; then
   sops -d mkosi.rootpw.enc > mkosi.rootpw
+  chmod 600 mkosi.rootpw
 
   rm -rf mkosi.extra/
   cp -R mkosi.{real-extra,extra}
@@ -42,5 +43,3 @@ sudo arch-chroot $mntdir grub-mkconfig -o /boot/grub/grub.cfg
 
 # Tweak kernel params - read only filesystem + disable audit
 sudo sed -i -e "s/quiet/audit=0/" -e "s/ rw / /" $mntdir/boot/grub/grub.cfg
-
-containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' > /etc/containerd/config.toml
