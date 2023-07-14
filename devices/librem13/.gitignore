@@ -1,5 +1,3 @@
-mkosi.cache/
-mkosi.extra/
-mkosi.rootpw
-image*
-test-disk.raw
+fedora-coreos-*.qcow2
+files-decrypted/
+config.ign
