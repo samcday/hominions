@@ -3,8 +3,6 @@ kind: InitConfiguration
 bootstrapTokens:
     - token: ENC[AES256_GCM,data:GwYX6VHMeIxv0IuIpKI6ByWjQQR+Luw=,iv:J2DyECnHqMgDiDw2BGjm21pd5Gwd4iRjtS5mrVdF718=,tag:/utUrvN3RDBUBBnIN3APYw==,type:str]
       description: Best token
-localAPIEndpoint:
-    advertiseAddress: 100.100.0.10
 nodeRegistration:
     criSocket: /run/containerd/containerd.sock
     kubeletExtraArgs:
@@ -24,8 +22,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T15:31:12Z"
-    mac: ENC[AES256_GCM,data:8uIZKQgkOKrHz/Q3mepos/MKSJikMkFl9PuXNE+jEQl9xfqqSfBHvgWxjebXqy3I6GMM/RgWuwVYG6DGOXuvUrVO+4t61JFcRjMFE6IzPR4fXCEVH+r/CP9xFA6OyEo2YzO4tOTN1wOH55280EMUQ0RUv+MgmgOKX8afjgkzH+Q=,iv:Xekzuogz24S92RIRbkp6aT1FNh2gwS9ObGw8Rc4DCYQ=,tag:8iLdjoNOymNn9xK+9Xypuw==,type:str]
+    lastmodified: "2023-07-15T15:47:55Z"
+    mac: ENC[AES256_GCM,data:AfJLwJnPxLWdBxKer+0tf+IqdRb/DOAc80MgJUAwfBQUfAATSqgLWEx9zfH/ENIdFuMHXOVXRF5XQv6B+R8doumSaC/Wihs7+paim8oKWgiR6UNJjnWvyljhOQaSjmCZppJxDO1tk1rgQ4h+Yto7407KCDghgONthuE+jH0LQ/o=,iv:s0mvleZEtrc+qAvFgR/ZNXbvy10LPmi5oc8DUbZob30=,tag:EQ0/u/Yh8pZbYub4SgWPhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -50,8 +48,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T15:31:12Z"
-    mac: ENC[AES256_GCM,data:8uIZKQgkOKrHz/Q3mepos/MKSJikMkFl9PuXNE+jEQl9xfqqSfBHvgWxjebXqy3I6GMM/RgWuwVYG6DGOXuvUrVO+4t61JFcRjMFE6IzPR4fXCEVH+r/CP9xFA6OyEo2YzO4tOTN1wOH55280EMUQ0RUv+MgmgOKX8afjgkzH+Q=,iv:Xekzuogz24S92RIRbkp6aT1FNh2gwS9ObGw8Rc4DCYQ=,tag:8iLdjoNOymNn9xK+9Xypuw==,type:str]
+    lastmodified: "2023-07-15T15:47:55Z"
+    mac: ENC[AES256_GCM,data:AfJLwJnPxLWdBxKer+0tf+IqdRb/DOAc80MgJUAwfBQUfAATSqgLWEx9zfH/ENIdFuMHXOVXRF5XQv6B+R8doumSaC/Wihs7+paim8oKWgiR6UNJjnWvyljhOQaSjmCZppJxDO1tk1rgQ4h+Yto7407KCDghgONthuE+jH0LQ/o=,iv:s0mvleZEtrc+qAvFgR/ZNXbvy10LPmi5oc8DUbZob30=,tag:EQ0/u/Yh8pZbYub4SgWPhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -74,8 +72,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T15:31:12Z"
-    mac: ENC[AES256_GCM,data:8uIZKQgkOKrHz/Q3mepos/MKSJikMkFl9PuXNE+jEQl9xfqqSfBHvgWxjebXqy3I6GMM/RgWuwVYG6DGOXuvUrVO+4t61JFcRjMFE6IzPR4fXCEVH+r/CP9xFA6OyEo2YzO4tOTN1wOH55280EMUQ0RUv+MgmgOKX8afjgkzH+Q=,iv:Xekzuogz24S92RIRbkp6aT1FNh2gwS9ObGw8Rc4DCYQ=,tag:8iLdjoNOymNn9xK+9Xypuw==,type:str]
+    lastmodified: "2023-07-15T15:47:55Z"
+    mac: ENC[AES256_GCM,data:AfJLwJnPxLWdBxKer+0tf+IqdRb/DOAc80MgJUAwfBQUfAATSqgLWEx9zfH/ENIdFuMHXOVXRF5XQv6B+R8doumSaC/Wihs7+paim8oKWgiR6UNJjnWvyljhOQaSjmCZppJxDO1tk1rgQ4h+Yto7407KCDghgONthuE+jH0LQ/o=,iv:s0mvleZEtrc+qAvFgR/ZNXbvy10LPmi5oc8DUbZob30=,tag:EQ0/u/Yh8pZbYub4SgWPhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3

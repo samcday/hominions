@@ -1,6 +1,7 @@
 set -uexo pipefail
 
 # mkosi doing some weird shit with initial pacman invocation, ignoring the pacman.conf provided in skeleton.
+# Update: I think this can be fixed: https://github.com/systemd/mkosi/issues/347
 mv /var/lib/pacman/ /usr/local/share/
 
 pacman-key --init
@@ -17,3 +18,5 @@ systemd-hwdb update
 
 # This directory isn't created by the package, iwd tries to create it on startup, gets angry at RO filesystem.
 mkdir /etc/iwd
+
+chmod 600 /etc/ssh/ssh_host_*_key
