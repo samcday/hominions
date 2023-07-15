@@ -22,8 +22,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:45:06Z"
-    mac: ENC[AES256_GCM,data:wKh6Sx4i985Frp+hTYFoaLGbEQNfKfvMrcRHq7xmAxDN0HxUtzQyhlc+KcZjqxbPlpyXnRzbaiesaJFjYMATCacuBOZcIJ/4qh5ffZ17tG1X8PfqTgOh9PFEo7LbApnQw8pls+e515zbjlnNn/JkIlQDq2Uq/3nrMzdhbFCRcMg=,iv:Wp3WgMijvm0hYTNizK/uyGgH+mmHmoA8DKGI+QFnBCA=,tag:KorZMT8CY7cSpzkkXwaBIQ==,type:str]
+    lastmodified: "2023-07-15T19:50:43Z"
+    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -33,6 +33,9 @@ kind: ClusterConfiguration
 controllerManager:
     extraArgs:
         flex-volume-plugin-dir: /var/lib/kubelet/flex-volume
+networking:
+    serviceSubnet: 10.43.0.0/16
+    podSubnet: 10.42.0.0/16
 sops:
     kms: []
     gcp_kms: []
@@ -48,8 +51,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:45:06Z"
-    mac: ENC[AES256_GCM,data:wKh6Sx4i985Frp+hTYFoaLGbEQNfKfvMrcRHq7xmAxDN0HxUtzQyhlc+KcZjqxbPlpyXnRzbaiesaJFjYMATCacuBOZcIJ/4qh5ffZ17tG1X8PfqTgOh9PFEo7LbApnQw8pls+e515zbjlnNn/JkIlQDq2Uq/3nrMzdhbFCRcMg=,iv:Wp3WgMijvm0hYTNizK/uyGgH+mmHmoA8DKGI+QFnBCA=,tag:KorZMT8CY7cSpzkkXwaBIQ==,type:str]
+    lastmodified: "2023-07-15T19:50:43Z"
+    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -72,8 +75,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:45:06Z"
-    mac: ENC[AES256_GCM,data:wKh6Sx4i985Frp+hTYFoaLGbEQNfKfvMrcRHq7xmAxDN0HxUtzQyhlc+KcZjqxbPlpyXnRzbaiesaJFjYMATCacuBOZcIJ/4qh5ffZ17tG1X8PfqTgOh9PFEo7LbApnQw8pls+e515zbjlnNn/JkIlQDq2Uq/3nrMzdhbFCRcMg=,iv:Wp3WgMijvm0hYTNizK/uyGgH+mmHmoA8DKGI+QFnBCA=,tag:KorZMT8CY7cSpzkkXwaBIQ==,type:str]
+    lastmodified: "2023-07-15T19:50:43Z"
+    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
