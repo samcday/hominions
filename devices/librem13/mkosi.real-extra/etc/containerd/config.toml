@@ -73,7 +73,7 @@ version = 2
     unset_seccomp_profile = ""
 
     [plugins."io.containerd.grpc.v1.cri".cni]
-      bin_dir = "/usr/libexec/cni/"
+      bin_dir = "/opt/cni/bin"
       conf_dir = "/etc/cni/net.d"
       conf_template = "/etc/cni/template"
       ip_pref = ""
@@ -134,7 +134,7 @@ version = 2
             NoPivotRoot = false
             Root = ""
             ShimCgroup = ""
-            SystemdCgroup = true
+            SystemdCgroup = false
 
       [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime]
         base_runtime_spec = ""
@@ -172,7 +172,7 @@ version = 2
       tls_key_file = ""
 
   [plugins."io.containerd.internal.v1.opt"]
-    path = "/var/lib/containerd/opt"
+    path = "/opt/containerd"
 
   [plugins."io.containerd.internal.v1.restart"]
     interval = "10s"
@@ -245,14 +245,6 @@ version = 2
     protocol = ""
 
   [plugins."io.containerd.transfer.v1.local"]
-    config_path = ""
-    max_concurrent_downloads = 3
-    max_concurrent_uploaded_layers = 3
-
-    [[plugins."io.containerd.transfer.v1.local".unpack_config]]
-      differ = ""
-      platform = "linux/amd64"
-      snapshotter = "overlayfs"
 
 [proxy_plugins]
 

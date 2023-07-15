@@ -1,0 +1,18 @@
+set -uexo pipefail
+
+pacman-key --init
+pacman-key --populate
+
+systemctl enable containerd.service
+systemctl enable iwd.service
+systemctl enable kubelet.service
+systemctl enable sshd.service
+systemctl enable systemd-networkd.service systemd-resolved.service
+systemctl enable tailscaled.service tailscale-up.service
+
+systemd-hwdb update
+
+# This directory isn't created by the package, iwd tries to create it on startup, gets angry at RO filesystem.
+mkdir /etc/iwd
+
+containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' > /etc/containerd/config.toml
