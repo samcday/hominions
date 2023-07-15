@@ -1,5 +1,8 @@
 set -uexo pipefail
 
+# mkosi doing some weird shit with initial pacman invocation, ignoring the pacman.conf provided in skeleton.
+mv /var/lib/pacman/ /usr/local/share/
+
 pacman-key --init
 pacman-key --populate
 
@@ -14,5 +17,3 @@ systemd-hwdb update
 
 # This directory isn't created by the package, iwd tries to create it on startup, gets angry at RO filesystem.
 mkdir /etc/iwd
-
-containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' > /etc/containerd/config.toml
