@@ -4,8 +4,6 @@ namespace: kube-system
 configMapGenerator:
   - name: hcloud-cloud-init
     files: [HCLOUD_CLOUD_INIT=hcloud-cloud-init.sh.base64]
-  - name: hcloud-fip-values
-    files: [hcloud-fip/values.yaml]
   - name: vertical-pod-autoscaler-values
     files: [vertical-pod-autoscaler/values.yaml]
 resources:
@@ -15,8 +13,6 @@ resources:
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
   - external-dns.yaml
-  # - fip-hack.yaml
-  # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
   - postgres-operator.yaml
