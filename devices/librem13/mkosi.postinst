@@ -20,3 +20,7 @@ systemd-hwdb update
 mkdir /etc/iwd
 
 chmod 600 /etc/ssh/ssh_host_*_key
+
+etcd_version=v3.4.27
+curl -sL --fail https://github.com/etcd-io/etcd/releases/download/${etcd_version}/etcd-${etcd_version}-linux-amd64.tar.gz \
+    | tar xvz --strip-components=1 -C /usr/local/bin etcd-${etcd_version}-linux-amd64/etcdctl
