@@ -7,6 +7,7 @@ nodeRegistration:
     criSocket: /run/containerd/containerd.sock
     kubeletExtraArgs:
         volume-plugin-dir: /var/lib/kubelet/flex-volume
+    taints: []
 sops:
     kms: []
     gcp_kms: []
@@ -22,8 +23,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:50:43Z"
-    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
+    lastmodified: "2023-07-16T08:51:14Z"
+    mac: ENC[AES256_GCM,data:xHQ65uN4+GjElZaTAgkcqvscpwbwGo1ovK3hCBFIWiUY9dRStiPag1/F5yrD8HV8S0+AKKuYOlBnp01jySicdIOGdWXCtazCAnA7vq+6//cAgGwsq5eX5gj7vqU4/pJGw3IeDBhpaeMnvKu1G75WGu75zvkZUucYawFgD1X1ejc=,iv:Ykl2zP611j8Me8naYWlQei2zQA4bss2lF1OYyyV11EY=,tag:tPjCOpxg6dMgaWr7Z1i1mA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -51,8 +52,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:50:43Z"
-    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
+    lastmodified: "2023-07-16T08:51:14Z"
+    mac: ENC[AES256_GCM,data:xHQ65uN4+GjElZaTAgkcqvscpwbwGo1ovK3hCBFIWiUY9dRStiPag1/F5yrD8HV8S0+AKKuYOlBnp01jySicdIOGdWXCtazCAnA7vq+6//cAgGwsq5eX5gj7vqU4/pJGw3IeDBhpaeMnvKu1G75WGu75zvkZUucYawFgD1X1ejc=,iv:Ykl2zP611j8Me8naYWlQei2zQA4bss2lF1OYyyV11EY=,tag:tPjCOpxg6dMgaWr7Z1i1mA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
@@ -75,8 +76,8 @@ sops:
             VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
             Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-15T19:50:43Z"
-    mac: ENC[AES256_GCM,data:BT1DfoYjVk92xw5O8vJgQj8Ix7xCRgfmUhYM/OtknMOmBsVg3DtoL3bg07M6MmixIzZhKqaZyWao1zpKfvS8cYRP1RGld1Ry5k6++px4RoSaMCgba1V8IfDvPILy3PmzUTwTmqpOM4uhU6qYfK0etfvCu92ucCH8lAGtiQgKqDM=,iv:9X++7iXiroKbMWWPwUS/Duc/1SK9y/fVd6aQdfSZ6rc=,tag:L+U06st1dp5CSQvikvhyhA==,type:str]
+    lastmodified: "2023-07-16T08:51:14Z"
+    mac: ENC[AES256_GCM,data:xHQ65uN4+GjElZaTAgkcqvscpwbwGo1ovK3hCBFIWiUY9dRStiPag1/F5yrD8HV8S0+AKKuYOlBnp01jySicdIOGdWXCtazCAnA7vq+6//cAgGwsq5eX5gj7vqU4/pJGw3IeDBhpaeMnvKu1G75WGu75zvkZUucYawFgD1X1ejc=,iv:Ykl2zP611j8Me8naYWlQei2zQA4bss2lF1OYyyV11EY=,tag:tPjCOpxg6dMgaWr7Z1i1mA==,type:str]
     pgp: []
     encrypted_regex: token
     version: 3.7.3
