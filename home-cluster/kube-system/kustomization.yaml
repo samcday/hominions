@@ -19,7 +19,6 @@ resources:
   # - hcloud-fip/helm-release.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
-  - k3s-s3-config.yaml
   - postgres-operator.yaml
   - prometheus-operator.yaml
   - stc.yaml
