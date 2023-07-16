@@ -48,7 +48,7 @@ spec:
           key: token
     image:
       repository: zedeus/nitter
-      tag: bc219aa792cc0e4117888b2036a969559f4f2689-arm64
+      tag: latest-arm64
     ingress:
       enabled: true
       annotations:
