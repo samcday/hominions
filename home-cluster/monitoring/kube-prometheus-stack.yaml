@@ -37,18 +37,6 @@ spec:
       enabled: false
       forceDeployDatasources: true
       tolerations: *toler
-    kubeApiServer:
-      enabled: false
-    kubeControllerManager:
-      enabled: false
-    kubeEtcd:
-      enabled: false
-    kubelet:
-      enabled: false
-    kubeProxy:
-      enabled: false
-    kubeScheduler:
-      enabled: false
     prometheus:
       ingress:
         enabled: false
