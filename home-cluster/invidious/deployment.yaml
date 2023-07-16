@@ -51,7 +51,7 @@ spec:
         - name: config
           image: alpine:3
           command:
-            - sh
+            - bash
             - -c
             - |-
               cp /config-template/config.yaml /config/config.yaml
