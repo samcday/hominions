@@ -1,6 +1,6 @@
 db:
-  user: ${PGUSER}
-  password: ${PGPASSWORD}
+  user: _PGUSER_
+  password: _PGPASSWORD_
   host: public-db.postgres.svc.cluster.local.
   port: 5432
   dbname: invidious
@@ -29,11 +29,11 @@ full_refresh: false
 feed_threads: 1
 
 captcha_api_url: https://api.anti-captcha.com
-captcha_key: ${CAPTCHA_KEY}
+captcha_key: _CAPTCHA_KEY_
 
 use_pubsub_feeds: true
 
-hmac_key: ${HMAC_KEY}
+hmac_key: _HMAC_KEY_
 
 dmca_content: []
 

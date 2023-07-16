@@ -54,8 +54,10 @@ spec:
             - sh
             - -c
             - |-
-              apk add gettext
-              envsubst < /config-template/config.yaml > /config/config.yaml
+              cp /config-template/config.yaml /config/config.yaml
+              for key in CAPTCHA_KEY HMAC_KEY PGUSER PGPASSWORD; do
+                sed -i -e "s/_${key}_/${!key}" /config/config.yaml
+              done
           env:
             - name: PGUSER
               valueFrom:
