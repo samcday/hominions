@@ -9,6 +9,7 @@ resources:
   - ingress-nginx-pod-monitor.yaml
   - loki/
   - kube-prometheus-stack.yaml
+  - metrics-server.yaml
   - namespace.yaml
   - promtail.yaml
   # - terraform.yaml
