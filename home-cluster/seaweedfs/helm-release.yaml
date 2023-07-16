@@ -16,16 +16,19 @@ spec:
   values:
     # https://github.com/seaweedfs/seaweedfs/blob/master/k8s/charts/seaweedfs/values.yaml
     filer:
-      data: &pvc
+      data: &datapvc
         type: persistentVolumeClaim
         size: 10Gi
         storageClass: syncthing
+      logs: &logs
+        hostPathPrefix: /var/seaweedfs
       encryptVolumeData: true
     global:
       monitoring:
         enabled: true
     master:
-      data: *pvc
+      data: *datapvc
+      logs: *logs
     volume:
       replicas: 1
       nodeSelector: |-
