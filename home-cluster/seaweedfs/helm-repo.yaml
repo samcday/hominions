@@ -1,6 +1,6 @@
 ---
 # Bug in upstream Helm chart, unused for now.
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: seaweedfs
