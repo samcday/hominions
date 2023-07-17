@@ -13,6 +13,8 @@ autoApprovers:
   routes:
     # home-cluster pods
     10.42.0.0/16: [group:hominions]
+    # home-cluster services
+    10.43.0.0/16: [tag:services-router]
 
 groups:
   group:all: [hominions, personal]
