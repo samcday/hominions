@@ -11,7 +11,7 @@ systemctl enable containerd.service
 systemctl enable iwd.service
 systemctl enable kubelet.service
 systemctl enable sshd.service
-systemctl enable systemd-networkd.service systemd-resolved.service
+systemctl enable systemd-networkd.service systemd-resolved.service systemd-timesyncd
 systemctl enable tailscaled.service tailscale-up.service
 
 systemd-hwdb update
