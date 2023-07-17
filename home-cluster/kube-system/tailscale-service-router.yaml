@@ -1,47 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
   namespace: kube-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tailscale-mullvad-router
+      app: tailscale-service-router
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: tailscale-mullvad-router
+        app: tailscale-service-router
     spec:
       containers:
-        - name: wireguard
-          image: cmulk/wireguard-docker:alpine
-          securityContext:
-            capabilities:
-              add: [NET_ADMIN]
-            privileged: true
-          resources:
-            requests:
-              memory: 64Mi
-              cpu: "100m"
-            limits:
-              cpu: '2'
-              memory: 256Mi
-          volumeMounts:
-            - name: secret
-              mountPath: /etc/wireguard/wg0.conf
-              subPath: wg0.conf
-        - image: tailscale/tailscale:v1.33
+        - image: tailscale/tailscale:stable
           name: tailscale
           command:
             - /bin/sh
             - -c
             - |-
-              tailscaled --state=kube:mullvad-ts-auth-key --tun=userspace-networking --port=31643 &
+              tailscaled --state=kube:service-ts-auth-key --tun=userspace-networking --port=31643 &
               PID=$!
-              tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.64.0.0/16
+              tailscale up --login-server=https://samcday-headscale.fly.dev/ --authkey=$TS_AUTH_KEY --accept-dns=false --advertise-routes=10.43.0.0/16
               wait $PID
           envFrom:
             - secretRef:
@@ -57,8 +40,8 @@ spec:
               command:
                 - tailscale
                 - ping
-                - hominion.hominion.tailnet.samcday.com
-            initialDelaySeconds: 60
+                - librem13.hominions.tailnet.samcday.com
+            initialDelaySeconds: 15
             periodSeconds: 30
           resources:
             requests:
@@ -67,28 +50,26 @@ spec:
             limits:
               cpu: '2'
               memory: 1Gi
-      nodeSelector:
-        kubernetes.io/hostname: hominion
-      serviceAccountName: tailscale-mullvad-router
+      serviceAccountName: tailscale-service-router
       terminationGracePeriodSeconds: 3
       tolerations:
-        - key: samcday.com/hcloud
+        - key: samcday.com/cloud
           operator: Exists
       volumes:
         - name: secret
           secret:
-            secretName: mullvad-priv
+            secretName: service-priv
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
   namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
   namespace: kube-system
 rules:
 - apiGroups: [""]
@@ -96,31 +77,31 @@ rules:
   verbs: [create]
 - apiGroups: [""]
   resources: [secrets]
-  resourceNames: [mullvad-ts-auth-key]
+  resourceNames: [service-ts-auth-key]
   verbs: [get, update]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
   namespace: kube-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
 subjects:
 - kind: ServiceAccount
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tailscale-mullvad-router
+  name: tailscale-service-router
   namespace: kube-system
 spec:
   type: NodePort
   selector:
-    app: tailscale-mullvad-router
+    app: tailscale-service-router
   ports:
     - port: 31643
       targetPort: 31643

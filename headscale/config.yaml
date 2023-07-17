@@ -9,9 +9,11 @@ disable_check_updates: true
 db_type: sqlite3
 db_path: /data/db.sqlite
 dns_config:
-  nameservers: [1.1.1.1]
-  magic_dns: true
   base_domain: tailnet.samcday.com
+  magic_dns: true
+  nameservers: [1.1.1.1]
+  restricted_nameservers:
+    cluster.local: [10.43.0.10]
 ephemeral_node_inactivity_timeout: 5m
 ip_prefixes:
   - fd7a:115c:a1e0::/48
