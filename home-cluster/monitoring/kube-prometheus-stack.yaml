@@ -27,24 +27,15 @@ spec:
       alertmanagerSpec:
         alertmanagerConfigMatcherStrategy:
           type: None
+        externalUrl: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
         tolerations: &toler
           - key: samcday.com/cloud
             effect: NoExecute
-      ingress:
-        enabled: false
-        ingressClassName: nginx
-        hosts: [alertmanager.home.samcday.com]
-        paths: [/]
     grafana:
       enabled: false
       forceDeployDatasources: true
       tolerations: *toler
     prometheus:
-      ingress:
-        enabled: false
-        ingressClassName: nginx
-        hosts: [prometheus.home.samcday.com]
-        paths: [/]
       prometheusSpec:
         additionalScrapeConfigs:
           - job_name: node-exporter
@@ -54,6 +45,7 @@ spec:
                   # - home-router-standby.hominions.tailnet.samcday.com:9100
                   - sam-laptop.personal.tailnet.samcday.com:9100
         enableAdminAPI: true
+        externalUrl: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         retention: 30d
