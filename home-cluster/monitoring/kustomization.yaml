@@ -11,5 +11,6 @@ resources:
   - kube-prometheus-stack.yaml
   - metrics-server.yaml
   - namespace.yaml
+  - pagerduty.yaml
   - promtail.yaml
   # - terraform.yaml
