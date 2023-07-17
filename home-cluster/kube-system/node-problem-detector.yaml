@@ -16,3 +16,6 @@ spec:
   interval: 1h
   values:
     # https://github.com/deliveryhero/helm-charts/blob/master/stable/node-problem-detector/values.yaml
+    tolerations:
+       - key: samcday.com/cloud
+         operator: Exists
