@@ -10,15 +10,15 @@ spec:
       chart: generic
       sourceRef:
         kind: HelmRepository
-        name: morremeyer
+        name: community-tooling-charts
         namespace: flux-system
       version: 7.2.1
   dependsOn:
     - name: redis
-  interval: 5m
+  interval: 1h
   releaseName: nitter
   values:
-    # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
+    # https://github.com/community-tooling/charts/blob/main/charts/generic/values.yaml
     additionalVolumes:
       - name: config
         configMap:

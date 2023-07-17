@@ -10,13 +10,13 @@ spec:
       chart: generic
       sourceRef:
         kind: HelmRepository
-        name: morremeyer
+        name: community-tooling-charts
         namespace: flux-system
       version: 7.2.1
   interval: 5m
   releaseName: libreddit
   values:
-    # https://github.com/morremeyer/charts/blob/main/charts/generic/values.yaml
+    # https://github.com/community-tooling/charts/blob/main/charts/generic/values.yaml
     env:
     image:
       repository: libreddit/libreddit

@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: morremeyer
+  name: community-tooling-charts
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://morremeyer.github.io/charts/
+  url: https://community-tooling.github.io/charts/
