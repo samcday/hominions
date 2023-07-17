@@ -15,6 +15,7 @@ resources:
   - external-dns.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
+  - node-problem-detector.yaml
   - postgres-operator.yaml
   - prometheus-operator.yaml
   - stc.yaml
