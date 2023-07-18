@@ -202,8 +202,8 @@ resource "b2_bucket" "home-cluster-backups" {
   bucket_name = "samcday-home-cluster-backups"
   bucket_type = "allPrivate"
   lifecycle_rules {
-    days_from_hiding_to_deleting = 1
-    file_name_prefix             = "/"
+    days_from_hiding_to_deleting = 7
+    file_name_prefix             = ""
   }
 }
 
@@ -220,10 +220,14 @@ resource "kubernetes_secret" "backups-bucket" {
   }
 
   data = {
-    "config.yaml" = yamlencode({
-      etcd-s3-access-key = b2_application_key.home-cluster-backups.application_key_id
-      etcd-s3-secret-key = b2_application_key.home-cluster-backups.application_key
-      etcd-s3            = true
-    })
+    "rclone.conf" = <<-EOT
+    [remote]
+    type = s3
+    provider = Other
+    access_key_id = ${b2_application_key.home-cluster-backups.application_key_id}
+    secret_access_key = ${b2_application_key.home-cluster-backups.application_key}
+    endpoint = s3.eu-central-003.backblazeb2.com
+    acl = private
+    EOT
   }
 }

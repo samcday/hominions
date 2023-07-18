@@ -12,6 +12,7 @@ resources:
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml
   - coredns.yaml
+  - etcd-snapshot.yaml
   - external-dns.yaml
   - ingress-nginx.yaml
   - ip-masq-agent.yaml
