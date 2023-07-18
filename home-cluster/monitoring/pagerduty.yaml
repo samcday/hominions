@@ -17,4 +17,7 @@ spec:
       - name: alertname
         value: Watchdog
         matchType: "!="
+      - name: alertname
+        value: InfoInhibitor
+        matchType: "!="
     receiver: pagerduty
