@@ -1,0 +1,75 @@
+# Very Good CNI, best engineering. Many GitHub stars.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: best-cni
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: best-cni
+  template:
+    metadata:
+      labels:
+        app: best-cni
+    spec:
+      containers:
+        - name: best-cni
+          image: alpine:3
+          args:
+            - chroot
+            - /host
+            - bash
+            - -l
+            - -c
+            - |-
+              set -uexo pipefail
+              export KUBECONFIG=/etc/kubernetes/kubelet.conf
+              pod_cidr=$(kubectl get node ${NODE_NAME} -o 'jsonpath={.spec.podCIDR}')
+              cat <<HERE
+              {
+                "name": "k8s-pod-network",
+                "cniVersion": "0.3.1",
+                "plugins": [
+                  {
+                    "type": "ptp",
+                    "mtu": 1460,
+                    "ipam": {
+                      "type": "host-local",
+                      "subnet": "${pod_cidr}",
+                      "routes": [
+                        {
+                          "dst": "0.0.0.0/0"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "portmap",
+                    "capabilities": {
+                      "portMappings": true
+                    }
+                  }
+                ]
+              }
+              HERE
+              while true; do
+              sleep 10
+              done
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: host
+              mountPath: /host
+      hostNetwork: true
+      tolerations:
+        - operator: Exists
+      volumes:
+        - name: host
+          hostPath:
+            path: /
