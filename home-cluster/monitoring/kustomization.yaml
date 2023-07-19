@@ -5,6 +5,7 @@ resources:
   - ../config
   - dashboards
   - dms.yaml
+  - flux.yaml
   - grafana.yaml
   - ingress-nginx-pod-monitor.yaml
   - loki/
