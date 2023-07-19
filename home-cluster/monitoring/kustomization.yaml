@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ../config
+  - battery.yaml
   - dashboards
   - dms.yaml
   - flux.yaml
