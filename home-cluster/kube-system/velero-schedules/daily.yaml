@@ -5,5 +5,15 @@ metadata:
   namespace: kube-system
 spec:
   schedule: 0 1 * * *
-  template: {}
+  template:
+    includedClusterScopedResources:
+      - v1/Node
+      - v1/PersistentVolume
+    includedResources:
+      - acid.zalan.do/v1/postgresql
+      - acme.cert-manager.io/v1/Order
+      - cert-manager.io/v1/Certificate
+      - cert-manager.io/v1/CertificateRequest
+      - stc.samcday.com/v1alpha1/SyncthingCluster
+      - v1/PersistentVolumeClaim
   useOwnerReferencesInBackup: false
