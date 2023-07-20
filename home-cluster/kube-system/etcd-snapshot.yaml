@@ -38,7 +38,7 @@ spec:
                 - sync
                 - -P
                 - /backup
-                - remote:samcday-home-cluster-backups
+                - remote:samcday-home-cluster-backups/etcd
               volumeMounts:
                 - name: backup
                   mountPath: /backup
