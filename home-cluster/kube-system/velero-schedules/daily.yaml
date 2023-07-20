@@ -7,13 +7,13 @@ spec:
   schedule: 0 1 * * *
   template:
     includedClusterScopedResources:
-      - v1/Node
-      - v1/PersistentVolume
-    includedNamespaceScopedResources:
-      - acid.zalan.do/v1/postgresql
-      - acme.cert-manager.io/v1/Order
-      - cert-manager.io/v1/Certificate
-      - cert-manager.io/v1/CertificateRequest
-      - stc.samcday.com/v1alpha1/SyncthingCluster
-      - v1/PersistentVolumeClaim
+      - Node
+      - PersistentVolume
+    includedResources:
+      - postgresql.acid.zalan.do
+      - Order.acme.cert-manager.io
+      - Certificate.cert-manager.io
+      - CertificateRequest.cert-manager.io
+      - SyncthingCluster.stc.samcday.com
+      - PersistentVolumeClaim
   useOwnerReferencesInBackup: false
