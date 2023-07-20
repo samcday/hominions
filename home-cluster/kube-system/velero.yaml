@@ -20,7 +20,7 @@ spec:
       backupStorageLocation:
         - bucket: samcday-home-cluster-backups
           config:
-            s3Url: s3.eu-central-003.backblazeb2.com
+            s3Url: https://s3.eu-central-003.backblazeb2.com
           credential:
             name: backups-bucket
             key: velero
