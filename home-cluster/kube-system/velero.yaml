@@ -37,3 +37,18 @@ spec:
     #   prometheusRule:
     #     enabled: true
     snapshotsEnabled: false
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: velero-schedules
+  namespace: kube-system
+spec:
+  interval: 1h
+  path: home-cluster/kube-system/velero-schedules
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: hominions
+    namespace: flux-system
+  timeout: 2m0s
