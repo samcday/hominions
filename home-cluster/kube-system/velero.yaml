@@ -19,11 +19,14 @@ spec:
     configuration:
       backupStorageLocation:
         - bucket: samcday-home-cluster-backups
+          config:
+            s3Url: s3.eu-central-003.backblazeb2.com
           credential:
             name: backups-bucket
             key: velero
           prefix: velero
           provider: aws
+          region: eu-central-003
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.7.0
