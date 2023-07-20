@@ -30,7 +30,7 @@ spec:
         volumeMounts:
           - name: plugins
             mountPath: /target
-    metrics:
-      prometheusRule:
-        enabled: true
+    # metrics:
+    #   prometheusRule:
+    #     enabled: true
     snapshotsEnabled: false
