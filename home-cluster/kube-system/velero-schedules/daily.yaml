@@ -9,7 +9,7 @@ spec:
     includedClusterScopedResources:
       - v1/Node
       - v1/PersistentVolume
-    includedResources:
+    includedNamespaceScopedResources:
       - acid.zalan.do/v1/postgresql
       - acme.cert-manager.io/v1/Order
       - cert-manager.io/v1/Certificate
