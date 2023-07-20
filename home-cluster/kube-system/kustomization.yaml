@@ -8,6 +8,7 @@ configMapGenerator:
     files: [vertical-pod-autoscaler/values.yaml]
 resources:
   - ../config
+  - best-cni.yaml
   - cert-manager.yaml
   # - cluster-autoscaler/cluster-autoscaler.yaml
   # - cluster-autoscaler/hcloud-provisioner.yaml

@@ -28,6 +28,9 @@ spec:
               while true; do
                 pod_cidr=$(kubectl get node ${NODE_NAME} -o 'jsonpath={.spec.podCIDR}')
                 cni_dir=$(cat /etc/containerd/config.toml | grep -A5 'plugins."io.containerd.grpc.v1.cri".cni' | grep conf_dir | sed -e 's/.*conf_dir = "\(.*\)"/\1/')
+                if [[ ! -d $cni_dir ]]; then
+                  mkdir -p $cni_dir
+                fi
                 cat > $cni_dir/best-cni.conflist <<HERE
               {
                 "name": "k8s-pod-network",
