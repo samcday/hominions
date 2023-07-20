@@ -17,3 +17,4 @@ resources:
   - promtail.yaml
   - targetdown-fixed.yaml
   # - terraform.yaml
+  - velero.yaml
