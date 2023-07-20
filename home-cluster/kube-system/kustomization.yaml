@@ -23,5 +23,6 @@ resources:
   - tailscale-node-controller.yaml
   - tailscale-service-router.yaml
   # - terraform.yaml
+  - velero.yaml
   # - vertical-pod-autoscaler/helm-release.yaml
   # - vpas.yaml
