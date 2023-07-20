@@ -9,6 +9,7 @@ HERE
 
 systemctl enable containerd
 systemctl enable sshd
+systemctl enable systemd-timesyncd
 systemctl enable tailscaled
 systemctl enable tailscale-up
 
