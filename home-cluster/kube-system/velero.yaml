@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: velero
+      sourceRef:
+        kind: HelmRepository
+        name: vmware-tanzu
+        namespace: flux-system
+      version: 4.1.3
+  interval: 1h
+  values:
+    # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+    configuration:
+      backupStorageLocation:
+        - bucket: samcday-home-cluster-backups
+          credential:
+            name: backups-bucket
+            key: velero
+          prefix: velero
+          provider: aws
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.7.0
+        volumeMounts:
+          - name: plugins
+            mountPath: /target
+    metrics:
+      prometheusRule:
+        enabled: true
+    snapshotsEnabled: false

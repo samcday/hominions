@@ -229,5 +229,10 @@ resource "kubernetes_secret" "backups-bucket" {
     endpoint = s3.eu-central-003.backblazeb2.com
     acl = private
     EOT
+    "velero" = <<-EOT
+    [default]
+    aws_access_key_id=${b2_application_key.home-cluster-backups.application_key_id}
+    aws_secret_access_key=${b2_application_key.home-cluster-backups.application_key}
+    EOT
   }
 }
