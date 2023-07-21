@@ -16,5 +16,9 @@ spec:
   interval: 1h
   values:
     # https://github.com/okgolove/helm-charts/blob/master/charts/goldpinger/values.yaml
+    prometheusRule:
+      enabled: true
+    serviceMonitor:
+      enabled: true
     tolerations:
       - operator: Exists
