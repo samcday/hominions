@@ -19,11 +19,11 @@ spec:
       schemas:
         public: {}
       secretNamespace: invidious
-    mastodon:
-      defaultUsers: true
-      schemas:
-        public: {}
-      secretNamespace: mastodon
+    # mastodon:
+    #   defaultUsers: true
+    #   schemas:
+    #     public: {}
+    #   secretNamespace: mastodon
   teamId: public
   tolerations:
     - key: samcday.com/cloud
