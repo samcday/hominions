@@ -5,12 +5,11 @@ metadata:
   namespace: postgres
 spec:
   nodeAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
-            - key: samcday.com/cloud
-              operator: Exists
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: samcday.com/cloud
+          operator: Exists
   numberOfInstances: 2
   postgresql:
     version: "15"
