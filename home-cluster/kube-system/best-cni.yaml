@@ -58,7 +58,7 @@ spec:
                 ]
               }
               HERE
-                if diff /tmp/best-cni.conflist $cni_dir/best-cni.conflist; then
+                if ! diff /tmp/best-cni.conflist $cni_dir/best-cni.conflist; then
                   mv /tmp/best-cni.conflist $cni_dir/best-cni.conflist
                 fi
                 sleep 10
