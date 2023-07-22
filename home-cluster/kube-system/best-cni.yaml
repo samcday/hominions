@@ -31,7 +31,7 @@ spec:
                 if [[ ! -d $cni_dir ]]; then
                   mkdir -p $cni_dir
                 fi
-                cat > $cni_dir/best-cni.conflist <<HERE
+                cat > /tmp/best-cni.conflist <<HERE
               {
                 "name": "k8s-pod-network",
                 "cniVersion": "0.3.1",
@@ -58,6 +58,9 @@ spec:
                 ]
               }
               HERE
+                if diff /tmp/best-cni.conflist $cni_dir/best-cni.conflist; then
+                  mv /tmp/best-cni.conflist $cni_dir/best-cni.conflist
+                fi
                 sleep 10
               done
           env:
