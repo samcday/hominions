@@ -4,7 +4,7 @@ metadata:
   name: postgres-db
   namespace: postgres
 spec:
-  numberOfInstances: 2
+  numberOfInstances: 1
   postgresql:
     version: "15"
   preparedDatabases:

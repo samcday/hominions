@@ -4,7 +4,7 @@ metadata:
   name: synapse-db
   namespace: postgres
 spec:
-  numberOfInstances: 2
+  numberOfInstances: 1
   patroni:
     initdb:
       lc-collate: C
