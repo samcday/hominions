@@ -1,1 +1,1 @@
-root PARTUUID=TODO /etc/cryptsetup-keys.d/root.key
+root PARTUUID=f6d4d05e-ab7d-4275-bb36-ca6d553fc4d5 /etc/cryptsetup-keys.d/root.key
