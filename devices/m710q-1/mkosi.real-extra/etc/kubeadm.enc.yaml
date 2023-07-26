@@ -1,0 +1,115 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+bootstrapTokens:
+    - token: ENC[AES256_GCM,data:GwYX6VHMeIxv0IuIpKI6ByWjQQR+Luw=,iv:J2DyECnHqMgDiDw2BGjm21pd5Gwd4iRjtS5mrVdF718=,tag:/utUrvN3RDBUBBnIN3APYw==,type:str]
+      description: Best token
+nodeRegistration:
+    criSocket: /run/containerd/containerd.sock
+    kubeletExtraArgs:
+        volume-plugin-dir: /var/lib/kubelet/flex-volume
+    taints: []
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVVnZYUm9Xb0Z1V21ja2FS
+            c2ZmMkpJZ1FKclJqYzhUam44NDNaYng5bWwwCkgwdTFXSE5jdGlCbFd6WEt0V0Nw
+            cVpFSzFmcE9hLzZjN3JaME9aM2hjekUKLS0tIG5NbDNIdnNzK25vTHpVNmhaWGZZ
+            VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
+            Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-07-17T08:51:12Z"
+    mac: ENC[AES256_GCM,data:KFGHajBjuzd5a/L4+S2MUSemuVoH0PaowrhoRj5x3AtY7GR0YmiyH62uKItcAVYdF0SWwBXT2EtefA72puLrkouww9dz3oUmCSu5qDIAK8YJrQoZf0V2yhTorTM9HoNb4CX6/kF3PAc9q9wiVKs2eRMcNAp+/6ibvS2LwCfhnfA=,iv:ZlHNrHvLBI5OFA9cbSEO9U8A6rkP9nk9vPrRjCQ15D0=,tag:IVu/7A9l+tZB0nbO/NMLwQ==,type:str]
+    pgp: []
+    encrypted_regex: token
+    version: 3.7.3
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+controllerManager:
+    extraArgs:
+        bind-address: 0.0.0.0
+        flex-volume-plugin-dir: /var/lib/kubelet/flex-volume
+etcd:
+    local:
+        extraArgs:
+            listen-metrics-urls: http://0.0.0.0:2381
+networking:
+    serviceSubnet: 10.43.0.0/16
+    podSubnet: 10.42.0.0/16
+scheduler:
+    extraArgs:
+        bind-address: 0.0.0.0
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVVnZYUm9Xb0Z1V21ja2FS
+            c2ZmMkpJZ1FKclJqYzhUam44NDNaYng5bWwwCkgwdTFXSE5jdGlCbFd6WEt0V0Nw
+            cVpFSzFmcE9hLzZjN3JaME9aM2hjekUKLS0tIG5NbDNIdnNzK25vTHpVNmhaWGZZ
+            VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
+            Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-07-17T08:51:12Z"
+    mac: ENC[AES256_GCM,data:KFGHajBjuzd5a/L4+S2MUSemuVoH0PaowrhoRj5x3AtY7GR0YmiyH62uKItcAVYdF0SWwBXT2EtefA72puLrkouww9dz3oUmCSu5qDIAK8YJrQoZf0V2yhTorTM9HoNb4CX6/kF3PAc9q9wiVKs2eRMcNAp+/6ibvS2LwCfhnfA=,iv:ZlHNrHvLBI5OFA9cbSEO9U8A6rkP9nk9vPrRjCQ15D0=,tag:IVu/7A9l+tZB0nbO/NMLwQ==,type:str]
+    pgp: []
+    encrypted_regex: token
+    version: 3.7.3
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+containerRuntimeEndpoint: /run/containerd/containerd.sock
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVVnZYUm9Xb0Z1V21ja2FS
+            c2ZmMkpJZ1FKclJqYzhUam44NDNaYng5bWwwCkgwdTFXSE5jdGlCbFd6WEt0V0Nw
+            cVpFSzFmcE9hLzZjN3JaME9aM2hjekUKLS0tIG5NbDNIdnNzK25vTHpVNmhaWGZZ
+            VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
+            Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-07-17T08:51:12Z"
+    mac: ENC[AES256_GCM,data:KFGHajBjuzd5a/L4+S2MUSemuVoH0PaowrhoRj5x3AtY7GR0YmiyH62uKItcAVYdF0SWwBXT2EtefA72puLrkouww9dz3oUmCSu5qDIAK8YJrQoZf0V2yhTorTM9HoNb4CX6/kF3PAc9q9wiVKs2eRMcNAp+/6ibvS2LwCfhnfA=,iv:ZlHNrHvLBI5OFA9cbSEO9U8A6rkP9nk9vPrRjCQ15D0=,tag:IVu/7A9l+tZB0nbO/NMLwQ==,type:str]
+    pgp: []
+    encrypted_regex: token
+    version: 3.7.3
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+metricsBindAddress: 0.0.0.0:10249
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age10c9vvuvfkflc7zypu6zm8dtw0gdn028nlr3gslt35df8vdqrap5q36xav4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVVnZYUm9Xb0Z1V21ja2FS
+            c2ZmMkpJZ1FKclJqYzhUam44NDNaYng5bWwwCkgwdTFXSE5jdGlCbFd6WEt0V0Nw
+            cVpFSzFmcE9hLzZjN3JaME9aM2hjekUKLS0tIG5NbDNIdnNzK25vTHpVNmhaWGZZ
+            VWJzblovNVZtczNQVm85M2sxd2NtUWcKOEMAU8GpCi1hmsUmLEIwAVMnS0w5eCIJ
+            Axl6/T5B28PAagpysafYufvDcL3FUfZUkb1D29VCDnBpJG1lBW6AvA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-07-17T08:51:12Z"
+    mac: ENC[AES256_GCM,data:KFGHajBjuzd5a/L4+S2MUSemuVoH0PaowrhoRj5x3AtY7GR0YmiyH62uKItcAVYdF0SWwBXT2EtefA72puLrkouww9dz3oUmCSu5qDIAK8YJrQoZf0V2yhTorTM9HoNb4CX6/kF3PAc9q9wiVKs2eRMcNAp+/6ibvS2LwCfhnfA=,iv:ZlHNrHvLBI5OFA9cbSEO9U8A6rkP9nk9vPrRjCQ15D0=,tag:IVu/7A9l+tZB0nbO/NMLwQ==,type:str]
+    pgp: []
+    encrypted_regex: token
+    version: 3.7.3
