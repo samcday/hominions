@@ -2,9 +2,9 @@
 After=tailscaled.service network-online.target
 Requires=tailscaled.service
 Wants=network-online.target
-ConditionPathExists=!/var/lib/tailscale/tailscaled.state
 
 [Service]
+ExecCondition=bash -c 'tailscale status && exit 1'
 ExecStart=tailscale up --login-server=https://samcday-headscale.fly.dev --authkey=file:${CREDENTIALS_DIRECTORY}/authkey --accept-dns --accept-routes
 LoadCredential=authkey:/etc/ts-auth.key
 RemainAfterExit=yes

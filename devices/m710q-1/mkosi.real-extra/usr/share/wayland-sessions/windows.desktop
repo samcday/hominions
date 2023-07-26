@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Windows
+Comment=
+Exec=cage qemu-system-x86_64 TODO
+Type=Application

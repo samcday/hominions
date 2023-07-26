@@ -9,9 +9,10 @@ QemuMem=2G
 Bootable=yes
 Format=gpt_squashfs
 Hostname=m710q-1.hominions.tailnet.samcday.com
+KernelCommandLine=i915.enable_gvt=1 intel_iommu=on i915.enable_guc=0
 
 [Packages]
-Packages=base-devel,cni-plugins,containerd,git,gptfdisk,grub,iwd,kubeadm,kubectl,kubelet,libvirt,linux,linux-firmware,lvm2,man-db,man-pages,net-tools,openssh,pacman-contrib,qemu-base,rsync,systemd-resolvconf,tailscale,tcpdump,usbutils,vim
+Packages=base-devel,bridge-utils,cage,cni-plugins,containerd,dnsmasq,gdm,git,gptfdisk,grub,intel-ucode,kubeadm,kubectl,kubelet,linux,linux-firmware,lvm2,man-db,man-pages,net-tools,openssh,pacman-contrib,qemu-base,rsync,strace,sway,tailscale,tcpdump,usbutils,vim,virt-viewer
 WithNetwork=yes
 
 [Partitions]
