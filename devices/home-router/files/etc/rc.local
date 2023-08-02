@@ -1,0 +1,3 @@
+set -uexo pipefail
+mkdir -p /www/coreos /mnt/storage/coreos
+mount --bind /mnt/storage/coreos /www/coreos
