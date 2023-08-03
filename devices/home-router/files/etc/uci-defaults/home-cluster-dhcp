@@ -18,4 +18,4 @@ set dhcp.@host[-1].tag='home-cluster'
 commit dhcp
 EOI
 
-service dnsmasq restart
+service dnsmasq restart || true
