@@ -1,0 +1,22 @@
+variant: fcos
+version: 1.5.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys: [ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwawprQXEkGl38Q7T0PNseL0vpoyr4TbATMkEaZJTWQ]
+storage:
+  luks:
+    - name: var
+      clevis:
+        tang:
+          - url: http://10.0.1.1:8888
+            thumbprint: ADK-U4ItlVCxe4RXWa6aRCbO7lOb5cAsrY7LpdSJYek
+        threshold: 2
+        tpm2: true
+      device: /dev/sda
+      discard: true
+  filesystems:
+    - path: /var
+      device: /dev/mapper/var
+      format: ext4
+      with_mount_unit: true
