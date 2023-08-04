@@ -9,6 +9,9 @@
 
 set -uexo pipefail
 
+# TODO: move this elsewhere
+exit 0
+
 # adapted from https://openwrt.org/docs/guide-user/network/wifi/guestwifi/guest-wlan
 
 # Network interface + bridge
@@ -40,7 +43,7 @@ add_list dhcp.restricted-ipset.name="restricted-ipset6"
 add_list dhcp.restricted-ipset.domain="samcday-headscale.fly.dev"
 commit dhcp
 EOI
-/etc/init.d/dnsmasq restart
+/etc/init.d/dnsmasq restart || true
 
 # Wireless SSID
 uci -q batch << EOI

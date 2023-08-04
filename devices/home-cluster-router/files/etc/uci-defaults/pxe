@@ -28,4 +28,4 @@ dhcp-boot=tag:!ipxe,tag:bios,undionly.kpxe
 dhcp-boot=tag:!ipxe,tag:efi64,ipxe.efi
 HERE
 
-service dnsmasq restart
+service dnsmasq restart || true

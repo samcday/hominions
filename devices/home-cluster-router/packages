@@ -1,6 +1,7 @@
 block-mount
 curl
 e2fsprogs
+etherwake
 htop
 iptables-nft
 kmod-fs-ext4
@@ -13,6 +14,7 @@ openssh-sftp-server
 prometheus-node-exporter-lua
 screen
 tailscale
+tang
 usb-modeswitch
 usbutils
 zsh

@@ -1,8 +1,9 @@
 set -uexo pipefail
 
 uci -q batch << EOI
-add network device
-set network.@device[-1].name='usb0'
+set network.fp2dev=device
+set network.fp2dev.name='usb0'
+
 set network.fp2=interface
 set network.fp2.proto='dhcp'
 set network.fp2.device='usb0'

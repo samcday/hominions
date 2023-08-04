@@ -4,8 +4,8 @@
 set -uexo pipefail
 
 uci -q batch <<EOI
-add fstab mount
-set fstab.@mount[-1].target='/mnt/storage'
-set fstab.@mount[-1].device='sda1'
+set fstab.extstorage=mount
+set fstab.extstorage.target='/mnt/storage'
+set fstab.extstorage.device='sda1'
 commit fstab
 EOI

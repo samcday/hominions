@@ -4,4 +4,5 @@ uci -q batch << EOI
 set prometheus-node-exporter-lua.main.listen_interface=*
 commit prometheus-node-exporter-lua
 EOI
-service prometheus-node-exporter-lua restart
+
+service prometheus-node-exporter-lua restart || true
