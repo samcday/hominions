@@ -1,7 +1,7 @@
 FROM headscale/headscale:0.23 as headscale
 FROM litestream/litestream:0.3 as litestream
 
-FROM alpine:20230329
+FROM alpine:20240315
 COPY --from=headscale /bin/headscale /bin/headscale
 COPY --from=litestream /usr/local/bin/litestream /bin/litestream
 COPY config.yaml /etc/headscale/config.yaml
