@@ -12,7 +12,7 @@ Hostname=librem13.hominions.tailnet.samcday.com
 ReadOnly=yes
 
 [Packages]
-Packages=base-devel,cni-plugins,containerd,git,gptfdisk,grub,iwd,kubeadm,kubectl,kubelet,linux,linux-firmware,lvm2,man-db,man-pages,net-tools,openssh,pacman-contrib,rsync,systemd-resolvconf,tailscale,tcpdump,usbutils,vim
+Packages=pacman-contrib,systemd-resolvconf,
 WithNetwork=yes
 
 [Partitions]
