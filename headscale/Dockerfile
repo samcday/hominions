@@ -1,5 +1,5 @@
 FROM headscale/headscale:0.23 as headscale
-FROM litestream/litestream:0.3 as litestream
+FROM litestream/litestream:0.5 as litestream
 
 FROM alpine:20230329
 COPY --from=headscale /bin/headscale /bin/headscale
